@@ -25,6 +25,7 @@
 
 # Visual Studio cache directory
 .vs/
+.vscode/*
 
 # Gradle cache directory
 .gradle/
@@ -70,3 +71,63 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# collabignore
+Library
+library
+Temp
+temp
+Obj
+obj
+Build
+build
+Builds
+builds
+UserSettings
+usersettings
+MemoryCaptures
+memorycaptures
+Logs
+logs
+/ignore.conf
+*.private
+*.private.meta
+^*.private.[0-9]+$
+^*.private.[0-9]+.meta$
+**/Assets/AssetStoreTools
+**/assets/assetstoretools
+/Assets/Plugins/PlasticSCM*
+/assets/plugins/PlasticSCM*
+.vs
+.gradle
+ExportedObj
+.consulo
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+*.apk
+*.unitypackage
+.collabignore
+crashlytics-build.properties
+**/Assets/AddressableAssetsData/*/*.bin*
+**/assets/addressableassetsdata/*/*.bin*
+**/Assets/StreamingAssets/aa.meta
+**/assets/streamingassets/*/aa/*
+.DS_Store*
+Thumbs.db
+Desktop.ini
