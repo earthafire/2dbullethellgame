@@ -65,11 +65,10 @@ public class PlayerMovement : MonoBehaviour
             cooldown -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && cooldown < 0)
+        if (Input.GetButton("Fire1") && cooldown <= 0)
         {
-            cooldown = .001f;
+            cooldown = .1f;
             fireProjectile();
-
         }
     }
 
