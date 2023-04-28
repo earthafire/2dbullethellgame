@@ -32,4 +32,13 @@ public class slimeMovement : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "weapon")
+        {
+            Debug.Log("ouchie");
+            takeDamage(10);
+        }
+    }
 }
