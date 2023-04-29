@@ -74,7 +74,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void fireProjectile()
     {
-        bulletMovement bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<bulletMovement>(); ;
+        Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        float y = mouse_pos.y - transform.position.y;
+        float x = mouse_pos.x - transform.position.x;
+
+        Vector2 y_vec = new Vector2(0, y);
+        Vector2 x_vec = new Vector2(x, 0);
+
+        float degrees = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+
+        bulletMovement bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<bulletMovement>();
+        bullet.GetComponent<Rigidbody2D>().rotation = degrees;
     }
 
     public void setTopSpeed(float new_top_speed)

@@ -152,6 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6bc834720e0c7478d31d6dd4789d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1561686519}
+  slime: {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
+  EnemiesPerCooldown: 2
+  cooldown: 2
 --- !u!4 &157276289
 Transform:
   m_ObjectHideFlags: 0
@@ -24345,6 +24349,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5950817931214660393, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950817931214660393, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
