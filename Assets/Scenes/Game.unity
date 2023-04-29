@@ -24284,31 +24284,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1362412182119624276, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.479
+      value: 1.082
       objectReference: {fileID: 0}
     - target: {fileID: 1362412182119624276, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.953
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362412182119624276, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362412182119624276, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362412182119624276, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362412182119624276, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362412182119624276, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.784
       objectReference: {fileID: 0}
     - target: {fileID: 1362412182119624276, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -24343,10 +24323,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1561686522, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: projectile
-      value: 
-      objectReference: {fileID: 7827361726292339411, guid: 08aed30270a74d24282e4c24d3d89557, type: 3}
     - target: {fileID: 4965171563248073956, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -24370,10 +24346,6 @@ PrefabInstance:
     - target: {fileID: 5950817931214660393, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5950817931214660393, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
