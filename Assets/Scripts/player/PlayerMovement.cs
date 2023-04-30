@@ -27,7 +27,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        takeDamage(1);
+        try
+        {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            takeDamage(enemy.attack);
+        }
+        catch (System.Exception)
+        {
+            // if enemy has no attack, do nothing
+        }
     }
 
     void HandleMovement()

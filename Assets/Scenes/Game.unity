@@ -155,7 +155,7 @@ MonoBehaviour:
   slime: {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
   ringsize: 1.5
   EnemiesPerCooldown: 2
-  cooldown: 0.8
+  cooldown: 2
 --- !u!4 &785045093
 Transform:
   m_ObjectHideFlags: 0
