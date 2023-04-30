@@ -37,14 +37,12 @@ public class gameSupervisorController : MonoBehaviour
     {
         Vector3 new_position = generateRandRingPosition(player.transform.position, ringsize);
         GameObject new_slime = Instantiate(entity, new_position, Quaternion.identity);
-        Debug.Log(Vector3.Distance(new_position, player.transform.position));
     }
 
     private Vector3 generateRandRingPosition(Vector3 center, float distance)
     {
         Vector3 randomDirection = Random.insideUnitCircle.normalized * distance;
 
-        Debug.Log("MAG: " + Random.insideUnitCircle.magnitude);
         Vector3 targetPosition = center + (randomDirection * distance);
         return targetPosition;
     }

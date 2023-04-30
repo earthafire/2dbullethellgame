@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float cooldown = 0f;
+    public float cooldown = .3f;
+    private float timer = 0;
     public float top_speed = .4f;
     private float acceleration = .2f;
     private float hp = 500;
@@ -90,14 +91,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void DetectFire1()
     {
-        if (cooldown >= 0)
+        if (timer < cooldown)
         {
-            cooldown -= Time.deltaTime;
+            timer += Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && cooldown <= 0)
+        if (Input.GetButton("Fire1") && timer >= cooldown)
         {
-            cooldown = .1f;
+            timer = 0;
             fireProjectile();
         }
     }
@@ -132,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
     private void takeDamage(int damage)
     {
         hp -= damage;
-        Debug.Log(hp);
         if (hp < 1)
         {
             Destroy(gameObject);

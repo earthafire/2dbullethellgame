@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-    public float speed = 1f;
+    public float speed = .25f;
     // Start is called before the first frame update
     new void Start()
     {
@@ -14,8 +14,8 @@ public class Slime : Enemy
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         Move();
-        base.CheckDistance();
     }
 
     void Move()

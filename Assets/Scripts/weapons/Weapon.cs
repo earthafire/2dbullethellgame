@@ -6,18 +6,18 @@ public class Weapon : MonoBehaviour
 {
 
     // Duration in seconds
-    private float duration = 2f;
-    private int damage = 100;
-    Rigidbody2D rb2d;
+    public float duration = 2f;
+    public int damage = 100;
+    public Rigidbody2D rb2d;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         // check if object should be destroyed
         if (duration >= 0)

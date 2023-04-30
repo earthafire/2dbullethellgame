@@ -2,37 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Weapon
 {
-
-    private float lifetime_seconds = 1.5f;
     public float speed = 1f;
-    Rigidbody2D rb2d;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        // check if object should be destroyed
-        if (lifetime_seconds >= 0)
-        {
-            lifetime_seconds -= Time.deltaTime;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        base.Update();
+        Move();
+    }
 
+    public void Move()
+    {
         transform.Translate(Vector3.right * Time.deltaTime * speed);
     }
 
-    void DealDamage(GameObject target)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("TRIGGER");
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        try
+        {
+            enemy.Damage(base.damage);
+        }
+        catch (System.NullReferenceException)
+        {
+            // Do nothing
+        }
+    }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("TRIGGER2");
     }
 }

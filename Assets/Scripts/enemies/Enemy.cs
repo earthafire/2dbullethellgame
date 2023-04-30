@@ -17,6 +17,14 @@ public class Enemy : MonoBehaviour
         rb2d.freezeRotation = true;
     }
 
+    public void Update()
+    {
+        if (Vector3.Distance(transform.position, target.transform.position) > 4)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public bool Damage(int damage)
     {
         health -= damage;
@@ -32,14 +40,6 @@ public class Enemy : MonoBehaviour
     void Kill()
     {
         Destroy(gameObject);
-    }
-
-    public void CheckDistance()
-    {
-        if (Vector3.Distance(transform.position, target.transform.position) > 4)
-        {
-            Destroy(gameObject);
-        }
     }
 
     bool TakeDamage(int damage)
