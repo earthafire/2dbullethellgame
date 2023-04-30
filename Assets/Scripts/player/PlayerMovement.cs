@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float cooldown = 0f;
     public float top_speed = .4f;
     private float acceleration = .2f;
+    private float hp = 500;
     public GameObject projectile;
 
     Rigidbody2D rb2d;
@@ -24,12 +25,33 @@ public class PlayerMovement : MonoBehaviour
         DetectFire1();
     }
 
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        takeDamage(1);
+    }
+
     void HandleMovement()
     {
         float xIn = Input.GetAxisRaw("Horizontal");
         float yIn = Input.GetAxisRaw("Vertical");
         if (xIn != 0 || yIn != 0) // if an input is active, move the player
         {
+            SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+            if (xIn > 0)
+            {
+
+                if (sprite.flipX == true)
+                {
+                    sprite.flipX = false;
+                }
+            }
+            else
+            {
+                if (sprite.flipX == false)
+                {
+                    sprite.flipX = true;
+                }
+            }
             // remove drag while moving
             rb2d.drag = 0;
 
@@ -84,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
         float degrees = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
 
-        bulletMovement bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<bulletMovement>();
+        Weapon bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Weapon>();
         bullet.GetComponent<Rigidbody2D>().rotation = degrees;
     }
 
@@ -97,5 +119,15 @@ public class PlayerMovement : MonoBehaviour
     public float getTopSpeed()
     {
         return top_speed;
+    }
+
+    private void takeDamage(int damage)
+    {
+        hp -= damage;
+        Debug.Log(hp);
+        if (hp < 1)
+        {
+            Destroy(gameObject);
+        }
     }
 }

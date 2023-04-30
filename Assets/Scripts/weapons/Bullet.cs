@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletMovement : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
 
     private float lifetime_seconds = 1.5f;
@@ -29,5 +29,10 @@ public class bulletMovement : MonoBehaviour
         }
 
         transform.Translate(Vector3.right * Time.deltaTime * speed);
+    }
+
+    void DealDamage(GameObject target)
+    {
+
     }
 }
