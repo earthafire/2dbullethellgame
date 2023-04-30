@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class slimeMovement : MonoBehaviour
+public class Slime : Enemy
 {
-    public int health = 100;
-    private GameObject player;
-    public float speed = 0.003f;
+
 
     Rigidbody2D rb2d;
 
@@ -20,14 +18,15 @@ public class slimeMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > 4)
-        {
-            Destroy(gameObject);
-        }
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+        Move();
     }
 
-    void takeDamage(int damage)
+    void Move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, base.target.transform.position, speed);
+    }
+
+    bool DealDamage(int damage)
     {
         health -= damage;
 
@@ -35,13 +34,15 @@ public class slimeMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        return true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "weapon")
         {
-            takeDamage(10);
+            DealDamage(10);
         }
     }
 }
