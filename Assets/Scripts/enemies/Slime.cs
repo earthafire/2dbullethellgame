@@ -12,7 +12,7 @@ public class Slime : Enemy
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         base.Update();
         Move();

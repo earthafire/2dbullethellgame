@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float cooldown = .3f;
-    private float timer = 0;
+
     public float top_speed = .4f;
     private float acceleration = .2f;
     private float hp = 500;
-    public GameObject projectile;
-
+    public Weapon weapon;
     Rigidbody2D rb2d;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        weapon = GetComponent<Weapon>();
     }
 
     // Update is called once per frame
@@ -91,32 +91,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void DetectFire1()
     {
-        if (timer < cooldown)
+        if (Input.GetButton("Fire1"))
         {
-            timer += Time.deltaTime;
+
+            weapon.Activate();
         }
-
-        if (Input.GetButton("Fire1") && timer >= cooldown)
-        {
-            timer = 0;
-            fireProjectile();
-        }
-    }
-
-    public void fireProjectile()
-    {
-        Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        float y = mouse_pos.y - transform.position.y;
-        float x = mouse_pos.x - transform.position.x;
-
-        Vector2 y_vec = new Vector2(0, y);
-        Vector2 x_vec = new Vector2(x, 0);
-
-        float degrees = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
-
-        Weapon bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Weapon>();
-        bullet.GetComponent<Rigidbody2D>().rotation = degrees;
     }
 
     public void setTopSpeed(float new_top_speed)

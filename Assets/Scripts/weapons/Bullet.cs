@@ -2,21 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : Weapon
+public class Bullet : MonoBehaviour
 {
+    public float duration = 3f;
     public float speed = 1f;
+    public Rigidbody2D rb2d;
+    public Weapon weapon;
+    public float direction = 0;
 
     // Start is called before the first frame update
     public void Start()
     {
-        base.Start();
+        rb2d = GetComponent<Rigidbody2D>();
+        // rb2d.rotation = direction;
+        // GetComponentInChildren<SpriteRenderer>().enabled = true;
     }
 
     // Update is called once per frame
     public void Update()
     {
-        base.Update();
         Move();
+        ReduceDuration();
+    }
+
+    private void ReduceDuration()
+    {
+        // check if object should be destroyed
+        if (duration >= 0)
+        {
+            duration -= Time.deltaTime;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Move()
@@ -26,20 +45,16 @@ public class Bullet : Weapon
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("TRIGGER");
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
         try
         {
-            enemy.Damage(base.damage);
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            weapon.DealDamage(enemy);
+            Destroy(gameObject);
         }
         catch (System.NullReferenceException)
         {
-            // Do nothing
+            // Object is not an enemy
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("TRIGGER2");
     }
 }

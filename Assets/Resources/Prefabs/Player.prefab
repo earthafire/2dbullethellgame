@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1561686523}
   - component: {fileID: 1561686522}
   - component: {fileID: 4333366755650303901}
+  - component: {fileID: 7482907811678676550}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5950817931214660393}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,9 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818fe4e7e5d73044995415ae92c45ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0.5
   top_speed: 0.4
-  projectile: {fileID: 7827361726292339411, guid: 08aed30270a74d24282e4c24d3d89557, type: 3}
+  weapon: {fileID: 0}
 --- !u!61 &4333366755650303901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,3 +174,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &7482907811678676550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950817931214660393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244887e8501df34f8ca7f1db0d96393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0.2
+  damage: 35

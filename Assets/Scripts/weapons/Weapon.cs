@@ -2,41 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
-
     // Duration in seconds
-    public float duration = 2f;
-    public int damage = 100;
-    public Rigidbody2D rb2d;
+
+    public float cooldown;
+    private float cooldown_timer = 0f;
+    public int damage;
+
 
     // Start is called before the first frame update
     public void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        cooldown = 200f;
+        damage = 0;
     }
 
     // Update is called once per frame
     public void Update()
     {
-        // check if object should be destroyed
-        if (duration >= 0)
+        LowerCooldown(Time.deltaTime);
+    }
+
+    // Reduce remaining time on cooldown by 'amount'
+    void LowerCooldown(float amount)
+    {
+        if (cooldown_timer < cooldown)
         {
-            duration -= Time.deltaTime;
-        }
-        else
-        {
-            Destroy(gameObject);
+            cooldown_timer += amount;
         }
     }
 
-    // void Move()
-    // {
-    //     transform.Translate(Vector3.right * Time.deltaTime * speed);
-    // }
-
-    void DealDamage(GameObject target)
+    // Activates weapon's ability (Activated) if cooldown is met
+    public void Activate()
     {
-        target.GetComponent<Enemy>().Damage(damage);
+        if (cooldown_timer >= cooldown)
+        {
+            cooldown_timer = 0;
+            Activated();
+        }
+    }
+
+    // Weapon's ability (override this)
+    public abstract void Activated();
+
+    public void DealDamage(Enemy target)
+    {
+        target.Damage(damage);
     }
 }
