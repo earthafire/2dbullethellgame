@@ -5,17 +5,18 @@ using UnityEngine;
 public class gameSupervisorController : MonoBehaviour
 {
 
-    public GameObject player;
     public GameObject slime;
+    private GameObject player;
 
+    public float ringsize = 1.5f;
     public int EnemiesPerCooldown = 2;
-    public int cooldown = 2;
+    public float cooldown = .8f;
     private float timer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -24,22 +25,27 @@ public class gameSupervisorController : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > cooldown)
         {
-            Debug.Log("spawning");
             timer = 0;
-            spawnEntity(slime);
+            for (int i = 0; i < EnemiesPerCooldown; i++)
+            {
+                spawnEntity(slime);
+            }
         }
     }
 
     void spawnEntity(GameObject entity)
     {
-        Vector3 new_position = generateRandRingPosition(transform.position, 10);
-        slime = Instantiate(entity, new_position, Quaternion.identity);
+        Vector3 new_position = generateRandRingPosition(player.transform.position, ringsize);
+        GameObject new_slime = Instantiate(entity, new_position, Quaternion.identity);
+        Debug.Log(Vector3.Distance(new_position, player.transform.position));
     }
 
-    private Vector3 generateRandRingPosition(Vector3 center, int distance)
+    private Vector3 generateRandRingPosition(Vector3 center, float distance)
     {
-        Vector3 randomDirection = Random.onUnitSphere;
-        Vector3 targetPosition = center + randomDirection * distance;
+        Vector3 randomDirection = Random.insideUnitCircle.normalized * distance;
+
+        Debug.Log("MAG: " + Random.insideUnitCircle.magnitude);
+        Vector3 targetPosition = center + (randomDirection * distance);
         return targetPosition;
     }
 }

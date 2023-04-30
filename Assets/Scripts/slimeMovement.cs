@@ -5,7 +5,7 @@ using UnityEngine;
 public class slimeMovement : MonoBehaviour
 {
     public int health = 100;
-    public GameObject player;
+    private GameObject player;
     public float speed = 0.003f;
 
     Rigidbody2D rb2d;
@@ -20,13 +20,17 @@ public class slimeMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Vector3.Distance(transform.position, player.transform.position) > 4)
+        {
+            Destroy(gameObject);
+        }
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
     }
 
     void takeDamage(int damage)
     {
         health -= damage;
-        Debug.Log(gameObject);
+
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -37,7 +41,6 @@ public class slimeMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "weapon")
         {
-            Debug.Log("ouchie");
             takeDamage(10);
         }
     }
