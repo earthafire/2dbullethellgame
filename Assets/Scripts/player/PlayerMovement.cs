@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private float hp = 500;
     public Weapon weapon;
     Rigidbody2D rb2d;
+    public HealthBar healthbar;
 
 
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         weapon = GetComponent<Weapon>();
+        healthbar.SetMaxHealth(hp);
     }
 
     // Update is called once per frame
@@ -93,7 +95,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-
             weapon.Activate();
         }
     }
@@ -112,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
     private void takeDamage(int damage)
     {
         hp -= damage;
+        healthbar.SetHealth(hp);
         if (hp < 1)
         {
             Destroy(gameObject);
