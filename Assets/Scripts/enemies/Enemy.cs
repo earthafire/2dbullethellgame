@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public int health = 100;
     public int attack = 1;
     public GameObject target;
-    Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
 
     // Start is called before the first frame update
     public void Start()

@@ -22,5 +22,6 @@ public class Slime : Enemy
     {
         float distance = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, base.target.transform.position, distance);
+        base.rb2d.velocity = Vector2.zero;
     }
 }
