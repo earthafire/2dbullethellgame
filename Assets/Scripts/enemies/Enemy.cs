@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-        if (Vector3.Distance(transform.position, target.transform.position) > 4)
+        if (target != null && Vector3.Distance(transform.position, target.transform.position) > 4)
         {
             Destroy(gameObject);
         }
