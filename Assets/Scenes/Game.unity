@@ -24294,6 +24294,10 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 465013051}
+    - target: {fileID: 4333366755650303901, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 4965171563248073956, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

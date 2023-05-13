@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public int health = 100;
     public int attack = 1;
     public GameObject target;
-    Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     public GameObject deathParticles;
 
     /** Start is called before the first frame update */
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-        if (Vector3.Distance(transform.position, target.transform.position) > 4)
+        if (target != null && Vector3.Distance(transform.position, target.transform.position) > 4)
         {
             Destroy(gameObject);
         }
