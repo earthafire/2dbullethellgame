@@ -197,4 +197,5 @@ MonoBehaviour:
   attack: 1
   target: {fileID: 0}
   rb2d: {fileID: 0}
+  deathParticles: {fileID: 2782104109650082153, guid: 5a6e5ad177c34e94c911bfdcc30cd241, type: 3}
   speed: 0.25
