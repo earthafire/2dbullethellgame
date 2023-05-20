@@ -72,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
             // cap out player movement by "top_speed"
             rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, top_speed);
+
+            FindObjectOfType<AudioManager>().Play("walk_Grass");
         }
         else // stop the player if there are no inputs
         {

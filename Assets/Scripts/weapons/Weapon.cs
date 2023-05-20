@@ -39,7 +39,7 @@ public abstract class Weapon : MonoBehaviour
         if (cooldown_timer >= cooldown)
         {
             cooldown_timer = 0;
-            Activated();
+            Activated();    
         }
     }
 
