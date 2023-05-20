@@ -50,6 +50,7 @@ public class Bullet : MonoBehaviour
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             weapon.DealDamage(enemy);
             Destroy(gameObject);
+            FindObjectOfType<AudioManager>().Play("ShootFireball");
         }
         catch (System.NullReferenceException)
         {

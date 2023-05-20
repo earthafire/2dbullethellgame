@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-    public float speed = .25f;
+    public float speed = .5f;
+    public float speed_animation_multiplier = 1;
+    private Vector3 target_position;
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
+        target_position = base.target.transform.position;
     }
 
     // Update is called once per frame
@@ -24,8 +27,15 @@ public class Slime : Enemy
         {
             return;
         }
-        float distance = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, base.target.transform.position, distance);
+
+        // only change directions when not moving
+        if (speed_animation_multiplier <= 0)
+        {
+            target_position = base.target.transform.position;
+        }
+
+        float distance = speed * speed_animation_multiplier * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
         base.rb2d.velocity = Vector2.zero;
     }
 }
