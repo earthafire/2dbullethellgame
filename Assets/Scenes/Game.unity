@@ -440,7 +440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6bc834720e0c7478d31d6dd4789d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slime: {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
+  regularEnemies:
+  - {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
+  bossEnemies:
+  - {fileID: 1362412182119624273, guid: 1cf5e600f7dd38c499432333f1bea3de, type: 3}
   ringsize: 1.5
   EnemiesPerCooldown: 2
   cooldown: 2
