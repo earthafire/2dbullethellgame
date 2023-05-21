@@ -73,11 +73,8 @@ public class PlayerMovement : MonoBehaviour
             // cap out player movement by "top_speed"
             rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, top_speed);
 
-<<<<<<< HEAD
-            FindObjectOfType<AudioManager>().Play("walk_Grass");
-=======
+            // walking sound 
             playWalkingSound();
->>>>>>> slime-movement-update
         }
         else // stop the player if there are no inputs
         {

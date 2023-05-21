@@ -41,11 +41,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-<<<<<<< HEAD
-            ps.Emit(2);
-=======
             ps.Emit(emitParams, 3);
->>>>>>> slime-movement-update
             Kill();
         }
         return true;

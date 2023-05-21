@@ -18,15 +18,11 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
     }
-
-<<<<<<< HEAD
     void Start()
     {
         Play("Theme");
     }
 
-=======
->>>>>>> slime-movement-update
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sounds => sounds.name == name);
