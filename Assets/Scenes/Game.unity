@@ -24839,6 +24839,13 @@ MonoBehaviour:
     loop: 0
     isPlaying: 0
     source: {fileID: 1085592464}
+  - name: Theme
+    clip: {fileID: 8300000, guid: a282e13a8ede56d4b90c35cefa0afcb5, type: 3}
+    volume: 0.344
+    pitch: 0.781
+    loop: 0
+    isPlaying: 1
+    source: {fileID: 1085592464}
 --- !u!4 &2062379283
 Transform:
   m_ObjectHideFlags: 0
