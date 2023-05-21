@@ -73,7 +73,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+<<<<<<< HEAD
   m_Sprite: {fileID: 1631832660, guid: 505e8cd93ec19484fa22fcca19ce074b, type: 3}
+=======
+  m_Sprite: {fileID: -662818738, guid: 505e8cd93ec19484fa22fcca19ce074b, type: 3}
+>>>>>>> slime-movement-update
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,6 +168,7 @@ MonoBehaviour:
   rb2d: {fileID: 0}
   weapon: {fileID: 0}
   direction: 0
+  explosionParticles: {fileID: 2782104109650082153, guid: 5fc85060e9c9ed0429c5550420f3dd33, type: 3}
 --- !u!61 &2434289733165287961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,7 +201,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06124131, y: 0.0030620694}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -207,7 +212,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.02}
+  m_Size: {x: 0.12285245, y: 0.12655985}
   m_EdgeRadius: 0
 --- !u!82 &-8406061283731173106
 AudioSource:
@@ -221,8 +226,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
   m_PlayOnAwake: 1
+<<<<<<< HEAD
   m_Volume: 0.309
   m_Pitch: 0.4
+=======
+  m_Volume: 0.169
+  m_Pitch: 0.66
+>>>>>>> slime-movement-update
   Loop: 0
   Mute: 0
   Spatialize: 0

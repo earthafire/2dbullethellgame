@@ -24325,6 +24325,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7482907811678676550, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482907811678676550, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: cooldown
+      value: 0.35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24827,8 +24835,13 @@ MonoBehaviour:
   sounds:
   - name: ShootFireball
     clip: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
+<<<<<<< HEAD
     volume: 0.309
     pitch: 0.742
+=======
+    volume: 0.361
+    pitch: 0.338
+>>>>>>> slime-movement-update
     loop: 0
     isPlaying: 0
     source: {fileID: -8406061283731173106, guid: 08aed30270a74d24282e4c24d3d89557, type: 3}
@@ -24839,6 +24852,7 @@ MonoBehaviour:
     loop: 0
     isPlaying: 0
     source: {fileID: 1085592464}
+<<<<<<< HEAD
   - name: Theme
     clip: {fileID: 8300000, guid: a282e13a8ede56d4b90c35cefa0afcb5, type: 3}
     volume: 0.344
@@ -24846,6 +24860,8 @@ MonoBehaviour:
     loop: 0
     isPlaying: 1
     source: {fileID: 1085592464}
+=======
+>>>>>>> slime-movement-update
 --- !u!4 &2062379283
 Transform:
   m_ObjectHideFlags: 0

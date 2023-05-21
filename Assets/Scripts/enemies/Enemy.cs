@@ -36,10 +36,16 @@ public class Enemy : MonoBehaviour
         instDeathParticles.transform.parent = null;
         ParticleSystem ps = instDeathParticles.GetComponent<ParticleSystem>();
         ps.Play();
+        var emitParams = new ParticleSystem.EmitParams();
+        emitParams.startSize = 0.20f;
 
         if (health <= 0)
         {
+<<<<<<< HEAD
             ps.Emit(2);
+=======
+            ps.Emit(emitParams, 3);
+>>>>>>> slime-movement-update
             Kill();
         }
         return true;

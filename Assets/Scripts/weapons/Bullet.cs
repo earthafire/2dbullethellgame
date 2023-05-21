@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb2d;
     public Weapon weapon;
     public float direction = 0;
-
+    public GameObject explosionParticles;
     // Start is called before the first frame update
     public void Start()
     {
@@ -49,6 +49,9 @@ public class Bullet : MonoBehaviour
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             weapon.DealDamage(enemy);
+            soundExplosionOnHit();
+            ParticleSystem();
+
             Destroy(gameObject);
             FindObjectOfType<AudioManager>().Play("ShootFireball");
         }
@@ -57,5 +60,16 @@ public class Bullet : MonoBehaviour
             // Object is not an enemy
         }
 
+    }
+    private void ParticleSystem()
+    {
+            GameObject instExplosionParticles = Instantiate(explosionParticles, this.transform);
+            instExplosionParticles.transform.parent = null;
+            ParticleSystem ps = instExplosionParticles.GetComponent<ParticleSystem>();
+            ps.Play();
+    }
+    private void soundExplosionOnHit()
+    {
+        FindObjectOfType<AudioManager>().Play("ShootFireball");
     }
 }
