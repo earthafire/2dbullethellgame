@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6891470946263882168}
   - component: {fileID: 4970116827729974466}
   m_Layer: 6
-  m_Name: Particle System
+  m_Name: Boss_slime_Hit_Particle_System 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1308,7 +1308,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.6, g: 0.90196085, b: 0.30980393, a: 1}
+        key0: {r: 0.6117647, g: 0, b: 0.043137256, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
