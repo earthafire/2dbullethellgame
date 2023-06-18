@@ -40,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
             // if enemy has no attack, do nothing
         }
     }
+    private async void WalkingSoundEffect() {
+  
+            FindObjectOfType<AudioManager>().Play("walk_Grass"); // play movement sound effect      
+        
+    }
 
     void HandleMovement()
     {
@@ -47,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
         float yIn = Input.GetAxisRaw("Vertical");
         if (xIn != 0 || yIn != 0) // if an input is active, move the player
         {
+            WalkingSoundEffect();
+
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
             if (xIn > 0)
             {
@@ -73,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
             // cap out player movement by "top_speed"
             rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, top_speed);
 
-            FindObjectOfType<AudioManager>().Play("walk_Grass");
         }
         else // stop the player if there are no inputs
         {

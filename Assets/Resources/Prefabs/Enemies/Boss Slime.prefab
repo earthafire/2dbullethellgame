@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4802327071629682808}
   - component: {fileID: 4123343809149316102}
   - component: {fileID: 7225274518584416148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

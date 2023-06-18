@@ -164,6 +164,7 @@ MonoBehaviour:
   rb2d: {fileID: 0}
   weapon: {fileID: 0}
   direction: 0
+  explosionParticles: {fileID: 2782104109650082153, guid: c3d5e428d8185924d93b2015fe531db0, type: 3}
 --- !u!61 &2434289733165287961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.08558471, y: -0.0021132044}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -207,7 +208,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.02}
+  m_Size: {x: 0.09139632, y: 0.123546936}
   m_EdgeRadius: 0
 --- !u!82 &-8406061283731173106
 AudioSource:
@@ -219,10 +220,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f4da8bddfb9084c43bed0188b5b0c710, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.309
-  m_Pitch: 0.4
+  m_Volume: 0.259
+  m_Pitch: -1.21
   Loop: 0
   Mute: 0
   Spatialize: 0
