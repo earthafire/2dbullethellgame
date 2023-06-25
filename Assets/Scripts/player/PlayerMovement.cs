@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float top_speed = .4f;
     private float acceleration = .2f;
     private float hp = 500;
-    public Weapon weapon;
+    public ActivatableAbility weapon;
     Rigidbody2D rb2d;
     public HealthBar healthbar;
 
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        weapon = GetComponent<Weapon>();
+        weapon = GetComponent<ActivatableAbility>();
         healthbar.SetMaxHealth(hp);
     }
 

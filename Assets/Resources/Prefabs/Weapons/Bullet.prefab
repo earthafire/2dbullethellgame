@@ -156,13 +156,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7827361726292339411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d32557d9292ab48b492153d7dd6d27, type: 3}
+  m_Script: {fileID: 11500000, guid: 48969e9e6c469194dbbd1314d54ebb91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 3
   speed: 1
-  rb2d: {fileID: 0}
-  weapon: {fileID: 0}
   direction: 0
 --- !u!61 &2434289733165287961
 BoxCollider2D:

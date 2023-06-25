@@ -1,22 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
+    // Event called when hitting an enemy
+    public Action<Enemy> onEnemyHit;
+
+
+    // Movement parameters
     public float duration = 3f;
     public float speed = 1f;
-    public Rigidbody2D rb2d;
-    public Weapon weapon;
     public float direction = 0;
 
-    // Start is called before the first frame update
-    public void Start()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-        // rb2d.rotation = direction;
-        // GetComponentInChildren<SpriteRenderer>().enabled = true;
-    }
 
     // Update is called once per frame
     public void Update()
@@ -48,14 +46,13 @@ public class Bullet : MonoBehaviour
         try
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            weapon.DealDamage(enemy);
+            // Calling an event that the ability can subscribe to
+            onEnemyHit?.Invoke(enemy);
             Destroy(gameObject);
-            FindObjectOfType<AudioManager>().Play("ShootFireball");
         }
         catch (System.NullReferenceException)
         {
             // Object is not an enemy
         }
-
     }
 }
