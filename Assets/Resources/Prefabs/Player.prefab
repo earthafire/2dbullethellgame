@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5803624600363837842}
   - component: {fileID: 4965171563248073956}
-  - component: {fileID: -2568639826457447412}
   - component: {fileID: 1561686523}
   - component: {fileID: 1561686522}
   - component: {fileID: 4333366755650303901}
-  - component: {fileID: 3596062033473839843}
+  - component: {fileID: 7482907811678676550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -89,27 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &-2568639826457447412
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950817931214660393}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 117a0e4e2a68c78449f090f36b8b2efa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &1561686523
 Rigidbody2D:
   serializedVersion: 4
@@ -184,7 +162,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.035837058, y: -0.10405393}
+  m_Offset: {x: -0.03, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -195,9 +173,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14903522, y: 0.19752786}
+  m_Size: {x: 0.21, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &3596062033473839843
+--- !u!114 &7482907811678676550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,7 +184,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5950817931214660393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3089deb467363b74a930a6edca0e9c2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1244887e8501df34f8ca7f1db0d96393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownTimeMax: 0.2
+  cooldown: 0.2
+  damage: 35

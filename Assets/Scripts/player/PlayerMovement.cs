@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float top_speed = .4f;
     private float acceleration = .2f;
     private float hp = 500;
-    public ActivatableAbility weapon;
+    public Weapon weapon;
     Rigidbody2D rb2d;
     public HealthBar healthbar;
 
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        weapon = GetComponent<ActivatableAbility>();
+        weapon = GetComponent<Weapon>();
         healthbar.SetMaxHealth(hp);
     }
 
@@ -40,11 +40,6 @@ public class PlayerMovement : MonoBehaviour
             // if enemy has no attack, do nothing
         }
     }
-    private async void WalkingSoundEffect() {
-  
-            FindObjectOfType<AudioManager>().Play("walk_Grass"); // play movement sound effect      
-        
-    }
 
     void HandleMovement()
     {
@@ -52,8 +47,6 @@ public class PlayerMovement : MonoBehaviour
         float yIn = Input.GetAxisRaw("Vertical");
         if (xIn != 0 || yIn != 0) // if an input is active, move the player
         {
-            WalkingSoundEffect();
-
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
             if (xIn > 0)
             {
@@ -80,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             // cap out player movement by "top_speed"
             rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, top_speed);
 
+            FindObjectOfType<AudioManager>().Play("walk_Grass");
         }
         else // stop the player if there are no inputs
         {

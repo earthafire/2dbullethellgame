@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class gameSupervisorController : MonoBehaviour
 {
-    public GameObject[] regularEnemies;
-    public GameObject[] bossEnemies;
 
+    public GameObject slime;
     private GameObject player;
 
     public float ringsize = 1.5f;
     public int EnemiesPerCooldown = 2;
     public float cooldown = .8f;
-
     private float timer = 0;
-    private System.Random random = new System.Random();
 
     // Start is called before the first frame update
     void Start()
@@ -36,34 +32,9 @@ public class gameSupervisorController : MonoBehaviour
             timer = 0;
             for (int i = 0; i < EnemiesPerCooldown; i++)
             {
-                int randInt = random.Next(10);
-                GameObject nextEntity;
-
-                if (randInt >= 8)
-                {
-                    nextEntity = getRandomBossEnemy();
-
-                }
-                else
-                {
-                    nextEntity = getRandomRegularEnemy();
-                }
-
-                spawnEntity(nextEntity);
+                spawnEntity(slime);
             }
         }
-    }
-
-    GameObject getRandomRegularEnemy()
-    {
-        int randInt = random.Next(regularEnemies.Length - 1);
-        return regularEnemies[randInt];
-    }
-
-    GameObject getRandomBossEnemy()
-    {
-        int randInt = random.Next(bossEnemies.Length - 1);
-        return bossEnemies[randInt];
     }
 
     void spawnEntity(GameObject entity)

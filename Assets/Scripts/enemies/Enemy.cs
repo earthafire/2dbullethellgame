@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            ps.Emit(2);
+            ps.Emit(5);
             Kill();
         }
         return true;
