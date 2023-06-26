@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerAbilityManager : MonoBehaviour
 {
+    // !! -- REBINDING BUTTONS -- !! 
+    // buttons can be bound in Edit>Project Settings>Input Manager
+    // buttons are: Ability0, Ability1, Ability2, and AbilityModifier
+    // !! --                   -- !!
+
     // Holds all abilities
     // Ability 0 or 3: mouse left click
     // Ability 1 or 4: mouse right click
@@ -18,10 +23,10 @@ public class PlayerAbilityManager : MonoBehaviour
     bool swapIsOnCooldown = false; // blocks swap so you don't swap a bunch really fast
     float swapCooldownTime = 1f; // seconds
 
+    // this is where abilities are added to slots, only 0-5 can be used
     void Start()
     {
-        GameObject player = GameObject.Find("Player");
-        AbilitySlots[0] = player.AddComponent<Wand>() as Wand;
+        AbilitySlots[0] = gameObject.AddComponent<Wand>();
     }
 
     /// <summary>
@@ -92,6 +97,7 @@ public class PlayerAbilityManager : MonoBehaviour
     private IEnumerator ToggleAbilities(float seconds)
     {
         useAltAbilities = !useAltAbilities; // inverse boolean
+        Debug.Log("Swapping ability set, useAltAbilities: " + useAltAbilities);
         yield return new WaitForSeconds(seconds);
         swapIsOnCooldown = false; // allow toggling again
     }
