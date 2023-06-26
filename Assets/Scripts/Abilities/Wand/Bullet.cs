@@ -57,8 +57,6 @@ public class Bullet : MonoBehaviour
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             // Calling an event that the ability can subscribe to
-
-            Destroy(gameObject);
             if (other.tag == "Enemy")
             {
                 ExplosionParticles();

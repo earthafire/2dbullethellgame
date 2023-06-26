@@ -14,6 +14,7 @@ public abstract class ActivatableAbility : MonoBehaviour
     {
         if (cooldownRemainingTime <= 0)
         {
+            Activated();
             cooldownCoroutine = StartCoroutine(CountCooldown());
         }
     }
