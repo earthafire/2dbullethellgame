@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4123343809149316102}
   - component: {fileID: 7225274518584416148}
   m_Layer: 7
-  m_Name: Slime
+  m_Name: Boss Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1362412182119624273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -803850247, guid: 51fa6efe639db944b94c34ec2750ec91, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.13415098, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -193,10 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3ced4bb1c419e499eb418d3fa9f445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  attack: 1
+  health: 350
+  attack: 4
   target: {fileID: 0}
-  rb2d: {fileID: 0}
-  deathParticles: {fileID: 2782104109650082153, guid: ba4fac6dce8255e4db9be2fe4c6c95a3, type: 3}
-  speed: 0.5
+  rb2d: {fileID: 4802327071629682808}
+  deathParticles: {fileID: 2782104109650082153, guid: 5a6e5ad177c34e94c911bfdcc30cd241, type: 3}
+  speed: 1
   speed_animation_multiplier: 1
