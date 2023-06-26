@@ -24297,14 +24297,10 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 465013051}
-    - target: {fileID: 4333366755650303901, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4965171563248073956, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 184760394241514082, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: healthbar
+      value: 
+      objectReference: {fileID: 465013051}
     - target: {fileID: 4965171563248073956, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -24329,8 +24325,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitySlots.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitiesToLoad.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitySlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 5232260594717819485, guid: a05592d5d95f2154e965bce07c0042f8, type: 3}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitySlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 5232260594717819485, guid: a05592d5d95f2154e965bce07c0042f8, type: 3}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitySlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 5232260594717819485, guid: a05592d5d95f2154e965bce07c0042f8, type: 3}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitySlots.Array.data[3]
+      value: 
+      objectReference: {fileID: 5232260594717819485, guid: a05592d5d95f2154e965bce07c0042f8, type: 3}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitySlots.Array.data[4]
+      value: 
+      objectReference: {fileID: 5232260594717819485, guid: a05592d5d95f2154e965bce07c0042f8, type: 3}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitySlots.Array.data[5]
+      value: 
+      objectReference: {fileID: 5232260594717819485, guid: a05592d5d95f2154e965bce07c0042f8, type: 3}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitySlots.Array.data[6]
+      value: 
+      objectReference: {fileID: 5232260594717819485, guid: a05592d5d95f2154e965bce07c0042f8, type: 3}
+    - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: AbilitiesToLoad.Array.data[0]
+      value: 
+      objectReference: {fileID: 5232260594717819485, guid: a05592d5d95f2154e965bce07c0042f8, type: 3}
     m_RemovedComponents:
     - {fileID: 7482907811678676550, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+    - {fileID: 3596062033473839843, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

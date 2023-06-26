@@ -7,39 +7,21 @@ public class PlayerMovement : MonoBehaviour
 
     public float top_speed = .4f;
     private float acceleration = .2f;
-    private float hp = 500;
-    public ActivatableAbility weapon;
     Rigidbody2D rb2d;
-    public HealthBar healthbar;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        weapon = GetComponent<ActivatableAbility>();
-        healthbar.SetMaxHealth(hp);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         HandleMovement();
-        DetectFire1();
     }
 
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        try
-        {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            takeDamage(enemy.attack);
-        }
-        catch (System.Exception)
-        {
-            // if enemy has no attack, do nothing
-        }
-    }
     private async void WalkingSoundEffect() {
   
             FindObjectOfType<AudioManager>().Play("walk_Grass"); // play movement sound effect      
@@ -99,14 +81,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void DetectFire1()
-    {
-        if (Input.GetButton("Fire1"))
-        {
-            weapon.Activate();
-        }
-    }
-
     public void setTopSpeed(float new_top_speed)
     {
         this.top_speed = new_top_speed;
@@ -116,15 +90,5 @@ public class PlayerMovement : MonoBehaviour
     public float getTopSpeed()
     {
         return top_speed;
-    }
-
-    private void takeDamage(int damage)
-    {
-        hp -= damage;
-        healthbar.SetHealth(hp);
-        if (hp < 1)
-        {
-            Destroy(gameObject);
-        }
     }
 }
