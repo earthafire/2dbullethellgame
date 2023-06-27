@@ -27,6 +27,7 @@ public class PlayerAbilityManager : MonoBehaviour
     void Start()
     {
         AbilitySlots[0] = gameObject.AddComponent<Wand>();
+        AbilitySlots[2] = gameObject.AddComponent<Dash>();
     }
 
     /// <summary>
