@@ -30,7 +30,6 @@ public abstract class ActivatableAbility : MonoBehaviour
 
     private IEnumerator CountCooldown()
     {
-        Activated();
         cooldownRemainingTime = cooldownTimeMax;
         while (cooldownRemainingTime > 0)
         {
