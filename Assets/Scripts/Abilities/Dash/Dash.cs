@@ -35,7 +35,8 @@ public class Dash : ActivatableAbility
         rb2d.AddForce(direction * 15, ForceMode2D.Impulse);
         rb2d.drag = 15;
 
-        while (rb2d.velocity.magnitude > 1)
+        // Basically, loop forever wait until player has slowed down from dash, then give player control back
+        while (rb2d.velocity.magnitude > 2)
         {
             yield return null;
         }
