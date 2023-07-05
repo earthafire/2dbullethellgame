@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float top_speed = .4f;
+    public Vector2 direction { get; private set; }
+    public bool isPlayerInControl = true;
     private float acceleration = .2f;
     Rigidbody2D rb2d;
 
@@ -30,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleMovement()
     {
+        if (isPlayerInControl == false)
+        {
+            return;
+        }
+
         float xIn = Input.GetAxisRaw("Horizontal");
         float yIn = Input.GetAxisRaw("Vertical");
         if (xIn != 0 || yIn != 0) // if an input is active, move the player
@@ -56,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             rb2d.drag = 0;
 
             // apply acceleration in direction
-            Vector2 direction = Vector2.ClampMagnitude(new Vector2(xIn, yIn), 1);
+            direction = Vector2.ClampMagnitude(new Vector2(xIn, yIn), 1);
             rb2d.AddForce(direction * acceleration, ForceMode2D.Impulse);
 
             // cap out player movement by "top_speed"
