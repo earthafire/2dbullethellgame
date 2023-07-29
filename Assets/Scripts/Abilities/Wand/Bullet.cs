@@ -14,7 +14,12 @@ public class Bullet : MonoBehaviour
     public float duration = 3f;
     public float speed = 1f;
     public float direction = 0;
-    public GameObject explosionParticles;
+    private ParticleSystem particles;
+
+    public void Start()
+    {
+        particles = gameObject.GetComponent<ParticleSystem>();
+    }
 
 
 
@@ -45,10 +50,7 @@ public class Bullet : MonoBehaviour
 
     public void ExplosionParticles()
     {
-        GameObject instExplosionParticles = Instantiate(explosionParticles, this.transform);
-        instExplosionParticles.transform.parent = null;
-        ParticleSystem ps = instExplosionParticles.GetComponent<ParticleSystem>();
-        ps.Play();
+        particles.Emit(50);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

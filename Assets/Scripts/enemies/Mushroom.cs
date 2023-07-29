@@ -41,11 +41,11 @@ public class Mushroom : Enemy
             base.rb2d.velocity = Vector2.zero;
     }
     
-    override public void Kill()
+    override public IEnumerator Kill()
     {
         experience new_loot = Instantiate(xp, this.transform.position, Quaternion.identity).GetComponent<experience>();
         new_loot.SetTier(xp_tier);
-        base.Kill();
+        yield return base.Kill();
     }
 
 }

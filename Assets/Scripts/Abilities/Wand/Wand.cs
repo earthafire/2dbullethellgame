@@ -7,13 +7,13 @@ public class Wand : ActivatableAbility
     // object that will be used as bullet
     public GameObject projectile;
     private GameObject player;
-    private int damage = 25;
+    private int damage = 30;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         base.cooldownTimeMax = .2f;
-        projectile = (GameObject)Resources.Load("Prefabs/Weapons/Bullet", typeof(GameObject));
+        projectile = (GameObject)Resources.Load("Prefabs/Weapons/Fireball", typeof(GameObject));
     }
 
     public override void Activated()

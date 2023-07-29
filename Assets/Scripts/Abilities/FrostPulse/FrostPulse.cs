@@ -7,8 +7,10 @@ public class FrostPulse : ActivatableAbility
     // Start is called before the first frame update
     public GameObject frostpulseobj;
     private GameObject player;
-    [SerializeField] private int damage = 5;
-
+    [SerializeField] 
+    private int 
+    damage = 10,
+    knockback = 1;
 
     void Start()
     {
@@ -31,6 +33,7 @@ public class FrostPulse : ActivatableAbility
 
     public void frostHit(Enemy enemy)
     {
+        enemy.Knockback(knockback);
         enemy.Damage(damage);
     }
 }

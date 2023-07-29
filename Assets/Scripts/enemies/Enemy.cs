@@ -40,14 +40,22 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            particles.Emit(10);
-            Kill();
+            particles.Emit(health);
+            StartCoroutine(Kill());
         }
         return true;
     }
 
-    public virtual void Kill()
+    public bool Knockback(int knockback)
     {
+        return true;
+    }
+
+    public virtual IEnumerator Kill()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 
