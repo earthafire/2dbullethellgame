@@ -73,7 +73,6 @@ public class Bullet : MonoBehaviour
     }
     private void CheckForExplosionCollision()
     {
-        Debug.Log("Explosion Collision called");
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, .8f);
         foreach (Collider c in colliders)
         {
@@ -81,7 +80,6 @@ public class Bullet : MonoBehaviour
             {
                 Enemy enemy = c.gameObject.GetComponent<Enemy>();
                 onEnemyHit?.Invoke(enemy);
-                Debug.Log(c.ToString());
             }
         }
     }

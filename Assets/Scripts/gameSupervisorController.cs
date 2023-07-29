@@ -10,7 +10,7 @@ public class gameSupervisorController : MonoBehaviour
 
     private GameObject player;
 
-    private float ringsize = 2.25f;
+    private float ringsize = 2f;
     [SerializeField] private int EnemiesPerCooldown = 5;
     [SerializeField] private float spawn_cooldown_seconds = .8f;
     private int seconds_to_difficulty_gain = 10;

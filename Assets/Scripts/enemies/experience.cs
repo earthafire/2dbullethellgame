@@ -14,9 +14,7 @@ public class experience : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log(this.transform.position);
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 1);
-        Debug.Log(this.transform.position);
     }
 
     public void SetTier(int tierNum)
