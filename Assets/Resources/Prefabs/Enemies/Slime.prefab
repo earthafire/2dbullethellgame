@@ -200,3 +200,5 @@ MonoBehaviour:
   deathParticles: {fileID: 2782104109650082153, guid: ba4fac6dce8255e4db9be2fe4c6c95a3, type: 3}
   speed: 0.5
   speed_animation_multiplier: 1
+  xp: {fileID: 4608355060562850367, guid: b8a747337d9f86d42a6bd5cba1295c15, type: 3}
+  xp_tier: 1

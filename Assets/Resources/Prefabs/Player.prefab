@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5803624600363837842}
   - component: {fileID: 4965171563248073956}
+  - component: {fileID: 6931282082646386449}
+  - component: {fileID: 797292667561748250}
   - component: {fileID: -2568639826457447412}
   - component: {fileID: 1561686523}
   - component: {fileID: 1561686522}
   - component: {fileID: 4333366755650303901}
-  - component: {fileID: 184760394241514082}
-  - component: {fileID: 7284348641904268756}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -90,6 +90,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6931282082646386449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950817931214660393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5337d6082810c94b9e6c38688e9e4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbar: {fileID: 0}
+--- !u!114 &797292667561748250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950817931214660393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa46a0df4a031b4488293c206fa3004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useAltAbilities: 0
 --- !u!95 &-2568639826457447412
 Animator:
   serializedVersion: 5
@@ -151,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   top_speed: 0.4
+  isPlayerInControl: 1
 --- !u!61 &4333366755650303901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,31 +223,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14903522, y: 0.19752786}
   m_EdgeRadius: 0
---- !u!114 &184760394241514082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950817931214660393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d85c8c93d6ccbfd4cb4f1bf8d7937647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthbar: {fileID: 0}
---- !u!114 &7284348641904268756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950817931214660393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa46a0df4a031b4488293c206fa3004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilitySlots:
-  - {fileID: 0}
-  useAltAbilities: 0

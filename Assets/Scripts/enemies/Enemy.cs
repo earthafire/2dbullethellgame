@@ -45,9 +45,8 @@ public class Enemy : MonoBehaviour
         return true;
     }
 
-    void Kill()
+    public virtual void Kill()
     {
-       
         Destroy(gameObject);
     }
 

@@ -7,6 +7,9 @@ public class Slime : Enemy
     public float speed = .5f;
     public float speed_animation_multiplier = 1;
     private Vector3 target_position;
+    public experience xp;
+    public int xp_tier;
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -37,5 +40,12 @@ public class Slime : Enemy
         float distance = speed * speed_animation_multiplier * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
         base.rb2d.velocity = Vector2.zero;
+    }
+
+    override public void Kill()
+    {
+        experience new_loot = Instantiate(xp, this.transform.position, Quaternion.identity).GetComponent<experience>();
+        new_loot.SetTier(xp_tier);
+        base.Kill();
     }
 }

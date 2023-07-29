@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attributes : MonoBehaviour
+public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
     private float hp = 500;
+    private int experience = 0;
+    private float damageModifier = 1;
 
 
     // Start is called before the first frame update
@@ -27,7 +29,7 @@ public class Attributes : MonoBehaviour
         }
     }
 
-    private void takeDamage(int damage)
+    public void takeDamage(int damage)
     {
         hp -= damage;
         healthbar.SetHealth(hp);
@@ -35,5 +37,10 @@ public class Attributes : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void addExperience(int bonus_experience)
+    {
+        experience += bonus_experience;
     }
 }
