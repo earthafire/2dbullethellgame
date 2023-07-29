@@ -444,9 +444,9 @@ MonoBehaviour:
   - {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
   bossEnemies:
   - {fileID: 1362412182119624273, guid: 1cf5e600f7dd38c499432333f1bea3de, type: 3}
-  ringsize: 1.5
   EnemiesPerCooldown: 2
-  cooldown: 2
+  spawn_cooldown_seconds: 0.8
+  game_timer: 0
 --- !u!4 &785045093
 Transform:
   m_ObjectHideFlags: 0
@@ -24368,12 +24368,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7482907811678676550, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
     - {fileID: 3596062033473839843, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+    - {fileID: 184760394241514082, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5950817931214660393, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1085592464}
+    - targetCorrespondingSourceObject: {fileID: 5950817931214660393, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1085592473}
   m_SourcePrefab: {fileID: 100100000, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
 --- !u!1 &1085592457 stripped
 GameObject:
@@ -24476,6 +24480,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1085592473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085592457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5337d6082810c94b9e6c38688e9e4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbar: {fileID: 465013051}
 --- !u!1 &1300120152
 GameObject:
   m_ObjectHideFlags: 0
