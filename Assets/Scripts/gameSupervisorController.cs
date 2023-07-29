@@ -10,11 +10,14 @@ public class gameSupervisorController : MonoBehaviour
 
     private GameObject player;
 
-    public float ringsize = 1.5f;
-    public int EnemiesPerCooldown = 2;
-    public float cooldown = .8f;
+    private float ringsize = 2.25f;
+    [SerializeField] private int EnemiesPerCooldown = 5;
+    [SerializeField] private float spawn_cooldown_seconds = .8f;
+    private int seconds_to_difficulty_gain = 10;
 
     private float timer = 0;
+    public float game_timer = 0;
+
     private System.Random random = new System.Random();
 
     // Start is called before the first frame update
@@ -26,15 +29,19 @@ public class gameSupervisorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        game_timer += Time.deltaTime;
+
         if (player == null)
         {
             return;
         }
+
         timer += Time.deltaTime;
-        if (timer > cooldown)
+
+        if (timer > spawn_cooldown_seconds)
         {
             timer = 0;
-            for (int i = 0; i < EnemiesPerCooldown; i++)
+            for (int i = 0; i < EnemiesPerCooldown + Mathf.Floor(game_timer / seconds_to_difficulty_gain) ; i++)
             {
                 int randInt = random.Next(10);
                 GameObject nextEntity;

@@ -7,7 +7,7 @@ public class Wand : ActivatableAbility
     // object that will be used as bullet
     public GameObject projectile;
     private GameObject player;
-    private int damage = 30;
+    private int damage = 100;
     // Start is called before the first frame update
     void Start()
     {
