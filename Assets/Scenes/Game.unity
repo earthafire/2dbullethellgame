@@ -444,6 +444,7 @@ MonoBehaviour:
   - {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
   bossEnemies:
   - {fileID: 1362412182119624273, guid: 1cf5e600f7dd38c499432333f1bea3de, type: 3}
+  - {fileID: 8597935369796501180, guid: 4c76daa779788e94abc441d218a6f1ce, type: 3}
   EnemiesPerCooldown: 2
   spawn_cooldown_seconds: 0.8
   game_timer: 0

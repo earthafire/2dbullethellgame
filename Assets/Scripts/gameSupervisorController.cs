@@ -63,13 +63,13 @@ public class gameSupervisorController : MonoBehaviour
 
     GameObject getRandomRegularEnemy()
     {
-        int randInt = random.Next(regularEnemies.Length - 1);
+        int randInt = random.Next(regularEnemies.Length);
         return regularEnemies[randInt];
     }
 
     GameObject getRandomBossEnemy()
     {
-        int randInt = random.Next(bossEnemies.Length - 1);
+        int randInt = random.Next(bossEnemies.Length);
         return bossEnemies[randInt];
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Pulse : MonoBehaviour
 {
-    public float timer = 5f;
+    public float duration = .8f;
 
     public Action<Enemy> onEnemyHit;
     public GameObject player;
@@ -17,22 +17,22 @@ public class Pulse : MonoBehaviour
     {
         player = GameObject.Find("Player");
         m_Animator = gameObject.GetComponent<Animator>();
-        m_Animator.speed = .25f;
+        //m_Animator.speed = .35f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 1);
+        this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - .225f, 1);
 
-        timer -= Time.deltaTime;
-        if (timer < 0)
+        duration -= Time.deltaTime;
+        if (duration < 0)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         try
         {

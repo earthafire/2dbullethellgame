@@ -6,6 +6,7 @@ public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
     private float hp = 500;
+    [SerializeField]
     private int experience = 0;
     private float damageModifier = 1;
 

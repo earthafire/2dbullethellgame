@@ -8,12 +8,14 @@ public class Enemy : MonoBehaviour
     public int attack = 1;
     public GameObject target;
     public Rigidbody2D rb2d;
-    public GameObject deathParticles;
+    private ParticleSystem particles;
+    
+    
 
     /** Start is called before the first frame update */
     public void Start()
-    {
-        
+    {   
+        particles = gameObject.GetComponent<ParticleSystem>();
         target = GameObject.FindWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.freezeRotation = true;
@@ -31,15 +33,14 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        /** Creates and Plays the Death Particles for all slimes who have been hit recently */
-        GameObject instDeathParticles = Instantiate(deathParticles, this.transform);
-        instDeathParticles.transform.parent = null;
-        ParticleSystem ps = instDeathParticles.GetComponent<ParticleSystem>();
-        ps.Play();
+        /** Creates and Plays the Death Particles for all entities who have been hit recently */
+        // GameObject instDeathParticles = Instantiate(hit_particles, this.transform);
+        //instDeathParticles.transform.parent = null;
+        particles.Emit(damage);
 
         if (health <= 0)
         {
-            ps.Emit(2);
+            particles.Emit(10);
             Kill();
         }
         return true;
