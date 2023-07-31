@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Pulse : MonoBehaviour
 {
-    public float duration = .8f;
+    public float duration = .6f;
 
     public Action<Enemy> onEnemyHit;
     public GameObject player;

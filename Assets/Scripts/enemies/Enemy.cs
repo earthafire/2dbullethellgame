@@ -32,10 +32,6 @@ public class Enemy : MonoBehaviour
     public bool Damage(int damage)
     {
         health -= damage;
-
-        /** Creates and Plays the Death Particles for all entities who have been hit recently */
-        // GameObject instDeathParticles = Instantiate(hit_particles, this.transform);
-        //instDeathParticles.transform.parent = null;
         particles.Emit(damage);
 
         if (health <= 0)
@@ -48,6 +44,9 @@ public class Enemy : MonoBehaviour
 
     public bool Knockback(int knockback)
     {
+        Debug.Log("knockback");
+        Vector2 direction = (transform.position - target.transform.position).normalized;
+        rb2d.AddForce(direction * knockback, ForceMode2D.Impulse);
         return true;
     }
 

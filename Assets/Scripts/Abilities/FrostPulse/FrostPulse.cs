@@ -10,7 +10,7 @@ public class FrostPulse : ActivatableAbility
     [SerializeField] 
     private int 
     damage = 10,
-    knockback = 1;
+    knockback = 100;
 
     void Start()
     {

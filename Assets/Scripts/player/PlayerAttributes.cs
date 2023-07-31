@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,9 @@ public class PlayerAttributes : MonoBehaviour
     public HealthBar healthbar;
     private float hp = 500;
     [SerializeField]
-    private int experience = 0;
+    private int current_experience = 0,  experience_until_level_up = 10;
     private float damageModifier = 1;
+    private ParticleSystem particles;
 
 
     // Start is called before the first frame update
@@ -42,6 +44,12 @@ public class PlayerAttributes : MonoBehaviour
 
     public void addExperience(int bonus_experience)
     {
-        experience += bonus_experience;
+        current_experience += bonus_experience;
+        // level up mechanic (not working)
+        if(current_experience > experience_until_level_up){
+            particles.Emit(experience_until_level_up);
+            experience_until_level_up = Convert.ToInt32(Convert.ToSingle(experience_until_level_up) * 1.1f);
+            current_experience = 0;
+        } 
     }
 }
