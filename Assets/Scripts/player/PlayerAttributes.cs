@@ -16,6 +16,7 @@ public class PlayerAttributes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        particles = gameObject.GetComponent<ParticleSystem>();
         healthbar.SetMaxHealth(hp);
     }
 
