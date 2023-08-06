@@ -11,7 +11,11 @@ public class FrostPulse : ActivatableAbility
     private int 
     damage = 10,
     knockback = 100;
+    float rotationZ;
 
+    void Update(){
+        rotationZ++;
+    }
     void Start()
     {
         frostpulseobj = (GameObject)Resources.Load("Prefabs/Weapons/FrostPulse", typeof(GameObject));
@@ -24,7 +28,7 @@ public class FrostPulse : ActivatableAbility
 
         Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 difference = mouse_pos - player.transform.position;
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         Pulse pulse = Instantiate(frostpulseobj, player.transform.position, Quaternion.Euler(0f, 0f, rotationZ)).GetComponent<Pulse>();
 
