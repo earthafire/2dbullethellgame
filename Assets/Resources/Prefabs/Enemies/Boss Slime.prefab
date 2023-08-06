@@ -202,7 +202,7 @@ MonoBehaviour:
   speed: 1
   speed_animation_multiplier: 1
   xp: {fileID: 4608355060562850367, guid: b8a747337d9f86d42a6bd5cba1295c15, type: 3}
-  xp_tier: 2
+  xp_tier: 3
 --- !u!198 &7066156050746734537
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -339,7 +339,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.52
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2

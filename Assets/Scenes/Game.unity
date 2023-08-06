@@ -442,11 +442,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   regularEnemies:
   - {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
+  - {fileID: 8866743574015759239, guid: 444383f28c5717949a5ae1f34a293731, type: 3}
   bossEnemies:
   - {fileID: 1362412182119624273, guid: 1cf5e600f7dd38c499432333f1bea3de, type: 3}
   - {fileID: 8597935369796501180, guid: 4c76daa779788e94abc441d218a6f1ce, type: 3}
-  EnemiesPerCooldown: 2
-  spawn_cooldown_seconds: 0.8
+  EnemiesPerCooldown: 15
+  spawn_cooldown_seconds: 8
   game_timer: 0
 --- !u!4 &785045093
 Transform:
@@ -645,6 +646,7 @@ GameObject:
   - component: {fileID: 1007989194}
   - component: {fileID: 1007989196}
   - component: {fileID: 1007989195}
+  - component: {fileID: 1007989197}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -24286,6 +24288,27 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!95 &1007989197
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007989193}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2661e5d36b3cf0c41afc791f1feb91d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1059254809
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -214,7 +214,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.035837058, y: -0.10405393}
+  m_Offset: {x: -0.039604634, y: -0.10405393}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -225,7 +225,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14903522, y: 0.19752786}
+  m_Size: {x: 0.14150006, y: 0.19752786}
   m_EdgeRadius: 0
 --- !u!198 &7303819872483788107
 ParticleSystem:
@@ -310,7 +310,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -363,7 +363,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -481,7 +481,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -941,13 +941,13 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0.8
-    sphericalDirectionAmount: 0.25
-    randomPositionAmount: 0.1
+    randomDirectionAmount: 0.5
+    sphericalDirectionAmount: 0.5
+    randomPositionAmount: 0.125
     radius:
       value: 0.15
       mode: 0
-      spread: 0.001
+      spread: 0.1
       speed:
         serializedVersion: 2
         minMaxState: 0
@@ -1742,8 +1742,8 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 0.2
+      scalar: 1.5
+      minScalar: 0.02
       maxCurve:
         serializedVersion: 2
         m_Curve:

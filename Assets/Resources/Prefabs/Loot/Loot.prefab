@@ -113,6 +113,21 @@ MonoBehaviour:
   - {fileID: -499915712, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   - {fileID: 647116402, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   - {fileID: 1747010617, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  tier3SkinsArray:
+  - {fileID: 801971664, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: 1961185673, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: -1059973323, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: 942235012, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  tier4SkinsArray:
+  - {fileID: -1172543148, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: 1739986694, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: -1409031832, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: 292704205, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  tier5SkinsArray:
+  - {fileID: -1243593037, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: -366796963, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: 1766767897, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  - {fileID: 2076512927, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
 --- !u!61 &4224254642666846094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,7 +160,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.0059998706}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -156,5 +171,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.16, y: 0.14800026}
   m_EdgeRadius: 0

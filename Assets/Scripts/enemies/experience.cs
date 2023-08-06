@@ -9,8 +9,9 @@ public class experience : MonoBehaviour
 
     private System.Random random = new System.Random();
     private int experienceAmount = 1;
-    public Sprite[] tier1SkinsArray;
-    public Sprite[] tier2SkinsArray;
+    public Sprite[] tier1SkinsArray,tier2SkinsArray,
+                    tier3SkinsArray,tier4SkinsArray,
+                    tier5SkinsArray;
 
     public void Start()
     {
@@ -19,16 +20,32 @@ public class experience : MonoBehaviour
 
     public void SetTier(int tierNum)
     {
+        switch(tierNum){
 
-        if (tierNum == 1)
-        {
-            experienceAmount = 1;
-            GetComponent<SpriteRenderer>().sprite = tier1SkinsArray[random.Next(tier1SkinsArray.Length)];
-        }
-        else if (tierNum == 2)
-        {
-            experienceAmount = 5;
-            GetComponent<SpriteRenderer>().sprite = tier2SkinsArray[random.Next(tier2SkinsArray.Length)];
+            case 1:
+                experienceAmount = 1;
+                GetComponent<SpriteRenderer>().sprite = tier1SkinsArray[random.Next(tier1SkinsArray.Length)];
+                break;
+
+            case 2:
+                experienceAmount = 3;
+                GetComponent<SpriteRenderer>().sprite = tier2SkinsArray[random.Next(tier2SkinsArray.Length)];
+                break;
+
+            case 3:
+                experienceAmount = 5;
+                GetComponent<SpriteRenderer>().sprite = tier3SkinsArray[random.Next(tier3SkinsArray.Length)];
+                break;
+
+            case 4:
+                experienceAmount = 8;
+                GetComponent<SpriteRenderer>().sprite = tier4SkinsArray[random.Next(tier4SkinsArray.Length)];
+                break;
+
+            case 5:
+                experienceAmount = 12;
+                GetComponent<SpriteRenderer>().sprite = tier5SkinsArray[random.Next(tier5SkinsArray.Length)];    
+                break;
         }
     }
 

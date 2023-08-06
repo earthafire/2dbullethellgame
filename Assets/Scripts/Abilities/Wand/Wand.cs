@@ -13,7 +13,7 @@ public class Wand : ActivatableAbility
     {
         player = GameObject.Find("Player");
         base.cooldownTimeMax = .2f;
-        projectile = (GameObject)Resources.Load("Prefabs/Weapons/Fireball", typeof(GameObject));
+        projectile = (GameObject)Resources.Load("Prefabs/Weapons/Lightning/Lightning", typeof(GameObject));
     }
 
     public override void Activated()
