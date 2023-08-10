@@ -446,8 +446,8 @@ MonoBehaviour:
   bossEnemies:
   - {fileID: 1362412182119624273, guid: 1cf5e600f7dd38c499432333f1bea3de, type: 3}
   - {fileID: 8597935369796501180, guid: 4c76daa779788e94abc441d218a6f1ce, type: 3}
-  EnemiesPerCooldown: 15
-  spawn_cooldown_seconds: 2
+  EnemiesPerCooldown: 8
+  spawn_cooldown_seconds: 3
   game_timer: 0
 --- !u!4 &785045093
 Transform:
@@ -24914,13 +24914,20 @@ MonoBehaviour:
     loop: 0
     isPlaying: 0
     source: {fileID: 1085592464}
-  - name: FireballOnHit
-    clip: {fileID: 8300000, guid: f4da8bddfb9084c43bed0188b5b0c710, type: 3}
-    volume: 0.082
-    pitch: 0.192
+  - name: LootPickUp
+    clip: {fileID: 8300000, guid: 1956f103cb06d614f87992aeae406e41, type: 3}
+    volume: 0.419
+    pitch: 0.694
     loop: 0
     isPlaying: 0
-    source: {fileID: -8406061283731173106, guid: 08aed30270a74d24282e4c24d3d89557, type: 3}
+    source: {fileID: 1085592464}
+  - name: IcePulse
+    clip: {fileID: 8300000, guid: b077351fe9aa16a4ba2e353e9ba72d5c, type: 3}
+    volume: 0.306
+    pitch: 0.359
+    loop: 0
+    isPlaying: 0
+    source: {fileID: 1085592464}
 --- !u!4 &2062379283
 Transform:
   m_ObjectHideFlags: 0

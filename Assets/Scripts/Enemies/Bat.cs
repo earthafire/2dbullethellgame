@@ -15,7 +15,7 @@ public class Bat : Enemy
     new void Start()
     {
         base.Start();
-        sprite_renderer_transform = transform.GetChild(0);
+        sprite_renderer_transform = this.transform;
         rb = GetComponent<Rigidbody2D>();
         target_position = base.target.transform.position;
     }

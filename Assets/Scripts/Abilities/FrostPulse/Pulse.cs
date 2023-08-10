@@ -6,8 +6,6 @@ using UnityEngine;
 public class Pulse : MonoBehaviour
 {
     public float duration = .6f;
-    private float pulse_rotation = 1;
-
     public Action<Enemy> onEnemyHit;
     public GameObject player;
 
@@ -26,7 +24,6 @@ public class Pulse : MonoBehaviour
     {
         
         this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - .225f, 1);
-        pulse_rotation++;
 
         duration -= Time.deltaTime;
         if (duration < 0)

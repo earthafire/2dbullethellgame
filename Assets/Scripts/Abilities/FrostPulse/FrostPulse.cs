@@ -13,9 +13,6 @@ public class FrostPulse : ActivatableAbility
     knockback = 100;
     float rotationZ;
 
-    void Update(){
-        rotationZ++;
-    }
     void Start()
     {
         frostpulseobj = (GameObject)Resources.Load("Prefabs/Weapons/FrostPulse", typeof(GameObject));
@@ -24,7 +21,8 @@ public class FrostPulse : ActivatableAbility
     }
 
     public override void Activated()
-    {
+    {   
+        FindObjectOfType<AudioManager>().Play("IcePulse");
 
         Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 difference = mouse_pos - player.transform.position;
@@ -37,6 +35,7 @@ public class FrostPulse : ActivatableAbility
 
     public void frostHit(Enemy enemy)
     {
+        
         enemy.Knockback(knockback);
         enemy.Damage(damage);
     }

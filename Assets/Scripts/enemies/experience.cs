@@ -65,7 +65,7 @@ public class experience : MonoBehaviour
             {
                 PlayerAttributes player = other.gameObject.GetComponent<PlayerAttributes>();
                 player.addExperience(experienceAmount);
-                Debug.Log(1);
+                FindObjectOfType<AudioManager>().Play("LootPickUp");
                 Destroy(gameObject);
             }
     }
