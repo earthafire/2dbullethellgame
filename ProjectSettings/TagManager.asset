@@ -6,6 +6,7 @@ TagManager:
   tags:
   - weapon
   - Enemy
+  - ExperiencePickUpRange
   layers:
   - Default
   - TransparentFX

@@ -22,6 +22,9 @@ public class PlayerAttributes : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
+        if(other.collider.GetType() == typeof(BoxCollider)){
+                Debug.Log(other.collider.GetType());
+        }
         try
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();

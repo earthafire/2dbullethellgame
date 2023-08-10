@@ -8,7 +8,7 @@ public class experience : MonoBehaviour
     // Start is called before the first frame update
 
     private System.Random random = new System.Random();
-    private int experienceAmount = 1;
+    private int experienceAmount = 1, speed = 5;
     public Sprite[] tier1SkinsArray,tier2SkinsArray,
                     tier3SkinsArray,tier4SkinsArray,
                     tier5SkinsArray;
@@ -49,22 +49,25 @@ public class experience : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        try
-        {
-            PlayerAttributes player = other.gameObject.GetComponent<PlayerAttributes>();
-
             // Calling an event that the ability can subscribe to
+            
+            if(other.tag == "ExperiencePickUpRange"){
+                transform.position = Vector3.MoveTowards(transform.position, other.gameObject.transform.position, speed * Time.deltaTime);
+            }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D other){
+        Debug.Log(other.tag);
             if (other.tag == "Player")
             {
+                PlayerAttributes player = other.gameObject.GetComponent<PlayerAttributes>();
                 player.addExperience(experienceAmount);
+                Debug.Log(1);
                 Destroy(gameObject);
             }
-        }
-        catch (System.NullReferenceException)
-        {
-            // Object is not an enemy
-        }
     }
+    
 }
