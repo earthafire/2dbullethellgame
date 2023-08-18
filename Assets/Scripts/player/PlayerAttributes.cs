@@ -8,7 +8,9 @@ public class PlayerAttributes : MonoBehaviour
     public HealthBar healthbar;
     private float hp = 500;
     [SerializeField]
-    private int current_experience = 0,  experience_until_level_up = 100;
+    public int current_experience = 0,
+                experience_until_level_up = 100,
+                player_level = 0;
     private float damageModifier = 1;
     private ParticleSystem particles;
 
@@ -30,7 +32,7 @@ public class PlayerAttributes : MonoBehaviour
         }
         catch (System.Exception)
         {
-            // if enemy has no attack, do nothing
+           Debug.Log(other.gameObject + "has no attack");
         }
     }
 
@@ -58,6 +60,7 @@ public class PlayerAttributes : MonoBehaviour
         particles.Emit(experience_until_level_up);
         experience_until_level_up = Convert.ToInt32(Convert.ToSingle(experience_until_level_up) * 1.1f);
         current_experience = 0;
+        player_level = player_level + 1;
         
     }
 }

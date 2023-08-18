@@ -13,7 +13,7 @@ public class PlayerAbilityManager : MonoBehaviour
     // Ability 0 or 3: mouse left click
     // Ability 1 or 4: mouse right click
     // Ability 2 or 5: space bar
-    private ActivatableAbility[] AbilitySlots = new ActivatableAbility[6];
+    public ActivatableAbility[] AbilitySlots = new ActivatableAbility[6];
 
     // Modifier key (swaps ability slots) shift and tab by default
     // If true, use abilites 3,4,5 (indexes in the AbilitySlots array)

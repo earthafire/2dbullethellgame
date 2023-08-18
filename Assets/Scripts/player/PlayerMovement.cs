@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    private Animator player_animator;
     public float top_speed = .4f;
     public Vector2 direction { get; private set; }
     public bool isPlayerInControl = true;
@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player_animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -34,8 +35,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isPlayerInControl == false)
         {
+            player_animator.Play("Dash");
             return;
         }
+
+            player_animator.Play("Character_Walk");
 
         float xIn = Input.GetAxisRaw("Horizontal");
         float yIn = Input.GetAxisRaw("Vertical");
