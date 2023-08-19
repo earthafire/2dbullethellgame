@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
             if (other.tag == "Enemy")
             {
                 ExplosionParticles();
-                FindObjectOfType<AudioManager>().Play("FireballOnHit");
+                FindObjectOfType<AudioManager>().Play("Lightning");
                 onEnemyHit?.Invoke(enemy);
                 CheckForExplosionCollision();
                 Destroy(gameObject);

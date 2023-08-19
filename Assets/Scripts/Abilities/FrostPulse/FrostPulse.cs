@@ -15,7 +15,7 @@ public class FrostPulse : ActivatableAbility
 
     void Start()
     {
-        frostpulseobj = (GameObject)Resources.Load("Prefabs/Weapons/FrostPulse", typeof(GameObject));
+        frostpulseobj = (GameObject)Resources.Load("Prefabs/Weapons/FrostPulse/FrostPulse", typeof(GameObject));
         player = GameObject.Find("Player");
         base.cooldownTimeMax = 1f;
     }

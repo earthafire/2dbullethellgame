@@ -16,7 +16,6 @@ public class Pulse : MonoBehaviour
     {
         player = GameObject.Find("Player");
         m_Animator = gameObject.GetComponent<Animator>();
-        //m_Animator.speed = .35f;
     }
 
     // Update is called once per frame
