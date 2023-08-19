@@ -10,6 +10,6 @@ public static class AttributeEnum
 public enum Attribute
     {
         health,
-        move_speed,
+        moveSpeed,
         damage
     }

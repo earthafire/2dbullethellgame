@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Upgrade Attribute")]
 public class UpgradeAttribute : Upgrade
 {
     public List<Attributes> units_to_upgrade = new List<Attributes>();
@@ -12,7 +13,11 @@ public class UpgradeAttribute : Upgrade
    {
         foreach(var unit_to_upgrade in units_to_upgrade)
         {
-            unit_to_upgrade.UnlockUpgrade(this);
+            foreach(var upgrade in upgrade_to_apply)
+            {
+                unit_to_upgrade.UnlockUpgrade(this);
+            }            
         }
-   }
+    }
+    
 }

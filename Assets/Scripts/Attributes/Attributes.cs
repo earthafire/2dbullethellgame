@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
-[CreateAssetMenu(fileName = "Attributes", menuName = "2dbullethellgame/Attributes", order = 0)]
-public class Attributes : ScriptableObject {
+[CreateAssetMenu(fileName = "Attributes", menuName = "Attributes", order = 0)]
+public class Attributes : SerializedScriptableObject {
 
-    public Dictionary<Attribute, float> attributes  = new Dictionary<Attribute, float>();
+    public Dictionary<Attribute, float> default_attributes  = new Dictionary<Attribute, float>();
     public Dictionary<Attribute, float> current_attributes  = new Dictionary<Attribute, float>();
     private List<UpgradeAttribute> applied_upgrades = new List<UpgradeAttribute>();
+
+  //  public event Action<Attributes, UpgradeAttributes> upgradeApplied;
     
     public float GetAttribute(Attribute attribute)
     {
@@ -17,7 +20,7 @@ public class Attributes : ScriptableObject {
             return GetUpgradedValue(attribute, current_value);
         }
 
-        else if(attributes.TryGetValue(attribute, out float value))
+        else if(default_attributes.TryGetValue(attribute, out float value))
         {
             return GetUpgradedValue(attribute, value);
         }
@@ -29,11 +32,17 @@ public class Attributes : ScriptableObject {
         }
     }
 
+        public int GetAttributeAsInt(Attribute attribute)
+    {
+        return (int)GetAttributeAsInt(attribute);
+    }
+
     public void UnlockUpgrade(UpgradeAttribute upgrade)
     {
         if(!applied_upgrades.Contains(upgrade))
         {
             applied_upgrades.Add(upgrade);
+            //upgradeApplied?.Invoke(this, upgrade);
         }
     }
 
@@ -60,9 +69,10 @@ public class Attributes : ScriptableObject {
         return base_value;
     }
 
+    [Button]
     public void ResetAppliedUpgrades()
     {
-
+        applied_upgrades.Clear();
     }
 
 }
