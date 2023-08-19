@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     public bool Knockback(int knockback)
     {
-        Debug.Log("knockback");
+        //this is getting called but not working
         Vector2 direction = (transform.position - target.transform.position).normalized;
         rb2d.AddForce(direction * knockback, ForceMode2D.Impulse);
         return true;
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    bool TakeDamage(int damage)
+   /*  bool TakeDamage(int damage)
     {
         health -= damage;
 
@@ -68,5 +68,5 @@ public class Enemy : MonoBehaviour
         }
 
         return true;
-    }
+    } */
 }

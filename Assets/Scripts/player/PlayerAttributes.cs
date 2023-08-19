@@ -7,7 +7,6 @@ public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
     private float hp = 500;
-    [SerializeField]
     public int current_experience = 0,
                 experience_until_level_up = 100,
                 player_level = 0;
