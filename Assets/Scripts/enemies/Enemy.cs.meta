@@ -5,7 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - target: {instanceID: 0}
-  - deathParticles: {fileID: 6891470946263882168, guid: 5a6e5ad177c34e94c911bfdcc30cd241, type: 3}
+  - rb2d: {instanceID: 0}
+  - attributes: {fileID: 11400000, guid: 4fa67bd116b21aa4faf7c9068e580706, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

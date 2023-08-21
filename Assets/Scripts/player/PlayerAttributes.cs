@@ -27,7 +27,11 @@ public class PlayerAttributes : MonoBehaviour
         try
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            takeDamage(enemy.attack);
+            if(enemy.attributes.default_attributes.TryGetValue(Attribute.damage, out float damage)){
+                int int_damage = (int)damage;
+                takeDamage(int_damage);
+            }
+            
         }
         catch (System.Exception)
         {
@@ -39,6 +43,7 @@ public class PlayerAttributes : MonoBehaviour
     {
         hp -= damage;
         healthbar.SetHealth(hp);
+
         if (hp < 1)
         {
             Destroy(gameObject);

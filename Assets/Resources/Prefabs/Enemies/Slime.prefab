@@ -196,9 +196,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
-  attack: 1
+  damage: 5
   target: {fileID: 0}
   rb2d: {fileID: 0}
+  attributes: {fileID: 11400000, guid: ecb2f115b3dc09847a2397a55ceffa46, type: 2}
   speed: 0.75
   speed_animation_multiplier: 1
   xp: {fileID: 4608355060562850367, guid: b8a747337d9f86d42a6bd5cba1295c15, type: 3}

@@ -195,10 +195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 839a01cdfbb3e154cb11de54819ac5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  attack: 4
   target: {fileID: 0}
   rb2d: {fileID: 0}
+  attributes: {fileID: 11400000, guid: 1b9c6f82a7227cf46a2c02bff826aa6b, type: 2}
   speed: 1
   speed_animation_multiplier: 1
   xp: {fileID: 4608355060562850367, guid: b8a747337d9f86d42a6bd5cba1295c15, type: 3}

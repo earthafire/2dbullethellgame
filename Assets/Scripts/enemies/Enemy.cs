@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 100;
-    public int attack = 1;
     public GameObject target;
     public Rigidbody2D rb2d;
     private ParticleSystem particles;
+    public Attributes attributes;
+    private Dictionary<Attribute, float> current_attributes;
     
     
 
     /** Start is called before the first frame update */
     public void Start()
-    {   
+    {  
+        current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
         particles = gameObject.GetComponent<ParticleSystem>();
         target = GameObject.FindWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
@@ -31,14 +32,17 @@ public class Enemy : MonoBehaviour
 
     public bool Damage(int damage)
     {
-        health -= damage;
-        particles.Emit(damage);
+        if(current_attributes.TryGetValue(Attribute.health, out float health)){
+            current_attributes[Attribute.health] = health - damage;
+            particles.Emit(damage);
+        }
 
         if (health <= 0)
         {
-            particles.Emit(health);
+            particles.Emit((int)health);
             StartCoroutine(Kill());
         }
+
         return true;
     }
 
