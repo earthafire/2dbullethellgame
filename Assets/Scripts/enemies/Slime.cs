@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Slime : Enemy
-{
-    public float speed = .5f;
-    public float speed_animation_multiplier = 1;
+{    
     private Vector3 target_position;
     public experience xp;
     public int xp_tier;
@@ -14,7 +12,6 @@ public class Slime : Enemy
     new void Start()
     {
         base.Start();
-        target_position = base.target.transform.position;
     }
 
     // Update is called once per frame
@@ -26,20 +23,13 @@ public class Slime : Enemy
 
     void Move()
     {
-        if (target == null)
-        {
-            return;
-        }
+        base.Move();
 
         // only change directions when not moving
-        if (speed_animation_multiplier <= 0)
+        if (base.speed_animation_multiplier <= 0)
         {
             target_position = base.target.transform.position;
         }
-
-        float distance = speed * speed_animation_multiplier * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
-        base.rb2d.velocity = Vector2.zero;
     }
 
     override public IEnumerator Kill()

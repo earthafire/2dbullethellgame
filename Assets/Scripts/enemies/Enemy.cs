@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D rb2d;
     private ParticleSystem particles;
     public Attributes attributes;
+    public float speed_animation_multiplier = 1;
     private Dictionary<Attribute, float> current_attributes;
     
     
@@ -28,6 +29,22 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Move()
+    {
+        if(current_attributes.TryGetValue(Attribute.moveSpeed, out float speed)){
+            current_attributes[Attribute.moveSpeed] = speed;
+        }
+        if (target == null)
+        {
+            return;
+        }
+
+        float distance = speed * speed_animation_multiplier * Time.deltaTime;
+        Vector3 target_position = target.transform.position;
+        transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
+        rb2d.velocity = Vector2.zero;
     }
 
     public bool Damage(int damage)

@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Animator player_animator;
-    public float top_speed = .4f;
+    public Attributes attributes;
+    private Dictionary<Attribute, float> current_attributes;
     public Vector2 direction { get; private set; }
     public bool isPlayerInControl = true;
     private float acceleration = .2f;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
         player_animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -33,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleMovement()
     {
+        float speed = getTopSpeed();
+
         if (isPlayerInControl == false)
         {
             player_animator.Play("Dash");
@@ -71,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
             rb2d.AddForce(direction * acceleration, ForceMode2D.Impulse);
 
             // cap out player movement by "top_speed"
-            rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, top_speed);
+            rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, speed);
 
         }
         else // stop the player if there are no inputs
@@ -94,12 +98,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void setTopSpeed(float new_top_speed)
     {
-        this.top_speed = new_top_speed;
+        current_attributes[Attribute.moveSpeed] = new_top_speed;
         this.acceleration = new_top_speed / 2;
     }
 
     public float getTopSpeed()
     {
-        return top_speed;
+         if(current_attributes.TryGetValue(Attribute.moveSpeed, out float speed))
+        {
+        return current_attributes[Attribute.moveSpeed];
+        }
+        else{
+            return 0;
+        }
+        
     }
 }

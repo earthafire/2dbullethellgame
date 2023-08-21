@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
-    private float hp = 500;
+    public Attributes attributes;
+    private Dictionary<Attribute, float> current_attributes;
     public int current_experience = 0,
                 experience_until_level_up = 100,
                 player_level = 0;
@@ -17,17 +18,17 @@ public class PlayerAttributes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
         particles = gameObject.GetComponent<ParticleSystem>();
-        healthbar.SetMaxHealth(hp);
+        healthbar.SetMaxHealth(current_attributes[Attribute.health]);
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        
         try
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if(enemy.attributes.default_attributes.TryGetValue(Attribute.damage, out float damage)){
+            if(enemy.attributes.current_attributes.TryGetValue(Attribute.damage, out float damage)){
                 int int_damage = (int)damage;
                 takeDamage(int_damage);
             }
@@ -41,10 +42,14 @@ public class PlayerAttributes : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        hp -= damage;
-        healthbar.SetHealth(hp);
+        if(current_attributes.TryGetValue(Attribute.health, out float health))
+        {
+            current_attributes[Attribute.health] = health - damage;
+            health -= damage;
+            healthbar.SetHealth(health);
+        }
 
-        if (hp < 1)
+        if (health < 1)
         {
             Destroy(gameObject);
         }

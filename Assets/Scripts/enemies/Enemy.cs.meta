@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - target: {instanceID: 0}
   - rb2d: {instanceID: 0}
-  - attributes: {fileID: 11400000, guid: 4fa67bd116b21aa4faf7c9068e580706, type: 2}
+  - attributes: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -5008,9 +5008,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5337d6082810c94b9e6c38688e9e4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthbar: {fileID: 0}
+  healthbar: {fileID: 1724211818891971261, guid: f48978a0eb436f642898e6e06d7ec150, type: 3}
+  attributes: {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
   current_experience: 0
   experience_until_level_up: 100
+  player_level: 0
 --- !u!199 &1113767006483677914
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5095,5 +5097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818fe4e7e5d73044995415ae92c45ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top_speed: 0.4
+  speed: 0.4
+  attributes: {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
   isPlayerInControl: 1
