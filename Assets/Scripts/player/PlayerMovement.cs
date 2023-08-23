@@ -38,18 +38,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (isPlayerInControl == false)
         {
-            player_animator.Play("Dash");
             return;
         }
 
-            
-
         float xIn = Input.GetAxisRaw("Horizontal");
         float yIn = Input.GetAxisRaw("Vertical");
-        if (xIn != 0 || yIn != 0) // if an input is active, move the player
+
+         // if an input is active, move the player
+        if (xIn != 0 || yIn != 0)
         {   
-            player_animator.enabled = true;
-            player_animator.Play("Run");
+            player_animator.SetBool("Run", true);
+
             StartCoroutine(WalkingSoundEffect());
 
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
@@ -81,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else // stop the player if there are no inputs
         {
-            //player_animator.enabled = false;
+            player_animator.SetBool("Run", false);
 
             // use drag to stop player
             rb2d.drag = 15;

@@ -7,16 +7,19 @@ using UnityEngine;
 /// </summary>
 public class Dash : ActivatableAbility
 {
+    private Animator player_animator;
     private GameObject player;
 
     void Start()
     {
+        player_animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         base.cooldownTimeMax = 2f;
     }
 
     public override void Activated()
     {
+        player_animator.SetTrigger("Dash");
         StartCoroutine(Move(player.GetComponent<PlayerMovement>(), player.GetComponent<Rigidbody2D>()));
     }
 

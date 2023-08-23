@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ActivatableAbility : MonoBehaviour
-{
-    public Animator player_animator;
-    
+{    
     Coroutine cooldownCoroutine;
     public float cooldownTimeMax = 200f; // seconds
     public float cooldownRemainingTime { get; private set; } = 0;

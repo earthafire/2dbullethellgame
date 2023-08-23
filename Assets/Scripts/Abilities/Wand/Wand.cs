@@ -20,7 +20,7 @@ public class Wand : ActivatableAbility
 
     public override void Activated()
     {
-        player_animator.Play("Mage_Attack");
+        player_animator.SetTrigger("Attack");
         
         Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 difference = mouse_pos - player.transform.position;
