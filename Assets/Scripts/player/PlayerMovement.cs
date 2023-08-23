@@ -52,11 +52,13 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(WalkingSoundEffect());
 
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+            SpriteRenderer wand  = gameObject.GetComponentInChildren<SpriteRenderer>();
             if (xIn > 0)
             {
 
                 if (sprite.flipX == true)
                 {
+                    wand.flipX = false;
                     sprite.flipX = false;
                 }
             }
@@ -64,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (sprite.flipX == false)
                 {
+                    wand.flipX = true;
                     sprite.flipX = true;
                 }
             }

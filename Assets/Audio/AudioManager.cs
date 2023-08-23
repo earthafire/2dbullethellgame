@@ -10,7 +10,6 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -20,7 +19,12 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-}
+    }
+
+    public void Start()
+    {
+        Play("Menu Music");
+    }
 
     public void Play(string name)
     {
