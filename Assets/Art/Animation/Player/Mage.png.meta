@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 76418174f0af07848b569da438a2ee0a
+guid: 49e45aa84ce0899448c69231eaf31aab
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -155,13 +155,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0004-Sheet_0
+      name: Mage_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +169,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcacdd653416bae4ebc8ce544db98650
-      internalID: 102350130
+      spriteID: db1008310176eea4398297f6e02d29c1
+      internalID: -931639776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0004-Sheet_1
+      name: Mage_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e33b0c0069380b41a5990d61dbfe2fc
+      internalID: 832565372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage_2
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 48
-        height: 48
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,20 +211,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74dff4325aa937846a9736fd0b2d8ace
-      internalID: 1003764912
+      spriteID: 5a18abd072d831b4eb1214b929f4cea8
+      internalID: 1695232610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0004-Sheet_2
+      name: Mage_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 72
         y: 0
-        width: 48
-        height: 48
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,8 +232,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cddfe66166585414ca6c5d927239b41d
-      internalID: -919767375
+      spriteID: 1e478b4dc0f177b4884ca92e563e0e4a
+      internalID: 1538418884
       vertices: []
       indices: 
       edges: []
@@ -228,9 +249,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-0004-Sheet_0: 102350130
-      Sprite-0004-Sheet_1: 1003764912
-      Sprite-0004-Sheet_2: -919767375
+      Mage_0: -931639776
+      Mage_1: 832565372
+      Mage_2: 1695232610
+      Mage_3: 1538418884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

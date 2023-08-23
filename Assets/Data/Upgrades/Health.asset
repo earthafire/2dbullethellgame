@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b23f3711872c1f43b0b99974c4209b0, type: 3}
-  m_Name: New Upgrade Attribute
+  m_Name: Health
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -40,14 +40,27 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  upgrade_name: moveSpeed
-  units_to_upgrade:
-  - {fileID: 0}
-  is_percent_upgrade: 0
+  icon: {fileID: -1192852229, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  upgrade_name: Health
+  description: Increase health by 10% of base value
+  units_to_upgrade: []
+  is_percent_upgrade: 1

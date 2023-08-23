@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Upgrade Attribute")]
+[CreateAssetMenu(menuName = "Upgrade")]
 public class UpgradeAttribute : Upgrade
 {
     public List<Attributes> units_to_upgrade = new List<Attributes>();
@@ -19,5 +19,4 @@ public class UpgradeAttribute : Upgrade
             }            
         }
     }
-    
 }

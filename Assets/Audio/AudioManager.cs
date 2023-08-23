@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    private System.Random random = new System.Random();
+
     public Sound[] sounds;
     // Start is called before the first frame update
     void Awake()
@@ -29,8 +31,10 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + "not found");
             return;
         }
+
         if(s.isPlaying){
-            s.source.volume--;
+            float variation = (float)random.Next(0,10);
+            //s.source.pitch() = s.pitch + variation;
         }
             s.source.Play();               
     }

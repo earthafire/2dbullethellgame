@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -10,7 +10,7 @@ public class Attributes : SerializedScriptableObject {
     public Dictionary<Attribute, float> current_attributes  = new Dictionary<Attribute, float>();
     private List<UpgradeAttribute> applied_upgrades = new List<UpgradeAttribute>();
 
-  //  public event Action<Attributes, UpgradeAttributes> upgradeApplied;
+    public event Action<Attributes, UpgradeAttribute> upgradeApplied;
     
     public float GetAttribute(Attribute attribute)
     {
@@ -39,13 +39,14 @@ public class Attributes : SerializedScriptableObject {
 
     public void UnlockUpgrade(UpgradeAttribute upgrade)
     {
-        if(!applied_upgrades.Contains(upgrade))
+        //if(!applied_upgrades.Contains(upgrade))
         {
             applied_upgrades.Add(upgrade);
-            //upgradeApplied?.Invoke(this, upgrade);
+            upgradeApplied?.Invoke(this, upgrade);
         }
     }
 
+    // Called by GetAttribute()
     public float GetUpgradedValue(Attribute attribute, float base_value)
     {
         foreach (var upgrade in applied_upgrades)

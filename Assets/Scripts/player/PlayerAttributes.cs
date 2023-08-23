@@ -28,11 +28,11 @@ public class PlayerAttributes : MonoBehaviour
         try
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
+
             if(enemy.attributes.current_attributes.TryGetValue(Attribute.damage, out float damage)){
                 int int_damage = (int)damage;
                 takeDamage(int_damage);
             }
-            
         }
         catch (System.Exception)
         {

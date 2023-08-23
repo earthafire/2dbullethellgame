@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private Animator player_animator;
     public Attributes attributes;
-    private Dictionary<Attribute, float> current_attributes;
     public Vector2 direction { get; private set; }
     public bool isPlayerInControl = true;
     private float acceleration = .2f;
@@ -16,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
+        
         player_animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -27,15 +26,15 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
     }
 
-    private async void WalkingSoundEffect() {
-  
-            FindObjectOfType<AudioManager>().Play("walk_Grass"); // play movement sound effect      
-        
+    private IEnumerator WalkingSoundEffect() {
+
+        FindObjectOfType<AudioManager>().Play("walk_Grass");
+        yield return new WaitForSeconds(.5f);
     }
 
     void HandleMovement()
     {
-        float speed = getTopSpeed();
+        float speed = attributes.GetAttribute(Attribute.moveSpeed);
 
         if (isPlayerInControl == false)
         {
@@ -43,13 +42,15 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-            player_animator.Play("Character_Walk");
+            
 
         float xIn = Input.GetAxisRaw("Horizontal");
         float yIn = Input.GetAxisRaw("Vertical");
         if (xIn != 0 || yIn != 0) // if an input is active, move the player
-        {
-            WalkingSoundEffect();
+        {   
+            player_animator.enabled = true;
+            player_animator.Play("Run");
+            StartCoroutine(WalkingSoundEffect());
 
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
             if (xIn > 0)
@@ -80,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else // stop the player if there are no inputs
         {
+            //player_animator.enabled = false;
+
             // use drag to stop player
             rb2d.drag = 15;
 
@@ -94,23 +97,5 @@ public class PlayerMovement : MonoBehaviour
                 rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, .8f);
             }
         }
-    }
-
-    public void setTopSpeed(float new_top_speed)
-    {
-        current_attributes[Attribute.moveSpeed] = new_top_speed;
-        this.acceleration = new_top_speed / 2;
-    }
-
-    public float getTopSpeed()
-    {
-         if(current_attributes.TryGetValue(Attribute.moveSpeed, out float speed))
-        {
-        return current_attributes[Attribute.moveSpeed];
-        }
-        else{
-            return 0;
-        }
-        
     }
 }

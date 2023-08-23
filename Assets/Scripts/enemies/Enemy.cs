@@ -7,16 +7,14 @@ public class Enemy : MonoBehaviour
     public GameObject target;
     public Rigidbody2D rb2d;
     private ParticleSystem particles;
+    float health, speed;
     public Attributes attributes;
-    public float speed_animation_multiplier = 1;
-    private Dictionary<Attribute, float> current_attributes;
-    
-    
+    public float speed_animation_multiplier = 1;    
 
     /** Start is called before the first frame update */
     public void Start()
     {  
-        current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
+        health = attributes.GetAttribute(Attribute.health);
         particles = gameObject.GetComponent<ParticleSystem>();
         target = GameObject.FindWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
@@ -33,14 +31,12 @@ public class Enemy : MonoBehaviour
 
     public void Move()
     {
-        if(current_attributes.TryGetValue(Attribute.moveSpeed, out float speed)){
-            current_attributes[Attribute.moveSpeed] = speed;
-        }
         if (target == null)
         {
             return;
         }
 
+        speed = attributes.GetAttribute(Attribute.moveSpeed);
         float distance = speed * speed_animation_multiplier * Time.deltaTime;
         Vector3 target_position = target.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
@@ -49,17 +45,14 @@ public class Enemy : MonoBehaviour
 
     public bool Damage(int damage)
     {
-        if(current_attributes.TryGetValue(Attribute.health, out float health)){
-            current_attributes[Attribute.health] = health - damage;
-            particles.Emit(damage);
-        }
+        health -= damage;
+        particles.Emit(damage);
 
         if (health <= 0)
         {
             particles.Emit((int)health);
             StartCoroutine(Kill());
         }
-
         return true;
     }
 

@@ -8,7 +8,6 @@ public static class HelperFunctions
     {
 #if UNITY_EDITOR
 
-
         string[] guids = UnityEditor.AssetDatabase.FindAssets("t:" + typeof(T).ToString(), new[] { path });
         List<T> scriptableObjects = new List<T>();
 
@@ -23,6 +22,25 @@ public static class HelperFunctions
 #else
         return null;
 #endif
+    }
+
+    public static List<T> GetUpgradeAttributes<T>(string path) where T : UpgradeAttribute
+    {
+    #if UNITY_EDITOR
+
+        string[] guids = UnityEditor.AssetDatabase.FindAssets("t" + typeof(T).ToString(), new[] { path });
+        List<T> upgrade_attributes = new List<T>();
+
+        foreach(var guid in guids)
+        {
+            UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+            string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+            upgrade_attributes.Add(UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(T)) as T);
+        }
+        return upgrade_attributes;
+    #else
+        return null;
+    #endif    
     }
 }
 

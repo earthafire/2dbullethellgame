@@ -13,3 +13,4 @@ public enum Attribute
         moveSpeed,
         damage
     }
+

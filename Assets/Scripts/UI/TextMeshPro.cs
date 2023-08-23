@@ -12,8 +12,6 @@ public float timer;
             
 public int player_level, current_experience;
 
-private string player_level_string, current_experience_string;
-
 [SerializeField] public TMP_Text player_level_tmp, current_experience_tmp, timer_tmp;
 
     // Start is called before the first frame update
@@ -37,7 +35,6 @@ private string player_level_string, current_experience_string;
         //Convert int to string 
         string player_level_string = player_level.ToString();
         string current_experience_string = current_experience.ToString();
-        string timer_string = timer.ToString(); 
 
         player_level_tmp.SetText("Level: " + player_level_string);
         current_experience_tmp.SetText("XP: " + current_experience_string);
