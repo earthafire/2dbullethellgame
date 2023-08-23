@@ -18,24 +18,24 @@ public class Slime : Enemy
     new void Update()
     {
         base.Update();
-        Move();
+        SlimeMove();
     }
 
-    void Move()
+    void SlimeMove()
     {
-        base.Move();
+        Move();
 
         // only change directions when not moving
-        if (base.speed_animation_multiplier <= 0)
+        if (speed_animation_multiplier <= 0)
         {
-            target_position = base.target.transform.position;
+            target_position = target.transform.position;
         }
     }
 
-    override public IEnumerator Kill()
+    override public IEnumerator GetDeath()
     {
-        experience new_loot = Instantiate(xp, this.transform.position, Quaternion.identity).GetComponent<experience>();
+        experience new_loot = Instantiate(xp, transform.position, Quaternion.identity).GetComponent<experience>();
         new_loot.SetTier(xp_tier);
-        yield return base.Kill();
+        yield return base.GetDeath();
     }
 }

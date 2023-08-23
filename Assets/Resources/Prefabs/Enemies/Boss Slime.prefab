@@ -123,8 +123,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
-  m_LinearDrag: 0
+  m_Mass: 25
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -198,7 +198,7 @@ MonoBehaviour:
   target: {fileID: 0}
   rb2d: {fileID: 4802327071629682808}
   attributes: {fileID: 11400000, guid: fdd73bb8af45f3247a0e70df98f76dcd, type: 2}
-  speed: 1
+  knockbackDuration: 1
   speed_animation_multiplier: 1
   xp: {fileID: 4608355060562850367, guid: b8a747337d9f86d42a6bd5cba1295c15, type: 3}
   xp_tier: 3

@@ -33,10 +33,10 @@ public class Mushroom : Enemy
         }
     }
 
-    override public IEnumerator Kill()
+    override public IEnumerator GetDeath()
     {
         experience new_loot = Instantiate(xp, this.transform.position, Quaternion.identity).GetComponent<experience>();
         new_loot.SetTier(xp_tier);
-        yield return base.Kill();
+        yield return base.GetDeath();
     }
 }

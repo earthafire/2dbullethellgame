@@ -33,7 +33,7 @@ public class Wand : ActivatableAbility
 
     public void bulletHit(Enemy enemy)
     {
-        enemy.Damage(damage);
+        enemy.TakeDamage(damage);
         FindObjectOfType<AudioManager>().Play("ShootFireball");
     }
 }

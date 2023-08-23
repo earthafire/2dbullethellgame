@@ -7,14 +7,16 @@ public class Enemy : MonoBehaviour
     public GameObject target;
     public Rigidbody2D rb2d;
     private ParticleSystem particles;
-    float health, speed;
+    private float health, speed;
     public Attributes attributes;
+    public float knockbackDuration = 1.5f;
     public float speed_animation_multiplier = 1;    
 
-    /** Start is called before the first frame update */
     public void Start()
     {  
         health = attributes.GetAttribute(Attribute.health);
+        speed = attributes.GetAttribute(Attribute.moveSpeed);
+
         particles = gameObject.GetComponent<ParticleSystem>();
         target = GameObject.FindWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
@@ -36,14 +38,14 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        speed = attributes.GetAttribute(Attribute.moveSpeed);
+        
         float distance = speed * speed_animation_multiplier * Time.deltaTime;
         Vector3 target_position = target.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
-        rb2d.velocity = Vector2.zero;
+        //rb2d.velocity = Vector2.zero;
     }
 
-    public bool Damage(int damage)
+    public bool TakeDamage(int damage)
     {
         health -= damage;
         particles.Emit(damage);
@@ -51,36 +53,30 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             particles.Emit((int)health);
-            StartCoroutine(Kill());
+            StartCoroutine(GetDeath());
         }
         return true;
     }
 
-    public bool Knockback(int knockback)
+    public bool GetKnockbacked(Transform damageSource, float knockbackForce)
     {
-        //this is getting called but not working
-        Vector2 direction = (transform.position - target.transform.position).normalized;
-        rb2d.AddForce(direction * knockback, ForceMode2D.Impulse);
+        Vector2 difference = transform.position - damageSource.position;
+        difference = difference.normalized * knockbackForce * rb2d.mass;
+        rb2d.AddForce(difference, ForceMode2D.Impulse);
+
+        StartCoroutine(KnockbackRoutine());        
         return true;
     }
 
-    public virtual IEnumerator Kill()
+    private IEnumerator KnockbackRoutine(){
+        yield return new WaitForSeconds(knockbackDuration);
+    }
+
+    public virtual IEnumerator GetDeath()
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
-
-   /*  bool TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            Kill();
-        }
-
-        return true;
-    } */
 }
