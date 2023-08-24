@@ -8,7 +8,7 @@ public class FrostPulse : ActivatableAbility
     public GameObject frostpulseobj;
     private GameObject player;
     public int damage = 5;
-    public float knockback = 2f;
+    public float knockback = 1.5f;
     float rotationZ;
 
     void Start()
@@ -33,8 +33,7 @@ public class FrostPulse : ActivatableAbility
 
     public void frostHit(Enemy enemy)
     {
-        Debug.Log("" + enemy.name);
-        
+                
         enemy.TakeDamage(damage);
         
         enemy.GetKnockbacked(player.transform, knockback);

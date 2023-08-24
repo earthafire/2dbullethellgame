@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Pulse : MonoBehaviour
 {
-    public float duration = .6f;
+    public float duration = .55f;
     public Action<Enemy> onEnemyHit;
     public GameObject player;
 
@@ -22,7 +22,7 @@ public class Pulse : MonoBehaviour
     void Update()
     {
         
-        this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - .225f, 1);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y - .15f, 1);
 
         duration -= Time.deltaTime;
         if (duration < 0)

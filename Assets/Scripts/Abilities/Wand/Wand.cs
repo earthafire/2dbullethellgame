@@ -9,6 +9,7 @@ public class Wand : ActivatableAbility
     public GameObject projectile;
     private GameObject player;
     private int damage = 30;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class Wand : ActivatableAbility
     public override void Activated()
     {
         player_animator.SetTrigger("Attack");
-        
+
         Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 difference = mouse_pos - player.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private ParticleSystem particles;
     private float health, speed;
     public Attributes attributes;
-    public float knockbackDuration = 1.5f;
+    public float knockbackDuration = .25f;
     public float speed_animation_multiplier = 1;    
 
     public void Start()
