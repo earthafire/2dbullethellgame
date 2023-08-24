@@ -52,23 +52,23 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(WalkingSoundEffect());
 
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
-            SpriteRenderer wand  = gameObject.GetComponentInChildren<SpriteRenderer>();
+            
             if (xIn > 0)
             {
+                transform.localScale = Vector3.one;
 
-                if (sprite.flipX == true)
+/*                 if (sprite.flipX == true)
                 {
-                    wand.flipX = false;
                     sprite.flipX = false;
-                }
+                } */
             }
             else
             {
-                if (sprite.flipX == false)
+                transform.localScale = new Vector3(-1,1,0);
+/*                 if (sprite.flipX == false)
                 {
-                    wand.flipX = true;
                     sprite.flipX = true;
-                }
+                } */
             }
             // remove drag while moving
             rb2d.drag = 0;

@@ -30,7 +30,7 @@ public int player_level, current_experience;
         //Link to PlayerAttributes script
         player_level = player_attributes.player_level;
         current_experience = player_attributes.current_experience;
-        timer = game_supervisor_controller.game_timer;
+        timer = game_supervisor_controller.gameTimer;
 
         //Convert int to string 
         string player_level_string = player_level.ToString();

@@ -7,16 +7,18 @@ public class gameSupervisorController : MonoBehaviour
 {
     public GameObject[] regularEnemies;
     public GameObject[] bossEnemies;
-
     private GameObject player;
+    
+    [SerializeField] private int EnemiesPerCooldown = 20;
+    [SerializeField] private float SpawnCooldownSeconds = 5;
 
-    private float ringsize = 2f;
-    [SerializeField] private int EnemiesPerCooldown = 5;
-    [SerializeField] private float spawn_cooldown_seconds = .8f;
-    private int seconds_to_difficulty_gain = 10;
+    private int secondsUntilIncreaseEnemyCount = 60,
+                enemyTier = 0;
 
-    private float timer = 0;
-    public float game_timer = 0;
+    private float ringSize = 2f,
+                  spawnTimer = 0;
+
+    public float gameTimer = 0;
 
     private System.Random random = new System.Random();
 
@@ -29,39 +31,44 @@ public class gameSupervisorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        game_timer += Time.deltaTime;
+        gameTimer += Time.deltaTime;
 
         if (player == null)
         {
             return;
         }
 
-        timer += Time.deltaTime;
+        spawnTimer += Time.deltaTime;
 
-        if (timer > spawn_cooldown_seconds)
+        if (spawnTimer > SpawnCooldownSeconds)
         {
-            timer = 0;
-            for (int i = 0; i < EnemiesPerCooldown + Mathf.Floor(game_timer / seconds_to_difficulty_gain) ; i++)
+            IncreaseEnemyTier();
+            spawnTimer = 0;
+
+            for (int i = 0; i < EnemiesPerCooldown + GetEnemyCountModifier(); i++)
             {
                 int randInt = random.Next(10);
                 GameObject nextEntity;
 
-                if (randInt >= 8)
+                if (randInt >= 8)                
                 {
-                    nextEntity = getRandomBossEnemy();
+                    nextEntity = bossEnemies[enemyTier];
 
+                    //nextEntity = getRandomBossEnemy();
                 }
                 else
                 {
-                    nextEntity = getRandomRegularEnemy();
-                }
+                    nextEntity = regularEnemies[enemyTier];
+
+                    //nextEntity = getRandomRegularEnemy();
+                } 
 
                 spawnEntity(nextEntity);
             }
         }
     }
 
-    GameObject getRandomRegularEnemy()
+/*     GameObject getRandomRegularEnemy()
     {
         int randInt = random.Next(regularEnemies.Length);
         return regularEnemies[randInt];
@@ -71,11 +78,32 @@ public class gameSupervisorController : MonoBehaviour
     {
         int randInt = random.Next(bossEnemies.Length);
         return bossEnemies[randInt];
+    } */
+    int GetEnemyCountModifier(){
+        return (int)Mathf.Floor(gameTimer / secondsUntilIncreaseEnemyCount);
     }
 
+    int IncreaseEnemyTier(){
+
+        if(GetEnemyCountModifier() > 0){
+
+            if(enemyTier + 1 < regularEnemies.Length){
+
+                        enemyTier++;
+                        return enemyTier;
+                    }
+                        return regularEnemies.Length;
+
+        }
+
+        return 0;
+
+      
+        
+    }
     void spawnEntity(GameObject entity)
     {
-        Vector3 new_position = generateRandRingPosition(player.transform.position, ringsize);
+        Vector3 new_position = generateRandRingPosition(player.transform.position, ringSize);
         GameObject new_slime = Instantiate(entity, new_position, Quaternion.identity);
     }
 
