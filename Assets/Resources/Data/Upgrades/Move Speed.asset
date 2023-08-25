@@ -49,7 +49,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 4
-      Data: 0.2
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -60,8 +60,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
   icon: {fileID: 2012661883, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  upgrade_name: Movement
-  description: Increase movement speed by 50% of starting value
+  name: Vroom Vroom
+  description: Increase movement speed by 10%
   units_to_upgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
-  is_percent_upgrade: 0
+  is_percent_upgrade: 1

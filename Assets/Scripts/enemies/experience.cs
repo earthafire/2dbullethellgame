@@ -60,7 +60,7 @@ public class experience : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other){
-        
+        //Debug.Log(other.tag);
             if (other.tag == "Player")
             {
                 PlayerAttributes player = other.gameObject.GetComponent<PlayerAttributes>();

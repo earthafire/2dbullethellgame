@@ -60,7 +60,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   icon: {fileID: -263652000, guid: 505e8cd93ec19484fa22fcca19ce074b, type: 3}
-  name: 
+  name: Unstoppable Force
   description: Increases damage by 10%
   units_to_upgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}

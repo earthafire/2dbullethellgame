@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 241755281535307476}
   - component: {fileID: 7584500812283512290}
   m_Layer: 5
-  m_Name: Button
+  m_Name: LevelUpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 310218864c625a84c9939c44c910fd26, type: 2}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UpgradeAttribute, Assembly-CSharp
-        m_MethodName: DoUpgrade
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -185,10 +185,10 @@ RectTransform:
   m_Father: {fileID: 555376674478342183}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 2.5}
-  m_SizeDelta: {x: 170, y: 170}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 99.6, y: -100}
+  m_SizeDelta: {x: 185.3325, y: 185.3325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1769588986104940404
 CanvasRenderer:
@@ -261,10 +261,10 @@ RectTransform:
   m_Father: {fileID: 555376674478342183}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.0000019073486}
-  m_SizeDelta: {x: 294.79, y: 110.78}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 444.12375, y: -126.13286}
+  m_SizeDelta: {x: 494.701, y: 120.6982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4122100640242483922
 CanvasRenderer:
@@ -321,8 +321,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -396,10 +396,10 @@ RectTransform:
   m_Father: {fileID: 555376674478342183}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
-  m_SizeDelta: {x: 294.7893, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 442.86, y: -25.382}
+  m_SizeDelta: {x: 509.06, y: 36.097}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5065776892363781467
 CanvasRenderer:

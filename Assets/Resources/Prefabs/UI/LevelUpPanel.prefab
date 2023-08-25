@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2193062076484751276}
   - component: {fileID: 192652852533146392}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: LevelUpPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,9 +30,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8004912450790681565}
-  - {fileID: 8694110034612009323}
-  - {fileID: 182576486011648452}
+  - {fileID: 435605069026649984}
+  - {fileID: 4066869050229438823}
+  - {fileID: 517927045393101433}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &377665186003286499
+--- !u!1001 &37457903613440606
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -89,7 +89,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 360646687782579931, guid: e7617d432dfce724095d361b01be0241, type: 3}
       propertyPath: m_Name
-      value: Button (2)
+      value: Level Up Button 3
       objectReference: {fileID: 0}
     - target: {fileID: 555376674478342183, guid: e7617d432dfce724095d361b01be0241, type: 3}
       propertyPath: m_Pivot.x
@@ -175,17 +175,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3693111934035134992, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Image 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913721812833156850, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Description 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914757956725885407, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Name 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7617d432dfce724095d361b01be0241, type: 3}
---- !u!224 &182576486011648452 stripped
+--- !u!224 &517927045393101433 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 555376674478342183, guid: e7617d432dfce724095d361b01be0241, type: 3}
-  m_PrefabInstance: {fileID: 377665186003286499}
+  m_PrefabInstance: {fileID: 37457903613440606}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7539642958080584698
+--- !u!1001 &125692475873470375
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -195,7 +207,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 360646687782579931, guid: e7617d432dfce724095d361b01be0241, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Level Up Button 1
       objectReference: {fileID: 0}
     - target: {fileID: 555376674478342183, guid: e7617d432dfce724095d361b01be0241, type: 3}
       propertyPath: m_Pivot.x
@@ -281,17 +293,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3693111934035134992, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Image 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913721812833156850, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Description 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914757956725885407, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Name 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7617d432dfce724095d361b01be0241, type: 3}
---- !u!224 &8004912450790681565 stripped
+--- !u!224 &435605069026649984 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 555376674478342183, guid: e7617d432dfce724095d361b01be0241, type: 3}
-  m_PrefabInstance: {fileID: 7539642958080584698}
+  m_PrefabInstance: {fileID: 125692475873470375}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &9156582373983582540
+--- !u!1001 &4595206529697020224
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -301,7 +325,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 360646687782579931, guid: e7617d432dfce724095d361b01be0241, type: 3}
       propertyPath: m_Name
-      value: Button (1)
+      value: Level Up Button 2
       objectReference: {fileID: 0}
     - target: {fileID: 555376674478342183, guid: e7617d432dfce724095d361b01be0241, type: 3}
       propertyPath: m_Pivot.x
@@ -387,13 +411,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3693111934035134992, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Image 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913721812833156850, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Description 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914757956725885407, guid: e7617d432dfce724095d361b01be0241, type: 3}
+      propertyPath: m_Name
+      value: Name 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7617d432dfce724095d361b01be0241, type: 3}
---- !u!224 &8694110034612009323 stripped
+--- !u!224 &4066869050229438823 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 555376674478342183, guid: e7617d432dfce724095d361b01be0241, type: 3}
-  m_PrefabInstance: {fileID: 9156582373983582540}
+  m_PrefabInstance: {fileID: 4595206529697020224}
   m_PrefabAsset: {fileID: 0}
