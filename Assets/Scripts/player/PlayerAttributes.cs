@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerAttributes : MonoBehaviour
 {
@@ -14,10 +15,10 @@ public class PlayerAttributes : MonoBehaviour
     private float damageModifier = 1;
     private ParticleSystem particles;
 
-
     // Start is called before the first frame update
     void Start()
     {
+
         current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
         particles = gameObject.GetComponent<ParticleSystem>();
         healthbar.SetMaxHealth(current_attributes[Attribute.health]);
@@ -60,12 +61,12 @@ public class PlayerAttributes : MonoBehaviour
         current_experience += bonus_experience;
 
         if(current_experience > experience_until_level_up){
-            levelUp();
+            DoLevelUp();
         }
         
     }
-    public void levelUp(){
-        
+    public void DoLevelUp()
+    {
         particles.Emit(experience_until_level_up);
         experience_until_level_up = Convert.ToInt32(Convert.ToSingle(experience_until_level_up) * 1.1f);
         current_experience = 0;

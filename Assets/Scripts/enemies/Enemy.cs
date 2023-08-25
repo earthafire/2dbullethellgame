@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class Enemy : MonoBehaviour
     public GameObject target;
     public Rigidbody2D rb2d;
     private ParticleSystem particles;
-    private float health, speed;
+    private float health, speed, damage;
     public Attributes attributes;
     public float knockbackDuration = .25f;
     public float speed_animation_multiplier = 1;    
@@ -16,6 +17,8 @@ public class Enemy : MonoBehaviour
     {  
         health = attributes.GetAttribute(Attribute.health);
         speed = attributes.GetAttribute(Attribute.moveSpeed);
+        damage = attributes.GetAttribute(Attribute.damage);
+        
 
         particles = gameObject.GetComponent<ParticleSystem>();
         target = GameObject.FindWithTag("Player");
@@ -45,10 +48,13 @@ public class Enemy : MonoBehaviour
         //rb2d.velocity = Vector2.zero;
     }
 
-    public bool TakeDamage(int damage)
+    public bool TakeDamage(int playerDamage)
     {
-        health -= damage;
-        particles.Emit(damage);
+        if(Time.timeScale == 0){
+            return false;
+        }
+        health -= playerDamage;
+        particles.Emit(playerDamage);
 
         if (health <= 0)
         {
@@ -56,6 +62,20 @@ public class Enemy : MonoBehaviour
             StartCoroutine(GetDeath());
         }
         return true;
+    }
+
+    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.TryGetComponent<PlayerAttributes>(out PlayerAttributes player)){
+
+            player = collision.gameObject.GetComponent<PlayerAttributes>();
+            player.takeDamage((int)damage);
+        }
+        else 
+        {
+          // Debug.Log(collision.gameObject + "has no attack");
+        }
     }
 
     public bool GetKnockbacked(Transform damageSource, float knockbackForce)

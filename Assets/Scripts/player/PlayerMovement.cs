@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator player_animator;
     public Attributes attributes;
     public Vector2 direction { get; private set; }
-    public bool isPlayerInControl = true;
+    public bool isPlayerInControl = true,
+                isPlayerRunning = false;
     private float acceleration = .2f;
     Rigidbody2D rb2d;
 
@@ -28,18 +29,24 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator WalkingSoundEffect() {
 
-        FindObjectOfType<AudioManager>().Play("walk_Grass");
-        yield return new WaitForSeconds(.5f);
+        if(isPlayerRunning){
+
+            FindObjectOfType<AudioManager>().Play("walk_Grass");
+            yield return new WaitForSeconds(2);
+
+        }
+        
     }
 
     void HandleMovement()
     {
-        float speed = attributes.GetAttribute(Attribute.moveSpeed);
 
         if (isPlayerInControl == false)
         {
             return;
         }
+
+        float speed = attributes.GetAttribute(Attribute.moveSpeed);
 
         float xIn = Input.GetAxisRaw("Horizontal");
         float yIn = Input.GetAxisRaw("Vertical");
@@ -56,19 +63,10 @@ public class PlayerMovement : MonoBehaviour
             if (xIn > 0)
             {
                 transform.localScale = Vector3.one;
-
-/*                 if (sprite.flipX == true)
-                {
-                    sprite.flipX = false;
-                } */
             }
             else
             {
                 transform.localScale = new Vector3(-1,1,0);
-/*                 if (sprite.flipX == false)
-                {
-                    sprite.flipX = true;
-                } */
             }
             // remove drag while moving
             rb2d.drag = 0;
