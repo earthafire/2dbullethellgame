@@ -86,23 +86,42 @@ public class LevelUp : MonoBehaviour
         }
     }
 
-    // 
+    /// <summary>
+    /// Gets a a list of random upgrades, this list is used to populate the buttons.
+    /// </summary>
+    /// <returns>
+    /// null: if there are no upgrades
+    /// not random list: if there are 3 or less upgrade stacks left
+    /// random list of 3: if there are more than 3 upgrade stacks left
+    /// </returns>
     public UpgradeAttributeStack[] GetRandomUpgrades()
     {
-        if (upgradeStacks.Count == 0)
+        if (upgradeStacks.Count == 0) // no upgrades left
         {
             return null;
         }
-        else if (upgradeStacks.Count <= 3)
+        else if (upgradeStacks.Count <= 3) // some upgrades left, not enough to use random
         {
             return upgradeStacks.ToArray();
         }
 
+
+        // this variable holds all the possible indexes, we will pick randomly from this list.
+        List<int> unusedUpgrades = new List<int>();
+        for (int i = 0; i < upgradeStacks.Count; i++)
+        {
+            unusedUpgrades.Add(i);
+        }
+
+        // holds our final upgrade results
         UpgradeAttributeStack[] randomUpgrades = new UpgradeAttributeStack[3];
 
+        // pick a random upgrade from the list 'upgradeStacks' 3 times, no repeats
         for (int i = 0; i < 3; i++)
         {
-            randomUpgrades[i] = upgradeStacks[random.Next(upgradeStacks.Count)];
+            int randomNum = random.Next(unusedUpgrades.Count);
+            randomUpgrades[i] = upgradeStacks[unusedUpgrades[randomNum]];
+            unusedUpgrades.RemoveAt(randomNum);
         }
 
         return randomUpgrades;
