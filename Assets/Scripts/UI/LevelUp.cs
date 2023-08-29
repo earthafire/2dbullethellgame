@@ -89,18 +89,13 @@ public class LevelUp : MonoBehaviour
     // 
     public UpgradeAttributeStack[] GetRandomUpgrades()
     {
-        // foreach (UpgradeAttributeStack temp in upgradeStacks)
-        // {
-        //     Debug.Log(temp.upgradeAttributeStack.Count);
-        // }
-
-        if (upgradeStacks.Count <= 3)
-        {
-            return upgradeStacks.ToArray();
-        }
-        else if (upgradeStacks.Count == 0)
+        if (upgradeStacks.Count == 0)
         {
             return null;
+        }
+        else if (upgradeStacks.Count <= 3)
+        {
+            return upgradeStacks.ToArray();
         }
 
         UpgradeAttributeStack[] randomUpgrades = new UpgradeAttributeStack[3];
@@ -123,9 +118,5 @@ public class LevelUp : MonoBehaviour
     public void OpenUpgradePanel(){
         upgradeButtonsPanel.SetActive(true);
         Time.timeScale = 0;
-    }
-    public void PopUpgradeStack()
-    {
-        
     }
 }
