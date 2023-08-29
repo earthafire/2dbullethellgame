@@ -31,41 +31,86 @@ public class LevelUp : MonoBehaviour
             upgradeStacks.Add(Instantiate(upgradeStack));
         }
     }
-    public void HandleLevelUp(){
+    public void HandleLevelUp()
+    {
+        UpgradeAttributeStack[] upgradesToShow = GetRandomUpgrades();
+
+        if (upgradesToShow == null)
+        {
+            Debug.Log("No more upgrades :(");
+            return;
+        }
 
         OpenUpgradePanel();
 
-        // Get a random upgrade and assign it to a button in the list
-         foreach (Button button in buttons)
+        for (int i = 0; i < 3; i++)
         {
-            LevelUpButtons script = button.GetComponent<LevelUpButtons>();
-            /*if (upgradeStacks.Count <= 3)
+            Button b = buttons[i].GetComponent<Button>();
+            LevelUpButtons script = b.GetComponent<LevelUpButtons>();
+
+            if (upgradesToShow.Length < i + 1)
             {
+                buttons[i].gameObject.SetActive(false);
+                continue;
+            }
+            int indexOfStack = upgradeStacks.IndexOf(upgradesToShow[i]);
+            Stack<UpgradeAttribute> nextStack = upgradesToShow[i].upgradeAttributeStack;
+            UpgradeAttribute nextAttribute = nextStack.Peek();
 
-            }*/
-            UpgradeAttribute upgradeAttribute = GetRandomUpgrade();
 
-            Button b = button.GetComponent<Button>();
-            b.onClick.AddListener(()=> upgradeAttribute.DoUpgrade());
+            b.onClick.RemoveAllListeners();
+
+            b.onClick.AddListener(() =>
+            {
+                nextAttribute.DoUpgrade();
+
+                Debug.Log("size before pop: " + nextStack.Count);
+
+                UpgradeAttribute temp = nextStack.Pop();
+                Debug.Log("name of stack: " + temp.name);
+                Debug.Log("size after pop: " + nextStack.Count);
+                if (nextStack.Count == 0)
+                {
+                    // if stack is empty, remove it from the upgrades entirely
+                    Debug.Log("Stack is empty");
+                    Debug.Log("does the stack contain this object?:");
+                    upgradeStacks.RemoveAt(indexOfStack);
+                }
+            });
+
             b.onClick.AddListener(CloseUpgradePanel);
 
-            script.image.sprite = upgradeAttribute.icon;
-            script.name.SetText(upgradeAttribute.title);
-            script.description.SetText(upgradeAttribute.description);
+            script.image.sprite = nextAttribute.icon;
+            script.name.SetText(nextAttribute.title);
+            script.description.SetText(nextAttribute.description);
         }
     }
 
     // 
-    public UpgradeAttribute GetRandomUpgrade(){
+    public UpgradeAttributeStack[] GetRandomUpgrades()
+    {
+        // foreach (UpgradeAttributeStack temp in upgradeStacks)
+        // {
+        //     Debug.Log(temp.upgradeAttributeStack.Count);
+        // }
 
-        if(upgradeStacks.Count == 0)
+        if (upgradeStacks.Count <= 3)
         {
-            Debug.Log("Stack is empty");
+            return upgradeStacks.ToArray();
+        }
+        else if (upgradeStacks.Count == 0)
+        {
             return null;
         }
-        UpgradeAttribute upgradeAttribute = upgradeStacks[random.Next(upgradeStacks.Count)].upgradeAttributeStack.Peek();
-        
-        return upgradeAttribute;
+
+        UpgradeAttributeStack[] randomUpgrades = new UpgradeAttributeStack[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            randomUpgrades[i] = upgradeStacks[random.Next(upgradeStacks.Count)];
+        }
+
+        return randomUpgrades;
     }
 
     public void CloseUpgradePanel(){
