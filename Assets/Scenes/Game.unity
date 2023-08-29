@@ -548,6 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae660420162d4e44935aeb3ab55e29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextTier: 0
   buttons:
   - {fileID: 1771906956}
   - {fileID: 268282241}
@@ -26741,6 +26742,10 @@ PrefabInstance:
     - target: {fileID: 3660063870755933934, guid: 7aab7706033617446a1a3f3a51a48baa, type: 3}
       propertyPath: m_Name
       value: LevelUpButtonPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660063870755933934, guid: 7aab7706033617446a1a3f3a51a48baa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7946413030206042406, guid: 7aab7706033617446a1a3f3a51a48baa, type: 3}
       propertyPath: m_Pivot.x

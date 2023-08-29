@@ -9,7 +9,7 @@ public abstract class Upgrade : SerializedScriptableObject {
     public Sprite icon;
 
     [LabelWidth(100)]
-    public string name;
+    public string title;
 
     [LabelWidth(100)]
     [TextArea]
@@ -17,5 +17,4 @@ public abstract class Upgrade : SerializedScriptableObject {
 
     [Button]
     public abstract void DoUpgrade();
- 
 }

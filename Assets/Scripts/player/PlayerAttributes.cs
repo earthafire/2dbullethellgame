@@ -15,7 +15,7 @@ public class PlayerAttributes : MonoBehaviour
     private float damageModifier = 1;
     private ParticleSystem particles;
     [SerializeField] private GameObject ui;
-     LevelUp levelUp;
+    LevelUp levelUp;
 
 
 

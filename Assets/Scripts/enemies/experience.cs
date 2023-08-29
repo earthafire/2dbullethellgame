@@ -23,27 +23,27 @@ public class experience : MonoBehaviour
         switch(tierNum){
 
             case 1:
-                experienceAmount = 1;
+                experienceAmount = 10;
                 GetComponent<SpriteRenderer>().sprite = tier1SkinsArray[random.Next(tier1SkinsArray.Length)];
                 break;
 
             case 2:
-                experienceAmount = 3;
+                experienceAmount = 30;
                 GetComponent<SpriteRenderer>().sprite = tier2SkinsArray[random.Next(tier2SkinsArray.Length)];
                 break;
 
             case 3:
-                experienceAmount = 5;
+                experienceAmount = 50;
                 GetComponent<SpriteRenderer>().sprite = tier3SkinsArray[random.Next(tier3SkinsArray.Length)];
                 break;
 
             case 4:
-                experienceAmount = 8;
+                experienceAmount = 80;
                 GetComponent<SpriteRenderer>().sprite = tier4SkinsArray[random.Next(tier4SkinsArray.Length)];
                 break;
 
             case 5:
-                experienceAmount = 12;
+                experienceAmount = 120;
                 GetComponent<SpriteRenderer>().sprite = tier5SkinsArray[random.Next(tier5SkinsArray.Length)];    
                 break;
         }

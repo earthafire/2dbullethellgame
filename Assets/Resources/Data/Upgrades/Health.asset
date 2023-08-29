@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: upgrade_to_apply
+    - Name: upgradeToApply
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Attribute, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
@@ -40,19 +40,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 4
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -60,7 +48,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
   icon: {fileID: -1192852229, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  name: Healthy Hearty
+  title: Be Well
   description: Increase health by 10%
-  units_to_upgrade: []
-  is_percent_upgrade: 1
+  unitsToUpgrade: []
+  isPercent: 0
+  tier: 0

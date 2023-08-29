@@ -43,6 +43,7 @@ public class Attributes : SerializedScriptableObject {
         {
             applied_upgrades.Add(upgrade);
             upgradeApplied?.Invoke(this, upgrade);
+            //upgrade.tier++;
         }
     }
 
@@ -51,12 +52,13 @@ public class Attributes : SerializedScriptableObject {
     {
         foreach (var upgrade in applied_upgrades)
         {
-            if(!upgrade.upgrade_to_apply.TryGetValue(attribute, out float upgrade_value))
+
+            if(!upgrade.upgradeToApply.TryGetValue(attribute, out float upgrade_value))
             {
                 continue;
             }
             
-            if(upgrade.is_percent_upgrade)
+            if(upgrade.isPercent)
             {
                 base_value *= (upgrade_value / 100f) + 1f;
             }

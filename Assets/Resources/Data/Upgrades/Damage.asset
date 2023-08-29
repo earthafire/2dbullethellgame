@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: upgrade_to_apply
+    - Name: upgradeToApply
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Attribute, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
@@ -40,19 +40,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 4
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -60,8 +48,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
   icon: {fileID: -263652000, guid: 505e8cd93ec19484fa22fcca19ce074b, type: 3}
-  name: Unstoppable Force
+  title: Hit Hard
   description: Increases damage by 10%
-  units_to_upgrade:
-  - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
-  is_percent_upgrade: 1
+  unitsToUpgrade: []
+  isPercent: 0
+  tier: 0
