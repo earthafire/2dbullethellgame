@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 direction { get; private set; }
     public bool isPlayerInControl = true,
                 isPlayerRunning = false;
-    private float acceleration = .2f;
     Rigidbody2D rb2d;
 
 
@@ -45,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-
+        float acceleration = attributes.GetAttribute(Attribute.acceleration);
         float speed = attributes.GetAttribute(Attribute.moveSpeed);
 
         float xIn = Input.GetAxisRaw("Horizontal");

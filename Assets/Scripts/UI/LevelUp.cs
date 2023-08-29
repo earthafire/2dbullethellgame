@@ -130,7 +130,6 @@ public class LevelUp : MonoBehaviour
     public void CloseUpgradePanel(){
         upgradeButtonsPanel.SetActive(false);
         Time.timeScale = 1.0f;
-
     }
 
 

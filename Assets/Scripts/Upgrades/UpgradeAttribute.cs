@@ -9,7 +9,7 @@ public class UpgradeAttribute : Upgrade
     public List<Attributes> unitsToUpgrade = new List<Attributes>();
     public Dictionary<Attribute, float> upgradeToApply = new Dictionary<Attribute, float>();
     public bool isPercent;
-    public int tier;
+    //public int tier;
 
     public override void DoUpgrade()
    {

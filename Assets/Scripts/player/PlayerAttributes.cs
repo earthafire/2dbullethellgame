@@ -10,7 +10,7 @@ public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
     public Attributes attributes;
-    private Dictionary<Attribute, float> current_attributes;
+    //private Dictionary<Attribute, float> current_attributes;
     public int current_experience = 0, experience_until_level_up = 100, player_level = 0;
     private float damageModifier = 1;
     private ParticleSystem particles;
@@ -23,9 +23,9 @@ public class PlayerAttributes : MonoBehaviour
     void Start()
     {
         levelUp = ui.GetComponent<LevelUp>();
-        current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
+        attributes.current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
         particles = gameObject.GetComponent<ParticleSystem>();
-        healthbar.SetMaxHealth(current_attributes[Attribute.health]);
+        healthbar.SetMaxHealth(attributes.current_attributes[Attribute.health]);
     }
 
     public void takeDamage(int damage)
@@ -34,10 +34,10 @@ public class PlayerAttributes : MonoBehaviour
             return;
         }
 
-        if(current_attributes.TryGetValue(Attribute.health, out float health))
+        if(attributes.current_attributes.TryGetValue(Attribute.health, out float health))
         {
-            current_attributes[Attribute.health] = health - damage;
-            health -= damage;
+            attributes.current_attributes[Attribute.health] = health - damage;
+            //health -= damage;
             healthbar.SetHealth(health);
         }
 

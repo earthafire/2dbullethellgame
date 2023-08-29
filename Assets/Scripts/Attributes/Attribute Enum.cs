@@ -11,6 +11,8 @@ public enum Attribute
     {
         health,
         moveSpeed,
-        damage
+        damage,
+        acceleration,
+        experience
     }
 

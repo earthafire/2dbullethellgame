@@ -40,7 +40,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -50,6 +62,7 @@ MonoBehaviour:
   icon: {fileID: -1192852229, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   title: Be Well
   description: Increase health by 10%
-  unitsToUpgrade: []
-  isPercent: 0
+  unitsToUpgrade:
+  - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
+  isPercent: 1
   tier: 0
