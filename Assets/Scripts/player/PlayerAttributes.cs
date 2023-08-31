@@ -77,13 +77,13 @@ public class PlayerAttributes : MonoBehaviour
     private void UpgradeApplied(Attributes attribute, UpgradeAttribute upgradeAttribute)
     {
         
-        if(upgradeAttribute.upgradeToApply.TryGetValue(Attribute.health, out float health))
+        if(upgradeAttribute.upgradeToApply.TryGetValue(Attribute.health, out float value))
         {
             if(upgradeAttribute.isPercent)
             {
-                _localAttributes[Attribute.health] *= (health / 100f) + 1f;
+                _localAttributes[Attribute.health] *= (value / 100f) + 1f;
             }else{
-                _localAttributes[Attribute.health] += health;
+                _localAttributes[Attribute.health] += value;
             }  
             healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
             healthbar.SetHealth(_localAttributes[Attribute.health]);

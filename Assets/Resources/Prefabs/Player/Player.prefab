@@ -5057,10 +5057,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 1724211818891971261, guid: f48978a0eb436f642898e6e06d7ec150, type: 3}
-  attributes: {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
-  current_experience: 0
-  experience_until_level_up: 100
-  player_level: 0
+  _playerAttributes: {fileID: 0}
+  _experienceUntilLevelUp: 100
+  uI: {fileID: 0}
 --- !u!199 &1113767006483677914
 ParticleSystemRenderer:
   serializedVersion: 6
