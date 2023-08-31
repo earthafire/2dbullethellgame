@@ -9,23 +9,24 @@ using UnityEngine.Events;
 public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
-    public Attributes attributes;
-    //private Dictionary<Attribute, float> current_attributes;
-    public int current_experience = 0, experience_until_level_up = 100, player_level = 0;
+    public Attributes _playerAttributes;
+    public Dictionary<Attribute, float> _localAttributes;
+    public int _experienceUntilLevelUp = 100 ;
     private float damageModifier = 1;
     private ParticleSystem particles;
-    [SerializeField] private GameObject ui;
+    [SerializeField] private GameObject uI;
     LevelUp levelUp;
-
-
 
     // Start is called before the first frame update
     void Start()
     {
-        levelUp = ui.GetComponent<LevelUp>();
-        attributes.current_attributes = new Dictionary<Attribute, float>(attributes.default_attributes);
+        _playerAttributes.upgradeApplied += UpgradeApplied;
+
+        levelUp = uI.GetComponent<LevelUp>();
+        _localAttributes = new Dictionary<Attribute, float>(_playerAttributes.current_attributes);
+
         particles = gameObject.GetComponent<ParticleSystem>();
-        healthbar.SetMaxHealth(attributes.current_attributes[Attribute.health]);
+        healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
     }
 
     public void takeDamage(int damage)
@@ -34,10 +35,9 @@ public class PlayerAttributes : MonoBehaviour
             return;
         }
 
-        if(attributes.current_attributes.TryGetValue(Attribute.health, out float health))
+        if(_localAttributes.TryGetValue(Attribute.health, out float health))
         {
-            attributes.current_attributes[Attribute.health] = health - damage;
-            //health -= damage;
+            _localAttributes[Attribute.health] = health - damage;
             healthbar.SetHealth(health);
         }
 
@@ -47,23 +47,46 @@ public class PlayerAttributes : MonoBehaviour
         }
     }
 
-    public void addExperience(int bonus_experience)
+    public void addExperience(int experienceToAdd)
     {
-        current_experience += bonus_experience;
+        if(_localAttributes.TryGetValue(Attribute.experience, out float _exp))
+        {
+          _localAttributes[Attribute.experience] = _exp + (float)experienceToAdd;
+        }
 
-        if(current_experience > experience_until_level_up){
+        if(_localAttributes[Attribute.experience] > _experienceUntilLevelUp)
+        {
             DoLevelUp();
+            _localAttributes[Attribute.experience] = 0;
         }
         
     }
     public void DoLevelUp()
     {
-        current_experience = 0;
-        particles.Emit(experience_until_level_up);
-        experience_until_level_up = Convert.ToInt32(Convert.ToSingle(experience_until_level_up) * 1.1f);
-        
-        player_level += player_level;
+        particles.Emit(_experienceUntilLevelUp);
 
-        levelUp.HandleLevelUp();
+        _experienceUntilLevelUp = (int)((float)_experienceUntilLevelUp * 1.1f);
+
+        if(_localAttributes.TryGetValue(Attribute.level, out float level)){
+
+            _localAttributes[Attribute.level] = level + 1.0f;
+            levelUp.HandleLevelUp();
+        }
+    }
+
+    private void UpgradeApplied(Attributes attribute, UpgradeAttribute upgradeAttribute)
+    {
+        
+        if(upgradeAttribute.upgradeToApply.TryGetValue(Attribute.health, out float health))
+        {
+            if(upgradeAttribute.isPercent)
+            {
+                _localAttributes[Attribute.health] *= (health / 100f) + 1f;
+            }else{
+                _localAttributes[Attribute.health] += health;
+            }  
+            healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
+            healthbar.SetHealth(_localAttributes[Attribute.health]);
+        }    
     }
 }

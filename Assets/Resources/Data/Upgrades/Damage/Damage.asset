@@ -40,7 +40,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -50,6 +62,6 @@ MonoBehaviour:
   icon: {fileID: -263652000, guid: 505e8cd93ec19484fa22fcca19ce074b, type: 3}
   title: Hit Hard
   description: Increases damage by 10%
-  unitsToUpgrade: []
-  isPercent: 0
-  tier: 0
+  unitsToUpgrade:
+  - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
+  isPercent: 1

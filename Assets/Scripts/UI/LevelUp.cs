@@ -10,27 +10,21 @@ using UnityEditor.Rendering.Universal;
 
 public class LevelUp : MonoBehaviour
  {
-    public static int numberOfButtons = 3;
     private System.Random random = new System.Random();
-    //[OdinSerialize] public List<UpgradeAttributeStack> permenantUpgradeStacks = new List<UpgradeAttributeStack>();
     private List<UpgradeAttributeStack> upgradeStacks = new List<UpgradeAttributeStack>();
-    private Stack<UpgradeAttribute> upgradeAttributes;
-    public int nextTier;
     public  Button[] buttons;
-    private LevelUpButtons levelUpButton;
-
-    [SerializeField]
-    GameObject upgradeButtonsPanel;
+    [SerializeField] GameObject upgradeButtonsPanel;
 
      void Start()
     {
      UpgradeAttributeStack[] temp = Resources.LoadAll<UpgradeAttributeStack>("Data/Upgrades/UpgradeStacks");
-     //permenantUpgradeStacks.AddRange(Resources.LoadAll<UpgradeAttributeStack>("Data/Upgrades/UpgradeStacks"));
-     foreach(var upgradeStack in temp)
+
+        foreach(var upgradeStack in temp)
         {
             upgradeStacks.Add(Instantiate(upgradeStack));
         }
     }
+
     public void HandleLevelUp()
     {
         UpgradeAttributeStack[] upgradesToShow = GetRandomUpgrades();
@@ -64,16 +58,16 @@ public class LevelUp : MonoBehaviour
             {
                 nextAttribute.DoUpgrade();
 
-                Debug.Log("size before pop: " + nextStack.Count);
+                //Debug.Log("size before pop: " + nextStack.Count);
 
                 UpgradeAttribute temp = nextStack.Pop();
-                Debug.Log("name of stack: " + temp.name);
-                Debug.Log("size after pop: " + nextStack.Count);
+/*                 Debug.Log("name of stack: " + temp.name);
+                Debug.Log("size after pop: " + nextStack.Count); */
                 if (nextStack.Count == 0)
                 {
-                    // if stack is empty, remove it from the upgrades entirely
+/*                     // if stack is empty, remove it from the upgrades entirely
                     Debug.Log("Stack is empty");
-                    Debug.Log("does the stack contain this object?:");
+                    Debug.Log("does the stack contain this object?:"); */
                     upgradeStacks.RemoveAt(indexOfStack);
                 }
             });

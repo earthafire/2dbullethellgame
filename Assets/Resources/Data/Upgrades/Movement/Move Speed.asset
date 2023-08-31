@@ -65,4 +65,3 @@ MonoBehaviour:
   unitsToUpgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
   isPercent: 1
-  tier: 1

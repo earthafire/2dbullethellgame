@@ -13,6 +13,7 @@ public enum Attribute
         moveSpeed,
         damage,
         acceleration,
-        experience
+        experience,
+        level
     }
 

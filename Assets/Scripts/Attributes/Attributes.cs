@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-[CreateAssetMenu(fileName = "Attributes", menuName = "Attributes", order = 0)]
+[CreateAssetMenu(menuName = "Attributes")]
 public class Attributes : SerializedScriptableObject {
 
     public Dictionary<Attribute, float> default_attributes  = new Dictionary<Attribute, float>();
     public Dictionary<Attribute, float> current_attributes  = new Dictionary<Attribute, float>();
-    private List<UpgradeAttribute> applied_upgrades = new List<UpgradeAttribute>();
+    [ShowInInspector]public List<UpgradeAttribute> applied_upgrades = new List<UpgradeAttribute>();
 
     public event Action<Attributes, UpgradeAttribute> upgradeApplied;
     
@@ -43,7 +43,6 @@ public class Attributes : SerializedScriptableObject {
         {
             applied_upgrades.Add(upgrade);
             upgradeApplied?.Invoke(this, upgrade);
-            //upgrade.tier++;
         }
     }
 
