@@ -5,6 +5,7 @@ using UnityEngine;
 public static class AttributeEnum
 {
     a
+    b
 }
 
 public enum Attribute
