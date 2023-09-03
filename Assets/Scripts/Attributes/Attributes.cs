@@ -19,6 +19,7 @@ public class Attributes : SerializedScriptableObject {
         {
             return GetUpgradedValue(attribute, current_value);
         }
+        jkl; jkl;
 
         else if(default_attributes.TryGetValue(attribute, out float value))
         {
