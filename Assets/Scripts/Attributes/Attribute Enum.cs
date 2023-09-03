@@ -7,6 +7,7 @@ public static class AttributeEnum
     a
     b
     c
+    d
 }
 
 public enum Attribute
