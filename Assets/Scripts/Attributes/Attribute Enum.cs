@@ -12,6 +12,7 @@ public static class AttributeEnum
     f
     asdfas
     dfasdfasdfasdfas
+    asdfasasdf
 }
 
 public enum Attribute
