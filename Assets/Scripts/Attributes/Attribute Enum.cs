@@ -10,6 +10,8 @@ public static class AttributeEnum
     d
     e
     f
+    asdfas
+    dfasdfasdfasdfas
 }
 
 public enum Attribute
