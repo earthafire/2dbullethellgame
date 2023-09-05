@@ -18,7 +18,7 @@ public class Bat : Enemy
         
         sprite_renderer_transform = this.transform;
         rb = GetComponent<Rigidbody2D>();
-        target_position = base.target.transform.position;
+        target_position = base.player.transform.position;
     }
 
     // Update is called once per frame

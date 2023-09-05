@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7555341893948372761}
   - component: {fileID: 4608355060562850367}
   - component: {fileID: 4224254642666846094}
-  m_Layer: 6
-  m_Name: Loot
+  m_Layer: 8
+  m_Name: Experience
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885435694252671852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.356, y: -0.02, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

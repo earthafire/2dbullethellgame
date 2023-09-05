@@ -20,8 +20,8 @@ public class experience : MonoBehaviour
 
     public void SetTier(int tierNum)
     {
-        switch(tierNum){
-
+        switch(tierNum)
+        {
             case 1:
                 experienceAmount = 10;
                 GetComponent<SpriteRenderer>().sprite = tier1SkinsArray[random.Next(tier1SkinsArray.Length)];
@@ -50,24 +50,25 @@ public class experience : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D other)
-    {
-            // Calling an event that the ability can subscribe to
-            
-            if(other.tag == "ExperiencePickUpRange"){
-                transform.position = Vector3.MoveTowards(transform.position, other.gameObject.transform.position, speed * Time.deltaTime);
-            }
+    {       
+        if(other.gameObject.layer == 8) // Experience Layer
+        {
+            transform.position = Vector3.MoveTowards(
+            transform.position, other.gameObject.transform.position,
+            speed * Time.deltaTime);
+        }
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
-        //Debug.Log(other.tag);
-            if (other.tag == "Player")
-            {
-                PlayerAttributes player = other.gameObject.GetComponent<PlayerAttributes>();
-                player.addExperience(experienceAmount);
-                FindObjectOfType<AudioManager>().Play("LootPickUp");
-                Destroy(gameObject);
-            }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 12) // Player layer
+        {
+            PlayerAttributes player = other.gameObject.GetComponent<PlayerAttributes>();
+            player.addExperience(experienceAmount);
+            FindObjectOfType<AudioManager>().Play("LootPickUp");
+            Destroy(gameObject);
+        }
     }
-    
 }
+

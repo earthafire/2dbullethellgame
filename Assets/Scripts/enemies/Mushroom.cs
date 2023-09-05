@@ -12,7 +12,7 @@ public class Mushroom : Enemy
     new void Start()
     {
         base.Start();
-        target_position = base.target.transform.position;
+        target_position = base.player.transform.position;
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class Mushroom : Enemy
         // only change directions when not moving
         if (base.speed_animation_multiplier <= 0)
         {
-            target_position = base.target.transform.position;
+            target_position = base.player.transform.position;
         }
     }
 
