@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8957619516598874974}
   - component: {fileID: -2907985958625083887}
   m_Layer: 0
-  m_Name: Wand
+  m_Name: Wand T0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &-2907985958625083887
 SpriteRenderer:
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingOrder: -1
   m_Sprite: {fileID: -1960084321, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.16, y: 0.16}

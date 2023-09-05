@@ -6,6 +6,7 @@ public class Slime : Enemy
 {    
     private Vector3 target_position;
     public experience xp;
+    public GameObject bag;
     public int xp_tier;
 
     // Start is called before the first frame update
@@ -34,8 +35,12 @@ public class Slime : Enemy
 
     override public IEnumerator GetDeath()
     {
-        experience new_loot = Instantiate(xp, transform.position, Quaternion.identity).GetComponent<experience>();
-        new_loot.SetTier(xp_tier);
+        experience _newLoot = Instantiate(xp, transform.position, Quaternion.identity).GetComponent<experience>();
+        if(bag != null){
+            Instantiate(bag, transform.position, Quaternion.identity);
+        }
+        
+        _newLoot.SetTier(xp_tier);
         yield return base.GetDeath();
     }
 }
