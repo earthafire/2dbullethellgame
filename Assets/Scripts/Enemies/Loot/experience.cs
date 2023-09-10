@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class experience : MonoBehaviour
+public class experience : InteractableLoot
 {
     // Start is called before the first frame update
 
@@ -57,18 +57,14 @@ public class experience : MonoBehaviour
             transform.position, other.gameObject.transform.position,
             speed * Time.deltaTime);
         }
-        
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void OnPickUp(GameObject playerObject)
     {
-        if (other.gameObject.layer == 12) // Player layer
-        {
-            PlayerAttributes player = other.gameObject.GetComponent<PlayerAttributes>();
-            player.addExperience(experienceAmount);
-            FindObjectOfType<AudioManager>().Play("LootPickUp");
-            Destroy(gameObject);
-        }
+        PlayerAttributes player = playerObject.GetComponent<PlayerAttributes>();
+        player.addExperience(experienceAmount);
+        FindObjectOfType<AudioManager>().Play("LootPickUp");
+        Destroy(gameObject);
     }
 }
 
