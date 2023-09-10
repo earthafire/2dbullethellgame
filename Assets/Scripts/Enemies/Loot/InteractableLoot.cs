@@ -9,7 +9,6 @@ public abstract class InteractableLoot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("ready yet?:" + isReady);
         if (other.gameObject.layer == 12 && isReady) // Player layer
         {
             isReady = false;

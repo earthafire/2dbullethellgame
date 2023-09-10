@@ -35,7 +35,6 @@ public class BagController : InteractableLoot
         // spew out items
         for (int i = 0; i < contents.Count; i++)
         {
-            Debug.Log("spweing item: " + i);
             GameObject newItem = Instantiate(contents[i], gameObject.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(.25f);
         }
