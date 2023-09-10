@@ -1,28 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BagController : MonoBehaviour
+public class BagController : InteractableLoot
 {
-    public GameObject bag;
     public GameObject item;
+
+    public List<GameObject> contents;
     private ParticleSystem particles;
 
-public void Start()
+    public void Start()
     {
+        contents = new List<GameObject>();
+        contents.Add(item);
+        contents.Add(item);
+        contents.Add(item);
         particles = gameObject.GetComponent<ParticleSystem>();
     }
-    private void OnTriggerEnter2D(Collider2D other)
+
+    public override void OnPickUp(GameObject playerObject)
     {
-        
-        if (other.gameObject.layer == 12) // Player layer
-        {
-            Instantiate(item, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        StartCoroutine(SpewItems(playerObject));
     }
 
+    // spawns in all the bag's contents, delay between each
+    IEnumerator SpewItems(GameObject playerObject)
+    {
+        // maybe play an animation here?
+        yield return new WaitForSeconds(.2f);
 
 
- 
+        // spew out items
+        for (int i = 0; i < contents.Count; i++)
+        {
+            Debug.Log("spweing item: " + i);
+            GameObject newItem = Instantiate(contents[i], gameObject.transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(.25f);
+        }
+        Destroy(gameObject);
+    }
 }
