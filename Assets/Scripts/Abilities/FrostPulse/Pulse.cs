@@ -22,7 +22,7 @@ public class Pulse : MonoBehaviour
     void Update()
     {
         
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y - .15f, 1);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 1);
 
         duration -= Time.deltaTime;
         if (duration < 0)

@@ -29,6 +29,7 @@ public class PlayerAbilityManager : MonoBehaviour
         AbilitySlots[0] = gameObject.AddComponent<Wand>();
         AbilitySlots[1] = gameObject.AddComponent<FrostPulse>();
         AbilitySlots[2] = gameObject.AddComponent<Dash>();
+        AbilitySlots[3] = gameObject.AddComponent<Melee>();
     }
 
     /// <summary>
