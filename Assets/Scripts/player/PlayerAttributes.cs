@@ -16,10 +16,13 @@ public class PlayerAttributes : MonoBehaviour
     private ParticleSystem particles;
     [SerializeField] private GameObject uI;
     LevelUp levelUp;
+    CircleCollider2D _pickUpRange;
 
     // Start is called before the first frame update
     void Start()
     {
+        _pickUpRange = transform.GetChild(1).GetComponent<CircleCollider2D>();
+        
         _playerAttributes.upgradeApplied += UpgradeApplied;
 
         levelUp = uI.GetComponent<LevelUp>();
@@ -27,6 +30,7 @@ public class PlayerAttributes : MonoBehaviour
 
         particles = gameObject.GetComponent<ParticleSystem>();
         healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
+       
     }
 
     public void takeDamage(int damage)
@@ -87,6 +91,7 @@ public class PlayerAttributes : MonoBehaviour
             }  
             healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
             healthbar.SetHealth(_localAttributes[Attribute.health]);
-        }    
+        }
+       _pickUpRange.radius = _playerAttributes.GetAttribute(Attribute.pickUpRange);
     }
 }

@@ -12,7 +12,7 @@ public class BagController : InteractableLoot
 
     public void Start()
     {
-        contents = new List<GameObject>();
+       //contents = new List<GameObject>();
         contents.Add(item);
         contents.Add(item);
         contents.Add(item);
@@ -30,6 +30,7 @@ public class BagController : InteractableLoot
     {
         // maybe play an animation here?
         yield return new WaitForSeconds(.2f);
+        particles.Emit(25);
 
 
         // spew out items

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 255713233260739998}
   - component: {fileID: -1119062828030077962}
   - component: {fileID: 4924169753474142185}
+  - component: {fileID: -6538386102958189527}
   m_Layer: 0
   m_Name: Bag
   m_TagString: Untagged
@@ -278,7 +279,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -1480,24 +1481,24 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
-        key1: {r: 0.9339623, g: 0.9102235, b: 0, a: 0.9490196}
-        key2: {r: 0, g: 0, b: 0, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 0}
-        key4: {r: 0, g: 0, b: 0, a: 0}
-        key5: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.84807986, g: 0.6115983, b: 0.52999943, a: 1}
+        key1: {r: 0.9339623, g: 0.9102235, b: 0, a: 0}
+        key2: {r: 1, g: 1, b: 1, a: 0}
+        key3: {r: 0.9339623, g: 0.9102235, b: 0, a: 0}
+        key4: {r: 0.627451, g: 0.043137234, b: 0.605174, a: 0}
+        key5: {r: 1, g: 1, b: 1, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 0
-        ctime1: 65535
-        ctime2: 0
-        ctime3: 0
-        ctime4: 0
-        ctime5: 0
+        ctime0: 7517
+        ctime1: 32382
+        ctime2: 55705
+        ctime3: 65535
+        ctime4: 48380
+        ctime5: 56090
         ctime6: 0
         ctime7: 0
-        atime0: 0
-        atime1: 54163
+        atime0: 42791
+        atime1: 65535
         atime2: 65535
         atime3: 0
         atime4: 0
@@ -1506,8 +1507,8 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-        m_NumColorKeys: 2
-        m_NumAlphaKeys: 3
+        m_NumColorKeys: 3
+        m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4940,5 +4941,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703e910746ebbf940961f334d8a94c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bag: {fileID: 9070761112509151373}
   item: {fileID: 5967836316378154915, guid: 96a5bb26a4b710346acebeb2a64e9bdb, type: 3}
+  contents: []
+--- !u!95 &-6538386102958189527
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9070761112509151373}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73bdaa08638604645970d39f4e9c3807, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
