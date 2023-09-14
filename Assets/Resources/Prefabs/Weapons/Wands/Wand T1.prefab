@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6593816200361225434}
   - component: {fileID: -33140539966976296}
   - component: {fileID: -1776620638208825814}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wand T1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
