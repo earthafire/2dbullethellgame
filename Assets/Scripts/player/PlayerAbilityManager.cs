@@ -1,35 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+
+/// <summary>
+/// ability slot choices
+/// </summary>
+public enum AbilitySlot
+{
+    E,
+    Q,
+    R,
+    LeftClick,
+    RightClick,
+    Shift,
+    Space,
+}
 
 public class PlayerAbilityManager : MonoBehaviour
 {
     // !! -- REBINDING BUTTONS -- !! 
     // buttons can be bound in Edit>Project Settings>Input Manager
-    // buttons are: Ability0, Ability1, Ability2, and AbilityModifier
     // !! --                   -- !!
 
-    // Holds all abilities
-    // Ability 0 or 3: mouse left click
-    // Ability 1 or 4: mouse right click
-    // Ability 2 or 5: space bar
-    public ActivatableAbility[] AbilitySlots = new ActivatableAbility[6];
 
-    // Modifier key (swaps ability slots) shift and tab by default
-    // If true, use abilites 3,4,5 (indexes in the AbilitySlots array)
-    // If false, use abilites 0,1,2
-    public bool useAltAbilities = false;
+    /// <summary>
+    /// Abilities currently equipped on player
+    /// </summary>
+    private Dictionary<AbilitySlot, ActivatableAbility> EquipedAbilities = new Dictionary<AbilitySlot, ActivatableAbility>();
 
-    bool swapIsOnCooldown = false; // blocks swap so you don't swap a bunch really fast
-    float swapCooldownTime = 1f; // seconds
-
-    // this is where abilities are added to slots, only 0-5 can be used
+    // this is where abilities are added to slots
     void Start()
     {
-        AbilitySlots[0] = gameObject.AddComponent<Wand>();
-        AbilitySlots[1] = gameObject.AddComponent<FrostPulse>();
-        AbilitySlots[2] = gameObject.AddComponent<Dash>();
-        AbilitySlots[3] = gameObject.AddComponent<Melee>();
+        EquipedAbilities[AbilitySlot.Q] = null;
+        EquipedAbilities[AbilitySlot.E] = gameObject.AddComponent<Wand>();
+        EquipedAbilities[AbilitySlot.R] = null;
+        EquipedAbilities[AbilitySlot.LeftClick] = gameObject.AddComponent<Melee>();
+        EquipedAbilities[AbilitySlot.RightClick] = gameObject.AddComponent<FrostPulse>();
+        EquipedAbilities[AbilitySlot.Shift] = null;
+        EquipedAbilities[AbilitySlot.Space] = gameObject.AddComponent<Dash>();
     }
 
     /// <summary>
@@ -37,71 +46,32 @@ public class PlayerAbilityManager : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        DetectAbilitiesPressed(useAltAbilities);
-        DetectModifierPressed();
+        DetectAbilitiesPressed();
     }
 
     /// <summary>
-    /// Checks if ability keys are pressed and tries to activate them 
+    /// Iterates through equipped abilities, and triggers them all
     /// </summary>
-    /// <param name="useAltAbilities">
-    /// If true, uses abilites 3,4,5 (in the AbilitySlots array)
-    /// If false, uses abilites 0,1,2
-    /// </param>
-    public void DetectAbilitiesPressed(bool useAltAbilities)
+    public void DetectAbilitiesPressed()
     {
-        // this value is added to slot checked 
-        // basically uses slots 0,1,2 by default and 3,4,5 when modified
-        int slotModifierValue = 0;
-        if (useAltAbilities)
+        foreach (var AbilitySlot in EquipedAbilities)
         {
-            slotModifierValue = 3;
-        }
-
-        for (int i = 0; i <= 2; i++)
-        {
-            int abilityNumber = i + slotModifierValue;
-
             // if ability button is pressed, trigger ability in that slot (if it exists)
-            if (Input.GetButton("Ability" + i))
+            if (Input.GetButton(AbilitySlot.Key.ToString()) && AbilitySlot.Value != null)
             {
-                ActivatableAbility abilityToActivate = AbilitySlots[abilityNumber];
-                if (abilityToActivate != null)
-                {
-                    AbilitySlots[abilityNumber].Activate();
-                }
-
+                AbilitySlot.Value.Activate();
             }
         }
     }
 
     /// <summary>
-    /// Checks if the modifier key is pressed (default shift or tab) and swaps the
-    /// ability set (123 -> 456) (if this hasn't been done in the last second)
+    /// Sets a specific slot to the class of ability added
     /// </summary>
-    public void DetectModifierPressed()
+    /// <param name="slot">ability slot to change</param>
+    /// <param name="abilityToAdd">what the ability slot should be set to</param>
+    public void setAbility(AbilitySlot slot, ActivatableAbility abilityToAdd)
     {
-        if (Input.GetButton("AbilityModifier"))
-        {
-            if (!swapIsOnCooldown)
-            {
-                swapIsOnCooldown = true;
-                StartCoroutine(ToggleAbilities(swapCooldownTime));
-            }
-        }
-    }
-
-    /// <summary>
-    /// toggles useAltAbilities boolean and waits {seconds} time before allowing
-    /// another toggle
-    /// </summary>
-    /// <param name="seconds"> time to wait (in seconds) </param>
-    /// <returns></returns>
-    private IEnumerator ToggleAbilities(float seconds)
-    {
-        useAltAbilities = !useAltAbilities; // inverse boolean
-        Debug.Log("Swapping ability set, useAltAbilities: " + useAltAbilities);
-        yield return new WaitForSeconds(seconds);
-        swapIsOnCooldown = false; // allow toggling again
+        // I need to rethink abilities, I think I will convert the ActivatableAbility class to not use monobehaviours, 
+        // so they don't need to be attached to a player as a component and can instead be used as normal C# objects
     }
 }

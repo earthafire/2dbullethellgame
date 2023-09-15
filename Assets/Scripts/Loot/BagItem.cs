@@ -29,4 +29,11 @@ public class BagItem : InteractableLoot
         inventory.inventory.AddItem(item.item, 1);
         Destroy(gameObject);
     }
+        private void OnTriggerStay2D(Collider2D other)
+    {       
+        if(other.gameObject.layer == 8) // Experience Layer
+        {
+            transform.position = Vector3.MoveTowards(transform.position, other.gameObject.transform.position, 5 * Time.deltaTime);
+        }
+    }
 }

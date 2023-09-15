@@ -14,6 +14,7 @@ public enum Attribute
         damage,
         acceleration,
         experience,
-        level
+        level,
+        pickUpRange
     }
 

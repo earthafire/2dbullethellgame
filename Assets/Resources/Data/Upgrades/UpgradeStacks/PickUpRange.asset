@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957062fdb3f574c40a5686abc3462a92, type: 3}
+  m_Name: PickUpRange
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 69f05409c5805c74884f415cf35ce2e2, type: 2}
+    - {fileID: 11400000, guid: 50c0378500a14a745ac3aad36197c7b3, type: 2}
+    - {fileID: 11400000, guid: f8ebaf9d307683e4fb0d10a4e04decdf, type: 2}
+    - {fileID: 11400000, guid: b03a767aa96dd8641bece6632be3f70d, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: upgradeAttributeStack
+      Entry: 7
+      Data: 0|System.Collections.Generic.Stack`1[[UpgradeAttribute, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
