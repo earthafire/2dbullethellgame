@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class BagController : InteractableLoot
 {
-    public GameObject item;
+    //public GameObject item;
 
     public List<GameObject> contents;
     private ParticleSystem particles;
 
     public void Start()
     {
-        contents = new List<GameObject>();
-        contents.Add(item);
-        contents.Add(item);
-        contents.Add(item);
+        //contents = new List<GameObject>();
+        //contents.Add(item);
         particles = gameObject.GetComponent<ParticleSystem>();
     }
 

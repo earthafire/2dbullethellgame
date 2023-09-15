@@ -24,6 +24,9 @@ public class BagItem : InteractableLoot
 
     public override void OnPickUp(GameObject playerObject)
     {
+        PlayerInventory inventory = playerObject.GetComponent<PlayerInventory>();
+        Item item = GetComponent<Item>();
+        inventory.inventory.AddItem(item.item, 1);
         Destroy(gameObject);
     }
 }

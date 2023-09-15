@@ -4940,5 +4940,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703e910746ebbf940961f334d8a94c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bag: {fileID: 9070761112509151373}
-  item: {fileID: 5967836316378154915, guid: 96a5bb26a4b710346acebeb2a64e9bdb, type: 3}
+  contents:
+  - {fileID: 5967836316378154915, guid: 3de2a90b587a8df49a9330434b540446, type: 3}

@@ -8,13 +8,16 @@ public class Wand : ActivatableAbility
     public Animator player_animator;
     public GameObject projectile;
     private GameObject player;
-    private int damage = 30;
+    private int damage = 20;
+    private int playerBaseDamage;
 
     // Start is called before the first frame update
     void Start()
     {
         player_animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
+        playerBaseDamage = (int)player.GetComponent<PlayerAttributes>()._localAttributes[Attribute.damage];
+
         base.cooldownTimeMax = .2f;
         projectile = (GameObject)Resources.Load("Prefabs/Weapons/Lightning/Lightning", typeof(GameObject));
     }
@@ -34,7 +37,7 @@ public class Wand : ActivatableAbility
 
     public void bulletHit(Enemy enemy)
     {
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(playerBaseDamage + damage);
         FindObjectOfType<AudioManager>().Play("ShootFireball");
     }
 }

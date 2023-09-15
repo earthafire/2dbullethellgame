@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeleeHit : MonoBehaviour
 {
     public float duration = .25f;
-    public float offsetDistance = .15f;
+    public float offsetDistance = .25f;
     public Action<Enemy> onEnemyHit;
     public GameObject player;
     //private Animator animator;
