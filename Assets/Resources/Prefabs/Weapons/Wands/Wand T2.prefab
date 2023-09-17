@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 5560887979084766935}
   - component: {fileID: 5420515924275206457}
   - component: {fileID: -6593816200361225434}
+  - component: {fileID: 6572723625110936198}
   - component: {fileID: -33140539966976296}
   - component: {fileID: -1776620638208825814}
+  - component: {fileID: 1676467982908721305}
   m_Layer: 0
   m_Name: Wand T2
   m_TagString: Untagged
@@ -99,6 +101,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec2d82683325294c82b9aabcfe51cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6572723625110936198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5967836316378154915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86dfb708826c84e45961c2a0d14f7f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: e139bfe4afaaceb4f8a56f06cdab5c01, type: 2}
 --- !u!50 &-33140539966976296
 Rigidbody2D:
   serializedVersion: 4
@@ -155,10 +170,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00026629865, y: -0.010119699}
+  m_Offset: {x: 0.00026629865, y: -0.00874199}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -169,5 +184,50 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14988029, y: 0.13017349}
+  m_Size: {x: 0.14988029, y: 0.13292891}
+  m_EdgeRadius: 0
+--- !u!61 &1676467982908721305
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5967836316378154915}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.001368463, y: -0.0068131983}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12783697, y: 0.10592584}
   m_EdgeRadius: 0

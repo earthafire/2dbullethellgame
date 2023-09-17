@@ -74,6 +74,10 @@ public class DisplayInventory : MonoBehaviour
             eventTrigger.callback.AddListener(action);
             trigger.triggers.Add(eventTrigger);
         }
+        else
+        {
+            Debug.Log("trigger is null");
+        }
         
     }
 

@@ -9,12 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5562ae8261f47ea4a9a17e39fd1f67b5, type: 3}
-  m_Name: Fish
+  m_Script: {fileID: 11500000, guid: c0bd8ac95c17af649aa50d3d5c8711a6, type: 3}
+  m_Name: Wand T2
   m_EditorClassIdentifier: 
-  Id: 3
-  uiDisplay: {fileID: 0}
-  type: 0
+  Id: 2
+  uiDisplay: {fileID: -1960084321, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  type: 1
   description: 
-  buffs: []
-  restoreHealthValue: 20
+  buffs:
+  - modifiers: 1
+    value: 0
+    min: 11
+    max: 20
+  damageBonus: 10
+  hpBonus: 0

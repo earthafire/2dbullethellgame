@@ -29,7 +29,7 @@ public class BagItem : InteractableLoot
         if (item)
         {
             Item _item = new Item(item.item);
-            Debug.Log("ID" + _item.Id + "Name: " + _item.Name); ;
+            //Debug.Log("ID" + _item.Id + "Name: " + _item.Name); ;
             inventory.inventory.AddItem(_item, 1);
             Destroy(gameObject);
         }

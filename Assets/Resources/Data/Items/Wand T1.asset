@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0bd8ac95c17af649aa50d3d5c8711a6, type: 3}
-  m_Name: Wand
+  m_Name: Wand T1
   m_EditorClassIdentifier: 
   Id: 1
   uiDisplay: {fileID: -1960084321, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   type: 1
   description: 
-  buffs: []
+  buffs:
+  - modifiers: 1
+    value: 0
+    min: 1
+    max: 10
   damageBonus: 10
   hpBonus: 0
