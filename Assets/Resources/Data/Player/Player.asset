@@ -157,4 +157,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  applied_upgrades: []
+  applied_upgrades:
+  - {fileID: 11400000, guid: b03a767aa96dd8641bece6632be3f70d, type: 2}
+  - {fileID: 11400000, guid: 310218864c625a84c9939c44c910fd26, type: 2}
+  - {fileID: 11400000, guid: b03a767aa96dd8641bece6632be3f70d, type: 2}

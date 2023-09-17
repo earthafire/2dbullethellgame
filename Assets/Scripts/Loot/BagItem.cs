@@ -25,10 +25,18 @@ public class BagItem : InteractableLoot
     public override void OnPickUp(GameObject playerObject)
     {
         PlayerInventory inventory = playerObject.GetComponent<PlayerInventory>();
-        Item item = GetComponent<Item>();
-        inventory.inventory.AddItem(item.item, 1);
-        Destroy(gameObject);
-    }
+        var item = GetComponent<GroundItem>();
+        if (item)
+        {
+            Item _item = new Item(item.item);
+            Debug.Log("ID" + _item.Id + "Name: " + _item.Name); ;
+            inventory.inventory.AddItem(_item, 1);
+            Destroy(gameObject);
+        }
+    }   
+
+        
+        
 
   /*      private void OnTriggerStay2D(Collider2D other)
     {       

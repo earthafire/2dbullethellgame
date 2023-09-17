@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.Handles;
-using static UnityEngine.Experimental.Rendering.RayTracingAccelerationStructure;
 
 #if UNITY_EDITOR
 using UnityEditor;
