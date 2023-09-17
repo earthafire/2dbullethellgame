@@ -16,42 +16,66 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: 85aa2f187d15e8840ad48248ba04ba6a, type: 2}
   Container:
     Items:
-    - ID: 1
-      item:
-        Name: Wand
-        Id: 1
-        buffs: []
-      amount: 9
-    - ID: -1
-      item:
-        Name: 
-        Id: 0
-        buffs: []
-      amount: 0
-    - ID: -1
-      item:
-        Name: 
-        Id: 0
-        buffs: []
-      amount: 0
     - ID: 2
       item:
-        Name: 
-        Id: 0
-        buffs: []
-      amount: 0
-    - ID: -1
+        Name: Wand T2
+        Id: 2
+        buffs:
+        - modifiers: 1
+          value: 19
+          min: 11
+          max: 20
+      amount: 1
+    - ID: 1
       item:
-        Name: 
-        Id: 0
-        buffs: []
-      amount: 0
-    - ID: -1
+        Name: Wand T1
+        Id: 1
+        buffs:
+        - modifiers: 1
+          value: 3
+          min: 1
+          max: 10
+      amount: 1
+    - ID: 2
       item:
-        Name: 
-        Id: 0
-        buffs: []
-      amount: 0
+        Name: Wand T2
+        Id: 2
+        buffs:
+        - modifiers: 1
+          value: 11
+          min: 11
+          max: 20
+      amount: 1
+    - ID: 1
+      item:
+        Name: Wand T1
+        Id: 1
+        buffs:
+        - modifiers: 1
+          value: 2
+          min: 1
+          max: 10
+      amount: 1
+    - ID: 1
+      item:
+        Name: Wand T1
+        Id: 1
+        buffs:
+        - modifiers: 1
+          value: 9
+          min: 1
+          max: 10
+      amount: 1
+    - ID: 2
+      item:
+        Name: Wand T2
+        Id: 2
+        buffs:
+        - modifiers: 1
+          value: 14
+          min: 11
+          max: 20
+      amount: 1
     - ID: -1
       item:
         Name: 
