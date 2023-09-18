@@ -24,7 +24,7 @@ public float _timer;
 
         // Set TextMeshPro SetText();
         _playerLevelTMP.SetText("Level: " +_playerAttributes._localAttributes[Attribute.level].ToString());
-        _currentExperienceTMP.SetText("XP: " + _playerAttributes._localAttributes[Attribute.experience].ToString());
+        _currentExperienceTMP.SetText("XP: " + _playerAttributes._localAttributes[Attribute.experience].ToString() + " / " + _playerAttributes._experienceUntilLevelUp);
         _timerTMP.SetText("{0:2}", _timer);
         _healthValueTMP.SetText((int)_playerAttributes._localAttributes[Attribute.health] + " / " + (int)_playerAttributes._playerAttributes.GetAttribute(Attribute.health));
     }

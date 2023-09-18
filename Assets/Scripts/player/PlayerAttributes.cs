@@ -8,6 +8,9 @@ using UnityEngine.Events;
 
 public class PlayerAttributes : MonoBehaviour
 {
+    //temporary 
+    public MouseItem mouseItem = new MouseItem();
+
     public HealthBar healthbar;
     public Attributes _playerAttributes;
     public Dictionary<Attribute, float> _localAttributes;
