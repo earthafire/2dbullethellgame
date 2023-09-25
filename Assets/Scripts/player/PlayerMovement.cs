@@ -6,16 +6,16 @@ public class PlayerMovement : MonoBehaviour
 {
     private Animator player_animator;
     public Attributes attributes;
+    SoundComponent sound;
     public Vector2 direction { get; private set; }
-    public bool isPlayerInControl = true,
-                isPlayerRunning = false;
+    public bool isPlayerInControl = true;
     Rigidbody2D rb2d;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sound = GetComponent<SoundComponent>();
         player_animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -26,22 +26,12 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
     }
 
-    private IEnumerator WalkingSoundEffect() {
-
-        if(isPlayerRunning){
-
-            FindObjectOfType<AudioManager>().Play("walk_Grass");
-            yield return new WaitForSeconds(2);
-
-        }
-        
-    }
-
     void HandleMovement()
     {
 
         if (isPlayerInControl == false)
         {
+            sound.sfxToPlay.PlaySFX(); 
             return;
         }
         float acceleration = attributes.GetAttribute(Attribute.acceleration);
@@ -54,8 +44,6 @@ public class PlayerMovement : MonoBehaviour
         if (xIn != 0 || yIn != 0)
         {   
             player_animator.SetBool("Run", true);
-
-            StartCoroutine(WalkingSoundEffect());
 
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
             

@@ -8,6 +8,7 @@ public class experience : InteractableLoot
     // Start is called before the first frame update
 
     private System.Random random = new System.Random();
+    private SoundComponent sound;
     private int experienceAmount = 1, speed = 5;
     public Sprite[] tier1SkinsArray,tier2SkinsArray,
                     tier3SkinsArray,tier4SkinsArray,
@@ -15,6 +16,7 @@ public class experience : InteractableLoot
 
     public void Start()
     {
+        sound = GetComponent<SoundComponent>();
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 1);
     }
 
@@ -61,9 +63,10 @@ public class experience : InteractableLoot
 
     public override void OnPickUp(GameObject playerObject)
     {
+        sound.sfxToPlay.PlaySFX();
         PlayerAttributes player = playerObject.GetComponent<PlayerAttributes>();
         player.addExperience(experienceAmount);
-        FindObjectOfType<AudioManager>().Play("LootPickUp");
+        //FindObjectOfType<AudioManager>().Play("LootPickUp");
         Destroy(gameObject);
     }
 }

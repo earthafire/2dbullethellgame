@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 1113767006483677914}
   - component: {fileID: 1561686522}
   - component: {fileID: 8479554602979810753}
-  - component: {fileID: 1876495617164825827}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5037,14 +5036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa46a0df4a031b4488293c206fa3004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilitySlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  useAltAbilities: 0
 --- !u!114 &6931282082646386449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5147,7 +5138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributes: {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
   isPlayerInControl: 1
-  isPlayerRunning: 0
 --- !u!114 &8479554602979810753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5161,20 +5151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 6b1ce796e49eb7f4c88400be252a9d30, type: 2}
---- !u!114 &1876495617164825827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950817931214660393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae660420162d4e44935aeb3ab55e29b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons: []
-  upgradeButtonsPanel: {fileID: 0}
 --- !u!1001 &1070063939238924605
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class DynamicInterface : UserInterface
     public int Y_SPACE_BETWEEN_ITEMS;
 
     public GameObject inventoryPrefab;
+
     public override void CreateSlots()
     {
         itemsDisplayed = new Dictionary<GameObject, InventorySlot>();

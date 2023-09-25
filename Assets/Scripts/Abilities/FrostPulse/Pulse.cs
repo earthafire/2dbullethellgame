@@ -8,14 +8,17 @@ public class Pulse : MonoBehaviour
     public float duration = .55f;
     public Action<Enemy> onEnemyHit;
     public GameObject player;
+    SoundComponent sound;
 
     private Animator m_Animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        sound = GetComponent<SoundComponent>();
         player = GameObject.Find("Player");
         m_Animator = gameObject.GetComponent<Animator>();
+        sound.sfxToPlay.PlaySFX();
     }
 
     // Update is called once per frame
@@ -31,7 +34,7 @@ public class Pulse : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         try
         {
@@ -39,6 +42,7 @@ public class Pulse : MonoBehaviour
             // Calling an event that the ability can subscribe to
             if (other.tag == "Enemy")
             {
+                
                 onEnemyHit?.Invoke(enemy);
             }
         }

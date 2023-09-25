@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     // Event called when hitting an enemy
     public Action<Enemy> onEnemyHit;
 
+    public SoundComponent sound;
 
     // Movement parameters
     public float duration = 3f;
@@ -18,6 +19,8 @@ public class Bullet : MonoBehaviour
 
     public void Start()
     {
+        sound = GetComponent<SoundComponent>();
+        sound.sfxToPlay.PlaySFX();
         particles = gameObject.GetComponent<ParticleSystem>();
     }
 
@@ -62,7 +65,7 @@ public class Bullet : MonoBehaviour
             if (other.tag == "Enemy")
             {
                 ExplosionParticles();
-                FindObjectOfType<AudioManager>().Play("Lightning");
+                sound.sfxToPlay.PlaySFX();
                 onEnemyHit?.Invoke(enemy);
                 CheckForExplosionCollision();
                 Destroy(gameObject);

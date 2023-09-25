@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4476567845146697061}
   - component: {fileID: -5069707391738919915}
   - component: {fileID: 2868119214631433779}
+  - component: {fileID: 2626133412762843127}
   m_Layer: 6
   m_Name: FrostPulse
   m_TagString: Untagged
@@ -5012,3 +5013,24 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2626133412762843127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3429767875915214204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856258b2cf3d7d142beb4e682da37ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxToPlay:
+    sfxType: 2
+    sfxToPlay: {fileID: 11400000, guid: 71ae9ea2df22d5640b54056be526533d, type: 2}
+    showSettings: 1
+    editSettings: 1
+    _sfxBase: {fileID: 11400000, guid: 71ae9ea2df22d5640b54056be526533d, type: 2}
+    waitToPlay: 0
+    useDefault: 1
+    audiosource: {fileID: 0}

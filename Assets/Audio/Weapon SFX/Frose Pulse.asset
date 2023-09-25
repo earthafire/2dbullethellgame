@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c547445d44c6d741a69ccd75ae1ff96, type: 3}
+  m_Name: Frose Pulse
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 4eb3e86e7250a874b9db1b6cf7ece327, type: 3}
+  volume: 0.2
+  volumeVariation: 0.05
+  pitch: 0.8
+  pitchVariation: 0.05
+  loop: 0
