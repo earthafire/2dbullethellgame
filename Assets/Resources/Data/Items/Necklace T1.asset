@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   uiDisplay: {fileID: 658112315, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  stackable: 0
   type: 2
   description: Go on ya neck
   buffs:

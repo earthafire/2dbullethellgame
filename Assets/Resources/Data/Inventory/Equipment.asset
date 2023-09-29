@@ -17,86 +17,62 @@ MonoBehaviour:
   Container:
     Items:
     - AllowedItems: 01000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 02000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 03000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 04000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 0500000007000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 06000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 07000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 06000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 08000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 09000000
-      parent: {fileID: 0}
-      ID: 8
       item:
-        Name: Shoes T1
-        Id: 8
-        buffs:
-        - modifiers: 1
-          value: 3
-          min: 1
-          max: 10
-      amount: 1
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0

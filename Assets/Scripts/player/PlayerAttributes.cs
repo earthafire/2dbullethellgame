@@ -8,9 +8,6 @@ using UnityEngine.Events;
 
 public class PlayerAttributes : MonoBehaviour
 {
-    //temporary 
-    public MouseItem mouseItem = new MouseItem();
-
     public HealthBar healthbar;
     public Attributes _playerAttributes;
     public Dictionary<Attribute, float> _localAttributes;
@@ -21,7 +18,7 @@ public class PlayerAttributes : MonoBehaviour
     LevelUp levelUp;
     CircleCollider2D _pickUpRange;
 
-    // Start is called before the first frame update
+   
     void Start()
     {
         _pickUpRange = transform.GetChild(1).GetComponent<CircleCollider2D>();
