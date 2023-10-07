@@ -40,7 +40,7 @@ public class Pulse : MonoBehaviour
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             // Calling an event that the ability can subscribe to
-            if (other.tag == "Enemy")
+            if (other.gameObject.layer == 7) // Enemy layer
             {
                 
                 onEnemyHit?.Invoke(enemy);

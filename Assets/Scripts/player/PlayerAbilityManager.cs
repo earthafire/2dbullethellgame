@@ -27,18 +27,18 @@ public class PlayerAbilityManager : MonoBehaviour
     /// <summary>
     /// Abilities currently equipped on player
     /// </summary>
-    private Dictionary<AbilitySlot, ActivatableAbility> EquipedAbilities = new Dictionary<AbilitySlot, ActivatableAbility>();
+    private Dictionary<AbilitySlot, ActivatableAbility> EquippedAbilities = new Dictionary<AbilitySlot, ActivatableAbility>();
 
     // this is where abilities are added to slots
     void Start()
     {
-        EquipedAbilities[AbilitySlot.Q] = null;
-        EquipedAbilities[AbilitySlot.E] = gameObject.AddComponent<Wand>();
-        EquipedAbilities[AbilitySlot.R] = null;
-        EquipedAbilities[AbilitySlot.LeftClick] = gameObject.AddComponent<Melee>();
-        EquipedAbilities[AbilitySlot.RightClick] = gameObject.AddComponent<FrostPulse>();
-        EquipedAbilities[AbilitySlot.Shift] = null;
-        EquipedAbilities[AbilitySlot.Space] = gameObject.AddComponent<Dash>();
+        EquippedAbilities[AbilitySlot.Q] = null;
+        EquippedAbilities[AbilitySlot.E] = gameObject.AddComponent<Wand>();
+        EquippedAbilities[AbilitySlot.R] = null;
+        EquippedAbilities[AbilitySlot.LeftClick] = gameObject.AddComponent<Melee>();
+        EquippedAbilities[AbilitySlot.RightClick] = gameObject.AddComponent<FrostPulse>();
+        EquippedAbilities[AbilitySlot.Shift] = null;
+        EquippedAbilities[AbilitySlot.Space] = gameObject.AddComponent<Dash>();
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class PlayerAbilityManager : MonoBehaviour
     /// </summary>
     public void DetectAbilitiesPressed()
     {
-        foreach (var AbilitySlot in EquipedAbilities)
+        foreach (var AbilitySlot in EquippedAbilities)
         {
             // if ability button is pressed, trigger ability in that slot (if it exists)
             if (Input.GetButton(AbilitySlot.Key.ToString()) && AbilitySlot.Value != null)

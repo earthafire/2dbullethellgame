@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c547445d44c6d741a69ccd75ae1ff96, type: 3}
-  m_Name: Loot PIck Up
+  m_Name: Loot Pick Up
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 1956f103cb06d614f87992aeae406e41, type: 3}
-  volume: 1
+  volume: 0.334
   volumeVariation: 0.05
   pitch: 1
   pitchVariation: 0.05

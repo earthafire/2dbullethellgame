@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22d03ba606faf6419bcec6b37cf3933, type: 3}
   m_Name: Moderate Tunnel
   m_EditorClassIdentifier: 
-  algorithm: 9
+  algorithm: 8
   randomSeed: 1
   seed: 0
-  fillAmount: 50
-  smoothAmount: 10
-  clearAmount: 22
-  interval: 0
-  minPathWidth: 3
-  maxPathWidth: 10
-  maxPathChange: 2
+  fillAmount: 45
+  smoothAmount: 5
+  clearAmount: 69
+  interval: 6
+  minPathWidth: 5
+  maxPathWidth: 30
+  maxPathChange: 1
   roughness: 44
   windyness: 100
   edgesAreWalls: 1
-  modifier: 0
+  modifier: 0.502

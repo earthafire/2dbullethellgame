@@ -9,7 +9,7 @@ public class gameSupervisorController : MonoBehaviour
     public GameObject[] bossEnemies;
     private GameObject player;
     
-    [SerializeField] private int EnemiesPerCooldown = 20;
+    [SerializeField] private int EnemiesPerCooldown = 40;
     [SerializeField] private float SpawnCooldownSeconds = 5;
 
     private int secondsUntilIncreaseEnemyCount = 60,
@@ -50,7 +50,7 @@ public class gameSupervisorController : MonoBehaviour
                 int randInt = random.Next(10);
                 GameObject nextEntity;
 
-                if (randInt >= 8)                
+                if (randInt >= 9)                
                 {
                     nextEntity = bossEnemies[enemyTier];
 

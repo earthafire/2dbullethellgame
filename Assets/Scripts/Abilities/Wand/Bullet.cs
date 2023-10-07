@@ -19,12 +19,9 @@ public class Bullet : MonoBehaviour
 
     public void Start()
     {
-        sound = GetComponent<SoundComponent>();
         sound.sfxToPlay.PlaySFX();
         particles = gameObject.GetComponent<ParticleSystem>();
     }
-
-
 
     // Update is called once per frame
     public void Update()
@@ -48,12 +45,12 @@ public class Bullet : MonoBehaviour
 
     public void Move()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * speed);
+        transform.Translate(speed * Time.deltaTime * Vector3.right);
     }
 
     public void ExplosionParticles()
     {
-        particles.Emit(50);
+        particles.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -62,12 +59,11 @@ public class Bullet : MonoBehaviour
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             // Calling an event that the ability can subscribe to
-            if (other.tag == "Enemy")
+            if (enemy.gameObject.layer == 7) // Enemy layer
             {
                 ExplosionParticles();
                 sound.sfxToPlay.PlaySFX();
                 onEnemyHit?.Invoke(enemy);
-                CheckForExplosionCollision();
                 Destroy(gameObject);
             }
         }
@@ -76,17 +72,4 @@ public class Bullet : MonoBehaviour
             // Object is not an enemy
         }
     }
-    private void CheckForExplosionCollision()
-    {
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, .8f);
-        foreach (Collider c in colliders)
-        {
-            if (c.tag == "Enemy")
-            {
-                Enemy enemy = c.gameObject.GetComponent<Enemy>();
-                onEnemyHit?.Invoke(enemy);
-            }
-        }
-    }
-
 }

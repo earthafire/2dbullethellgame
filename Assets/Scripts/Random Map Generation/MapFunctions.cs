@@ -932,4 +932,24 @@ public class MapFunctions
         return tileCount;
     }
 
+    static int[,] PlaceDestructables(int[,] map, int count, Tile tile)
+    {
+        // Copy map using the input map
+        int[,] destructMap = (int[,])map.Clone();
+        for(int x = 0; x < map.GetUpperBound(0) && count > 0; x++)
+        {
+            if(x == 1)
+            {
+                //place a new desctructable tile
+
+            }
+        }
+        for (int y = 0; y < map.GetUpperBound(1); y++)
+        {
+
+        }
+                return destructMap;
+        
+    }
+
 }

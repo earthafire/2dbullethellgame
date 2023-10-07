@@ -717,6 +717,7 @@ GameObject:
   - component: {fileID: 870797147}
   - component: {fileID: 870797146}
   - component: {fileID: 870797145}
+  - component: {fileID: 870797149}
   m_Layer: 5
   m_Name: Equipment
   m_TagString: Untagged
@@ -751,8 +752,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 837.45, y: 287.5214}
-  m_SizeDelta: {x: -1674.9, y: -749.9752}
+  m_AnchoredPosition: {x: 837.5, y: 262.5}
+  m_SizeDelta: {x: -1675, y: -725}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870797145
 MonoBehaviour:
@@ -791,7 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 3
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -800,7 +801,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9811321, g: 0.5784977, b: 0.5784977, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -860,6 +861,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870797143}
   m_CullTransparentMesh: 1
+--- !u!114 &870797149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870797143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &874349810
 GameObject:
   m_ObjectHideFlags: 0
@@ -25207,6 +25221,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5950817931214660393, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       insertIndex: 11
       addedObject: {fileID: 1085592475}
+    - targetCorrespondingSourceObject: {fileID: 5950817931214660393, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1085592490}
   m_SourcePrefab: {fileID: 100100000, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
 --- !u!1 &1085592457 stripped
 GameObject:
@@ -25232,6 +25249,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5337d6082810c94b9e6c38688e9e4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1085592490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085592457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856258b2cf3d7d142beb4e682da37ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxToPlay:
+    sfxType: 2
+    sfxToPlay: {fileID: 11400000, guid: f391ccaf99521d841b4f8017996f2f00, type: 2}
+    showSettings: 0
+    editSettings: 0
+    _sfxBase: {fileID: 11400000, guid: f391ccaf99521d841b4f8017996f2f00, type: 2}
+    waitToPlay: 1
+    useDefault: 1
+    audiosource: {fileID: 0}
 --- !u!1001 &1168205552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27987,10 +28025,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultAudioSource: {fileID: 2062379284}
-  uiSFX: []
+  uiSFX:
+  - {fileID: 11400000, guid: 49771daade0b9454d9f9325ad152a26c, type: 2}
   ambientSFX:
-  - {fileID: 11400000, guid: a82d55820e3f5184dbc642c65328f744, type: 2}
-  weaponSFX: []
+  - {fileID: 11400000, guid: 9398f5ec2fddf5d48993c7a36b3d77c9, type: 2}
+  - {fileID: 11400000, guid: ced11a52e1c63ed46aef9b3e9f0108bf, type: 2}
+  weaponSFX:
+  - {fileID: 11400000, guid: f391ccaf99521d841b4f8017996f2f00, type: 2}
+  - {fileID: 11400000, guid: 71ae9ea2df22d5640b54056be526533d, type: 2}
+  - {fileID: 11400000, guid: 9ad0cb1f59f0e0040a346cadd950d4d2, type: 2}
 --- !u!4 &2062379283
 Transform:
   m_ObjectHideFlags: 0
@@ -28017,9 +28060,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.24704085
+  m_Pitch: 0.9676649
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -28062,7 +28105,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.396
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -28115,6 +28158,7 @@ GameObject:
   - component: {fileID: 2072508320}
   - component: {fileID: 2072508322}
   - component: {fileID: 2072508323}
+  - component: {fileID: 2072508324}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -28139,8 +28183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 837.43, y: -245.5578}
-  m_SizeDelta: {x: -1674.9, y: -681.5699}
+  m_AnchoredPosition: {x: 837.5, y: -262.5}
+  m_SizeDelta: {x: -1675, y: -675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072508320
 MonoBehaviour:
@@ -28193,7 +28237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 3
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -28202,7 +28246,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9811321, g: 0.5784977, b: 0.5784977, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -28237,12 +28281,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 6b1ce796e49eb7f4c88400be252a9d30, type: 2}
+  inventoryPrefab: {fileID: 6862544953576122033, guid: 097fe2b5655d54948b45328b1fc19db5, type: 3}
   X_START: -82
   Y_START: 160
   X_SPACE_BETWEEN_ITEM: 55
   NUMBER_OF_COLUMN: 4
   Y_SPACE_BETWEEN_ITEMS: 55
-  inventoryPrefab: {fileID: 6862544953576122033, guid: 097fe2b5655d54948b45328b1fc19db5, type: 3}
+--- !u!114 &2072508324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072508317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1001 &2097938935
 PrefabInstance:
   m_ObjectHideFlags: 0

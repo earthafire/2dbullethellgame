@@ -267,10 +267,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1d5330c94d4cc4796e352f37141f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  player: {fileID: 0}
   rb2d: {fileID: 1247451015503439695}
   attributes: {fileID: 11400000, guid: 87261fbadcfd399438a5ee3bc9cf05c8, type: 2}
-  knockbackDuration: 1
+  knockbackDuration: 1.5
   speed_animation_multiplier: 1
   rotationSpeed: 0.2
   xp: {fileID: 4608355060562850367, guid: b8a747337d9f86d42a6bd5cba1295c15, type: 3}

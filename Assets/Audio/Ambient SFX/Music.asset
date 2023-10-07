@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c547445d44c6d741a69ccd75ae1ff96, type: 3}
   m_Name: Music
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  volume: 1
-  volumeVariation: 0.05
+  clip: {fileID: 8300000, guid: 307808241eee15742af259b0d1bff60d, type: 3}
+  volume: 0.603
+  volumeVariation: 0
   pitch: 1
-  pitchVariation: 0.05
-  loop: 0
+  pitchVariation: 0
+  loop: 1

@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bd8ac95c17af649aa50d3d5c8711a6, type: 3}
   m_Name: Shoes T1
   m_EditorClassIdentifier: 
-  Id: 8
   uiDisplay: {fileID: -1897712105, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   stackable: 0
   type: 9
   description: Go on ya footie
-  buffs:
-  - modifiers: 1
-    value: 0
-    min: 1
-    max: 10
+  data:
+    Name: 
+    Id: 6
+    buffs:
+    - max: 10
+      min: 1
+      modifiers: 1
+      value: 0

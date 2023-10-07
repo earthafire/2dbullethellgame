@@ -9,7 +9,6 @@ public class UpgradeAttribute : Upgrade
     public List<Attributes> unitsToUpgrade = new List<Attributes>();
     public Dictionary<Attribute, float> upgradeToApply = new Dictionary<Attribute, float>();
     public bool isPercent;
-    //public int tier;
 
     public override void DoUpgrade()
    {
@@ -18,7 +17,6 @@ public class UpgradeAttribute : Upgrade
             foreach(var upgrade in upgradeToApply)
             {
                 unit_to_upgrade.UnlockUpgrade(this);
-                
             }            
         }
    }
