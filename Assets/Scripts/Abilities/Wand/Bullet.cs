@@ -66,7 +66,12 @@ public class Bullet : MonoBehaviour
                 ExplosionParticles();
                 sound.sfxToPlay.PlaySFX();
                 onEnemyHit?.Invoke(enemy);
-                piercingCount();
+
+                if (piercingEnabled)
+                {
+                    piercingCount();
+                }
+                
                 //Destroy(gameObject);
             }
         }
@@ -79,6 +84,7 @@ public class Bullet : MonoBehaviour
     private void piercingCount()
     {
         pierceAmount--;
+
         if(pierceAmount <= 0)
         {
             Destroy(gameObject);
