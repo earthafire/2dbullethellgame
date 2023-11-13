@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.UIElements;
 
 public class PlayerAttributes : MonoBehaviour
 {
@@ -13,8 +15,10 @@ public class PlayerAttributes : MonoBehaviour
     public Dictionary<Attribute, float> _localAttributes;
     public int _experienceUntilLevelUp = 100 ;
     private float damageModifier = 1;
-    private ParticleSystem particles;
-    [SerializeField] private GameObject uI;
+    public ParticleSystem experienceParticles;
+    public ParticleSystem damageParticles;
+    [SerializeField]
+    private GameObject uI;
     LevelUp levelUp;
     CircleCollider2D _pickUpRange;
 
@@ -28,7 +32,7 @@ public class PlayerAttributes : MonoBehaviour
         levelUp = uI.GetComponent<LevelUp>();
         _localAttributes = new Dictionary<Attribute, float>(_playerAttributes.current_attributes);
 
-        particles = gameObject.GetComponent<ParticleSystem>();
+        //XPparticles = gameObject.GetComponent<ParticleSystem>();
         healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
        
     }
@@ -43,6 +47,7 @@ public class PlayerAttributes : MonoBehaviour
         {
             _localAttributes[Attribute.health] = health - damage;
             healthbar.SetHealth(health);
+            damageParticles.Emit(damage);
         }
 
         if (health < 1)
@@ -67,7 +72,7 @@ public class PlayerAttributes : MonoBehaviour
     }
     public void DoLevelUp()
     {
-        particles.Emit(_experienceUntilLevelUp);
+        experienceParticles.Emit(_experienceUntilLevelUp);
 
         _experienceUntilLevelUp = (int)((float)_experienceUntilLevelUp * 1.1f);
 
@@ -94,4 +99,33 @@ public class PlayerAttributes : MonoBehaviour
         }
        _pickUpRange.radius = _playerAttributes.GetAttribute(Attribute.pickUpRange);
     }
+
+
+    public void updateAttributesFromEquipment()
+    {
+        PlayerInventory playerInventory = GetComponentInParent<PlayerInventory>();
+        int total = 0;
+        foreach (InventorySlot slot in playerInventory.equipment.GetSlots)
+        {
+            foreach(ItemBuff buff in slot.item.buffs)
+            {
+                switch (buff.modifiers)
+                {
+                    case Modifiers.Agility:
+                        buff.value += total;
+                        Debug.Log(total);
+                        break;
+
+                    case Modifiers.Intellect:
+                        buff.value += total;
+                        Debug.Log(total);
+                        break;
+
+                    case Modifiers.Stamina: break;
+                    case Modifiers.Strength: break;
+                }
+            }
+        }
+    }
 }
+

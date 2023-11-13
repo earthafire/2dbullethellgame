@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
     public float speed = 1f;
     public float direction = 0;
     private ParticleSystem particles;
+    private bool piercingEnabled = false;
+    private int pierceAmount = 3;
 
     public void Start()
     {
@@ -64,12 +66,22 @@ public class Bullet : MonoBehaviour
                 ExplosionParticles();
                 sound.sfxToPlay.PlaySFX();
                 onEnemyHit?.Invoke(enemy);
-                Destroy(gameObject);
+                piercingCount();
+                //Destroy(gameObject);
             }
         }
         catch (System.NullReferenceException)
         {
             // Object is not an enemy
+        }
+    }
+
+    private void piercingCount()
+    {
+        pierceAmount--;
+        if(pierceAmount <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

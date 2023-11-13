@@ -15,6 +15,11 @@ public enum Attribute
         acceleration,
         experience,
         level,
-        pickUpRange
+        pickUpRange,
+        agility,
+        intellect,
+        stamina,
+        strength
+
     }
 
