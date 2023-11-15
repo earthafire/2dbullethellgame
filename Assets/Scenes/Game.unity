@@ -29818,6 +29818,18 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 0.24
       objectReference: {fileID: 0}
+    - target: {fileID: 4094525312377159805, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4094525312377159805, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4094525312377159805, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1834611197
+      objectReference: {fileID: 0}
     - target: {fileID: 4532121904328797303, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_Layer
       value: 8

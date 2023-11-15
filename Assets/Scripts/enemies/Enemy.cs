@@ -94,8 +94,8 @@ public class Enemy : MonoBehaviour
     public virtual IEnumerator GetDeath()
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        yield return new WaitForSeconds(1.5f);
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(.5f);
         Destroy(gameObject);
     }
 }
