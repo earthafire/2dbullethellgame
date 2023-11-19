@@ -70,14 +70,6 @@ public class PlayerAbilityManager : MonoBehaviour
     void FixedUpdate()
     {
         DetectAbilitiesPressed();
-        string temp = "";
-        int i = 0;
-        foreach (InventorySlot x in equipment.GetSlots)
-        {
-            temp += "Slot#: " + i + " \tAbility: " + x.item.Ability + "\n";
-            i++;
-        }
-        Debug.Log(temp);
     }
 
     /// <summary>
