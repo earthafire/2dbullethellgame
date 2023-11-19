@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -27,18 +29,28 @@ public class PlayerAbilityManager : MonoBehaviour
     /// <summary>
     /// Abilities currently equipped on player
     /// </summary>
+    /// 
+    private Dictionary<ActivatableAbilityType, ActivatableAbility> abilities;
     private Dictionary<AbilitySlot, ActivatableAbility> EquippedAbilities = new Dictionary<AbilitySlot, ActivatableAbility>();
 
     // this is where abilities are added to slots
     void Start()
     {
+        abilities = new Dictionary<ActivatableAbilityType, ActivatableAbility>()
+        {
+            {ActivatableAbilityType.MELEE, gameObject.AddComponent<Melee>()},
+            {ActivatableAbilityType.WAND, gameObject.AddComponent<Wand>()},
+            {ActivatableAbilityType.FROSTPULSE, gameObject.AddComponent<FrostPulse>()},
+            {ActivatableAbilityType.DASH, gameObject.AddComponent<Dash>()},
+        };
+
         EquippedAbilities[AbilitySlot.Q] = null;
-        EquippedAbilities[AbilitySlot.E] = gameObject.AddComponent<Wand>();
+        EquippedAbilities[AbilitySlot.E] = abilities[ActivatableAbilityType.WAND];
         EquippedAbilities[AbilitySlot.R] = null;
-        EquippedAbilities[AbilitySlot.LeftClick] = gameObject.AddComponent<Melee>();
-        EquippedAbilities[AbilitySlot.RightClick] = gameObject.AddComponent<FrostPulse>();
+        EquippedAbilities[AbilitySlot.LeftClick] = abilities[ActivatableAbilityType.MELEE];
+        EquippedAbilities[AbilitySlot.RightClick] = abilities[ActivatableAbilityType.FROSTPULSE];
         EquippedAbilities[AbilitySlot.Shift] = null;
-        EquippedAbilities[AbilitySlot.Space] = gameObject.AddComponent<Dash>();
+        EquippedAbilities[AbilitySlot.Space] = abilities[ActivatableAbilityType.DASH];
     }
 
     /// <summary>
@@ -68,10 +80,30 @@ public class PlayerAbilityManager : MonoBehaviour
     /// Sets a specific slot to the class of ability added
     /// </summary>
     /// <param name="slot">ability slot to change</param>
-    /// <param name="abilityToAdd">what the ability slot should be set to</param>
-    public void setAbility(AbilitySlot slot, ActivatableAbility abilityToAdd)
+    /// <param name="abilityToAdd">what type the ability slot should be set to</param>
+    public void setAbility<T>(AbilitySlot slot, ActivatableAbilityType abilityToAdd)
     {
-        // I need to rethink abilities, I think I will convert the ActivatableAbility class to not use monobehaviours, 
-        // so they don't need to be attached to a player as a component and can instead be used as normal C# objects
+        // put ability in slot
+        if (abilities.ContainsKey(abilityToAdd))
+        {
+            EquippedAbilities[slot] = abilities[abilityToAdd];
+        }
+
+        // Safety if-statement!
+        // makes sure you always have a melee at least
+        if (EquippedAbilities[AbilitySlot.LeftClick] == null)
+        {
+            EquippedAbilities[AbilitySlot.LeftClick] = gameObject.AddComponent<Melee>();
+        }
     }
+}
+
+// available abilities, make sure to add new abilities to `abilities` dictionary above!
+public enum ActivatableAbilityType
+{
+    WAND,
+    MELEE,
+    DASH,
+    FROSTPULSE,
+
 }
