@@ -33,9 +33,9 @@ public class PlayerAbilityManager : MonoBehaviour
     private Dictionary<ActivatableAbilityType, ActivatableAbility> abilities;
     private Dictionary<AbilitySlot, ActivatableAbility> EquippedAbilities = new Dictionary<AbilitySlot, ActivatableAbility>();
 
-    // this is where abilities are added to slots
     void Start()
     {
+        // instantiate all abilities, for ease of swapping them out later
         abilities = new Dictionary<ActivatableAbilityType, ActivatableAbility>()
         {
             {ActivatableAbilityType.MELEE, gameObject.AddComponent<Melee>()},
@@ -44,6 +44,7 @@ public class PlayerAbilityManager : MonoBehaviour
             {ActivatableAbilityType.DASH, gameObject.AddComponent<Dash>()},
         };
 
+        // initialize all abilities available
         EquippedAbilities[AbilitySlot.Q] = null;
         EquippedAbilities[AbilitySlot.E] = abilities[ActivatableAbilityType.WAND];
         EquippedAbilities[AbilitySlot.R] = null;
@@ -98,7 +99,7 @@ public class PlayerAbilityManager : MonoBehaviour
     }
 }
 
-// available abilities, make sure to add new abilities to `abilities` dictionary above!
+// list of all available abilities, make sure to add new abilities to `abilities` dictionary above!
 public enum ActivatableAbilityType
 {
     WAND,
