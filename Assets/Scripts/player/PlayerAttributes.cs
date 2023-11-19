@@ -40,6 +40,7 @@ public class PlayerAttributes : MonoBehaviour
         healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
 
     }
+    private void OnApplicationQuit() => _playerAttributes.ResetAppliedUpgrades();
 
     public void wipeTotalStats()
     {
@@ -121,6 +122,7 @@ public class PlayerAttributes : MonoBehaviour
             healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
             healthbar.SetHealth(_localAttributes[Attribute.health]);
         }
+        // GetAttribute finds the Attribute inside of either _playerAttributes dictionary (Current or Default)
         _pickUpRange.radius = _playerAttributes.GetAttribute(Attribute.pickUpRange);
 
         updateTotalStats();
