@@ -33,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
             sound.sfxToPlay.PlaySFX(); 
             return;
         }
-        float acceleration = PlayerAttributes.totalStats[Attribute.acceleration];
-        float speed = PlayerAttributes.totalStats[Attribute.moveSpeed];
+        float acceleration = PlayerAttributes.stats[Attribute.acceleration];
+        float speed = PlayerAttributes.stats[Attribute.moveSpeed];
 
         float xIn = Input.GetAxisRaw("Horizontal");
         float yIn = Input.GetAxisRaw("Vertical");

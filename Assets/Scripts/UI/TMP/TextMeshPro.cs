@@ -25,8 +25,8 @@ public class TextMeshPro : MonoBehaviour
         _timer = _gameSupervisorController.gameTimer;
 
         // Set TextMeshPro SetText();
-        _playerLevelTMP.SetText("Level: " + PlayerAttributes.totalStats[Attribute.level].ToString());
-        _currentExperienceTMP.SetText("XP: " + PlayerAttributes.totalStats[Attribute.experience].ToString() + " / " + _playerAttributes._experienceUntilLevelUp);
+        _playerLevelTMP.SetText("Level: " + PlayerAttributes.stats[Attribute.level].ToString());
+        _currentExperienceTMP.SetText("XP: " + PlayerAttributes.stats[Attribute.experience].ToString() + " / " + _playerAttributes._experienceUntilLevelUp);
         _timerTMP.SetText("{0:2}", _timer);
         _healthValueTMP.SetText((int)_playerAttributes.currentHealth + " / " + (int)healthbar.slider.maxValue);
     }

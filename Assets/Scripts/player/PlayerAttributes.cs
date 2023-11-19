@@ -24,7 +24,7 @@ public class PlayerAttributes : MonoBehaviour
     LevelUp levelUp;
     CircleCollider2D _pickUpRange;
 
-    public static Dictionary<Attribute, float> totalStats = new Dictionary<Attribute, float>() { };
+    public static Dictionary<Attribute, float> stats = new Dictionary<Attribute, float>() { };
 
 
     void Start()
@@ -39,17 +39,17 @@ public class PlayerAttributes : MonoBehaviour
 
         //XPparticles = gameObject.GetComponent<ParticleSystem>();
 
-        currentHealth = totalStats[Attribute.health];
-        healthbar.SetMaxHealth(totalStats[Attribute.health]);
+        currentHealth = stats[Attribute.health];
+        healthbar.SetMaxHealth(stats[Attribute.health]);
         healthbar.SetHealth(currentHealth);
     }
     private void OnApplicationQuit() => _playerAttributes.ResetAppliedUpgrades();
 
     public void wipeTotalStats()
     {
-        foreach (Attribute key in totalStats.Keys.ToArray())
+        foreach (Attribute key in stats.Keys.ToArray())
         {
-            totalStats[key] = 0;
+            stats[key] = 0;
         }
     }
 
@@ -73,13 +73,13 @@ public class PlayerAttributes : MonoBehaviour
     public void addExperience(int experienceToAdd)
     {
 
-        totalStats[Attribute.experience] += (float)experienceToAdd;
+        stats[Attribute.experience] += (float)experienceToAdd;
 
 
-        if (totalStats[Attribute.experience] > _experienceUntilLevelUp)
+        if (stats[Attribute.experience] > _experienceUntilLevelUp)
         {
             DoLevelUp();
-            totalStats[Attribute.experience] = 0;
+            stats[Attribute.experience] = 0;
         }
 
     }
@@ -88,7 +88,7 @@ public class PlayerAttributes : MonoBehaviour
         experienceParticles.Emit(_experienceUntilLevelUp);
         _experienceUntilLevelUp = (int)((float)_experienceUntilLevelUp * 1.1f);
 
-        totalStats[Attribute.level] += 1.0f;
+        stats[Attribute.level] += 1.0f;
         levelUp.HandleLevelUp();
     }
 
@@ -108,7 +108,7 @@ public class PlayerAttributes : MonoBehaviour
             healthbar.SetHealth(currentHealth);
         }
         // GetAttribute finds the Attribute inside of either _playerAttributes dictionary (Current or Default)
-        _pickUpRange.radius = totalStats[Attribute.pickUpRange];
+        _pickUpRange.radius = stats[Attribute.pickUpRange];
 
         updateTotalStats();
     }
@@ -126,20 +126,20 @@ public class PlayerAttributes : MonoBehaviour
             // add each key's (attribute's) associated value (float) to the totalStats table
             foreach (KeyValuePair<Attribute, float> attributeFloatPair in slot.item.Buffs)
             {
-                totalStats[attributeFloatPair.Key] += attributeFloatPair.Value;
+                stats[attributeFloatPair.Key] += attributeFloatPair.Value;
             }
         }
 
         // add XP choices values to totalStats
         foreach (KeyValuePair<Attribute, float> attributeFloatPair in _playerAttributes.current_attributes)
         {
-            if (totalStats.ContainsKey(attributeFloatPair.Key))
+            if (stats.ContainsKey(attributeFloatPair.Key))
             {
-                totalStats[attributeFloatPair.Key] += _playerAttributes.GetAttribute(attributeFloatPair.Key);
+                stats[attributeFloatPair.Key] += _playerAttributes.GetAttribute(attributeFloatPair.Key);
             }
             else
             {
-                totalStats[attributeFloatPair.Key] = _playerAttributes.GetAttribute(attributeFloatPair.Key);
+                stats[attributeFloatPair.Key] = _playerAttributes.GetAttribute(attributeFloatPair.Key);
             }
 
         }
@@ -149,7 +149,7 @@ public class PlayerAttributes : MonoBehaviour
     public void printStats()
     {
         String temp = "STAT\t\tVALUE\n";
-        foreach (KeyValuePair<Attribute, float> attributeFloatPair in totalStats)
+        foreach (KeyValuePair<Attribute, float> attributeFloatPair in stats)
         {
             temp += String.Format("{0}\t\t{1}\n", attributeFloatPair.Key, attributeFloatPair.Value);
         }
