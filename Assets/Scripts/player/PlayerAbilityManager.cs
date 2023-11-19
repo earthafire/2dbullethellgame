@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Reflection.Editor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -31,10 +32,14 @@ public class PlayerAbilityManager : MonoBehaviour
     /// </summary>
     /// 
     private Dictionary<ActivatableAbilityType, ActivatableAbility> abilities;
-    private Dictionary<AbilitySlot, ActivatableAbility> EquippedAbilities = new Dictionary<AbilitySlot, ActivatableAbility>();
+    // Inventory
+    private InventoryObject equipment;
+    private Dictionary<AbilitySlot, int> EquippedAbilities = new Dictionary<AbilitySlot, int>();
 
     void Start()
     {
+        equipment = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().equipment;
+
         // instantiate all abilities, for ease of swapping them out later
         abilities = new Dictionary<ActivatableAbilityType, ActivatableAbility>()
         {
@@ -45,13 +50,18 @@ public class PlayerAbilityManager : MonoBehaviour
         };
 
         // initialize all abilities available
-        EquippedAbilities[AbilitySlot.Q] = null;
-        EquippedAbilities[AbilitySlot.E] = abilities[ActivatableAbilityType.WAND];
-        EquippedAbilities[AbilitySlot.R] = null;
-        EquippedAbilities[AbilitySlot.LeftClick] = abilities[ActivatableAbilityType.MELEE];
-        EquippedAbilities[AbilitySlot.RightClick] = abilities[ActivatableAbilityType.FROSTPULSE];
-        EquippedAbilities[AbilitySlot.Shift] = null;
-        EquippedAbilities[AbilitySlot.Space] = abilities[ActivatableAbilityType.DASH];
+        // EquippedAbilities[AbilitySlot.Q] = null;
+        // EquippedAbilities[AbilitySlot.E] = null;
+        // EquippedAbilities[AbilitySlot.R] = null;
+        EquippedAbilities[AbilitySlot.LeftClick] = 4;
+        EquippedAbilities[AbilitySlot.RightClick] = 6;
+        // EquippedAbilities[AbilitySlot.Shift] = null;
+        EquippedAbilities[AbilitySlot.Space] = 9;
+    }
+
+    void getAbilityFromEquipment(int equipmentID)
+    {
+        abilities[equipment.GetSlots[equipmentID].item.Ability].Activate();
     }
 
     /// <summary>
@@ -60,6 +70,14 @@ public class PlayerAbilityManager : MonoBehaviour
     void FixedUpdate()
     {
         DetectAbilitiesPressed();
+        string temp = "";
+        int i = 0;
+        foreach (InventorySlot x in equipment.GetSlots)
+        {
+            temp += "Slot#: " + i + " \tAbility: " + x.item.Ability + "\n";
+            i++;
+        }
+        Debug.Log(temp);
     }
 
     /// <summary>
@@ -67,34 +85,21 @@ public class PlayerAbilityManager : MonoBehaviour
     /// </summary>
     public void DetectAbilitiesPressed()
     {
-        foreach (var AbilitySlot in EquippedAbilities)
+        foreach (var abilitySlotKV in EquippedAbilities)
         {
             // if ability button is pressed, trigger ability in that slot (if it exists)
-            if (Input.GetButton(AbilitySlot.Key.ToString()) && AbilitySlot.Value != null)
+            if (Input.GetButton(abilitySlotKV.Key.ToString()))
             {
-                AbilitySlot.Value.Activate();
+                ActivatableAbilityType typeOfAbility = equipment.GetSlots[abilitySlotKV.Value].item.Ability;
+                if (typeOfAbility != ActivatableAbilityType.NULL)
+                {
+                    abilities[typeOfAbility].Activate();
+                }
+                else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
+                {
+                    abilities[ActivatableAbilityType.MELEE].Activate();
+                }
             }
-        }
-    }
-
-    /// <summary>
-    /// Sets a specific slot to the class of ability added
-    /// </summary>
-    /// <param name="slot">ability slot to change</param>
-    /// <param name="abilityToAdd">what type the ability slot should be set to</param>
-    public void setAbility<T>(AbilitySlot slot, ActivatableAbilityType abilityToAdd)
-    {
-        // put ability in slot
-        if (abilities.ContainsKey(abilityToAdd))
-        {
-            EquippedAbilities[slot] = abilities[abilityToAdd];
-        }
-
-        // Safety if-statement!
-        // makes sure you always have a melee at least
-        if (EquippedAbilities[AbilitySlot.LeftClick] == null)
-        {
-            EquippedAbilities[AbilitySlot.LeftClick] = gameObject.AddComponent<Melee>();
         }
     }
 }
@@ -102,9 +107,9 @@ public class PlayerAbilityManager : MonoBehaviour
 // list of all available abilities, make sure to add new abilities to `abilities` dictionary above!
 public enum ActivatableAbilityType
 {
+    NULL,
     WAND,
     MELEE,
     DASH,
     FROSTPULSE,
-
 }
