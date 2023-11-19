@@ -9,7 +9,7 @@ public static class AttributeEnum
 
 public enum Attribute
 {
-    health,
+    maxHealth,
     moveSpeed,
     damage,
     acceleration,

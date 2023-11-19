@@ -39,8 +39,8 @@ public class PlayerAttributes : MonoBehaviour
 
         //XPparticles = gameObject.GetComponent<ParticleSystem>();
 
-        currentHealth = stats[Attribute.health];
-        healthbar.SetMaxHealth(stats[Attribute.health]);
+        currentHealth = stats[Attribute.maxHealth];
+        healthbar.SetMaxHealth(stats[Attribute.maxHealth]);
         healthbar.SetHealth(currentHealth);
     }
     private void OnApplicationQuit() => _playerAttributes.ResetAppliedUpgrades();
@@ -95,11 +95,11 @@ public class PlayerAttributes : MonoBehaviour
     private void UpgradeApplied(Attributes attribute, UpgradeAttribute upgradeAttribute)
     {
 
-        if (upgradeAttribute.upgradeToApply.TryGetValue(Attribute.health, out float value))
+        if (upgradeAttribute.upgradeToApply.TryGetValue(Attribute.maxHealth, out float value))
         {
             // Save old health stats
             float oldMaxHealth = healthbar.slider.maxValue;
-            float newMaxHealth = _playerAttributes.GetAttribute(Attribute.health);
+            float newMaxHealth = _playerAttributes.GetAttribute(Attribute.maxHealth);
 
             // Calculate how much the health increased, increase max health by the same amount
             float healthDelta = newMaxHealth - oldMaxHealth;

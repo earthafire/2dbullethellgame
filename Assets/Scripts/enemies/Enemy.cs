@@ -11,14 +11,14 @@ public class Enemy : MonoBehaviour
     private float health, speed, damage;
     public Attributes attributes;
     public float knockbackDuration = .25f;
-    public float speed_animation_multiplier = 1;    
+    public float speed_animation_multiplier = 1;
 
     public void Start()
-    {  
-        health = attributes.GetAttribute(Attribute.health);
+    {
+        health = attributes.GetAttribute(Attribute.maxHealth);
         speed = attributes.GetAttribute(Attribute.moveSpeed);
         damage = attributes.GetAttribute(Attribute.damage);
-        
+
         particles = gameObject.GetComponent<ParticleSystem>();
         player = GameObject.FindWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        
+
         float distance = speed * speed_animation_multiplier * Time.deltaTime;
         Vector3 target_position = player.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
@@ -48,7 +48,8 @@ public class Enemy : MonoBehaviour
 
     public bool TakeDamage(int playerDamage)
     {
-        if(Time.timeScale == 0){
+        if (Time.timeScale == 0)
+        {
             return false;
         }
 
@@ -63,17 +64,18 @@ public class Enemy : MonoBehaviour
         return true;
     }
 
-    
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 12){ // Player layer
+        if (collision.gameObject.layer == 12)
+        { // Player layer
 
             PlayerAttributes player = collision.gameObject.GetComponent<PlayerAttributes>();
             player.takeDamage((int)damage);
         }
-        else 
+        else
         {
-          // Debug.Log(collision.gameObject + "has no attack");
+            // Debug.Log(collision.gameObject + "has no attack");
         }
     }
 
@@ -83,11 +85,12 @@ public class Enemy : MonoBehaviour
         difference = difference.normalized * knockbackForce * rb2d.mass;
         rb2d.AddForce(difference, ForceMode2D.Impulse);
 
-        StartCoroutine(KnockbackRoutine());        
+        StartCoroutine(KnockbackRoutine());
         return true;
     }
 
-    private IEnumerator KnockbackRoutine(){
+    private IEnumerator KnockbackRoutine()
+    {
         yield return new WaitForSeconds(knockbackDuration);
     }
 
