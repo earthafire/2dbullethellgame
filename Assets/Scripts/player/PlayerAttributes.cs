@@ -24,7 +24,7 @@ public class PlayerAttributes : MonoBehaviour
     LevelUp levelUp;
     CircleCollider2D _pickUpRange;
 
-    public Dictionary<Attribute, float> totalStats = new Dictionary<Attribute, float>() { };
+    public static Dictionary<Attribute, float> totalStats = new Dictionary<Attribute, float>() { };
 
 
     void Start()

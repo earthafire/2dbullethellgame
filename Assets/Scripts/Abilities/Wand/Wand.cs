@@ -18,7 +18,7 @@ public class Wand : ActivatableAbility
         firePoint = transform.GetChild(0).GetChild(0).GetChild(0);
         player_animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
-        playerBaseDamage = (int)player.GetComponent<PlayerAttributes>().totalStats[Attribute.damage];
+        playerBaseDamage = (int)PlayerAttributes.totalStats[Attribute.damage];
 
         base.cooldownTimeMax = .2f;
         projectile = (GameObject)Resources.Load("Prefabs/Weapons/Lightning/Lightning", typeof(GameObject));

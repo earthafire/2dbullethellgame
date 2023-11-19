@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Animator player_animator;
-    public Attributes attributes;
     SoundComponent sound;
     public Vector2 direction { get; private set; }
     public bool isPlayerInControl = true;
@@ -34,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
             sound.sfxToPlay.PlaySFX(); 
             return;
         }
-        float acceleration = attributes.GetAttribute(Attribute.acceleration);
-        float speed = attributes.GetAttribute(Attribute.moveSpeed);
+        float acceleration = PlayerAttributes.totalStats[Attribute.acceleration];
+        float speed = PlayerAttributes.totalStats[Attribute.moveSpeed];
 
         float xIn = Input.GetAxisRaw("Horizontal");
         float yIn = Input.GetAxisRaw("Vertical");
