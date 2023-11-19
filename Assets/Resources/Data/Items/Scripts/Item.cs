@@ -1,9 +1,19 @@
-﻿[System.Serializable]
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
 public class Item
 {
     public string Name;
     public int Id = -1;
-    public ItemBuff[] buffs;
+    public Dictionary<Attribute, float> Buffs = new Dictionary<Attribute, float>()
+    {
+        { Attribute.damage, 1f },
+        { Attribute.health, 1f },
+        { Attribute.strength, 1f }
+    };
+
     public Item()
     {
         Name = "";
@@ -13,13 +23,5 @@ public class Item
     {
         Name = item.name;
         Id = item.data.Id;
-        buffs = new ItemBuff[item.data.buffs.Length];
-        for (int i = 0; i < buffs.Length; i++)
-        {
-            buffs[i] = new ItemBuff(item.data.buffs[i].min, item.data.buffs[i].max)
-            {
-                modifiers = item.data.buffs[i].modifiers
-            };
-        }
     }
 }

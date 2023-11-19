@@ -5,7 +5,6 @@ public class ItemBuffBase
 {
     public int max;
     public int min;
-    public Modifiers modifiers;
     public int value;
 
     public void AddValue(ref int baseValue)

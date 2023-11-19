@@ -13,7 +13,7 @@ public class PlayerAttributes : MonoBehaviour
     public HealthBar healthbar;
     public Attributes _playerAttributes;
     public Dictionary<Attribute, float> _localAttributes;
-    public int _experienceUntilLevelUp = 100 ;
+    public int _experienceUntilLevelUp = 100;
     private float damageModifier = 1;
     public ParticleSystem experienceParticles;
     public ParticleSystem damageParticles;
@@ -22,11 +22,15 @@ public class PlayerAttributes : MonoBehaviour
     LevelUp levelUp;
     CircleCollider2D _pickUpRange;
 
-   
+    public Dictionary<Attribute, float> totalStats = new Dictionary<Attribute, float>();
+
+
     void Start()
     {
+        wipeTotalStats();
+
         _pickUpRange = transform.GetChild(1).GetComponent<CircleCollider2D>();
-        
+
         _playerAttributes.upgradeApplied += UpgradeApplied;
 
         levelUp = uI.GetComponent<LevelUp>();
@@ -34,16 +38,33 @@ public class PlayerAttributes : MonoBehaviour
 
         //XPparticles = gameObject.GetComponent<ParticleSystem>();
         healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
-       
+
+    }
+
+    public void wipeTotalStats()
+    {
+        totalStats[Attribute.health] = 0f;
+        totalStats[Attribute.moveSpeed] = 0f;
+        totalStats[Attribute.damage] = 0f;
+        totalStats[Attribute.acceleration] = 0f;
+        totalStats[Attribute.experience] = 0f;
+        totalStats[Attribute.level] = 0f;
+        totalStats[Attribute.pickUpRange] = 0f;
+        totalStats[Attribute.agility] = 0f;
+        totalStats[Attribute.intellect] = 0f;
+        totalStats[Attribute.stamina] = 0f;
+        totalStats[Attribute.strength] = 0f;
     }
 
     public void takeDamage(int damage)
     {
-        if(Time.timeScale == 0){
+        printStats();
+        if (Time.timeScale == 0)
+        {
             return;
         }
 
-        if(_localAttributes.TryGetValue(Attribute.health, out float health))
+        if (_localAttributes.TryGetValue(Attribute.health, out float health))
         {
             _localAttributes[Attribute.health] = health - damage;
             healthbar.SetHealth(health);
@@ -58,17 +79,17 @@ public class PlayerAttributes : MonoBehaviour
 
     public void addExperience(int experienceToAdd)
     {
-        if(_localAttributes.TryGetValue(Attribute.experience, out float _exp))
+        if (_localAttributes.TryGetValue(Attribute.experience, out float _exp))
         {
-          _localAttributes[Attribute.experience] = _exp + (float)experienceToAdd;
+            _localAttributes[Attribute.experience] = _exp + (float)experienceToAdd;
         }
 
-        if(_localAttributes[Attribute.experience] > _experienceUntilLevelUp)
+        if (_localAttributes[Attribute.experience] > _experienceUntilLevelUp)
         {
             DoLevelUp();
             _localAttributes[Attribute.experience] = 0;
         }
-        
+
     }
     public void DoLevelUp()
     {
@@ -76,7 +97,8 @@ public class PlayerAttributes : MonoBehaviour
 
         _experienceUntilLevelUp = (int)((float)_experienceUntilLevelUp * 1.1f);
 
-        if(_localAttributes.TryGetValue(Attribute.level, out float level)){
+        if (_localAttributes.TryGetValue(Attribute.level, out float level))
+        {
 
             _localAttributes[Attribute.level] = level + 1.0f;
             levelUp.HandleLevelUp();
@@ -85,46 +107,55 @@ public class PlayerAttributes : MonoBehaviour
 
     private void UpgradeApplied(Attributes attribute, UpgradeAttribute upgradeAttribute)
     {
-        
-        if(upgradeAttribute.upgradeToApply.TryGetValue(Attribute.health, out float value))
+
+        if (upgradeAttribute.upgradeToApply.TryGetValue(Attribute.health, out float value))
         {
-            if(upgradeAttribute.isPercent)
+            if (upgradeAttribute.isPercent)
             {
                 _localAttributes[Attribute.health] *= (value / 100f) + 1f;
-            }else{
+            }
+            else
+            {
                 _localAttributes[Attribute.health] += value;
-            }  
+            }
             healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
             healthbar.SetHealth(_localAttributes[Attribute.health]);
         }
-       _pickUpRange.radius = _playerAttributes.GetAttribute(Attribute.pickUpRange);
+        _pickUpRange.radius = _playerAttributes.GetAttribute(Attribute.pickUpRange);
+
+        updateTotalStats();
     }
 
 
-    public void updateAttributesFromEquipment()
+    public void updateTotalStats()
     {
+        wipeTotalStats();
+
         PlayerInventory playerInventory = GetComponentInParent<PlayerInventory>();
-        int total = 0;
+
+        // iterate through all equipped items
         foreach (InventorySlot slot in playerInventory.equipment.GetSlots)
         {
-            foreach(ItemBuff buff in slot.item.buffs)
+            // add each key's (attribute's) associated value (float) to the totalStats table
+            foreach (KeyValuePair<Attribute, float> attributeFloatPair in slot.item.Buffs)
             {
-                switch (buff.modifiers)
-                {
-                    case Modifiers.Agility:
-                        buff.value += total;
-                        Debug.Log(total);
-                        break;
-
-                    case Modifiers.Intellect:
-                        buff.value += total;
-                        Debug.Log(total);
-                        break;
-
-                    case Modifiers.Stamina: break;
-                    case Modifiers.Strength: break;
-                }
+                totalStats[attributeFloatPair.Key] += attributeFloatPair.Value;
             }
+        }
+
+        // add XP choices values to totalStats
+        foreach (KeyValuePair<Attribute, float> attributeFloatPair in _localAttributes)
+        {
+            totalStats[attributeFloatPair.Key] += attributeFloatPair.Value;
+        }
+    }
+
+    public void printStats()
+    {
+        Debug.Log("STAT\t\tVALUE");
+        foreach (KeyValuePair<Attribute, float> attributeFloatPair in totalStats)
+        {
+            Debug.Log(String.Format("{0}\t\t{1}", attributeFloatPair.Key, attributeFloatPair.Value));
         }
     }
 }

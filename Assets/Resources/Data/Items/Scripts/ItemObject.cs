@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public enum ItemType
@@ -17,13 +19,6 @@ public enum ItemType
     Default
 }
 
-public enum Modifiers
-{
-    Agility,
-    Intellect,
-    Stamina,
-    Strength
-}
 public class ItemObject : ScriptableObject
 {
 
@@ -33,6 +28,7 @@ public class ItemObject : ScriptableObject
     [TextArea(15, 20)]
     public string description;
     public Item data = new Item();
+    public Dictionary<Attribute, int> buffs = new Dictionary<Attribute, int>();
 
     public Item CreateItem()
     {
@@ -41,16 +37,4 @@ public class ItemObject : ScriptableObject
     }
 
 
-}
-
-[System.Serializable]
-public class ItemBuff : ItemBuffBase
-//: IModifier
-{
-    public ItemBuff(int _min, int _max)
-    {
-        min = _min;
-        max = _max;
-        GenerateValue();
-    }
 }
