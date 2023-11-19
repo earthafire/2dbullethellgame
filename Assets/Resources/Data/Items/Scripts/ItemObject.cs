@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Sirenix.OdinInspector;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ public enum ItemType
     Default
 }
 
-public class ItemObject : ScriptableObject
+public class ItemObject : SerializedScriptableObject
 {
 
     public Sprite uiDisplay;
@@ -28,7 +29,7 @@ public class ItemObject : ScriptableObject
     [TextArea(15, 20)]
     public string description;
     public Item data = new Item();
-    public Dictionary<Attribute, int> buffs = new Dictionary<Attribute, int>();
+    public Dictionary<Attribute, float> buffs = new Dictionary<Attribute, float>();
 
     public Item CreateItem()
     {

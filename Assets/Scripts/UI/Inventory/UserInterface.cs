@@ -14,8 +14,11 @@ public abstract class UserInterface : MonoBehaviour
     private InventoryObject _previousInventory;
     public Dictionary<GameObject, InventorySlot> slotsOnInterface = new();
 
+    private PlayerAttributes stats;
+
     public void OnEnable()
     {
+        stats = GameObject.FindWithTag("Player").GetComponent<PlayerAttributes>();
         CreateSlots();
         for (int i = 0; i < inventory.GetSlots.Length; i++)
         {
@@ -129,6 +132,7 @@ public abstract class UserInterface : MonoBehaviour
             InventorySlot mouseHoverSlotData = MouseData.interfaceMouseIsOver.slotsOnInterface[MouseData.slotHoveredOver];
             inventory.SwapItems(slotsOnInterface[obj], mouseHoverSlotData);
         }
+        stats.updateTotalStats();
     }
 }
     

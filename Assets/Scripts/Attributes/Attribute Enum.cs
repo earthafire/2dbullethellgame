@@ -8,18 +8,14 @@ public static class AttributeEnum
 }
 
 public enum Attribute
-    {
-        health,
-        moveSpeed,
-        damage,
-        acceleration,
-        experience,
-        level,
-        pickUpRange,
-        agility,
-        intellect,
-        stamina,
-        strength
+{
+    health,
+    moveSpeed,
+    damage,
+    acceleration,
+    experience,
+    level,
+    pickUpRange
+}
 
-    }
 

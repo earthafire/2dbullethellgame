@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEditor.AssetImporters;
 using UnityEngine;
@@ -50,15 +51,10 @@ public class PlayerAttributes : MonoBehaviour
         totalStats[Attribute.experience] = 0f;
         totalStats[Attribute.level] = 0f;
         totalStats[Attribute.pickUpRange] = 0f;
-        totalStats[Attribute.agility] = 0f;
-        totalStats[Attribute.intellect] = 0f;
-        totalStats[Attribute.stamina] = 0f;
-        totalStats[Attribute.strength] = 0f;
     }
 
     public void takeDamage(int damage)
     {
-        printStats();
         if (Time.timeScale == 0)
         {
             return;
@@ -150,13 +146,16 @@ public class PlayerAttributes : MonoBehaviour
         }
     }
 
+    [Button("Print Stats")]
     public void printStats()
     {
-        Debug.Log("STAT\t\tVALUE");
+        updateTotalStats();
+        String temp = "STAT\t\tVALUE\n";
         foreach (KeyValuePair<Attribute, float> attributeFloatPair in totalStats)
         {
-            Debug.Log(String.Format("{0}\t\t{1}", attributeFloatPair.Key, attributeFloatPair.Value));
+            temp += String.Format("{0}\t\t{1}\n", attributeFloatPair.Key, attributeFloatPair.Value);
         }
+        Debug.Log(temp);
     }
 }
 
