@@ -51,5 +51,4 @@ MonoBehaviour:
   title: Hit Harder
   description: Increases damage by 10%
   unitsToUpgrade: []
-  isPercent: 0
-  tier: 0
+  isPercent: 1

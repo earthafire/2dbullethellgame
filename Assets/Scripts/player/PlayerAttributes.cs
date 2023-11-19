@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEditor.AssetImporters;
@@ -13,8 +14,8 @@ public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
     public Attributes _playerAttributes;
-    public Dictionary<Attribute, float> _localAttributes;
     public int _experienceUntilLevelUp = 100;
+    public float currentHealth;
     private float damageModifier = 1;
     public ParticleSystem experienceParticles;
     public ParticleSystem damageParticles;
@@ -23,35 +24,33 @@ public class PlayerAttributes : MonoBehaviour
     LevelUp levelUp;
     CircleCollider2D _pickUpRange;
 
-    public Dictionary<Attribute, float> totalStats = new Dictionary<Attribute, float>();
+    public Dictionary<Attribute, float> totalStats = new Dictionary<Attribute, float>() { };
 
 
     void Start()
     {
-        wipeTotalStats();
+        updateTotalStats();
 
         _pickUpRange = transform.GetChild(1).GetComponent<CircleCollider2D>();
 
         _playerAttributes.upgradeApplied += UpgradeApplied;
 
         levelUp = uI.GetComponent<LevelUp>();
-        _localAttributes = new Dictionary<Attribute, float>(_playerAttributes.current_attributes);
 
         //XPparticles = gameObject.GetComponent<ParticleSystem>();
-        healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
 
+        currentHealth = totalStats[Attribute.health];
+        healthbar.SetMaxHealth(totalStats[Attribute.health]);
+        healthbar.SetHealth(currentHealth);
     }
     private void OnApplicationQuit() => _playerAttributes.ResetAppliedUpgrades();
 
     public void wipeTotalStats()
     {
-        totalStats[Attribute.health] = 0f;
-        totalStats[Attribute.moveSpeed] = 0f;
-        totalStats[Attribute.damage] = 0f;
-        totalStats[Attribute.acceleration] = 0f;
-        totalStats[Attribute.experience] = 0f;
-        totalStats[Attribute.level] = 0f;
-        totalStats[Attribute.pickUpRange] = 0f;
+        foreach (Attribute key in totalStats.Keys.ToArray())
+        {
+            totalStats[key] = 0;
+        }
     }
 
     public void takeDamage(int damage)
@@ -61,14 +60,11 @@ public class PlayerAttributes : MonoBehaviour
             return;
         }
 
-        if (_localAttributes.TryGetValue(Attribute.health, out float health))
-        {
-            _localAttributes[Attribute.health] = health - damage;
-            healthbar.SetHealth(health);
-            damageParticles.Emit(damage);
-        }
+        currentHealth -= damage;
+        healthbar.SetHealth(currentHealth);
+        damageParticles.Emit(damage);
 
-        if (health < 1)
+        if (currentHealth < 1)
         {
             Destroy(gameObject);
         }
@@ -76,30 +72,24 @@ public class PlayerAttributes : MonoBehaviour
 
     public void addExperience(int experienceToAdd)
     {
-        if (_localAttributes.TryGetValue(Attribute.experience, out float _exp))
-        {
-            _localAttributes[Attribute.experience] = _exp + (float)experienceToAdd;
-        }
 
-        if (_localAttributes[Attribute.experience] > _experienceUntilLevelUp)
+        totalStats[Attribute.experience] += (float)experienceToAdd;
+
+
+        if (totalStats[Attribute.experience] > _experienceUntilLevelUp)
         {
             DoLevelUp();
-            _localAttributes[Attribute.experience] = 0;
+            totalStats[Attribute.experience] = 0;
         }
 
     }
     public void DoLevelUp()
     {
         experienceParticles.Emit(_experienceUntilLevelUp);
-
         _experienceUntilLevelUp = (int)((float)_experienceUntilLevelUp * 1.1f);
 
-        if (_localAttributes.TryGetValue(Attribute.level, out float level))
-        {
-
-            _localAttributes[Attribute.level] = level + 1.0f;
-            levelUp.HandleLevelUp();
-        }
+        totalStats[Attribute.level] += 1.0f;
+        levelUp.HandleLevelUp();
     }
 
     private void UpgradeApplied(Attributes attribute, UpgradeAttribute upgradeAttribute)
@@ -107,19 +97,18 @@ public class PlayerAttributes : MonoBehaviour
 
         if (upgradeAttribute.upgradeToApply.TryGetValue(Attribute.health, out float value))
         {
-            if (upgradeAttribute.isPercent)
-            {
-                _localAttributes[Attribute.health] *= (value / 100f) + 1f;
-            }
-            else
-            {
-                _localAttributes[Attribute.health] += value;
-            }
-            healthbar.SetMaxHealth(_playerAttributes.GetAttribute(Attribute.health));
-            healthbar.SetHealth(_localAttributes[Attribute.health]);
+            // Save old health stats
+            float oldMaxHealth = healthbar.slider.maxValue;
+            float newMaxHealth = _playerAttributes.GetAttribute(Attribute.health);
+
+            // Calculate how much the health increased, increase max health by the same amount
+            float healthDelta = newMaxHealth - oldMaxHealth;
+            healthbar.SetMaxHealth(newMaxHealth);
+            currentHealth += healthDelta;
+            healthbar.SetHealth(currentHealth);
         }
         // GetAttribute finds the Attribute inside of either _playerAttributes dictionary (Current or Default)
-        _pickUpRange.radius = _playerAttributes.GetAttribute(Attribute.pickUpRange);
+        _pickUpRange.radius = totalStats[Attribute.pickUpRange];
 
         updateTotalStats();
     }
@@ -142,16 +131,23 @@ public class PlayerAttributes : MonoBehaviour
         }
 
         // add XP choices values to totalStats
-        foreach (KeyValuePair<Attribute, float> attributeFloatPair in _localAttributes)
+        foreach (KeyValuePair<Attribute, float> attributeFloatPair in _playerAttributes.current_attributes)
         {
-            totalStats[attributeFloatPair.Key] += attributeFloatPair.Value;
+            if (totalStats.ContainsKey(attributeFloatPair.Key))
+            {
+                totalStats[attributeFloatPair.Key] += _playerAttributes.GetAttribute(attributeFloatPair.Key);
+            }
+            else
+            {
+                totalStats[attributeFloatPair.Key] = _playerAttributes.GetAttribute(attributeFloatPair.Key);
+            }
+
         }
     }
 
     [Button("Print Stats")]
     public void printStats()
     {
-        updateTotalStats();
         String temp = "STAT\t\tVALUE\n";
         foreach (KeyValuePair<Attribute, float> attributeFloatPair in totalStats)
         {

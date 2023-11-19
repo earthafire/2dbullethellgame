@@ -5795,7 +5795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976000ae7673a61459e9412a24277965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAttributes: {fileID: 1085592478}
+  healthbar: {fileID: 465013051}
   _timer: 0
   _playerLevelTMP: {fileID: 690202457}
   _currentExperienceTMP: {fileID: 1864841075}
@@ -30066,17 +30066,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085592457}
   m_Enabled: 1
---- !u!114 &1085592478 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6931282082646386449, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-  m_PrefabInstance: {fileID: 1059254809}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085592457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5337d6082810c94b9e6c38688e9e4c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1085592490
 MonoBehaviour:
   m_ObjectHideFlags: 0
