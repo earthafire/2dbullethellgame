@@ -32,8 +32,15 @@ public class PlayerAbilityManager : MonoBehaviour
     /// </summary>
     /// 
     private Dictionary<ActivatableAbilityType, ActivatableAbility> abilities;
-    // Inventory
+
+    /// <summary>
+    /// Inventory equipment (10 slots, top -> bottom, left -> right, 0 - 9)
+    /// </summary>
     private InventoryObject equipment;
+
+    /// <summary>
+    /// Map of AbilitySlots (keybinds) to ints (Equipment slots)
+    /// </summary>
     private Dictionary<AbilitySlot, int> EquippedAbilities = new Dictionary<AbilitySlot, int>();
 
     void Start()
@@ -53,13 +60,17 @@ public class PlayerAbilityManager : MonoBehaviour
         // EquippedAbilities[AbilitySlot.Q] = null;
         // EquippedAbilities[AbilitySlot.E] = null;
         // EquippedAbilities[AbilitySlot.R] = null;
+        // EquippedAbilities[AbilitySlot.Shift] = null;
         EquippedAbilities[AbilitySlot.LeftClick] = 4;
         EquippedAbilities[AbilitySlot.RightClick] = 6;
-        // EquippedAbilities[AbilitySlot.Shift] = null;
         EquippedAbilities[AbilitySlot.Space] = 9;
     }
 
-    void getAbilityFromEquipment(int equipmentID)
+    /// <summary>
+    /// given an int (equipmentID) returns the type of ability in that slot
+    /// </summary>
+    /// <param name="equipmentID">equipment slot to check</param>
+    void getAbilityFromEquipmentID(int equipmentID)
     {
         abilities[equipment.GetSlots[equipmentID].item.Ability].Activate();
     }
