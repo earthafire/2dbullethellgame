@@ -54,6 +54,7 @@ public class PlayerAbilityManager : MonoBehaviour
             {ActivatableAbilityType.WAND, gameObject.AddComponent<Wand>()},
             {ActivatableAbilityType.FROSTPULSE, gameObject.AddComponent<FrostPulse>()},
             {ActivatableAbilityType.DASH, gameObject.AddComponent<Dash>()},
+            {ActivatableAbilityType.ELECTRICSPIN, gameObject.AddComponent<ElectricSpinManager>()}
         };
 
         // initialize all abilities available
@@ -115,4 +116,5 @@ public enum ActivatableAbilityType
     MELEE,
     DASH,
     FROSTPULSE,
+    ELECTRICSPIN
 }
