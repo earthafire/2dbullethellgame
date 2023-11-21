@@ -23,6 +23,11 @@ public class ElectricSpinInstance : ActivatableAbility
     // Update is called once per frame
     void Update()
     {
+        if (player == null)
+        {
+            return;
+        }
+
         duration -= Time.deltaTime;
         if(duration < 0)
         {
