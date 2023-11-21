@@ -115,11 +115,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7564526836269142197}
+  - component: {fileID: 1050566836485857498}
   - component: {fileID: 751600108865197343}
   - component: {fileID: -4244163558852138485}
   - component: {fileID: -5055874047610722978}
   - component: {fileID: 9167168125111237265}
-  - component: {fileID: 1050566836485857498}
   m_Layer: 6
   m_Name: ElectricSpin
   m_TagString: weapon
@@ -143,6 +143,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1050566836485857498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7827361726292339411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5abff017f38799449433cb295bbab67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownTimeMax: 200
+  duration: 5
+  distance: 0.5
+  damage: 100
+  speedMultiplier: 300
+  rotationSpeed: 90
 --- !u!50 &751600108865197343
 Rigidbody2D:
   serializedVersion: 4
@@ -322,20 +340,3 @@ CircleCollider2D:
   m_Offset: {x: -0.01, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &1050566836485857498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7827361726292339411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5abff017f38799449433cb295bbab67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownTimeMax: 200
-  duration: 5
-  distance: 1
-  damage: 100
-  speedMultiplier: 300

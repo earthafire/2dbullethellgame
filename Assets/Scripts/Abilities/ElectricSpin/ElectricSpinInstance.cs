@@ -11,9 +11,14 @@ public class ElectricSpinInstance : ActivatableAbility
     private float time = 0.0f;
     public Action<Enemy> onEnemyHit;
     public float speedMultiplier = 100.0f;
+    public float rotationSpeed = 105f; //in degrees per second
     GameObject player;
-    
+    Transform orbiter;
 
+    private void Awake()
+    {
+        orbiter = this.transform;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +34,26 @@ public class ElectricSpinInstance : ActivatableAbility
         }
 
         duration -= Time.deltaTime;
-        if(duration < 0)
+        if (duration < 0)
         {
-           // gameObject.SetActive(false);
+            // gameObject.SetActive(false);
         }
-        
-        transform.RotateAround(player.transform.position, Vector3.forward, Time.deltaTime * speedMultiplier);
+
+        // Rotate the 'orbiter' around the player
+        orbiter.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+
+        // Calculate the rotation in radians
+        float angle = Mathf.Deg2Rad * orbiter.rotation.eulerAngles.z;
+
+        // Calculate the new position for 'orbiter' based on the angle and distance
+        Vector3 newPosition = new Vector3(
+            player.transform.position.x + distance * Mathf.Cos(angle),
+            player.transform.position.y + distance * Mathf.Sin(angle),
+            orbiter.position.z
+        );
+
+        // Set the new position for 'orbiter'
+        orbiter.position = newPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
