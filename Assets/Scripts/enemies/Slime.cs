@@ -19,6 +19,10 @@ public class Slime : Enemy
     new void Update()
     {
         base.Update();
+        if (suspendActions)
+        {
+            return;
+        }
         SlimeMove();
     }
 

@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+
     public GameObject player;
     public Rigidbody2D rb2d;
     private ParticleSystem particles;
@@ -12,6 +14,12 @@ public class Enemy : MonoBehaviour
     public Attributes attributes;
     public float knockbackDuration = .25f;
     public float speed_animation_multiplier = 1;
+    // Define a UnityEvent that accepts a GameObject parameter
+    [System.Serializable]
+    public class GameObjectUnityEvent : UnityEvent<GameObject> { }
+    public GameObjectUnityEvent OnEnemyDeath = new GameObjectUnityEvent();
+    //suspends all actions
+    public bool suspendActions = false;
 
     public void Start()
     {
@@ -27,9 +35,10 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
+        //enemy has strayed too far from the player
         if (player != null && Vector3.Distance(transform.position, player.transform.position) > 8)
         {
-            Destroy(gameObject);
+            GetDeath();
         }
     }
 
@@ -98,6 +107,7 @@ public class Enemy : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        OnEnemyDeath.Invoke(this.gameObject);
         yield return new WaitForSeconds(.5f);
         Destroy(gameObject);
     }

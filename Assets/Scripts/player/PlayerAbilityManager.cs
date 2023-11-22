@@ -43,8 +43,10 @@ public class PlayerAbilityManager : MonoBehaviour
     /// </summary>
     private Dictionary<AbilitySlot, int> EquippedAbilities = new Dictionary<AbilitySlot, int>();
 
+    public bool suspendAbilities;
     void Start()
     {
+        suspendAbilities = false;
         equipment = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().equipment;
 
         // instantiate all abilities, for ease of swapping them out later
@@ -81,7 +83,10 @@ public class PlayerAbilityManager : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        DetectAbilitiesPressed();
+        if (!suspendAbilities)
+        {
+            DetectAbilitiesPressed();
+        }
     }
 
     /// <summary>

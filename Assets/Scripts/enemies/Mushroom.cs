@@ -19,6 +19,10 @@ public class Mushroom : Enemy
     new void Update()
     {
         base.Update();
+        if (suspendActions)
+        {
+            return;
+        }
         Move();
     }
 
