@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricSpinInstance : ActivatableAbility
+public class ElectricSpinInstance : MonoBehaviour
 {
     public float duration = 5.0f;
     public float distance = 1.0f;
-    public int damage = 10;
-    private float time = 0.0f;
     public Action<Enemy> onEnemyHit;
-    public float speedMultiplier = 100.0f;
     public float rotationSpeed = 105f; //in degrees per second
     GameObject player;
     Transform orbiter;
@@ -36,8 +33,24 @@ public class ElectricSpinInstance : ActivatableAbility
         duration -= Time.deltaTime;
         if (duration < 0)
         {
-            // gameObject.SetActive(false);
+            Destroy(gameObject);
         }
+
+        Orbit();
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == 7) // Enemy Layer
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            onEnemyHit?.Invoke(enemy);
+        }
+    }
+
+    private void Orbit()
+    {
 
         // Rotate the 'orbiter' around the player
         orbiter.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
@@ -54,24 +67,5 @@ public class ElectricSpinInstance : ActivatableAbility
 
         // Set the new position for 'orbiter'
         orbiter.position = newPosition;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.layer == 7)
-        {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.TakeDamage(damage);
-            // this is just because it's not calling activated right now
-            onEnemyHit?.Invoke(enemy);
-        }
-    }
-    public override void Activated()
-    {
-        onEnemyHit += Hit;
-    }
-    private void Hit(Enemy enemy)
-    {
-        enemy.TakeDamage(damage);
     }
 }

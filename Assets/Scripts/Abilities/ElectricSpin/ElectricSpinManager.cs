@@ -14,20 +14,16 @@ public class ElectricSpinManager : ActivatableAbility
     {
         electricSpinObj = (GameObject)Resources.Load("Prefabs/Weapons/ElectricSpin/ElectricSpin", typeof(GameObject));
         player = GameObject.Find("Player");
+        cooldownTimeMax = .5f;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-    private void Hit(Enemy enemy)
-    {
-        enemy.TakeDamage(damage);
-    }
+    
     public override void Activated()
     {
         ElectricSpinInstance instance = Instantiate(electricSpinObj, player.transform.position, Quaternion.identity).GetComponent<ElectricSpinInstance>();
         instance.onEnemyHit += Hit;
+    }
+    private void Hit(Enemy enemy)
+    {
+        enemy.TakeDamage(damage);
     }
 }
