@@ -25,7 +25,7 @@ public class PlayerAttributes : MonoBehaviour
     CircleCollider2D _pickUpRange;
 
     public static Dictionary<Attribute, float> stats = new Dictionary<Attribute, float>() { };
-
+    public UnityEvent OnPlayerDeath =  new UnityEvent();
 
     void Start()
     {
@@ -66,9 +66,18 @@ public class PlayerAttributes : MonoBehaviour
 
         if (currentHealth < 1)
         {
-            Destroy(gameObject);
+            //trigger the OnPlayerDeath event for any scripts that might listen for it
+            OnPlayerDeath.Invoke();
+            PlayerDeathHandler playerDeathHandler = new PlayerDeathHandler();
+            playerDeathHandler.HandleDeath(this);
+            //maybe add death FX
+            //Trigger the UI to show some options
         }
     }
+
+   
+   
+
 
     public void addExperience(int experienceToAdd)
     {

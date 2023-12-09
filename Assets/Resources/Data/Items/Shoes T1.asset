@@ -54,3 +54,5 @@ MonoBehaviour:
   data:
     Name: 
     Id: 6
+    Ability: 3
+  ability: 3

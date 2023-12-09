@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 6fb5814fc0799aa4bb03d30f0f988888
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - electricSpinObj: {fileID: 7827361726292339411, guid: 4d878b23a3af1b54cbc6b880aab0aa34, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

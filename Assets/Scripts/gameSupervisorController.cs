@@ -1,13 +1,20 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.Events;
+/// <summary>
+/// There can be only one of these in the scene, as there is a static reference to the instance (singleton)
+/// </summary>
 public class gameSupervisorController : MonoBehaviour
 {
+    //singleton
+    public static gameSupervisorController instance;
+
     public GameObject[] regularEnemies;
     public GameObject[] bossEnemies;
     private GameObject player;
+    public List<GameObject> spawnedEnemiesInScene = new List<GameObject>();
     
     [SerializeField] private int EnemiesPerCooldown = 40;
     [SerializeField] private float SpawnCooldownSeconds = 5;
@@ -22,6 +29,14 @@ public class gameSupervisorController : MonoBehaviour
 
     private System.Random random = new System.Random();
 
+    public bool suspendSpawning;
+
+
+    private void Awake()
+    {
+        instance = this;
+        suspendSpawning = false;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +49,10 @@ public class gameSupervisorController : MonoBehaviour
         gameTimer += Time.deltaTime;
 
         if (player == null)
+        {
+            return;
+        }
+        if (suspendSpawning)
         {
             return;
         }
@@ -84,27 +103,38 @@ public class gameSupervisorController : MonoBehaviour
     }
 
     int IncreaseEnemyTier(){
-
         if(GetEnemyCountModifier() > 0){
-
             if(enemyTier + 1 < regularEnemies.Length){
-
-                        enemyTier++;
-                        return enemyTier;
-                    }
-                        return regularEnemies.Length;
-
+                enemyTier++;
+                return enemyTier;
+            }
+            return regularEnemies.Length;
         }
-
         return 0;
-
-      
-        
     }
     void spawnEntity(GameObject entity)
     {
         Vector3 new_position = generateRandRingPosition(player.transform.position, ringSize);
-        GameObject new_slime = Instantiate(entity, new_position, Quaternion.identity);
+        GameObject spawnedEnemy = Instantiate(entity, new_position, Quaternion.identity);
+        spawnedEnemiesInScene.Add(spawnedEnemy);
+        //subscribe to future death events to remove us from the spawn list
+        if(spawnedEnemy.TryGetComponent(out Enemy enemy))
+        {
+            enemy.OnEnemyDeath.AddListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
+        }
+    }
+
+    private void RemoveSelfFromSpawnedEnemiesInScene(GameObject caller)
+    {
+        if (spawnedEnemiesInScene.Contains(caller))
+        {
+            spawnedEnemiesInScene.Remove(caller);
+        }
+        //remove the listener also, so it doesn't tie up memory after it is dead
+        if (caller.TryGetComponent(out Enemy enemy))
+        { 
+            enemy.OnEnemyDeath.RemoveListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
+        }
     }
 
     private Vector3 generateRandRingPosition(Vector3 center, float distance)
