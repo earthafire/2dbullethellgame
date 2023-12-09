@@ -16,13 +16,13 @@ MonoBehaviour:
   randomSeed: 1
   seed: 0
   fillAmount: 45
-  smoothAmount: 5
-  clearAmount: 69
+  smoothAmount: 1
+  clearAmount: 80
   interval: 6
   minPathWidth: 5
   maxPathWidth: 30
-  maxPathChange: 1
-  roughness: 44
+  maxPathChange: 2
+  roughness: 25
   windyness: 100
   edgesAreWalls: 1
-  modifier: 0.502
+  modifier: 0.353
