@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,8 +14,9 @@ public class Bullet : MonoBehaviour
     // Movement parameters
     public float duration = 3f;
     public float speed = 1f;
-    public float direction = 0;
+    private float direction = 0;
 
+    private GameObject explosion;
     private ParticleSystem particles;
     public bool piercingEnabled = true;
     private int pierceAmount = 10;
@@ -22,12 +24,15 @@ public class Bullet : MonoBehaviour
     float detectionRange = .5f;
     Collider2D[] detections;
 
+
     public void Start()
     {
         detections = new Collider2D[32];
 
         sound.sfxToPlay.PlaySFX();
         particles = gameObject.GetComponent<ParticleSystem>();
+        explosion = (GameObject)Resources.Load("Prefabs/Weapons/Fireball/Explosion", typeof(GameObject));
+
     }
 
     // Update is called once per frame
@@ -55,23 +60,19 @@ public class Bullet : MonoBehaviour
         transform.Translate(speed * Time.deltaTime * Vector3.right);
     }
 
-    public void ExplosionParticles()
-    {
-        particles.Play();
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         try
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            // Calling an event that the ability can subscribe to
+            
             if (enemy.gameObject.layer == 7) // Enemy layer
             {
                 DetectClosestEnemy();
-                //ExplosionParticles();
                 sound.sfxToPlay.PlaySFX();
-                onEnemyHit?.Invoke(enemy);
+                
+                onEnemyHit?.Invoke(enemy);// Calling an event that the ability can subscribe to
 
                 if (piercingEnabled)
                 {
@@ -80,6 +81,7 @@ public class Bullet : MonoBehaviour
                 }
                 else
                 {
+                    Explode();
                     Destroy(gameObject);
                 }
             }
@@ -126,5 +128,9 @@ public class Bullet : MonoBehaviour
         Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * direction;
         Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 45);
+    }
+    private void Explode()
+    {
+        Instantiate(explosion, transform.position, Quaternion.Euler(0f, 0f, 0f));
     }
 }

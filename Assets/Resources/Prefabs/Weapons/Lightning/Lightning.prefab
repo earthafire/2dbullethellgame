@@ -187,7 +187,6 @@ MonoBehaviour:
   sound: {fileID: -4244163558852138485}
   duration: 3
   speed: 1
-  direction: 0
   piercingEnabled: 1
 --- !u!61 &2434289733165287961
 BoxCollider2D:
