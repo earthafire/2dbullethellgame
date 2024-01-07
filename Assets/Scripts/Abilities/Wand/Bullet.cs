@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
 
     public void Start()
     {
-        detections = new Collider2D[3];
+        detections = new Collider2D[32];
 
         sound.sfxToPlay.PlaySFX();
         particles = gameObject.GetComponent<ParticleSystem>();
