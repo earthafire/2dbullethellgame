@@ -13,7 +13,7 @@ using UnityEngine.UIElements;
 public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
-    public Attributes _playerAttributes;
+    public Attributes attributes;
     public int _experienceUntilLevelUp = 100;
     public float currentHealth;
     private float damageModifier = 1;
@@ -33,7 +33,7 @@ public class PlayerAttributes : MonoBehaviour
 
         _pickUpRange = transform.GetChild(1).GetComponent<CircleCollider2D>();
 
-        _playerAttributes.upgradeApplied += UpgradeApplied;
+        attributes.upgradeApplied += UpgradeApplied;
 
         levelUp = uI.GetComponent<LevelUp>();
 
@@ -43,7 +43,7 @@ public class PlayerAttributes : MonoBehaviour
         healthbar.SetMaxHealth(stats[Attribute.maxHealth]);
         healthbar.SetHealth(currentHealth);
     }
-    private void OnApplicationQuit() => _playerAttributes.ResetAppliedUpgrades();
+    private void OnApplicationQuit() => attributes.ResetAppliedUpgrades();
 
     public void wipeTotalStats()
     {
@@ -75,10 +75,6 @@ public class PlayerAttributes : MonoBehaviour
         }
     }
 
-   
-   
-
-
     public void addExperience(int experienceToAdd)
     {
 
@@ -108,7 +104,7 @@ public class PlayerAttributes : MonoBehaviour
         {
             // Save old health stats
             float oldMaxHealth = healthbar.slider.maxValue;
-            float newMaxHealth = _playerAttributes.GetAttribute(Attribute.maxHealth);
+            float newMaxHealth = attributes.GetAttribute(Attribute.maxHealth);
 
             // Calculate how much the health increased, increase max health by the same amount
             float healthDelta = newMaxHealth - oldMaxHealth;
@@ -140,15 +136,15 @@ public class PlayerAttributes : MonoBehaviour
         }
 
         // add XP choices values to totalStats
-        foreach (KeyValuePair<Attribute, float> attributeFloatPair in _playerAttributes.current_attributes)
+        foreach (KeyValuePair<Attribute, float> attributeFloatPair in attributes.current_attributes)
         {
             if (stats.ContainsKey(attributeFloatPair.Key))
             {
-                stats[attributeFloatPair.Key] += _playerAttributes.GetAttribute(attributeFloatPair.Key);
+                stats[attributeFloatPair.Key] += attributes.GetAttribute(attributeFloatPair.Key);
             }
             else
             {
-                stats[attributeFloatPair.Key] = _playerAttributes.GetAttribute(attributeFloatPair.Key);
+                stats[attributeFloatPair.Key] = attributes.GetAttribute(attributeFloatPair.Key);
             }
 
         }

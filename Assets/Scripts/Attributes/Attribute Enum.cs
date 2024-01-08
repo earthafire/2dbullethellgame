@@ -15,7 +15,8 @@ public enum Attribute
     acceleration,
     experience,
     level,
-    pickUpRange
+    pickUpRange,
+    cooldown
 }
 
 
