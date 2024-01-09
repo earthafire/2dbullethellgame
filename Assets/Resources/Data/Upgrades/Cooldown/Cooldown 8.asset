@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b23f3711872c1f43b0b99974c4209b0, type: 3}
-  m_Name: Cooldown 1
+  m_Name: Cooldown 8
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -49,7 +49,7 @@ MonoBehaviour:
       Data: 7
     - Name: $v
       Entry: 4
-      Data: 5
+      Data: 30
     - Name: 
       Entry: 8
       Data: 
@@ -61,7 +61,7 @@ MonoBehaviour:
       Data: 
   icon: {fileID: -1447097193, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
   title: Spellslinger
-  description: Increase Ability Haste by 5.
+  description: 'Increase Ability Haste by 30. '
   unitsToUpgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
   isPercent: 0

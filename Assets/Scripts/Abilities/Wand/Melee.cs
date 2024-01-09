@@ -17,7 +17,7 @@ public class Melee : ActivatableAbility
         animator = GetComponent<Animator>();
         meleeObj = (GameObject)Resources.Load("Prefabs/Weapons/Wands/Melee", typeof(GameObject));
         player = GameObject.Find("Player");
-        base.cooldownTimeMax = .5f;
+        base.cooldownTimeMax = 1f;
     }
 
     public override void Activated()

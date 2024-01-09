@@ -24,7 +24,7 @@ public class Wand : ActivatableAbility
         player = GameObject.Find("Player");
         playerBaseDamage = (int)PlayerAttributes.stats[Attribute.damage];
 
-        base.cooldownTimeMax = .2f;
+        base.cooldownTimeMax = .75f;
         //projectile = (GameObject)Resources.Load("Prefabs/Weapons/Lightning/Lightning", typeof(GameObject));
         projectile = (GameObject)Resources.Load("Prefabs/Weapons/Fireball/Fireball", typeof(GameObject));
     }
