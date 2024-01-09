@@ -43,20 +43,20 @@ public class XPManager : MonoBehaviour
 
     public void addExperience(int experienceToAdd)
     {
-        XPGainedEvent?.Invoke(player);
-
         currentXp += experienceToAdd;
 
         if (currentXp  > xpUntilLevelUp)
         {
             DoLevelUp();
         }
+
+        XPGainedEvent?.Invoke(player);
     }
     public void DoLevelUp()
     {
-        LevelUpEvent?.Invoke(player);
-
         level += 1;
+
+        LevelUpEvent?.Invoke(player);
 
         xpParticles.Emit(xpUntilLevelUp);
 
@@ -65,6 +65,7 @@ public class XPManager : MonoBehaviour
         levelUp.HandleLevelUp();
 
         currentXp = 0;
+        XPGainedEvent?.Invoke(player);
     }
 
 }

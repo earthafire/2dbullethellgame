@@ -16,15 +16,15 @@ public class TextMeshPro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject gameSupervisor = GameObject.Find("gameSupervisor");
-        _gameSupervisorController = gameSupervisor.GetComponent<gameSupervisorController>();
-
+        Initialize();
+    }
+    private void Initialize()
+    {
         xpManager.XPGainedEvent += SetXPText;
         xpManager.LevelUpEvent += SetLevelText;
 
         SetLevelText(GlobalReferences.player);
         SetXPText(GlobalReferences.player);
-
     }
 
     private void SetLevelText(GameObject @object)
@@ -41,7 +41,7 @@ public class TextMeshPro : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        _timer = _gameSupervisorController.gameTimer;
+        _timer = GlobalReferences.gameSupervisorController.gameTimer;
 
         _timerTMP.SetText("{0:2}", _timer);
 

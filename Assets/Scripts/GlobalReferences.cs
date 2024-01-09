@@ -6,6 +6,7 @@ public class GlobalReferences : MonoBehaviour
 {
     public static XPManager xpManager;
     public static GameObject player;
+    public static gameSupervisorController gameSupervisorController;
     private void Awake()
     {
         #region Singleton
