@@ -14,19 +14,20 @@ public class PlayerAttributes : MonoBehaviour
 {
     public HealthBar healthbar;
     public Attributes attributes;
-    public int _experienceUntilLevelUp = 100;
     public float currentHealth;
-    private float damageModifier = 1;
-    public ParticleSystem experienceParticles;
     public ParticleSystem damageParticles;
     [SerializeField]
     private GameObject uI;
-    LevelUp levelUp;
     CircleCollider2D _pickUpRange;
 
     public static Dictionary<Attribute, float> stats = new Dictionary<Attribute, float>() { };
+
     public UnityEvent OnPlayerDeath =  new UnityEvent();
 
+    public void Awake()
+    {
+        GlobalReferences.player = this.gameObject;
+    }
     void Start()
     {
         updateTotalStats();
@@ -34,10 +35,6 @@ public class PlayerAttributes : MonoBehaviour
         _pickUpRange = transform.GetChild(1).GetComponent<CircleCollider2D>();
 
         attributes.upgradeApplied += UpgradeApplied;
-
-        levelUp = uI.GetComponent<LevelUp>();
-
-        //XPparticles = gameObject.GetComponent<ParticleSystem>();
 
         currentHealth = stats[Attribute.maxHealth];
         healthbar.SetMaxHealth(stats[Attribute.maxHealth]);
@@ -73,28 +70,6 @@ public class PlayerAttributes : MonoBehaviour
             //maybe add death FX
             //Trigger the UI to show some options
         }
-    }
-
-    public void addExperience(int experienceToAdd)
-    {
-
-        stats[Attribute.experience] += (float)experienceToAdd;
-
-
-        if (stats[Attribute.experience] > _experienceUntilLevelUp)
-        {
-            DoLevelUp();
-            stats[Attribute.experience] = 0;
-        }
-
-    }
-    public void DoLevelUp()
-    {
-        experienceParticles.Emit(_experienceUntilLevelUp);
-        _experienceUntilLevelUp = (int)((float)_experienceUntilLevelUp * 1.1f);
-
-        stats[Attribute.level] += 1.0f;
-        levelUp.HandleLevelUp();
     }
 
     private void UpgradeApplied(Attributes attribute, UpgradeAttribute upgradeAttribute)

@@ -17,7 +17,9 @@ public class experience : InteractableLoot
     public void Start()
     {
         sound = GetComponent<SoundComponent>();
+
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 1);
+
     }
 
     public void SetTier(int tierNum)
@@ -64,9 +66,7 @@ public class experience : InteractableLoot
     public override void OnPickUp(GameObject playerObject)
     {
         sound.sfxToPlay.PlaySFX();
-        PlayerAttributes player = playerObject.GetComponent<PlayerAttributes>();
-        player.addExperience(experienceAmount);
-        //FindObjectOfType<AudioManager>().Play("LootPickUp");
+        GlobalReferences.xpManager.addExperience(experienceAmount);
         Destroy(gameObject);
     }
 }

@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
         damage = attributes.GetAttribute(Attribute.damage);
 
         particles = gameObject.GetComponent<ParticleSystem>();
-        player = GameObject.FindWithTag("Player");
+        player = GlobalReferences.player;
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.freezeRotation = true;
     }
