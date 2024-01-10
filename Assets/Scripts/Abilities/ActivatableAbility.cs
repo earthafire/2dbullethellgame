@@ -67,7 +67,7 @@ public abstract class ActivatableAbility : MonoBehaviour
         // this will be .10 or .66 or something, its a percentage
         float percentageReduction = 100 / (100 + PlayerAttributes.stats[Attribute.cooldown]);
         float modifiedCooldown = baseCooldown * percentageReduction;
-        Debug.Log("CD% " + percentageReduction + " CD: " + modifiedCooldown);
+        // Debug.Log("CD% " + percentageReduction + " CD: " + modifiedCooldown);
 
         return modifiedCooldown;
     }
