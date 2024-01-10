@@ -55,15 +55,28 @@ public class Enemy : MonoBehaviour
         //rb2d.velocity = Vector2.zero;
     }
 
-    public bool TakeDamage(int playerDamage)
+    /// <summary>
+    /// weapons call this method to deal damage to enemies
+    /// </summary>
+    /// <param name="basePlayerDamage">base damage of weapon</param>
+    /// <returns>true if damage was taken</returns>
+    public bool TakeDamage(int basePlayerDamage)
     {
+        // adjust damage dealt by applying modifiers
+        // (rounding up to nearest int)
+        float damageModifier = 1 + PlayerAttributes.stats[Attribute.damage] / 100;
+        int modifiedPlayerDamage = (int)Math.Ceiling(basePlayerDamage * damageModifier);
+
+        // uncomment to view damage modification
+        // Debug.Log("base damage: " + basePlayerDamage + ", actual damage: " + modifiedPlayerDamage);
+
         if (Time.timeScale == 0)
         {
             return false;
         }
 
-        health -= playerDamage;
-        particles.Emit(playerDamage);
+        health -= modifiedPlayerDamage;
+        particles.Emit(modifiedPlayerDamage);
 
         if (health <= 0)
         {
