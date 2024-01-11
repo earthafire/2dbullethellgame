@@ -56,36 +56,29 @@ public class Bullet : MonoBehaviour
         transform.Translate(speed * Time.deltaTime * Vector3.right);
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        try
-        {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            
-            if (enemy.gameObject.layer == 7) // Enemy layer
-            {
-                DetectClosestEnemy();
+       
+          if (other.gameObject.layer == 7) // Enemy layer
+          {
+                Enemy enemy = other.gameObject.GetComponent<Enemy>();
+
                 sound.sfxToPlay.PlaySFX();
                 
                 onEnemyHit?.Invoke(enemy);// Calling an event that the ability can subscribe to
 
                 if (piercingEnabled)
                 {
-                    piercingCount();
+                    DetectClosestEnemy();
                     RotateTowards(DetectClosestEnemy().transform.position);
+                    piercingCount();
                 }
                 else
                 {
                     Explode();
                     Destroy(gameObject);
                 }
-            }
-        }
-        catch (System.NullReferenceException)
-        {
-            // Object is not an enemy
-        }
+          }
     }
 
     private void piercingCount()
