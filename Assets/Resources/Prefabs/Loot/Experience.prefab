@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885435694252671852}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7555341893948372761
 SpriteRenderer:
@@ -99,36 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf4b73e5c3862d45acb9d4e9879edac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier1SkinsArray:
-  - {fileID: -394751744, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 829839328, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 582662382, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: -1393053534, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 1017623470, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: -911156630, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: -455512149, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  tier2SkinsArray:
-  - {fileID: -1685357344, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 821403223, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 1393520845, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: -499915712, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 647116402, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 1747010617, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  tier3SkinsArray:
-  - {fileID: 801971664, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 1961185673, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: -1059973323, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 942235012, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  tier4SkinsArray:
-  - {fileID: -1172543148, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 1739986694, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: -1409031832, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 292704205, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  tier5SkinsArray:
-  - {fileID: -1243593037, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: -366796963, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 1766767897, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
-  - {fileID: 2076512927, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  tier1SkinsArray: []
+  tier2SkinsArray: []
+  tier3SkinsArray: []
+  tier4SkinsArray: []
+  tier5SkinsArray: []
 --- !u!61 &4224254642666846094
 BoxCollider2D:
   m_ObjectHideFlags: 0

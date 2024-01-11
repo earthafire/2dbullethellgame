@@ -5,8 +5,6 @@ using UnityEngine;
 public class Mushroom : Enemy
 {    
     private Vector3 target_position;
-    public experience xp;
-    public int xp_tier;
 
     // Start is called before the first frame update
     new void Start()
@@ -39,8 +37,7 @@ public class Mushroom : Enemy
 
     override public IEnumerator GetDeath()
     {
-        experience new_loot = Instantiate(xp, this.transform.position, Quaternion.identity).GetComponent<experience>();
-        new_loot.SetTier(xp_tier);
+
         yield return base.GetDeath();
     }
 }

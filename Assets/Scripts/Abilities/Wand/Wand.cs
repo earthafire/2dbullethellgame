@@ -10,7 +10,6 @@ public class Wand : ActivatableAbility
     private Transform firePoint;
     private GameObject player;
     private int damage = 20;
-    private int playerBaseDamage;
     Camera mainCamera;
 
     // Start is called before the first frame update
@@ -21,10 +20,10 @@ public class Wand : ActivatableAbility
         mainCamera = Camera.main;
 
         player_animator = GetComponent<Animator>();
-        player = GameObject.Find("Player");
-        playerBaseDamage = (int)PlayerAttributes.stats[Attribute.damage];
+        player = GlobalReferences.player;
 
-        base.cooldownTimeMax = .75f;
+        cooldownTimeMax = .75f;
+
         //projectile = (GameObject)Resources.Load("Prefabs/Weapons/Lightning/Lightning", typeof(GameObject));
         projectile = (GameObject)Resources.Load("Prefabs/Weapons/Fireball/Fireball", typeof(GameObject));
     }
@@ -49,6 +48,6 @@ public class Wand : ActivatableAbility
 
     public void DealDamage(Enemy enemy)
     {
-        enemy.TakeDamage(playerBaseDamage + damage);
+        enemy.TakeDamage(damage);
     }
 }

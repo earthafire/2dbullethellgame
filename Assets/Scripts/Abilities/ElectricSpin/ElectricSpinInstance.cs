@@ -7,11 +7,11 @@ public class ElectricSpinInstance : MonoBehaviour
 {
     public float duration = 5.0f;
     public float distance = 1.0f;
-    public Action<Enemy> onEnemyHit;
     public float rotationSpeed = 105f; //in degrees per second
     GameObject player;
     Transform orbiter;
 
+    public Action<Enemy> onEnemyHit;
     private void Awake()
     {
         orbiter = this.transform;
@@ -19,7 +19,7 @@ public class ElectricSpinInstance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GlobalReferences.player;
     }
 
     // Update is called once per frame

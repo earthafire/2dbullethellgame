@@ -6,11 +6,11 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-
     public GameObject player;
     public Rigidbody2D rb2d;
     private ParticleSystem particles;
     private float health, speed, damage;
+    public EnemyXpObjectData data;
     public Attributes attributes;
     public float knockbackDuration = .25f;
     public float speed_animation_multiplier = 1;
@@ -101,11 +101,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public bool GetKnockbacked(Transform damageSourcePos, float knockbackForce)
+    public bool GetKnockbacked(Transform knockbackFromPosition, float knockbackForce)
     {
-        Vector2 difference = transform.position - damageSourcePos.position;
-        difference = difference.normalized * knockbackForce * rb2d.mass;
-        rb2d.AddForce(difference, ForceMode2D.Impulse);
+        Vector2 knockbackDirection = transform.position - knockbackFromPosition.position;
+        knockbackDirection = knockbackDirection.normalized * knockbackForce * rb2d.mass;
+        rb2d.AddForce(knockbackDirection, ForceMode2D.Impulse);
 
         StartCoroutine(KnockbackRoutine());
         return true;

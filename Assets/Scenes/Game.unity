@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 785045093}
   - component: {fileID: 785045092}
   - component: {fileID: 785045094}
+  - component: {fileID: 785045095}
   m_Layer: 0
   m_Name: gameSupervisor
   m_TagString: gameSupervisor
@@ -652,6 +653,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelUp: {fileID: 874349816}
   xpParticles: {fileID: 605746981}
+--- !u!114 &785045095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785045091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4868b9ab4d2b44f9a2d0d73b3bf633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &790049164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6862544953576122033, guid: 097fe2b5655d54948b45328b1fc19db5, type: 3}

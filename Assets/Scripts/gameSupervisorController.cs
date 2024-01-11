@@ -15,7 +15,9 @@ public class gameSupervisorController : MonoBehaviour
     public GameObject[] bossEnemies;
     private GameObject player;
     public List<GameObject> spawnedEnemiesInScene = new List<GameObject>();
-    
+
+    EnemyXpObjectManager enemyXpObjectManager;
+
     [SerializeField] private int EnemiesPerCooldown = 40;
     [SerializeField] private float SpawnCooldownSeconds = 5;
 
@@ -35,12 +37,14 @@ public class gameSupervisorController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        GlobalReferences.gameSupervisorController = this;
         suspendSpawning = false;
     }
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GlobalReferences.player;
+        enemyXpObjectManager = GlobalReferences.enemyXpObjectManager;
     }
 
     // Update is called once per frame
@@ -97,7 +101,9 @@ public class gameSupervisorController : MonoBehaviour
     {
         int randInt = random.Next(bossEnemies.Length);
         return bossEnemies[randInt];
-    } */
+    } 
+*/
+
     int GetEnemyCountModifier(){
         return (int)Mathf.Floor(gameTimer / secondsUntilIncreaseEnemyCount);
     }
@@ -115,12 +121,16 @@ public class gameSupervisorController : MonoBehaviour
     void spawnEntity(GameObject entity)
     {
         Vector3 new_position = generateRandRingPosition(player.transform.position, ringSize);
+
         GameObject spawnedEnemy = Instantiate(entity, new_position, Quaternion.identity);
+
         spawnedEnemiesInScene.Add(spawnedEnemy);
+
         //subscribe to future death events to remove us from the spawn list
         if(spawnedEnemy.TryGetComponent(out Enemy enemy))
         {
             enemy.OnEnemyDeath.AddListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
+            enemy.OnEnemyDeath.AddListener((GameObject caller) => enemyXpObjectManager.SpawnXP(caller));
         }
     }
 
@@ -134,6 +144,7 @@ public class gameSupervisorController : MonoBehaviour
         if (caller.TryGetComponent(out Enemy enemy))
         { 
             enemy.OnEnemyDeath.RemoveListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
+            enemy.OnEnemyDeath.RemoveListener((GameObject caller) => enemyXpObjectManager.SpawnXP(caller));
         }
     }
 

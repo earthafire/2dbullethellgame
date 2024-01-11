@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 
-public class XPManager : MonoBehaviour
+public class PlayerXPManager : MonoBehaviour
 {
     private int level;
     public int Level {  get { return level; } }
