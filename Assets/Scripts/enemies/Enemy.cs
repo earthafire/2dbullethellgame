@@ -120,8 +120,15 @@ public class Enemy : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        OnEnemyDeath.Invoke(this.gameObject);
+
+        // Spawns XP
+        GlobalReferences.enemyXpObjectManager.SpawnXP(this.gameObject);
+
         yield return new WaitForSeconds(.5f);
+
+        // Calls assigned events from gameSupervisorController class
+        OnEnemyDeath.Invoke(this.gameObject);
+
         Destroy(gameObject);
     }
 }
