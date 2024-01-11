@@ -148,9 +148,42 @@ public class gameSupervisorController : MonoBehaviour
 
     private Vector3 generateRandRingPosition(Vector3 center, float distance)
     {
-        Vector3 randomDirection = Random.insideUnitCircle.normalized * distance;
+        Vector3 currentAngle = Random.insideUnitCircle.normalized * distance;
+        Vector3 targetPosition = center + (Vector3)currentAngle;
 
-        Vector3 targetPosition = center + (randomDirection * distance);
+        int degreesPerAttempt = 75;
+
+        for (int i = 0; i < 1800 / degreesPerAttempt; i++)
+        {
+            targetPosition = center + Quaternion.Euler(0, 0, degreesPerAttempt * i) * currentAngle;
+
+            if (isPositionInSpawnArea(targetPosition))
+            {
+                return targetPosition;
+            }
+        }
+
         return targetPosition;
+    }
+
+    /// <summary>
+    /// Checks if a Vector3 is in the playable area
+    /// </summary>
+    /// <param name="position">vector3 position to check</param>
+    /// <returns>true if within bounding box, false otherwise</returns>
+    private bool isPositionInSpawnArea(Vector3 position)
+    {
+        if (
+            position.x < -6.169815 ||
+            position.x > 5.689815 ||
+            position.y < -6.104609 ||
+            position.y > 4.956743
+            )
+        {
+            Debug.Log(position.x + " " + position.y);
+            return false;
+        }
+
+        return true;
     }
 }
