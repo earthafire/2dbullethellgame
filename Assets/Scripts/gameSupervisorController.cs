@@ -24,7 +24,7 @@ public class gameSupervisorController : MonoBehaviour
     private int secondsUntilIncreaseEnemyCount = 60,
                 enemyTier = 0;
 
-    private float ringSize = 2f,
+    private float ringSize = 4f,
                   spawnTimer = 0;
 
     public float gameTimer = 0;
