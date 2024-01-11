@@ -16,7 +16,7 @@ public class gameSupervisorController : MonoBehaviour
     private GameObject player;
     public List<GameObject> spawnedEnemiesInScene = new List<GameObject>();
 
-    EnemyXpObjectManager enemyXpObjectManager;
+    public EnemyXpObjectManager enemyXpObjectManager;
 
     [SerializeField] private int EnemiesPerCooldown = 40;
     [SerializeField] private float SpawnCooldownSeconds = 5;
@@ -130,7 +130,6 @@ public class gameSupervisorController : MonoBehaviour
         if(spawnedEnemy.TryGetComponent(out Enemy enemy))
         {
             enemy.OnEnemyDeath.AddListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
-            enemy.OnEnemyDeath.AddListener((GameObject caller) => enemyXpObjectManager.SpawnXP(caller));
         }
     }
 
@@ -142,9 +141,8 @@ public class gameSupervisorController : MonoBehaviour
         }
         //remove the listener also, so it doesn't tie up memory after it is dead
         if (caller.TryGetComponent(out Enemy enemy))
-        { 
+        {
             enemy.OnEnemyDeath.RemoveListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
-            enemy.OnEnemyDeath.RemoveListener((GameObject caller) => enemyXpObjectManager.SpawnXP(caller));
         }
     }
 
