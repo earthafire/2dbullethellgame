@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
         // Spawns XP
         GlobalReferences.enemyXpObjectManager.SpawnXP(this.gameObject);
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.5f);
 
         // Calls assigned events from gameSupervisorController class
         OnEnemyDeath.Invoke(this.gameObject);

@@ -5,9 +5,9 @@ using UnityEngine;
 public class FrostPulse : ActivatableAbility
 {
     public GameObject frostpulseobj;
-    private GameObject player;
-    public int damage = 1;
-    public float knockback = .15f;
+    [SerializeField] int damage = 1;
+    [SerializeField] float knockback = .15f;
+    GameObject player;
 
     void Start()
     {
@@ -27,7 +27,6 @@ public class FrostPulse : ActivatableAbility
 
     public void frostHit(Enemy enemy)
     {
-                
         enemy.TakeDamage(damage);
         
         enemy.GetKnockbacked(player.transform, knockback);
