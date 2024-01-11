@@ -5,22 +5,31 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    int damage = 10;
+    [SerializeField] int damage = 10;
+    [SerializeField] float duration = 1;
+
+    private void FixedUpdate()
+    {
+        ReduceDuration();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        try
-        {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-
-            if (enemy.gameObject.layer == 7) // Enemy layer
+            if (other.gameObject.layer == 7) // Enemy layer
             {
-                enemy.TakeDamage(damage);
-                Destroy(this.gameObject);   
+                Enemy enemy = other.gameObject.GetComponent<Enemy>();
+                enemy.TakeDamage(damage); 
             }
-        }
-        catch (System.NullReferenceException)
+    }
+
+    private void ReduceDuration()
+    {
+        if (duration >= 0)
         {
-            // Object is not an enemy
+            duration -= Time.deltaTime;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

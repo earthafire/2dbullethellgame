@@ -20,7 +20,7 @@ public class FrostPulse : ActivatableAbility
 
     public override void Activated()
     {
-        Pulse pulse = Instantiate(frostpulseobj, player.transform.position, Quaternion.Euler(0f, 0f, 0f)).GetComponent<Pulse>();
+        FrostPulseInstance pulse = Instantiate(frostpulseobj, player.transform.position, Quaternion.Euler(0f, 0f, 0f)).GetComponent<FrostPulseInstance>();
 
         pulse.onEnemyHit += frostHit;
     }

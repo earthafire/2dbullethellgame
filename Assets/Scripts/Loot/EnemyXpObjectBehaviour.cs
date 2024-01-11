@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class EnemyXpObjectBehaviour : InteractableLoot
 {
-    // Start is called before the first frame update
-
-    private System.Random random = new System.Random();
     private SoundComponent sound;
     public int experienceAmount = 1, speed = 5;
 

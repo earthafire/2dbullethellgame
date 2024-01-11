@@ -10,7 +10,7 @@ public class Bat : Enemy
     new void Start()
     {
         base.Start();
-        
+
         target_position = base.player.transform.position;
     }
 
@@ -25,8 +25,4 @@ public class Bat : Enemy
         Move();
     }
 
-    void Move()
-    {
-        base.Move();
-    }
 }

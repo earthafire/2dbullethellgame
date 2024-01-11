@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pulse : MonoBehaviour
+public class FrostPulseInstance : MonoBehaviour
 {
     public float duration = .55f;
     public Action<Enemy> onEnemyHit;

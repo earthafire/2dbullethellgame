@@ -21,10 +21,10 @@ public class Mushroom : Enemy
         {
             return;
         }
-        Move();
+        MushroomMove();
     }
 
-    void Move()
+    void MushroomMove()
     {
         base.Move();
 

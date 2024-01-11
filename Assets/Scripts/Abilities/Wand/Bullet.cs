@@ -14,12 +14,10 @@ public class Bullet : MonoBehaviour
     // Movement parameters
     public float duration = 3f;
     public float speed = 1f;
-    private float direction = 0;
 
-    private GameObject explosion;
-    private ParticleSystem particles;
-    public bool piercingEnabled = true;
-    private int pierceAmount = 10;
+    GameObject explosion;
+    [SerializeField] bool piercingEnabled = true;
+    [SerializeField] int pierceAmount = 10;
 
     float detectionRange = .5f;
     Collider2D[] detections;
@@ -30,9 +28,8 @@ public class Bullet : MonoBehaviour
         detections = new Collider2D[32];
 
         sound.sfxToPlay.PlaySFX();
-        particles = gameObject.GetComponent<ParticleSystem>();
-        explosion = (GameObject)Resources.Load("Prefabs/Weapons/Fireball/Explosion", typeof(GameObject));
 
+        explosion = (GameObject)Resources.Load("Prefabs/Weapons/Fireball/Explosion", typeof(GameObject));
     }
 
     // Update is called once per frame
@@ -44,7 +41,6 @@ public class Bullet : MonoBehaviour
 
     private void ReduceDuration()
     {
-        // check if object should be destroyed
         if (duration >= 0)
         {
             duration -= Time.deltaTime;
