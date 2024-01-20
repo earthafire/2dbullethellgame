@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         float distance = speed * speed_animation_multiplier * Time.deltaTime;
         Vector3 target_position = player.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
-        rb2d.velocity = Vector2.zero;
+        //rb2d.velocity = Vector2.zero;
     }
 
     /// <summary>

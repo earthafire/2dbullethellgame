@@ -154,15 +154,12 @@ MonoBehaviour:
   rb2d: {fileID: 4802327071629682808}
   data: {fileID: 11400000, guid: aad78b08e7f2b7249a39398c0ceb932b, type: 2}
   attributes: {fileID: 11400000, guid: fdd73bb8af45f3247a0e70df98f76dcd, type: 2}
-  knockbackDuration: 1
   speed_animation_multiplier: 1
   OnEnemyDeath:
     m_PersistentCalls:
       m_Calls: []
   suspendActions: 0
-  xp: {fileID: 4608355060562850367, guid: b8a747337d9f86d42a6bd5cba1295c15, type: 3}
   bag: {fileID: 9070761112509151373, guid: 84733c193cf39da43a966c2068621c22, type: 3}
-  xp_tier: 3
 --- !u!198 &7066156050746734537
 ParticleSystem:
   m_ObjectHideFlags: 0

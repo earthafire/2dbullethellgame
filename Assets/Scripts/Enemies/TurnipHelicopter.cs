@@ -5,11 +5,13 @@ using UnityEngine;
 public class TurnipHelicopter: Enemy
 {
     private Vector3 _startPosition;
+    GameObject shadow;
 
     new void Start()
     {
         base.Start();
         _startPosition = transform.position;
+        shadow = transform.GetChild(0).gameObject;
 
     }
 
@@ -25,13 +27,13 @@ public class TurnipHelicopter: Enemy
 
     void TurnipHelicopterMove()
     {
-        base.Move();
+        Move();
         //transform.position = _startPosition + new Vector3(0.0f, Mathf.Sin(Time.time), 0.0f);
     }
 
     override public IEnumerator GetDeath()
     {
-        GameObject shadow = transform.GetChild(0).gameObject;
+       
         shadow.SetActive(false);
 
         yield return base.GetDeath();

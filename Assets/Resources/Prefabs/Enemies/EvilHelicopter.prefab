@@ -5101,12 +5101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  rb2d: {fileID: 5160942373237286425}
+  rb2d: {fileID: 0}
   data: {fileID: 11400000, guid: bde8a282724eba14cbd4d0d2d51e6444, type: 2}
   attributes: {fileID: 11400000, guid: 917266e29e3181e40a90b215805d09db, type: 2}
-  knockbackDuration: 1
   speed_animation_multiplier: 1
   OnEnemyDeath:
     m_PersistentCalls:
       m_Calls: []
-  suspendActions: 1
+  suspendActions: 0
