@@ -5,9 +5,7 @@ using UnityEngine;
 public class Slime : Enemy
 {
     private Vector3 target_position;
-    public EnemyXpObjectBehaviour xp;
     public GameObject bag;
-    public int xp_tier;
 
     // Start is called before the first frame update
     new void Start()

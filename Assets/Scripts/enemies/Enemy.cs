@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     private float health, speed, damage;
     public EnemyXpObjectData data;
     public Attributes attributes;
-    public float knockbackDuration = .25f;
     public float speed_animation_multiplier = 1;
     // Define a UnityEvent that accepts a GameObject parameter
     [System.Serializable]
@@ -52,7 +51,7 @@ public class Enemy : MonoBehaviour
         float distance = speed * speed_animation_multiplier * Time.deltaTime;
         Vector3 target_position = player.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, target_position, distance);
-        //rb2d.velocity = Vector2.zero;
+        rb2d.velocity = Vector2.zero;
     }
 
     /// <summary>
@@ -104,16 +103,9 @@ public class Enemy : MonoBehaviour
     public bool GetKnockbacked(Transform knockbackFromPosition, float knockbackForce)
     {
         Vector2 knockbackDirection = transform.position - knockbackFromPosition.position;
-        knockbackDirection = knockbackDirection.normalized * knockbackForce * rb2d.mass;
+        knockbackDirection = knockbackForce * rb2d.mass * knockbackDirection.normalized;
         rb2d.AddForce(knockbackDirection, ForceMode2D.Impulse);
-
-        StartCoroutine(KnockbackRoutine());
         return true;
-    }
-
-    private IEnumerator KnockbackRoutine()
-    {
-        yield return new WaitForSeconds(knockbackDuration);
     }
 
     public virtual IEnumerator GetDeath()
@@ -121,7 +113,7 @@ public class Enemy : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
 
-        // Spawns XP
+        // Spawns XP at current position
         GlobalReferences.enemyXpObjectManager.SpawnXP(this.gameObject);
 
         yield return new WaitForSeconds(1.5f);

@@ -49,7 +49,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 4
-      Data: 50
+      Data: 60
     - Name: 
       Entry: 8
       Data: 
@@ -99,3 +99,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  applied_upgrades: []

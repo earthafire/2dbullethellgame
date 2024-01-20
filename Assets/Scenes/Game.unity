@@ -616,10 +616,14 @@ MonoBehaviour:
   regularEnemies:
   - {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
   - {fileID: 8866743574015759239, guid: 444383f28c5717949a5ae1f34a293731, type: 3}
+  - {fileID: 8597935369796501180, guid: a1c63a0c8f5d97d4c9e0edb2ab8d913f, type: 3}
   bossEnemies:
   - {fileID: 1362412182119624273, guid: 1cf5e600f7dd38c499432333f1bea3de, type: 3}
   - {fileID: 8597935369796501180, guid: 4c76daa779788e94abc441d218a6f1ce, type: 3}
-  spawnedEnemiesInScene: []
+  - {fileID: 8597935369796501180, guid: b619ec4a029f6f94baa1d00b5ee56cda, type: 3}
+  spawnedEnemiesInScene:
+  - {fileID: 8597935369796501180, guid: b619ec4a029f6f94baa1d00b5ee56cda, type: 3}
+  enemyXpObjectManager: {fileID: 0}
   EnemiesPerCooldown: 15
   SpawnCooldownSeconds: 5
   gameTimer: 0
