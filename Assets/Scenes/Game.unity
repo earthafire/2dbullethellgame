@@ -43658,7 +43658,7 @@ GameObject:
   - component: {fileID: 1379455613}
   - component: {fileID: 1379455612}
   - component: {fileID: 1379455611}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43695,7 +43695,7 @@ TilemapCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

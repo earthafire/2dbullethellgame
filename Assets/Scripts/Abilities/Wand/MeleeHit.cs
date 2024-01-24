@@ -44,7 +44,7 @@ public class MeleeHit : MonoBehaviour
         //animator.SetTrigger("Attack");
         try
         {
-            if (other.gameObject.layer == 7) // Enemy Layer
+            if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy Layer OR Flying Enemy Layer
             {
 
                 Enemy enemy = other.gameObject.GetComponent<Enemy>();

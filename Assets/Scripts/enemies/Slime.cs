@@ -6,15 +6,9 @@ public class Slime : Enemy
 {
     private Vector3 target_position;
     public GameObject bag;
-
-    // Start is called before the first frame update
-    new void Start()
-    {
-        base.Start();
-    }
-
+    
     // Update is called once per frame
-    new void Update()
+    new void FixedUpdate()
     {
         base.Update();
         if (suspendActions)
@@ -40,13 +34,13 @@ public class Slime : Enemy
         }
     }
 
-    override public IEnumerator GetDeath()
+    new void GetDeath()
     {
         if (bag != null)
         {
             Instantiate(bag, transform.position, Quaternion.identity);
         }
 
-        yield return base.GetDeath();
+        GetDeath();
     }
 }

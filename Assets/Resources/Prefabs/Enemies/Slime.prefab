@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1362412182119624275}
   - component: {fileID: 1362412182119624274}
   - component: {fileID: 4802327071629682808}
+  - component: {fileID: 3075041004835886282}
   - component: {fileID: 4248930814068185539}
   - component: {fileID: -5056112446050384928}
-  - component: {fileID: 3075041004835886282}
   - component: {fileID: 2328335137656904545}
   m_Layer: 7
   m_Name: Slime
@@ -123,21 +123,56 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 3
-  m_AngularDrag: 0.05
+  m_Mass: 30
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4296
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &3075041004835886282
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362412182119624273}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4296
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0064261258, y: -0.024853803}
+  serializedVersion: 2
+  m_Radius: 0.080451794
 --- !u!198 &4248930814068185539
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4935,41 +4970,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!58 &3075041004835886282
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362412182119624273}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.019680215}
-  serializedVersion: 2
-  m_Radius: 0.07757819
 --- !u!114 &2328335137656904545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4983,12 +4983,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  rb2d: {fileID: 0}
-  data: {fileID: 11400000, guid: aad78b08e7f2b7249a39398c0ceb932b, type: 2}
   attributes: {fileID: 11400000, guid: ecb2f115b3dc09847a2397a55ceffa46, type: 2}
+  _xpData: {fileID: 11400000, guid: f5382861cc0755d47bf9637e35c17070, type: 2}
   speed_animation_multiplier: 1
-  OnEnemyDeath:
-    m_PersistentCalls:
-      m_Calls: []
   suspendActions: 0
   bag: {fileID: 0}

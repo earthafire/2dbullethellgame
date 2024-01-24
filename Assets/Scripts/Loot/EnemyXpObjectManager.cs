@@ -21,8 +21,8 @@ public class EnemyXpObjectManager : MonoBehaviour
 
         GameObject newXPObject = Instantiate(xpPrefab, caller.transform.position, Quaternion.identity);
 
-        newXPObject.GetComponent<SpriteRenderer>().sprite = enemy.data.GetRandomSprite();
-        newXPObject.GetComponent<EnemyXpObjectBehaviour>().experienceAmount = enemy.data.xpValue;
+        newXPObject.GetComponent<SpriteRenderer>().sprite = enemy._xpData.GetRandomSprite();
+        newXPObject.GetComponent<EnemyXpObjectBehaviour>().experienceAmount = enemy._xpData.xpValue;
     }
 
 

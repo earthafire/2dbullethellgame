@@ -7,18 +7,20 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     public GameObject player;
-    public Rigidbody2D rb2d;
-    private ParticleSystem particles;
-    private float health, speed, damage;
-    public EnemyXpObjectData data;
     public Attributes attributes;
+    private float health, speed, damage;
+    private Rigidbody2D _rb2d;
+    private ParticleSystem particles;
+    public EnemyXpObjectData _xpData;
     public float speed_animation_multiplier = 1;
+
     // Define a UnityEvent that accepts a GameObject parameter
-    [System.Serializable]
+    //[System.Serializable]
     public class GameObjectUnityEvent : UnityEvent<GameObject> { }
     public GameObjectUnityEvent OnEnemyDeath = new GameObjectUnityEvent();
-    //suspends all actions
-    public bool suspendActions = false;
+
+    public bool suspendActions = false; //suspends all actions
+
 
     public void Start()
     {
@@ -26,19 +28,22 @@ public class Enemy : MonoBehaviour
         speed = attributes.GetAttribute(Attribute.moveSpeed);
         damage = attributes.GetAttribute(Attribute.damage);
 
-        particles = gameObject.GetComponent<ParticleSystem>();
         player = GlobalReferences.player;
-        rb2d = GetComponent<Rigidbody2D>();
-        rb2d.freezeRotation = true;
-    }
+
+        particles = GetComponent<ParticleSystem>();
+        _rb2d = GetComponent<Rigidbody2D>();    }
 
     public void Update()
     {
-        //enemy has strayed too far from the player
+        //enemy has strayed too far from the player, kill it
         if (player != null && Vector3.Distance(transform.position, player.transform.position) > 8)
         {
             GetDeath();
         }
+    }
+    public void FixedUpdate()
+    {
+        Move();
     }
 
     public void Move()
@@ -54,73 +59,61 @@ public class Enemy : MonoBehaviour
         //rb2d.velocity = Vector2.zero;
     }
 
-    /// <summary>
-    /// weapons call this method to deal damage to enemies
-    /// </summary>
-    /// <param name="basePlayerDamage">base damage of weapon</param>
-    /// <returns>true if damage was taken</returns>
-    public bool TakeDamage(int basePlayerDamage)
+    // abilities call this method to deal damage to enemies
+
+    /// <param name="_ablityDamage"> base damage of ability </param>
+    public bool TakeDamage(int _ablityDamage)  // returns true if damage was taken
     {
-        // adjust damage dealt by applying modifiers
-        // (rounding up to nearest int)
-        float damageModifier = 1 + PlayerAttributes.stats[Attribute.damage] / 100;
-        int modifiedPlayerDamage = (int)Math.Ceiling(basePlayerDamage * damageModifier);
+        if (Time.timeScale == 0){ return false; }
 
-        // uncomment to view damage modification
-        // Debug.Log("base damage: " + basePlayerDamage + ", actual damage: " + modifiedPlayerDamage);
-
-        if (Time.timeScale == 0)
-        {
-            return false;
-        }
-
+        float damageModifier = 1 + PlayerAttributes.stats[Attribute.damage] / 100; // adjust damage dealt by applying modifiers
+        int modifiedPlayerDamage = (int)Math.Ceiling(_ablityDamage * damageModifier); // rounding up to nearest int
         health -= modifiedPlayerDamage;
+
+        //Debug.Log("base damage: " + _ablityDamage + ", actual damage: " + modifiedPlayerDamage);
+
         particles.Emit(modifiedPlayerDamage);
 
         if (health <= 0)
         {
-            particles.Emit((int)health);
             StartCoroutine(GetDeath());
         }
+
         return true;
     }
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 12)
-        { // Player layer
-
+        if (collision.gameObject.layer == 12) // Player layer
+        { 
             PlayerAttributes player = collision.gameObject.GetComponent<PlayerAttributes>();
             player.takeDamage((int)damage);
-        }
-        else
-        {
-            // Debug.Log(collision.gameObject + "has no attack");
         }
     }
 
     public bool GetKnockbacked(Transform knockbackFromPosition, float knockbackForce)
     {
         Vector2 knockbackDirection = transform.position - knockbackFromPosition.position;
-        knockbackDirection = knockbackForce * rb2d.mass * knockbackDirection.normalized;
-        rb2d.AddForce(knockbackDirection, ForceMode2D.Impulse);
+        knockbackDirection = knockbackForce * _rb2d.mass * knockbackDirection.normalized;
+        _rb2d.AddForce(knockbackDirection, ForceMode2D.Impulse);
         return true;
     }
 
     public virtual IEnumerator GetDeath()
     {
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
 
         // Spawns XP at current position
         GlobalReferences.enemyXpObjectManager.SpawnXP(this.gameObject);
 
-        yield return new WaitForSeconds(1.5f);
-
-        // Calls assigned events from gameSupervisorController class
+        // Calls event from gameSupervisorController class
         OnEnemyDeath.Invoke(this.gameObject);
 
+        yield return new WaitForSeconds(1.5f);
+
         Destroy(gameObject);
+
     }
 }

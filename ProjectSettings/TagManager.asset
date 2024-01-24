@@ -7,17 +7,18 @@ TagManager:
   - weapon
   - Enemy
   - ExperiencePickUpRange
+  - gameSupervisor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Walls
   - Water
   - UI
   - bullets
   - Enemy
   - Experience
-  - 
+  - FlyingEnemy
   - 
   - 
   - player
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2460356099
+    locked: 0
+  - name: Flying Enemy
+    uniqueID: 3498278989
     locked: 0

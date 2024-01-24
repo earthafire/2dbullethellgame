@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1362412182119624275}
   - component: {fileID: 1362412182119624274}
   - component: {fileID: 4802327071629682808}
+  - component: {fileID: 4205146800716158610}
   - component: {fileID: 7225274518584416148}
   - component: {fileID: 7066156050746734537}
   - component: {fileID: 8893615949672055295}
-  - component: {fileID: 4205146800716158610}
   m_Layer: 7
   m_Name: Boss Slime
   m_TagString: Enemy
@@ -123,21 +123,56 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 25
-  m_LinearDrag: 3
-  m_AngularDrag: 0.05
+  m_Mass: 30
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4296
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &4205146800716158610
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362412182119624273}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4296
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0075069894, y: -0.024466999}
+  serializedVersion: 2
+  m_Radius: 0.08424592
 --- !u!114 &7225274518584416148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,13 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  rb2d: {fileID: 4802327071629682808}
-  data: {fileID: 11400000, guid: aad78b08e7f2b7249a39398c0ceb932b, type: 2}
   attributes: {fileID: 11400000, guid: fdd73bb8af45f3247a0e70df98f76dcd, type: 2}
+  _xpData: {fileID: 11400000, guid: f5382861cc0755d47bf9637e35c17070, type: 2}
   speed_animation_multiplier: 1
-  OnEnemyDeath:
-    m_PersistentCalls:
-      m_Calls: []
   suspendActions: 0
   bag: {fileID: 9070761112509151373, guid: 84733c193cf39da43a966c2068621c22, type: 3}
 --- !u!198 &7066156050746734537
@@ -4957,38 +4988,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!58 &4205146800716158610
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362412182119624273}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0045222924, y: -0.020144751}
-  serializedVersion: 2
-  m_Radius: 0.073132604
