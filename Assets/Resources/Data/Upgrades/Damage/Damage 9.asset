@@ -60,7 +60,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   icon: {fileID: -610928562, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
-  title: Hit Harder
+  title: Fear
   description: Increases damage by 10%
   unitsToUpgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}

@@ -49,7 +49,7 @@ MonoBehaviour:
       Data: 6
     - Name: $v
       Entry: 4
-      Data: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -61,7 +61,7 @@ MonoBehaviour:
       Data: 
   icon: {fileID: 484476346, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
   title: Arm Extensions
-  description: +10% Pick-Up Range
+  description: +5% Pick-Up Range
   unitsToUpgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
   isPercent: 1

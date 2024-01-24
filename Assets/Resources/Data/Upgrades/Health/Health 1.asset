@@ -60,8 +60,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
   icon: {fileID: 962795708, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
-  title: Be Weller
-  description: Increase health by 5%
+  title: Workin Out'
+  description: +5% Health
   unitsToUpgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
   isPercent: 1
