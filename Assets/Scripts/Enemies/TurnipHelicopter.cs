@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class TurnipHelicopter: Enemy
 {
-    private Vector3 _startPosition;
     GameObject shadow;
 
     new void Start()
     {
         base.Start();
-        _startPosition = transform.position;
         shadow = transform.GetChild(0).gameObject;
 
     }
 
-    new void Update()
+    new void FixedUpdate()
     {
         base.Update();
         if (suspendActions)
@@ -28,7 +26,6 @@ public class TurnipHelicopter: Enemy
     void TurnipHelicopterMove()
     {
         Move();
-        //transform.position = _startPosition + new Vector3(0.0f, Mathf.Sin(Time.time), 0.0f);
     }
 
     override public IEnumerator GetDeath()
