@@ -14,7 +14,7 @@ public class Explosion : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-            if (other.gameObject.layer == 7) // Enemy layer
+            if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy layer
             {
                 Enemy enemy = other.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(damage); 

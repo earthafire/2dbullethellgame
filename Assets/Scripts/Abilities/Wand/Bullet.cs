@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
        
-          if (other.gameObject.layer == 7) // Enemy layer
+          if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy layer & Flying Enemy Layer
           {
                 Enemy enemy = other.gameObject.GetComponent<Enemy>();
 

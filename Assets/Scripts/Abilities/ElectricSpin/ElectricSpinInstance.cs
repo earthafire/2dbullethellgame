@@ -42,7 +42,7 @@ public class ElectricSpinInstance : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 7) // Enemy Layer
+        if(collision.gameObject.layer == 7 || collision.gameObject.layer == 9) // Enemy Layer
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             onEnemyHit?.Invoke(enemy);
