@@ -49,7 +49,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 4
-      Data: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -59,10 +59,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  icon: {fileID: -1192852229, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  icon: {fileID: 962795708, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
   title: Be Weller
-  description: Increase health by 10%
+  description: Increase health by 5%
   unitsToUpgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
   isPercent: 1
-  tier: 0

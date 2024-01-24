@@ -59,7 +59,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  icon: {fileID: -1447097193, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
+  icon: {fileID: 802211462, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
   title: Spellslinger
   description: Increase Ability Haste by 5.
   unitsToUpgrade:

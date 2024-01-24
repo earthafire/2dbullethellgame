@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 8597935369796501180}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.799, y: -0.015, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -152,9 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   rb2d: {fileID: 0}
-  data: {fileID: 11400000, guid: 6dad0cc8d2e2ad449a8aaea65f5bc8a1, type: 2}
+  data: {fileID: 11400000, guid: f5382861cc0755d47bf9637e35c17070, type: 2}
   attributes: {fileID: 11400000, guid: 1b9c6f82a7227cf46a2c02bff826aa6b, type: 2}
-  knockbackDuration: 1
   speed_animation_multiplier: 1
   OnEnemyDeath:
     m_PersistentCalls:
@@ -414,7 +413,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.125
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5001,6 +5000,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0013458729, y: 0.0013459027}
+  m_Offset: {x: -0.0020014346, y: -0.042168885}
   serializedVersion: 2
-  m_Radius: 0.13770944
+  m_Radius: 0.15983245

@@ -30,8 +30,10 @@ public class TurnipHelicopter: Enemy
 
     override public IEnumerator GetDeath()
     {
-       
-        shadow.SetActive(false);
+       if (shadow != null)
+        {
+            shadow.SetActive(false);
+        }
 
         yield return base.GetDeath();
     }

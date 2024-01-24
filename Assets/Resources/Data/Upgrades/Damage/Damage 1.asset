@@ -49,7 +49,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 4
-      Data: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -59,9 +59,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  icon: {fileID: -263652000, guid: 505e8cd93ec19484fa22fcca19ce074b, type: 3}
+  icon: {fileID: -2116866852, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
   title: Hit Harder
-  description: Increases damage by 10%
+  description: Increases damage by 5%
   unitsToUpgrade:
   - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
-  isPercent: 0
+  isPercent: 1

@@ -21,11 +21,13 @@ public class gameSupervisorController : MonoBehaviour
     [SerializeField] private int EnemiesPerCooldown = 40;
     [SerializeField] private float SpawnCooldownSeconds = 5;
 
-    private int secondsUntilIncreaseEnemyCount = 60,
+    private int secToIncreaseCount = 10,
+                secToIncreaseTier = 30,
                 enemyTier = 0;
 
     private float ringSize = 4f,
-                  spawnTimer = 0;
+                  spawnTimer = 0,
+                  tierTimer = 0;
 
     public float gameTimer = 0;
 
@@ -52,6 +54,10 @@ public class gameSupervisorController : MonoBehaviour
     {
         gameTimer += Time.deltaTime;
 
+        spawnTimer += Time.deltaTime;
+
+        tierTimer += Time.deltaTime;
+
         if (player == null)
         {
             return;
@@ -61,11 +67,9 @@ public class gameSupervisorController : MonoBehaviour
             return;
         }
 
-        spawnTimer += Time.deltaTime;
 
         if (spawnTimer > SpawnCooldownSeconds)
         {
-            IncreaseEnemyTier();
             spawnTimer = 0;
 
             for (int i = 0; i < EnemiesPerCooldown + GetEnemyCountModifier(); i++)
@@ -89,34 +93,26 @@ public class gameSupervisorController : MonoBehaviour
                 spawnEntity(nextEntity);
             }
         }
-    }
 
-/*     GameObject getRandomRegularEnemy()
-    {
-        int randInt = random.Next(regularEnemies.Length);
-        return regularEnemies[randInt];
-    }
+        if (tierTimer > secToIncreaseTier)
+        {
+            IncreaseEnemyTier();
 
-    GameObject getRandomBossEnemy()
-    {
-        int randInt = random.Next(bossEnemies.Length);
-        return bossEnemies[randInt];
-    } 
-*/
+            tierTimer = 0;
+        }
+
+    }
 
     int GetEnemyCountModifier(){
-        return (int)Mathf.Floor(gameTimer / secondsUntilIncreaseEnemyCount);
+        return (int)Mathf.Floor(gameTimer / secToIncreaseCount);
     }
 
-    int IncreaseEnemyTier(){
-        if(GetEnemyCountModifier() > 0){
-            if(enemyTier + 1 < regularEnemies.Length){
-                enemyTier++;
-                return enemyTier;
-            }
-            return regularEnemies.Length;
+    void IncreaseEnemyTier(){
+
+        if(enemyTier + 1 < regularEnemies.Length){
+
+            enemyTier++;
         }
-        return 0;
     }
     void spawnEntity(GameObject entity)
     {

@@ -1243,7 +1243,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   RotationModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -4984,14 +4984,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   rb2d: {fileID: 0}
-  data: {fileID: 11400000, guid: 9bd982cb3927fe14f9b17a5e8f692164, type: 2}
+  data: {fileID: 11400000, guid: aad78b08e7f2b7249a39398c0ceb932b, type: 2}
   attributes: {fileID: 11400000, guid: ecb2f115b3dc09847a2397a55ceffa46, type: 2}
-  knockbackDuration: 0.25
   speed_animation_multiplier: 1
   OnEnemyDeath:
     m_PersistentCalls:
       m_Calls: []
   suspendActions: 0
-  xp: {fileID: 4608355060562850367, guid: b8a747337d9f86d42a6bd5cba1295c15, type: 3}
   bag: {fileID: 0}
-  xp_tier: 0
