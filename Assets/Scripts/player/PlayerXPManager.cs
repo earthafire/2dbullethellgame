@@ -60,7 +60,7 @@ public class PlayerXPManager : MonoBehaviour
 
         xpParticles.Emit(xpUntilLevelUp);
 
-        xpUntilLevelUp = (int)(xpUntilLevelUp * 1.1f);
+        xpUntilLevelUp = (int)(xpUntilLevelUp * 1.025f);
 
         levelUp.HandleLevelUp();
 
