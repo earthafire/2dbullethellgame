@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D _rb2d;
     private ParticleSystem particles;
     public EnemyXpObjectData _xpData;
+    [SerializeField] private GameObject _lootBag;
+    //[SerializeField] private int dropChance = 10;
     public float speed_animation_multiplier = 1;
 
     // Define a UnityEvent that accepts a GameObject parameter
@@ -82,7 +85,6 @@ public class Enemy : MonoBehaviour
         return true;
     }
 
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 12) // Player layer
@@ -108,7 +110,13 @@ public class Enemy : MonoBehaviour
         // Spawns XP at current position
         GlobalReferences.enemyXpObjectManager.SpawnXP(this.gameObject);
 
-        // Calls event from gameSupervisorController class
+        // Spawns Loot Bag at current position
+        if (_lootBag != null)
+        {
+            Instantiate(_lootBag, transform.position, Quaternion.identity);
+        }
+
+        // from Game Supervisor Controller
         OnEnemyDeath.Invoke(this.gameObject);
 
         yield return new WaitForSeconds(1.5f);

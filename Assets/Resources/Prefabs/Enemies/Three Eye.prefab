@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: -2648266089628558325}
   - component: {fileID: -8388857203549156141}
   - component: {fileID: 6826148662314173987}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Three Eye
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -183,9 +183,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -796688307
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: -483852605, guid: 2a9dc05f160996b489acad285cdb4680, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5104,5 +5104,6 @@ MonoBehaviour:
   player: {fileID: 0}
   attributes: {fileID: 11400000, guid: 2c9c663c417556c48b615cb9707eb4b3, type: 2}
   _xpData: {fileID: 11400000, guid: 89b8715ee5fc57942949cefc94b9d1b0, type: 2}
+  _lootBag: {fileID: 9070761112509151373, guid: 84733c193cf39da43a966c2068621c22, type: 3}
   speed_animation_multiplier: 1
   suspendActions: 0

@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class BagController : InteractableLoot
 {
-    //public GameObject item;
+    [SerializeField] private List<GameObject> lootPool;
 
-    public List<GameObject> contents;
     private ParticleSystem particles;
+    private Random random = new Random();
+    private int lootCount = 1;
 
     public void Start()
     {
@@ -31,11 +33,16 @@ public class BagController : InteractableLoot
 
 
         // spew out items
-        for (int i = 0; i < contents.Count; i++)
+        for (int i = 0; i < lootCount; i++)
         {
-            GameObject newItem = Instantiate(contents[i], gameObject.transform.position, Quaternion.identity);
+            GameObject newItem = Instantiate(PickRandomLoot(), gameObject.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(.25f);
         }
         Destroy(gameObject);
+    }
+
+    private GameObject PickRandomLoot()
+    {
+        return lootPool[random.Next(lootPool.Count)]; ;
     }
 }

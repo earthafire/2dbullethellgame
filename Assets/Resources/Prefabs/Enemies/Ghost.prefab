@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 38598172113193444}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.097, y: -0.388, z: -2}
+  m_LocalPosition: {x: 0.097, y: -0.584, z: -2}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -868648635, guid: 2a9dc05f160996b489acad285cdb4680, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: -8388857203549156141}
   - component: {fileID: 2671323420212578751}
   - component: {fileID: 6826148662314173987}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Ghost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -183,11 +183,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -796688307
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1472784172, guid: 2a9dc05f160996b489acad285cdb4680, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1520,8 +1520,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.77647066, g: 0.7960785, b: 0.77647066, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 0.5882353}
+        key1: {r: 0.77647066, g: 0.7960785, b: 0.77647066, a: 0.39215687}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5104,5 +5104,6 @@ MonoBehaviour:
   player: {fileID: 0}
   attributes: {fileID: 11400000, guid: 3854c5190a2e9984ea3dd359930e7f9e, type: 2}
   _xpData: {fileID: 11400000, guid: 6dad0cc8d2e2ad449a8aaea65f5bc8a1, type: 2}
+  _lootBag: {fileID: 0}
   speed_animation_multiplier: 1
   suspendActions: 0

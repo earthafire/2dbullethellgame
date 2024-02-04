@@ -20,10 +20,9 @@ public class gameSupervisorController : MonoBehaviour
 
     [SerializeField] private int EnemiesPerCooldown = 40;
     [SerializeField] private float SpawnCooldownSeconds = 5;
-
-    private int secToIncreaseCount = 10,
-                secToIncreaseTier = 30,
-                enemyTier = 0;
+    [SerializeField] private int secToIncreaseCount = 10;
+    [SerializeField] private int secToIncreaseTier = 30;
+    private int enemyTier = 0;
 
     private float ringSize = 4f,
                   spawnTimer = 0,

@@ -4997,5 +4997,6 @@ MonoBehaviour:
   player: {fileID: 0}
   attributes: {fileID: 11400000, guid: d11c8e985ce916b4da06bb4234ef2c18, type: 2}
   _xpData: {fileID: 11400000, guid: bde8a282724eba14cbd4d0d2d51e6444, type: 2}
+  _lootBag: {fileID: 9070761112509151373, guid: 84733c193cf39da43a966c2068621c22, type: 3}
   speed_animation_multiplier: 1
   suspendActions: 0

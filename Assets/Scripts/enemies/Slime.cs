@@ -5,7 +5,6 @@ using UnityEngine;
 public class Slime : Enemy
 {
     private Vector3 target_position;
-    public GameObject bag;
     
     // Update is called once per frame
     new void FixedUpdate()
@@ -36,11 +35,7 @@ public class Slime : Enemy
 
     new void GetDeath()
     {
-        if (bag != null)
-        {
-            Instantiate(bag, transform.position, Quaternion.identity);
-        }
-
+        
         GetDeath();
     }
 }

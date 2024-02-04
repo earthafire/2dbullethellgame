@@ -46,10 +46,10 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 1
+      Data: 7
     - Name: $v
       Entry: 4
-      Data: 2
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -66,3 +66,5 @@ MonoBehaviour:
   data:
     Name: 
     Id: 4
+    Ability: 0
+  ability: 0
