@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEditor;
-using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Experimental.Rendering;
 using UnityEngine.UIElements;
 
 public class PlayerAttributes : MonoBehaviour
@@ -15,7 +13,7 @@ public class PlayerAttributes : MonoBehaviour
     public HealthBar healthbar;
     public Attributes attributes;
     public float currentHealth;
-    public ParticleSystem damageParticles;
+    public ParticleSystem damageReceivedParticles;
     [SerializeField]
     private GameObject uI;
     CircleCollider2D _pickUpRange;
@@ -59,7 +57,7 @@ public class PlayerAttributes : MonoBehaviour
 
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
-        damageParticles.Emit(damage);
+        damageReceivedParticles.Emit(damage);
 
         if (currentHealth < 1)
         {

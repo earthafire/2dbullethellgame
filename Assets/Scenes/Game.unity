@@ -640,7 +640,9 @@ MonoBehaviour:
   spawnedEnemiesInScene: []
   enemyXpObjectManager: {fileID: 0}
   EnemiesPerCooldown: 15
-  SpawnCooldownSeconds: 5
+  SpawnCooldownSeconds: 10
+  secToIncreaseCount: 30
+  secToIncreaseTier: 30
   gameTimer: 0
   suspendSpawning: 0
 --- !u!4 &785045093
@@ -43163,9 +43165,17 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 465013051}
+    - target: {fileID: 231413505902722510, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1203606041217318445, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496512892454575454, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2603942375701804444, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_Size.x
@@ -43194,18 +43204,6 @@ PrefabInstance:
     - target: {fileID: 2603942375701804444, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 0.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 4094525312377159805, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4094525312377159805, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4094525312377159805, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1834611197
       objectReference: {fileID: 0}
     - target: {fileID: 4532121904328797303, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_Layer
@@ -43323,6 +43321,10 @@ PrefabInstance:
       propertyPath: experienceParticles
       value: 
       objectReference: {fileID: 605746981}
+    - target: {fileID: 6931282082646386449, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+      propertyPath: damageReceivedParticles
+      value: 
+      objectReference: {fileID: 1085592498}
     - target: {fileID: 7284348641904268756, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: AbilitySlots.Array.size
       value: 6
@@ -43473,6 +43475,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5337d6082810c94b9e6c38688e9e4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &1085592498 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 697115568472882778, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
+  m_PrefabInstance: {fileID: 1059254809}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1168205552
 PrefabInstance:
   m_ObjectHideFlags: 0
