@@ -47,6 +47,7 @@ public class MapFunctions
     public static void RenderMap(int[,] map, Tilemap tilemap, TileBase tile)
     {
         tilemap.ClearAllTiles(); //Clear the map (ensures we dont overlap)
+
         for (int x = 0; x < map.GetUpperBound(0); x++) //Loop through the width of the map
         {
             for (int y = 0; y < map.GetUpperBound(1); y++) //Loop through the height of the map
@@ -930,6 +931,31 @@ public class MapFunctions
             }
         }
         return tileCount;
+    }
+
+    public static int[,] ClearMiddleTiles(int[,] map)
+    {   
+        int x = 0;
+        int y = 0;
+
+        x = map.GetUpperBound(0) / 2;
+        y = map.GetUpperBound(1) / 2;
+
+        map[x, y] = 0;
+
+        map[x + 1, y ] = 0;
+        map[x + 1, y + 1] = 0;
+        map[x + 1, y - 1] = 0;
+
+        map[x - 1, y ] = 0;
+        map[x - 1, y + 1] = 0;
+        map[x - 1, y - 1] = 0;
+
+        map[x, y + 1] = 0;
+        map[x, y - 1] = 0;
+
+        return map;
+
     }
 
     static int[,] PlaceDestructables(int[,] map, int count, Tile tile)

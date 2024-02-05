@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using JetBrains.Annotations;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,7 +13,7 @@ public class LevelGenerator : MonoBehaviour
     [Tooltip("The Tilemap to draw onto")]
     public Tilemap tilemap;
     [Tooltip("The Tile to draw (use a RuleTile for best results)")]
-    public TileBase tile;
+    public List<RuleTile> tileList;
 
     [Tooltip("Width of our map")]
     public int width;
@@ -22,12 +23,20 @@ public class LevelGenerator : MonoBehaviour
     [Tooltip("The settings of our map")]
     public MapSettings mapSetting;
 
+    public void Awake()
+    {
+        GlobalReferences.levelGenerator = this;
+    }
+
+    public void Start()
+    {
+        GenerateMap();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
             ClearMap();
-            GenerateMap();
         }
     }
 
@@ -111,12 +120,21 @@ public class LevelGenerator : MonoBehaviour
                 break;
         }
         //Render the result
-        MapFunctions.RenderMap(map, tilemap, tile);
+        MapFunctions.ClearMiddleTiles(map);
+        MapFunctions.RenderMap(map, tilemap, GetRandomTile());
+        //MapFunctions.RenderMap(map, tilemap, tileList[0]);
     }
 
     public void ClearMap()
     {
         tilemap.ClearAllTiles();
+    }
+
+    private TileBase GetRandomTile()
+    {
+        int temp = 0;
+        temp = GlobalReferences.GetRandomNumber(0, tileList.Count);
+        return tileList[temp];
     }
 }
 

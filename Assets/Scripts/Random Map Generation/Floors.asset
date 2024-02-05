@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22d03ba606faf6419bcec6b37cf3933, type: 3}
+  m_Name: Floors
+  m_EditorClassIdentifier: 
+  algorithm: 6
+  randomSeed: 1
+  seed: 123124
+  fillAmount: 100
+  smoothAmount: 0
+  clearAmount: 0
+  interval: 6
+  minPathWidth: 0
+  maxPathWidth: 0
+  maxPathChange: 0
+  roughness: 0
+  windyness: 0
+  edgesAreWalls: 1
+  modifier: 0.992

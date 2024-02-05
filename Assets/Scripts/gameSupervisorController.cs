@@ -17,6 +17,7 @@ public class gameSupervisorController : MonoBehaviour
     public List<GameObject> spawnedEnemiesInScene = new List<GameObject>();
 
     public EnemyXpObjectManager enemyXpObjectManager;
+    public LevelGenerator levelGenerator;
 
     [SerializeField] private int EnemiesPerCooldown = 40;
     [SerializeField] private float SpawnCooldownSeconds = 5;
@@ -45,7 +46,10 @@ public class gameSupervisorController : MonoBehaviour
     void Start()
     {
         player = GlobalReferences.player;
+        levelGenerator = GlobalReferences.levelGenerator;
         enemyXpObjectManager = GlobalReferences.enemyXpObjectManager;
+
+        levelGenerator.GenerateMap();
     }
 
     // Update is called once per frame

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
+
 
 public class GlobalReferences : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class GlobalReferences : MonoBehaviour
     public static GameObject player;
     public static gameSupervisorController gameSupervisorController;
     public static EnemyXpObjectManager enemyXpObjectManager;
+    public static LevelGenerator levelGenerator;
+    private static readonly Random random = new();
     private void Awake()
     {
         #region Singleton
@@ -20,9 +24,15 @@ public class GlobalReferences : MonoBehaviour
             _instance = this;
         }
         #endregion
-
     }
     private static GlobalReferences _instance;
     public static GlobalReferences Instance { get { return _instance; } }
+
+    public static int GetRandomNumber(int min, int max)
+    {
+        int temp = 0;
+        temp = random.Next(min, max);
+        return temp;
+    }
 
 }
