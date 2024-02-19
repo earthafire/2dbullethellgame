@@ -6,9 +6,12 @@ using UnityEngine;
 public abstract class ActivatableAbility : MonoBehaviour
 {
     Coroutine cooldownCoroutine;
-    public float cooldownTimeMax = 200f; // seconds
+    Coroutine durationCoroutine;
+
+    public float cooldownTimeMax = 200f; // in seconds, overwritten in inheriting class
+    public float durationTimeMax = 200f; // in seconds, overwritten in inheriting class
     public float cooldownRemainingTime { get; private set; } = 0;
-    private float cooldown_timer = 0f;
+    public float durationRemainingTime { get; private set; } = 0;
 
     // Activates weapon's ability (Activated) if cooldown is met
     public void Activate()
@@ -17,9 +20,11 @@ public abstract class ActivatableAbility : MonoBehaviour
         {
             Activated();
             cooldownCoroutine = StartCoroutine(CountCooldown());
+            //durationCoroutine = StartCoroutine(CountDuration());
         }
     }
-
+    public abstract void Activated(); // Weapon's ability override this
+    
     public void ResetCooldown()
     {
         if (cooldownCoroutine != null)
@@ -36,8 +41,7 @@ public abstract class ActivatableAbility : MonoBehaviour
         {
             cooldownRemainingTime -= Time.deltaTime;
 
-            // This will wait until the next frame before continuing execution
-            yield return null;
+            yield return null; // This will wait until the next frame before continuing execution
         }
         cooldownRemainingTime = 0f;
     }
@@ -49,7 +53,7 @@ public abstract class ActivatableAbility : MonoBehaviour
     /// <returns>float cooldown time</returns>
     public float CalculateModifiedCooldown(float baseCooldown)
     {
-        // haste based system
+        // ability haste based system
 
         // examples:
         // cdr points   |   percentage reduction
@@ -72,7 +76,24 @@ public abstract class ActivatableAbility : MonoBehaviour
         return modifiedCooldown;
     }
 
-    // Weapon's ability (override this)
-    public abstract void Activated();
-
+    public static float CalculateModifiedDuration(float baseValue)
+    {
+        float durationFactor = PlayerAttributes.stats[Attribute.duration];
+        float modifiedDuration = baseValue * durationFactor;
+        print(modifiedDuration);
+        return modifiedDuration;
+    }
+    public static Vector3 CalculateModifiedSize(Vector3 baseSize)
+    {
+        float scaleFactor = PlayerAttributes.stats[Attribute.size];
+        Vector3 modifiedSize = new Vector3(baseSize.x * scaleFactor, baseSize.y * scaleFactor, baseSize.z);
+        return modifiedSize;
+    }
+    public static float CalculateModifiedBulletSpeed(float baseValue)
+    {
+        float scaleFactor = PlayerAttributes.stats[Attribute.bulletSpeed];
+        float modifiedSpeed = baseValue * scaleFactor;
+        print(modifiedSpeed);
+        return modifiedSpeed;
+    }
 }

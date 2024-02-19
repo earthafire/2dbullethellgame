@@ -6,8 +6,7 @@ using UnityEngine;
 public class Melee : ActivatableAbility
 {
     public GameObject meleeObj;
-    private GameObject player;
-    public int damage = 50;
+    public int damage = 20;
     public float knockback = 1.5f;
     private Animator animator;
 
@@ -15,15 +14,14 @@ public class Melee : ActivatableAbility
     void Start()
     {
         animator = GetComponent<Animator>();
-        meleeObj = (GameObject)Resources.Load("Prefabs/Weapons/Wands/Melee", typeof(GameObject));
-        player = GameObject.Find("Player");
-        base.cooldownTimeMax = 1f;
+        meleeObj = (GameObject)Resources.Load("Prefabs/Abilities/Wands/Melee", typeof(GameObject));
+        cooldownTimeMax = 1f;
     }
 
     public override void Activated()
     {
         animator.SetTrigger("Attack");
-        MeleeHit meleeHit = Instantiate(meleeObj, player.transform.position, Quaternion.identity).GetComponent<MeleeHit>();
+        MeleeHit meleeHit = Instantiate(meleeObj, GlobalReferences.firePoint.position, Quaternion.identity).GetComponent<MeleeHit>();
         meleeHit.onEnemyHit += Hit;
     }
     

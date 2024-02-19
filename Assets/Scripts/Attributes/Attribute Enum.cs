@@ -39,7 +39,10 @@ public enum Attribute
     /// <para>     300     |   75%</para>
     /// <para>     400     |   80%</para>
     /// </summary>
-    cooldown
+    cooldown,
+    duration,
+    size,
+    bulletSpeed
 }
 
 

@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrostPulseInstance : MonoBehaviour
+public class FrostPulseInstance : AbilityObject
 {
-    [SerializeField] float duration = .55f;
     public Action<Enemy> onEnemyHit;
     GameObject player;
     SoundComponent sound;
@@ -13,6 +12,7 @@ public class FrostPulseInstance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        duration = .75f;
         sound = GetComponent<SoundComponent>();
         player = GlobalReferences.player;
         sound.sfxToPlay.PlaySFX();
@@ -22,7 +22,6 @@ public class FrostPulseInstance : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 1);
-        ReduceDuration();
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -35,17 +34,6 @@ public class FrostPulseInstance : MonoBehaviour
             // Calling an event that the ability can subscribe to
             onEnemyHit?.Invoke(enemy);
         }
-    }
-
-    private void ReduceDuration()
-    {
-        if (duration >= 0)
-        {
-            duration -= Time.deltaTime;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    
     }
 }

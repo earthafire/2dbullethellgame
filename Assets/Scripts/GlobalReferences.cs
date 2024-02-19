@@ -8,10 +8,12 @@ public class GlobalReferences : MonoBehaviour
 {
     public static PlayerXPManager xpManager;
     public static GameObject player;
+    public static Transform firePoint;
     public static gameSupervisorController gameSupervisorController;
     public static EnemyXpObjectManager enemyXpObjectManager;
     public static LevelGenerator levelGenerator;
     private static readonly Random random = new();
+
     private void Awake()
     {
         #region Singleton

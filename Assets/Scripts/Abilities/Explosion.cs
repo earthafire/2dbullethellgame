@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion : AbilityObject
 {
-    [SerializeField] int damage = 10;
-    [SerializeField] float duration = 1;
+    int damage = 10;
 
-    private void FixedUpdate()
+    private void Start()
     {
-        ReduceDuration();
+        duration = 1;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,17 +18,5 @@ public class Explosion : MonoBehaviour
                 Enemy enemy = other.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(damage); 
             }
-    }
-
-    private void ReduceDuration()
-    {
-        if (duration >= 0)
-        {
-            duration -= Time.deltaTime;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }

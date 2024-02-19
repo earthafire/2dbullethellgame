@@ -11,7 +11,7 @@ public class FrostPulse : ActivatableAbility
 
     void Start()
     {
-        frostpulseobj = (GameObject)Resources.Load("Prefabs/Weapons/FrostPulse/FrostPulse", typeof(GameObject));
+        frostpulseobj = (GameObject)Resources.Load("Prefabs/Abilities/FrostPulse/FrostPulse", typeof(GameObject));
 
         player = GlobalReferences.player;
 
@@ -21,14 +21,12 @@ public class FrostPulse : ActivatableAbility
     public override void Activated()
     {
         FrostPulseInstance pulse = Instantiate(frostpulseobj, player.transform.position, Quaternion.Euler(0f, 0f, 0f)).GetComponent<FrostPulseInstance>();
-
         pulse.onEnemyHit += frostHit;
     }
 
     public void frostHit(Enemy enemy)
     {
         enemy.TakeDamage(damage);
-        
         enemy.GetKnockbacked(player.transform, knockback);
     }
 }
