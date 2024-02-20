@@ -5,18 +5,17 @@ using UnityEngine;
 
 public class Explosion : AbilityObject
 {
-    int damage = 10;
-
-    private void Start()
+    private void OnEnable()
     {
-        duration = 1;
+        duration = .3f;
+        damage = 10f;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-            if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy layer
-            {
-                Enemy enemy = other.gameObject.GetComponent<Enemy>();
-                enemy.TakeDamage(damage); 
-            }
+        if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy layers
+        {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            enemy.TakeDamage((int)damage); 
+        }
     }
 }

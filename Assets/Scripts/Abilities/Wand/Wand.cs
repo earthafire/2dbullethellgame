@@ -7,7 +7,6 @@ public class Wand : ActivatableAbility
     public Animator player_animator;
     public GameObject projectile;
     private Transform firePoint;
-    private GameObject player;
     private int damage = 20;
     Camera mainCamera;
 
@@ -19,11 +18,11 @@ public class Wand : ActivatableAbility
         mainCamera = Camera.main;
 
         player_animator = GetComponent<Animator>();
-        player = GlobalReferences.player;
+
         cooldownTimeMax = 0.75f;
 
-        //projectile = (GameObject)Resources.Load("Prefabs/Abilities/Lightning/Lightning", typeof(GameObject));
-        projectile = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Fireball", typeof(GameObject));
+        projectile = (GameObject)Resources.Load("Prefabs/Abilities/Lightning/Lightning", typeof(GameObject));
+        //projectile = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Fireball", typeof(GameObject));
     }
 
     public override void Activated()
@@ -31,9 +30,7 @@ public class Wand : ActivatableAbility
         player_animator.SetTrigger("Attack");
 
         Bullet bullet = Instantiate(projectile, firePoint.position, AimTowardsCursor()).GetComponent<Bullet>();
-        //bullet.transform.localScale = CalculateModifiedSize(bullet.transform.localScale);
-        //bullet.duration = CalculateModifiedDuration(durationTimeMax);
-
+        bullet.Initialize(bullet);
         bullet.onEnemyHit += DealDamage;
     }
 

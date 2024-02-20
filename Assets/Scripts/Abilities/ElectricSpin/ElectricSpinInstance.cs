@@ -3,41 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricSpinInstance : MonoBehaviour
+public class ElectricSpinInstance : AbilityObject
 {
-    public float duration = 5.0f;
-    public float distance = 1.0f;
-    public float rotationSpeed = 105f; //in degrees per second
-    GameObject player;
+    public float distance = 2.0f;
     Transform orbiter;
 
     public Action<Enemy> onEnemyHit;
     private void Awake()
     {
         orbiter = this.transform;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
         player = GlobalReferences.player;
+    }
+
+    private void OnEnable()
+    {
+        duration = 2.0f;
+        speed = 100f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player == null)
-        {
-            return;
-        }
-
-        duration -= Time.deltaTime;
-        if (duration < 0)
-        {
-            Destroy(gameObject);
-        }
-
         Orbit();
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,9 +38,8 @@ public class ElectricSpinInstance : MonoBehaviour
 
     private void Orbit()
     {
-
         // Rotate the 'orbiter' around the player
-        orbiter.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+        orbiter.Rotate(Vector3.forward, speed * Time.deltaTime);
 
         // Calculate the rotation in radians
         float angle = Mathf.Deg2Rad * orbiter.rotation.eulerAngles.z;

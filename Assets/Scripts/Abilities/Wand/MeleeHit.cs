@@ -5,17 +5,8 @@ using UnityEngine;
 
 public class MeleeHit : AbilityObject
 {
-    //public float offsetDistance = .25f;
-    public Action<Enemy> onEnemyHit;
-    public GameObject player;
-    //private Animator animator;
+    internal Action<Enemy> onEnemyHit;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        duration = 1;
-        player = GlobalReferences.player;
-    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy Layer OR Flying Enemy Layer
@@ -23,5 +14,11 @@ public class MeleeHit : AbilityObject
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             onEnemyHit?.Invoke(enemy);
         }
+    } 
+
+    private void OnEnable()
+    {
+        duration = .25f;
+       // damage = 10f;
     }
 }

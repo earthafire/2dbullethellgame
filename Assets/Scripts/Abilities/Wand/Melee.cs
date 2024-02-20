@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class Melee : ActivatableAbility
 {
-    public GameObject meleeObj;
     public int damage = 20;
     public float knockback = 1.5f;
-    private Animator animator;
 
-    // Start is called before the first frame update
+    public GameObject meleeObj;
+    private Animator animator;
+    public Action<Enemy> onEnemyHit;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,6 +23,7 @@ public class Melee : ActivatableAbility
     {
         animator.SetTrigger("Attack");
         MeleeHit meleeHit = Instantiate(meleeObj, GlobalReferences.firePoint.position, Quaternion.identity).GetComponent<MeleeHit>();
+        meleeHit.Initialize(meleeHit);
         meleeHit.onEnemyHit += Hit;
     }
     

@@ -6,16 +6,18 @@ using UnityEngine;
 public class FrostPulseInstance : AbilityObject
 {
     public Action<Enemy> onEnemyHit;
-    GameObject player;
     SoundComponent sound;
 
     // Start is called before the first frame update
     void Start()
     {
-        duration = .75f;
         sound = GetComponent<SoundComponent>();
-        player = GlobalReferences.player;
         sound.sfxToPlay.PlaySFX();
+    }
+
+    private void OnEnable()
+    {
+        duration = .75f;
     }
 
     // Update is called once per frame
@@ -31,7 +33,6 @@ public class FrostPulseInstance : AbilityObject
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
-            // Calling an event that the ability can subscribe to
             onEnemyHit?.Invoke(enemy);
         }
     
