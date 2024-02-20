@@ -8,12 +8,10 @@ using UnityEngine;
 public class Dash : ActivatableAbility
 {
     private Animator player_animator;
-    private GameObject player;
 
     void Start()
     {
         player_animator = GetComponent<Animator>();
-        player = GameObject.Find("Player");
         base.cooldownTimeMax = 2f;
     }
 

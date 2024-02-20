@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6430365588403803977}
   - component: {fileID: 384240364516525212}
   m_Layer: 0
-  m_Name: Wand T2
+  m_Name: Wand T4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1918600894, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  m_Sprite: {fileID: -892033391, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86dfb708826c84e45961c2a0d14f7f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: e139bfe4afaaceb4f8a56f06cdab5c01, type: 2}
+  item: {fileID: 11400000, guid: b8a4c3a1ff595d94092878cb53a65e2a, type: 2}
 --- !u!50 &-33140539966976296
 Rigidbody2D:
   serializedVersion: 4

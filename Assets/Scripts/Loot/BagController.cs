@@ -21,7 +21,7 @@ public class BagController : InteractableLoot
 
     public override void OnPickUp(GameObject playerObject)
     {
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
         StartCoroutine(SpewItems(playerObject));
     }
 

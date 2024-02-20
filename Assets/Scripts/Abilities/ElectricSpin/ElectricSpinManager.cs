@@ -7,7 +7,7 @@ public class ElectricSpinManager : ActivatableAbility
     public GameObject electricSpinObj;
 
     private int damage = 10;
-    private float knockback = 1.5f;
+    private float knockback = .2f;
 
     void Start()
     {

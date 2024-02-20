@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ElectricSpinInstance : AbilityObject
 {
-    public float distance = 2.0f;
+    public float distance = 3.5f;
     Transform orbiter;
 
     public Action<Enemy> onEnemyHit;
