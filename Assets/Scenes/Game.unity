@@ -614,12 +614,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regularEnemies:
-  - {fileID: 8866743574015759239, guid: ce5b420fdd26ab247af8fe71db5b310d, type: 3}
+  - {fileID: 8597935369796501180, guid: 8fa0e02aaf61c3a42aa9dab38626160c, type: 3}
   - {fileID: 8597935369796501180, guid: c7dc24eccbd6b154391ed2ac16d5947b, type: 3}
   - {fileID: 8597935369796501180, guid: c27ca99a7b803d24a9f0d532580e5273, type: 3}
   - {fileID: 8597935369796501180, guid: ac4d1a2615f73814d87902e378b7eafc, type: 3}
   - {fileID: 8597935369796501180, guid: f31d76f06cfa562419f4c92307349ce7, type: 3}
   - {fileID: 1362412182119624273, guid: a6e1ff943b5d00c47b6331c8a05c2178, type: 3}
+  - {fileID: 8866743574015759239, guid: ce5b420fdd26ab247af8fe71db5b310d, type: 3}
   - {fileID: 8597935369796501180, guid: 9c0c97f5cda1ac5489472da12556a404, type: 3}
   - {fileID: 8597935369796501180, guid: 4333215c7d70a2646ac3ce19c9b9eccc, type: 3}
   - {fileID: 8597935369796501180, guid: a1c63a0c8f5d97d4c9e0edb2ab8d913f, type: 3}
