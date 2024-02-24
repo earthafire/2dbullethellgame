@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  xpValue: 150
+  xpValue: 50
   sprites:
   - {fileID: 946777558, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   - {fileID: -581175849, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}

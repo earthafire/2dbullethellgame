@@ -5,10 +5,16 @@ using UnityEngine;
 
 public abstract class ActivatableAbility : MonoBehaviour
 {
+    public GameObject player;
     Coroutine cooldownCoroutine;
-    public float cooldownTimeMax = 200f; // seconds
+
+    public float cooldownTimeMax = 200f; // in seconds, overwritten in inheriting class
     public float cooldownRemainingTime { get; private set; } = 0;
-    private float cooldown_timer = 0f;
+
+    private void Awake()
+    {
+        player = GlobalReferences.player;
+    }
 
     // Activates weapon's ability (Activated) if cooldown is met
     public void Activate()
@@ -19,7 +25,8 @@ public abstract class ActivatableAbility : MonoBehaviour
             cooldownCoroutine = StartCoroutine(CountCooldown());
         }
     }
-
+    public abstract void Activated(); // Weapon's ability override this
+    
     public void ResetCooldown()
     {
         if (cooldownCoroutine != null)
@@ -36,8 +43,7 @@ public abstract class ActivatableAbility : MonoBehaviour
         {
             cooldownRemainingTime -= Time.deltaTime;
 
-            // This will wait until the next frame before continuing execution
-            yield return null;
+            yield return null; // This will wait until the next frame before continuing execution
         }
         cooldownRemainingTime = 0f;
     }
@@ -49,7 +55,7 @@ public abstract class ActivatableAbility : MonoBehaviour
     /// <returns>float cooldown time</returns>
     public float CalculateModifiedCooldown(float baseCooldown)
     {
-        // haste based system
+        // ability haste based system
 
         // examples:
         // cdr points   |   percentage reduction
@@ -72,7 +78,5 @@ public abstract class ActivatableAbility : MonoBehaviour
         return modifiedCooldown;
     }
 
-    // Weapon's ability (override this)
-    public abstract void Activated();
-
+    
 }

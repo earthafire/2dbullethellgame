@@ -4,58 +4,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : AbilityObject
 { 
-    // Event called when hitting an enemy
-    public Action<Enemy> onEnemyHit;
-
     public SoundComponent sound;
 
-    // Movement parameters
-    public float duration = 3f;
-    public float speed = 1f;
-
     GameObject explosion;
-    [SerializeField] bool piercingEnabled = true;
+
+    [SerializeField] bool piercingEnabled;
     [SerializeField] int pierceAmount = 10;
 
     float detectionRange = .5f;
     Collider2D[] detections;
 
+    public Action<Enemy> onEnemyHit;
 
+    private void OnEnable()
+    {
+        duration = 1.0f;
+        speed = 1.0f;
+    }
     public void Start()
     {
         detections = new Collider2D[32];
 
         sound.sfxToPlay.PlaySFX();
 
-        explosion = (GameObject)Resources.Load("Prefabs/Weapons/Fireball/Explosion", typeof(GameObject));
+        explosion = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Explosion", typeof(GameObject));
     }
-
-    // Update is called once per frame
     public void Update()
     {
         Move();
-        ReduceDuration();
     }
-
-    private void ReduceDuration()
-    {
-        if (duration >= 0)
-        {
-            duration -= Time.deltaTime;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public void Move()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.right);
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
        
@@ -69,9 +52,11 @@ public class Bullet : MonoBehaviour
 
                 if (piercingEnabled)
                 {
-                    DetectClosestEnemy();
-                    RotateTowards(DetectClosestEnemy().transform.position);
-                    piercingCount();
+                    if (DetectClosestEnemy() != null)
+                    {
+                        RotateTowards(DetectClosestEnemy().transform.position);
+                        PiercingCount();
+                    }
                 }
                 else
                 {
@@ -81,7 +66,7 @@ public class Bullet : MonoBehaviour
           }
     }
 
-    private void piercingCount()
+    private void PiercingCount()
     {
         pierceAmount--;
 
@@ -99,9 +84,10 @@ public class Bullet : MonoBehaviour
 
         foreach (var col in detections)
         {
-            if (col.gameObject.layer == 7)
+            if (col.gameObject.layer == 7 || col.gameObject.layer == 9) // Enemy layer & Flying Enemy Layer
             {
                 float distance = Vector2.Distance(transform.position, col.transform.position);
+
                 if (distance < closestDistance)
                 {
                     closestEnemy = col.gameObject.GetComponent<Enemy>();
@@ -120,6 +106,7 @@ public class Bullet : MonoBehaviour
     }
     private void Explode()
     {
-        Instantiate(explosion, transform.position, Quaternion.Euler(0f, 0f, 0f));
+        Explosion _explosion = Instantiate(explosion, transform.position, Quaternion.Euler(0f, 0f, 0f)).GetComponent<Explosion>();
+        _explosion.Initialize(_explosion);
     }
 }

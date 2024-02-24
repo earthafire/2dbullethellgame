@@ -16,8 +16,8 @@ public class gameSupervisorController : MonoBehaviour
     private GameObject player;
     public List<GameObject> spawnedEnemiesInScene = new List<GameObject>();
 
-    public EnemyXpObjectManager enemyXpObjectManager;
-    public LevelGenerator levelGenerator;
+    private EnemyXpObjectManager enemyXpObjectManager;
+    private LevelGenerator levelGenerator;
 
     [SerializeField] private int EnemiesPerCooldown = 40;
     [SerializeField] private float SpawnCooldownSeconds = 5;
@@ -35,6 +35,7 @@ public class gameSupervisorController : MonoBehaviour
 
     public bool suspendSpawning;
 
+    Collider2D[] detections;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class gameSupervisorController : MonoBehaviour
         player = GlobalReferences.player;
         levelGenerator = GlobalReferences.levelGenerator;
         enemyXpObjectManager = GlobalReferences.enemyXpObjectManager;
+        detections = new Collider2D[32];
 
         levelGenerator.GenerateMap();
     }
@@ -56,9 +58,7 @@ public class gameSupervisorController : MonoBehaviour
     void Update()
     {
         gameTimer += Time.deltaTime;
-
         spawnTimer += Time.deltaTime;
-
         tierTimer += Time.deltaTime;
 
         if (player == null)
@@ -69,7 +69,6 @@ public class gameSupervisorController : MonoBehaviour
         {
             return;
         }
-
 
         if (spawnTimer > SpawnCooldownSeconds)
         {
@@ -83,14 +82,10 @@ public class gameSupervisorController : MonoBehaviour
                 if (randInt >= 9)                
                 {
                     nextEntity = bossEnemies[enemyTier];
-
-                    //nextEntity = getRandomBossEnemy();
                 }
                 else
                 {
                     nextEntity = regularEnemies[enemyTier];
-
-                    //nextEntity = getRandomRegularEnemy();
                 } 
 
                 spawnEntity(nextEntity);
@@ -100,7 +95,6 @@ public class gameSupervisorController : MonoBehaviour
         if (tierTimer > secToIncreaseTier)
         {
             IncreaseEnemyTier();
-
             tierTimer = 0;
         }
 
@@ -158,7 +152,10 @@ public class gameSupervisorController : MonoBehaviour
 
             if (isPositionInSpawnArea(targetPosition))
             {
-                return targetPosition;
+                if(isPositionInOpenArea(targetPosition))
+                {
+                    return targetPosition;
+                }
             }
         }
 
@@ -173,10 +170,10 @@ public class gameSupervisorController : MonoBehaviour
     private bool isPositionInSpawnArea(Vector3 position)
     {
         if (
-            position.x < -6.169815 ||
-            position.x > 5.689815 ||
-            position.y < -6.104609 ||
-            position.y > 4.956743
+            position.x < -23 ||
+            position.x > 23 ||
+            position.y < -23 ||
+            position.y > 23
             )
         {
             //Debug.Log(position.x + " " + position.y);
@@ -184,5 +181,18 @@ public class gameSupervisorController : MonoBehaviour
         }
 
         return true;
+    }
+    private bool isPositionInOpenArea(Vector3 _position)
+    {
+        detections = Physics2D.OverlapCircleAll(_position, 1.0f);
+        foreach (var col in detections)
+        {
+            if (col.gameObject.layer == 3) // Wall Layer
+            {
+                return false;
+            }
+        }
+        return true;
+
     }
 }

@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class Wand : ActivatableAbility
 {
-    // object that will be used as bullet
     public Animator player_animator;
     public GameObject projectile;
     private Transform firePoint;
-    private GameObject player;
     private int damage = 20;
     Camera mainCamera;
 
-    // Start is called before the first frame update
     void Start()
     {
         firePoint = transform.GetChild(0).GetChild(0).GetChild(0);
+        GlobalReferences.firePoint = firePoint;
 
         mainCamera = Camera.main;
 
         player_animator = GetComponent<Animator>();
-        player = GlobalReferences.player;
 
-        cooldownTimeMax = .75f;
+        cooldownTimeMax = 0.75f;
 
-        //projectile = (GameObject)Resources.Load("Prefabs/Weapons/Lightning/Lightning", typeof(GameObject));
-        projectile = (GameObject)Resources.Load("Prefabs/Weapons/Fireball/Fireball", typeof(GameObject));
+        projectile = (GameObject)Resources.Load("Prefabs/Abilities/Lightning/Lightning", typeof(GameObject));
+        //projectile = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Fireball", typeof(GameObject));
     }
 
     public override void Activated()
@@ -33,7 +30,7 @@ public class Wand : ActivatableAbility
         player_animator.SetTrigger("Attack");
 
         Bullet bullet = Instantiate(projectile, firePoint.position, AimTowardsCursor()).GetComponent<Bullet>();
-
+        bullet.Initialize(bullet);
         bullet.onEnemyHit += DealDamage;
     }
 

@@ -7,13 +7,10 @@ public class FrostPulse : ActivatableAbility
     public GameObject frostpulseobj;
     [SerializeField] int damage = 1;
     [SerializeField] float knockback = .15f;
-    GameObject player;
 
     void Start()
     {
-        frostpulseobj = (GameObject)Resources.Load("Prefabs/Weapons/FrostPulse/FrostPulse", typeof(GameObject));
-
-        player = GlobalReferences.player;
+        frostpulseobj = (GameObject)Resources.Load("Prefabs/Abilities/FrostPulse/FrostPulse", typeof(GameObject));
 
         cooldownTimeMax = 5f;
     }
@@ -21,14 +18,13 @@ public class FrostPulse : ActivatableAbility
     public override void Activated()
     {
         FrostPulseInstance pulse = Instantiate(frostpulseobj, player.transform.position, Quaternion.Euler(0f, 0f, 0f)).GetComponent<FrostPulseInstance>();
-
+        pulse.Initialize(pulse);
         pulse.onEnemyHit += frostHit;
     }
 
     public void frostHit(Enemy enemy)
     {
         enemy.TakeDamage(damage);
-        
         enemy.GetKnockbacked(player.transform, knockback);
     }
 }

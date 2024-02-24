@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957062fdb3f574c40a5686abc3462a92, type: 3}
+  m_Name: Duration
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 7f12180024b56294f98dfb3820773bec, type: 2}
+    - {fileID: 11400000, guid: 41dc0b1f731d2154fa00de1e801c1907, type: 2}
+    - {fileID: 11400000, guid: d9b781648eae8b742bc1359ae5116735, type: 2}
+    - {fileID: 11400000, guid: d7055360b6b93f24d9c760f617d4fcbd, type: 2}
+    - {fileID: 11400000, guid: a02685ab34d668541b06fba6b30d4ee5, type: 2}
+    - {fileID: 11400000, guid: 5d4d3818c8315024d800b123c114663f, type: 2}
+    - {fileID: 11400000, guid: 95e635e2fe056174f85ceaf5acdef3e6, type: 2}
+    - {fileID: 11400000, guid: 3af0f4b2c52135c41b5883abaf59ff60, type: 2}
+    - {fileID: 11400000, guid: 8031388cdca2cc64fad121e19560cd37, type: 2}
+    - {fileID: 11400000, guid: 78be726ddca7dc641ab88b074a62b50a, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: upgradeAttributeStack
+      Entry: 7
+      Data: 0|System.Collections.Generic.Stack`1[[UpgradeAttribute, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

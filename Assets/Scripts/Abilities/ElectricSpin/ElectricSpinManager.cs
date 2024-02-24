@@ -5,25 +5,25 @@ using UnityEngine;
 public class ElectricSpinManager : ActivatableAbility
 {
     public GameObject electricSpinObj;
-    private GameObject player;
-    private int damage = 10;
-    private float knockback = 1.5f;
 
-    // Start is called before the first frame update
+    private int damage = 10;
+    private float knockback = .2f;
+
     void Start()
     {
-        electricSpinObj = (GameObject)Resources.Load("Prefabs/Weapons/ElectricSpin/ElectricSpin", typeof(GameObject));
-        player = GameObject.Find("Player");
-        cooldownTimeMax = .5f;
+        electricSpinObj = (GameObject)Resources.Load("Prefabs/Abilities/ElectricSpin/ElectricSpin", typeof(GameObject));
+
+        cooldownTimeMax = 1f;
     }
-    
     public override void Activated()
     {
         ElectricSpinInstance instance = Instantiate(electricSpinObj, player.transform.position, Quaternion.identity).GetComponent<ElectricSpinInstance>();
+        instance.Initialize(instance);
         instance.onEnemyHit += Hit;
     }
     private void Hit(Enemy enemy)
     {
         enemy.TakeDamage(damage);
+        enemy.GetKnockbacked(player.transform, knockback);
     }
 }
