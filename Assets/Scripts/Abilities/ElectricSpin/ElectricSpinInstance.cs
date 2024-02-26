@@ -6,6 +6,13 @@ using UnityEngine;
 public class ElectricSpinInstance : AbilityObject
 {
     public float distance = 3.5f;
+
+    private float knockback = .2f;
+
+    public override float damage { get; set; } = 1f;
+    public override float duration { get; set; } = 2.0f;
+    public override float speed { get; set; } = 100f;
+
     Transform orbiter;
 
     public Action<Enemy> onEnemyHit;
@@ -15,25 +22,10 @@ public class ElectricSpinInstance : AbilityObject
         player = GlobalReferences.player;
     }
 
-    private void OnEnable()
-    {
-        duration = 2.0f;
-        speed = 100f;
-    }
-
     // Update is called once per frame
     void Update()
     {
         Orbit();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.layer == 7 || collision.gameObject.layer == 9) // Enemy Layer
-        {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            onEnemyHit?.Invoke(enemy);
-        }
     }
 
     private void Orbit()
@@ -53,5 +45,11 @@ public class ElectricSpinInstance : AbilityObject
 
         // Set the new position for 'orbiter'
         orbiter.position = newPosition;
+    }
+
+    public override void OnStay(Enemy enemy)
+    {
+        enemy.TakeDamage((int)damage);
+        enemy.GetKnockbacked(player.transform, knockback);
     }
 }

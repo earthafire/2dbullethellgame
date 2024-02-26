@@ -5,17 +5,23 @@ using UnityEngine;
 
 public class AbilityObject : MonoBehaviour
 {
-    public float duration = 0;
-    public float speed = 0;
-    public float damage = 0;
+    public virtual float duration { get; set; } = 1f;
+    public virtual float speed { get; set; } = 1f;
+    public virtual float damage { get; set; } = 1f;
     public GameObject player;
 
-    //public Action<Enemy> onEnemyHit;
+    // public Action<Enemy> onEnemyHit;
 
     private void Awake()
     {
         player = GlobalReferences.player;
     }
+
+    private void OnEnable()
+    {
+        Initialize(this);
+    }
+
     public void Initialize(AbilityObject _obj)
     {
         _obj.duration = CalculateModifiedDuration(_obj.duration);
@@ -24,18 +30,34 @@ public class AbilityObject : MonoBehaviour
         StartCoroutine(CountDuration(_obj.duration));
     }
 
-   /* private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy Layer OR Flying Enemy Layer
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            onEnemyHit?.Invoke(enemy);
+            OnHit(enemy);
         }
     }
-    public void Hit(Enemy enemy)
+
+    private void OnTriggerStay2D(Collider2D other)
     {
-        enemy.TakeDamage((int)damage);
-    }*/
+
+        if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy Layer OR Flying Enemy Layer
+        {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            OnStay(enemy);
+        }
+    }
+
+    public virtual void OnHit(Enemy enemy)
+    {
+        // override this to customize on hit behaviour
+    }
+
+    public virtual void OnStay(Enemy enemy)
+    {
+        // override this to customize on hit behaviour
+    }
 
     public IEnumerator CountDuration(float _duration)
     {

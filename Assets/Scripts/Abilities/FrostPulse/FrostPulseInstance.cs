@@ -7,6 +7,10 @@ public class FrostPulseInstance : AbilityObject
 {
     public Action<Enemy> onEnemyHit;
     SoundComponent sound;
+    [SerializeField] float knockback = .15f;
+
+    public override float duration { get; set; } = 1f;
+    public override float damage { get; set; } = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -15,26 +19,15 @@ public class FrostPulseInstance : AbilityObject
         sound.sfxToPlay.PlaySFX();
     }
 
-    private void OnEnable()
-    {
-        duration = .75f;
-    }
-
     // Update is called once per frame
     void Update()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 1);
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    public override void OnStay(Enemy enemy)
     {
-        
-        if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy layer & Flying Enemy Layer
-        {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-
-            onEnemyHit?.Invoke(enemy);
-        }
-    
+        enemy.TakeDamage((int)damage);
+        enemy.GetKnockbacked(player.transform, knockback);
     }
 }

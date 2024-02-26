@@ -6,9 +6,6 @@ public class ElectricSpinManager : ActivatableAbility
 {
     public GameObject electricSpinObj;
 
-    private int damage = 10;
-    private float knockback = .2f;
-
     void Start()
     {
         electricSpinObj = (GameObject)Resources.Load("Prefabs/Abilities/ElectricSpin/ElectricSpin", typeof(GameObject));
@@ -18,12 +15,5 @@ public class ElectricSpinManager : ActivatableAbility
     public override void Activated()
     {
         ElectricSpinInstance instance = Instantiate(electricSpinObj, player.transform.position, Quaternion.identity).GetComponent<ElectricSpinInstance>();
-        instance.Initialize(instance);
-        instance.onEnemyHit += Hit;
-    }
-    private void Hit(Enemy enemy)
-    {
-        enemy.TakeDamage(damage);
-        enemy.GetKnockbacked(player.transform, knockback);
     }
 }
