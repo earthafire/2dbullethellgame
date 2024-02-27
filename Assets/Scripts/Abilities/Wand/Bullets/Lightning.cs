@@ -8,7 +8,7 @@ public class Lightning : Bullet
     Collider2D[] detections;
 
 
-    void Start()
+    public override void Start()
     {
         base.Start();
         detections = new Collider2D[32];
