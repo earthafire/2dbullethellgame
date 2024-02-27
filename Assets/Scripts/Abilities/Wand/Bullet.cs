@@ -13,7 +13,7 @@ public class Bullet : AbilityObject
 
     public SoundComponent sound;
 
-    public void Start()
+    public virtual void Start()
     {
         if (sound)
         {

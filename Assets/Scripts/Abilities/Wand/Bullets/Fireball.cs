@@ -6,7 +6,7 @@ public class Fireball : Bullet
 {
     GameObject explosion;
 
-    void Start()
+    public override void Start()
     {
         base.Start();
         explosion = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Explosion", typeof(GameObject));
