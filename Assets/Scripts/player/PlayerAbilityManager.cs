@@ -22,6 +22,7 @@ public enum AbilitySlot
 
 public class PlayerAbilityManager : MonoBehaviour
 {
+    public bool autofire = true;
     // !! -- REBINDING BUTTONS -- !! 
     // buttons can be bound in Edit>Project Settings>Input Manager
     // !! --                   -- !!
@@ -56,13 +57,14 @@ public class PlayerAbilityManager : MonoBehaviour
             {ActivatableAbilityType.WAND, gameObject.AddComponent<Wand>()},
             {ActivatableAbilityType.FROSTPULSE, gameObject.AddComponent<FrostPulse>()},
             {ActivatableAbilityType.DASH, gameObject.AddComponent<Dash>()},
-            {ActivatableAbilityType.ELECTRICSPIN, gameObject.AddComponent<ElectricSpinManager>()}
+            {ActivatableAbilityType.ELECTRICSPIN, gameObject.AddComponent<ElectricSpinManager>()},
+            {ActivatableAbilityType.WINDSHIELD, gameObject.AddComponent<WindShieldManager>()}
         };
 
         // initialize all abilities available
-        // EquippedAbilities[AbilitySlot.Q] = null;
-        // EquippedAbilities[AbilitySlot.E] = null;
-        // EquippedAbilities[AbilitySlot.R] = null;
+        EquippedAbilities[AbilitySlot.Q] = 5;
+        EquippedAbilities[AbilitySlot.E] = 7;
+        EquippedAbilities[AbilitySlot.R] = 2;
         // EquippedAbilities[AbilitySlot.Shift] = null;
         EquippedAbilities[AbilitySlot.LeftClick] = 4;
         EquippedAbilities[AbilitySlot.RightClick] = 6;
@@ -85,35 +87,59 @@ public class PlayerAbilityManager : MonoBehaviour
     {
         if (!suspendAbilities)
         {
-            DetectAbilitiesPressed();
+            ActivateAbilities();
         }
     }
 
     /// <summary>
     /// Iterates through equipped abilities, and triggers them all
     /// </summary>
-    public void DetectAbilitiesPressed()
+    public bool DetectAbilitiesPressed(KeyValuePair<AbilitySlot,int> abilitySlotKV)
     {
-        foreach (var abilitySlotKV in EquippedAbilities)
+        if (Input.GetButton(abilitySlotKV.Key.ToString()))
         {
-            // if ability button is pressed, trigger ability in that slot (if it exists)
-            if (Input.GetButton(abilitySlotKV.Key.ToString()))
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void ActivateAbilities()
+    {
+
+            foreach (var abilitySlotKV in EquippedAbilities)
             {
                 ActivatableAbilityType typeOfAbility = equipment.GetSlots[abilitySlotKV.Value].item.Ability;
-                if (typeOfAbility != ActivatableAbilityType.NULL)
+
+                if (autofire)
                 {
-                    abilities[typeOfAbility].Activate();
+                    if (typeOfAbility != ActivatableAbilityType.NULL)
+                    {
+                        abilities[typeOfAbility].Activate();
+                    }
+                    else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
+                    {
+                        abilities[ActivatableAbilityType.MELEE].Activate();
+                    }
                 }
-                else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
+                else
                 {
-                    abilities[ActivatableAbilityType.MELEE].Activate();
-                }
+                    if(DetectAbilitiesPressed(abilitySlotKV))
+                    {
+                        abilities[typeOfAbility].Activate();
+                    }
+                    else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
+                    {
+                        abilities[ActivatableAbilityType.MELEE].Activate();
+                    }
             }
-        }
+            }
     }
 }
 
-// list of all available abilities, make sure to add new abilities to `abilities` dictionary above!
+// list of all available abilities, ALSO ADD TO `abilities` dictionary ABOVE!
 public enum ActivatableAbilityType
 {
     NULL,
@@ -121,5 +147,6 @@ public enum ActivatableAbilityType
     MELEE,
     DASH,
     FROSTPULSE,
-    ELECTRICSPIN
+    ELECTRICSPIN,
+    WINDSHIELD
 }

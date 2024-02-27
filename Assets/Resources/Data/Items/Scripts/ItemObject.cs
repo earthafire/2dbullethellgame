@@ -29,7 +29,7 @@ public class ItemObject : SerializedScriptableObject
     [TextArea(15, 20)]
     public string description;
     public Item data = new Item();
-    public Dictionary<Attribute, float> buffs = new Dictionary<Attribute, float>();
+    public Dictionary<Attribute, float> buffs = new();
     public ActivatableAbilityType ability;
 
     public Item CreateItem()

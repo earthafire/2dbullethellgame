@@ -5098,7 +5098,7 @@ MonoBehaviour:
     editSettings: 1
     _sfxBase: {fileID: 11400000, guid: e42ad4bc623a7614f8fe26372abaee3a, type: 2}
     waitToPlay: 0
-    useDefault: 1
+    useDefault: 0
     audiosource: {fileID: -8406061283731173106}
 --- !u!114 &2376278460557631894
 MonoBehaviour:

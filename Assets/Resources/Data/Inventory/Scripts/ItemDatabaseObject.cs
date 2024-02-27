@@ -16,6 +16,10 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
                 ItemObjects[i].data.Id = i;
         }
     }
+    public void Awake()
+    {
+        UpdateID();
+    }
     public void OnAfterDeserialize()
     {
         UpdateID();

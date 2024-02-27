@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0bd8ac95c17af649aa50d3d5c8711a6, type: 3}
-  m_Name: Wand T4
+  m_Name: Ring T2
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -59,14 +59,12 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  uiDisplay: {fileID: -892033391, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  uiDisplay: {fileID: 1750195939, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   stackable: 0
-  type: 7
-  description: 'Goes in ya fist
-
-'
+  type: 6
+  description: Go on ya fingy
   data:
     Name: 
     Id: 8
-    Ability: 4
-  ability: 5
+    Ability: 0
+  ability: 4

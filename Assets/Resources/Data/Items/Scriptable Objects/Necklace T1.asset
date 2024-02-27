@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58b50bff0eb6a8f4783f364c0eeed1f7, type: 3}
-  m_Name: Tree Stump
+  m_Script: {fileID: 11500000, guid: c0bd8ac95c17af649aa50d3d5c8711a6, type: 3}
+  m_Name: Necklace T1
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: default_attributes
+    - Name: buffs
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Attribute, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
@@ -40,31 +40,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 4
-      Data: 70
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 1
-    - Name: $v
-      Entry: 4
-      Data: 0.4
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 7
       Data: 
@@ -73,7 +49,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 4
-      Data: 1
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -83,20 +59,12 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: current_attributes
-      Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[Attribute, Assembly-CSharp],[System.Single,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 1
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  applied_upgrades: []
+  uiDisplay: {fileID: 658112315, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
+  stackable: 0
+  type: 2
+  description: Go on ya neck
+  data:
+    Name: 
+    Id: 2
+    Ability: 0
+  ability: 4

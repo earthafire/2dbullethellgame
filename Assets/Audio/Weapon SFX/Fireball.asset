@@ -16,5 +16,5 @@ MonoBehaviour:
   volume: 0.2
   volumeVariation: 0.05
   pitch: 1
-  pitchVariation: 0.05
+  pitchVariation: 0.2
   loop: 0

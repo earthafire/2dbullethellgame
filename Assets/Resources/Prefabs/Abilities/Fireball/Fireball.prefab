@@ -222,7 +222,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -290,7 +290,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -343,7 +343,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.75
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -461,7 +461,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.0135
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1150,7 +1150,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 1
+    enabled: 0
     curve:
       serializedVersion: 2
       minMaxState: 3
@@ -1482,24 +1482,24 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7372549, g: 0.32156864, b: 0.21960786, a: 1}
-        key1: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 0.32941175}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.9803922, g: 0.82745105, b: 0.76470596, a: 1}
+        key1: {r: 0.6117647, g: 0.16862746, b: 0.03137255, a: 0.5882353}
+        key2: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 20239
-        ctime1: 46260
-        ctime2: 0
+        ctime0: 1157
+        ctime1: 20239
+        ctime2: 35081
         ctime3: 0
         ctime4: 0
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 54741
+        atime1: 49884
         atime2: 65535
         atime3: 65535
         atime4: 0
@@ -1508,7 +1508,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
@@ -5048,7 +5048,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

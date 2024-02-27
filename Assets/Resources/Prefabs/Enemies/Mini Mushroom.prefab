@@ -87,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 0.314, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &5298301523034307642
@@ -4994,9 +4994,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9d7e78e0bd5c648892f8092dd21c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   attributes: {fileID: 11400000, guid: 518212ac69ffab146a6bfe34023e2845, type: 2}
   _xpData: {fileID: 11400000, guid: 6dad0cc8d2e2ad449a8aaea65f5bc8a1, type: 2}
+  player: {fileID: 0}
   _lootBag: {fileID: 9070761112509151373, guid: 84733c193cf39da43a966c2068621c22, type: 3}
   speed_animation_multiplier: 1
   suspendActions: 0

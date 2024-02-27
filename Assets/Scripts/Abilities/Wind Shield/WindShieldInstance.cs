@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrostPulseInstance : AbilityObject
-{
-    public override float knockback { get; set; } = 1.5f;
-    public override float duration { get; set; } = 1f;
+public class WindShieldInstance : AbilityObject
+{ 
+    public override float knockback { get; set; } = .5f;
+    public override float duration { get; set; } = 3f;
     public override float damage { get; set; } = 5f;
 
     void Update()
