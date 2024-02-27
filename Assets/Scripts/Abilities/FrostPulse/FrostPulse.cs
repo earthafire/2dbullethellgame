@@ -6,12 +6,11 @@ public class FrostPulse : ActivatableAbility
 {
     public GameObject frostpulseobj;
 
-
     void Start()
     {
-        frostpulseobj = (GameObject)Resources.Load("Prefabs/Abilities/FrostPulse/FrostPulse", typeof(GameObject));
-
         cooldownTimeMax = 5f;
+
+        frostpulseobj = (GameObject)Resources.Load("Prefabs/Abilities/FrostPulse/FrostPulse", typeof(GameObject));
     }
 
     public override void Activated()

@@ -20,7 +20,7 @@ public class Melee : ActivatableAbility
     public override void Activated()
     {
         animator.SetTrigger("Attack");
-        MeleeHit meleeHit = Instantiate(meleeObj, GlobalReferences.firePoint.position, Quaternion.identity).GetComponent<MeleeHit>();
-        meleeHit.Initialize(meleeHit);
+        Instantiate(meleeObj, GlobalReferences.firePoint.position, Quaternion.identity).GetComponent<MeleeHit>();
+
     }
 }

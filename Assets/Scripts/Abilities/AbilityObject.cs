@@ -8,6 +8,9 @@ public class AbilityObject : MonoBehaviour
     public virtual float duration { get; set; } = 1f;
     public virtual float speed { get; set; } = 1f;
     public virtual float damage { get; set; } = 1f;
+    public virtual float pierce { get; set; } = 1f;
+    public virtual float knockback {  get; set; } = .1f;
+    
     public GameObject player;
 
     // public Action<Enemy> onEnemyHit;
@@ -46,6 +49,7 @@ public class AbilityObject : MonoBehaviour
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             OnStay(enemy);
+            StartCoroutine(Tick());
         }
     }
 
@@ -57,6 +61,11 @@ public class AbilityObject : MonoBehaviour
     public virtual void OnStay(Enemy enemy)
     {
         // override this to customize on hit behaviour
+    }
+
+    private IEnumerator Tick()
+    {
+        yield return new WaitForSeconds(.1f);
     }
 
     public IEnumerator CountDuration(float _duration)

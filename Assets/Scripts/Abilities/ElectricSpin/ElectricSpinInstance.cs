@@ -8,7 +8,6 @@ public class ElectricSpinInstance : AbilityObject
     public float distance = 3.5f;
 
     private float knockback = .2f;
-
     public override float damage { get; set; } = 1f;
     public override float duration { get; set; } = 2.0f;
     public override float speed { get; set; } = 100f;

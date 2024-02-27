@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2671323420212578751}
   - component: {fileID: -2648266089628558325}
   - component: {fileID: -8388857203549156141}
-  - component: {fileID: 2927666210535807503}
+  - component: {fileID: 9064210334696792072}
   m_Layer: 7
   m_Name: Mushroom Boss
   m_TagString: Enemy
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4982,7 +4982,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &2927666210535807503
+--- !u!114 &9064210334696792072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4991,12 +4991,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8597935369796501180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef9d7e78e0bd5c648892f8092dd21c74, type: 3}
+  m_Script: {fileID: 11500000, guid: da3ced4bb1c419e499eb418d3fa9f445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   attributes: {fileID: 11400000, guid: 1b9c6f82a7227cf46a2c02bff826aa6b, type: 2}
   _xpData: {fileID: 11400000, guid: 6dad0cc8d2e2ad449a8aaea65f5bc8a1, type: 2}
+  player: {fileID: 0}
   _lootBag: {fileID: 9070761112509151373, guid: 84733c193cf39da43a966c2068621c22, type: 3}
   speed_animation_multiplier: 1
   suspendActions: 0

@@ -1,18 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Wand : ActivatableAbility
 {
     public Animator player_animator;
-    public GameObject projectile;
+    private int projectilesMax = 3;
+    private int projectileIndex = 0;
+    private GameObject[] projectiles;
     private Transform firePoint;
-    private int damage = 20;
     Camera mainCamera;
 
+    public Wand()
+    {
+        projectiles = new GameObject[projectilesMax];
+    }
     void Start()
     {
         firePoint = transform.GetChild(0).GetChild(0).GetChild(0);
+
         GlobalReferences.firePoint = firePoint;
 
         mainCamera = Camera.main;
@@ -21,17 +29,25 @@ public class Wand : ActivatableAbility
 
         cooldownTimeMax = 0.75f;
 
-        projectile = (GameObject)Resources.Load("Prefabs/Abilities/Lightning/Lightning", typeof(GameObject));
-        //projectile = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Fireball", typeof(GameObject));
+        projectiles[0] = (GameObject)Resources.Load("Prefabs/Abilities/Lightning/Lightning", typeof(GameObject));
+        projectiles[1] = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Fireball", typeof(GameObject));
+        projectiles[2] = (GameObject)Resources.Load("Prefabs/Abilities/Wave/Wave", typeof(GameObject));
     }
 
     public override void Activated()
     {
         player_animator.SetTrigger("Attack");
 
-        Bullet bullet = Instantiate(projectile, firePoint.position, AimTowardsCursor()).GetComponent<Bullet>();
-        bullet.Initialize(bullet);
-        bullet.onEnemyHit += DealDamage;
+        Instantiate(projectiles[projectileIndex], firePoint.position, AimTowardsCursor());
+
+        if (projectileIndex < projectilesMax -1)
+        {
+            projectileIndex++;
+        }
+        else if(projectileIndex == projectilesMax - 1)
+        {
+            projectileIndex = 0;
+        }
     }
 
     private Quaternion AimTowardsCursor()
@@ -41,10 +57,5 @@ public class Wand : ActivatableAbility
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         return Quaternion.Euler(0f,0f, rotationZ);
-    }
-
-    public void DealDamage(Enemy enemy)
-    {
-        enemy.TakeDamage(damage);
     }
 }

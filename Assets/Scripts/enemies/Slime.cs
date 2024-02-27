@@ -29,13 +29,12 @@ public class Slime : Enemy
         // only change directions when not moving
         if (speed_animation_multiplier <= 0)
         {
-            target_position = player.transform.position;
+           // target_position = player.transform.position;
         }
     }
 
     new void GetDeath()
-    {
-        
+    {        
         GetDeath();
     }
 }

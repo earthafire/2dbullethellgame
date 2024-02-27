@@ -14,8 +14,6 @@ public class BagController : InteractableLoot
 
     public void Start()
     {
-        //contents = new List<GameObject>();
-        //contents.Add(item);
         particles = gameObject.GetComponent<ParticleSystem>();
     }
 

@@ -7,12 +7,13 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject player;
     public Attributes attributes;
+    public EnemyXpObjectData _xpData;
+    public GameObject player;
+
     private float health, speed, damage;
     private Rigidbody2D _rb2d;
     private ParticleSystem particles;
-    public EnemyXpObjectData _xpData;
     [SerializeField] private GameObject _lootBag;
     //[SerializeField] private int dropChance = 10;
     public float speed_animation_multiplier = 1;
