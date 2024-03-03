@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FrostPulseInstance : AbilityObject
 {
-    public override float knockback { get; set; } = 1.5f;
+    public override float knockback { get; set; } = .25f;
     public override float duration { get; set; } = 1f;
     public override float damage { get; set; } = 5f;
 

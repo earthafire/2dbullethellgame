@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Lightning : Bullet
 {
-    public override float pierce { get => base.pierce; set => base.pierce = 10; }
+    public override float pierce { get => base.pierce; set => base.pierce = 5f; }
+    public override float speed { get => base.speed; set => base.speed = 1.5f; }
+    public override float damage { get => base.damage; set => base.damage = 15f; }
 
     float detectionRange = .5f;
     Collider2D[] detections;

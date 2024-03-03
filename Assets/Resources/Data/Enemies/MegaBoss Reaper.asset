@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b23f3711872c1f43b0b99974c4209b0, type: 3}
-  m_Name: Cooldown 10
+  m_Script: {fileID: 11500000, guid: 58b50bff0eb6a8f4783f364c0eeed1f7, type: 3}
+  m_Name: MegaBoss Reaper
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: upgradeToApply
+    - Name: default_attributes
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Attribute, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
@@ -40,16 +40,40 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 3
-      Data: 7
+      Data: 0
     - Name: $v
       Entry: 4
-      Data: 50
+      Data: 1500
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: 0.25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -59,9 +83,20 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  icon: {fileID: -1447097193, guid: f9fd729f116a6de4888f782dcbd3976c, type: 3}
-  title: Spellslinger Mastery
-  description: 'Increase Ability Haste by 40. '
-  unitsToUpgrade:
-  - {fileID: 11400000, guid: c0946fcb8a3b03446adca4d4679346bb, type: 2}
-  isPercent: 0
+    - Name: current_attributes
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[Attribute, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 1
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  applied_upgrades: []

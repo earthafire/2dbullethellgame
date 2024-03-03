@@ -20,6 +20,7 @@ public abstract class UserInterface : MonoBehaviour
     {
         stats = GameObject.FindWithTag("Player").GetComponent<PlayerAttributes>();
         CreateSlots();
+
         for (int i = 0; i < inventory.GetSlots.Length; i++)
         {
             inventory.GetSlots[i].parent = this;
@@ -66,6 +67,11 @@ public abstract class UserInterface : MonoBehaviour
 
     }
 
+    bool IsItemInSlot(GameObject obj)
+    {
+        return slotsOnInterface[obj].item.Id >= 0;
+    }
+
     protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
@@ -78,7 +84,25 @@ public abstract class UserInterface : MonoBehaviour
     public void OnEnter(GameObject obj)
     {
         MouseData.slotHoveredOver = obj;
+        if (IsItemInSlot(obj))
+        {
+            SetTooltipText(obj);
+        }
     }
+
+    private void SetTooltipText(GameObject obj)
+    {
+        string buffText = "<color=#008800>Buffs: </color>\n";
+        string abilityText = "<color=#000088>Abilities: </color>\n";
+        foreach (var pair in slotsOnInterface[obj].item.Buffs)
+        {
+            buffText += pair.Key.ToString() + ": " + pair.Value + "\n";
+        }
+        abilityText += (slotsOnInterface[obj].item.Ability.ToString());
+        print(slotsOnInterface[obj].item.Name + buffText + abilityText);
+        Tooltip.ShowTooltip(buffText + abilityText);
+    }
+
     public void OnEnterInterface(GameObject obj)
     {
         MouseData.interfaceMouseIsOver = obj.GetComponent<UserInterface>();
@@ -91,6 +115,7 @@ public abstract class UserInterface : MonoBehaviour
     public void OnExit(GameObject obj)
     {
         MouseData.slotHoveredOver = null;
+        Tooltip.HideTooltip();
     }
     public void OnDragStart(GameObject obj)
     {

@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     //[SerializeField] private int dropChance = 10;
     public float speed_animation_multiplier = 1;
 
+    private Coroutine _tickRate;
+
     // Define a UnityEvent that accepts a GameObject parameter
     //[System.Serializable]
     public class GameObjectUnityEvent : UnityEvent<GameObject> { }
@@ -35,7 +37,8 @@ public class Enemy : MonoBehaviour
         player = GlobalReferences.player;
 
         particles = GetComponent<ParticleSystem>();
-        _rb2d = GetComponent<Rigidbody2D>();    }
+        _rb2d = GetComponent<Rigidbody2D>();
+    }
 
     public void Update()
     {
@@ -48,6 +51,10 @@ public class Enemy : MonoBehaviour
     public void FixedUpdate()
     {
         Move();
+    }
+    private IEnumerator Tick(float duration)
+    {
+        yield return new WaitForSeconds(duration);
     }
 
     public void Move()
@@ -82,7 +89,6 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(GetDeath());
         }
-
         return true;
     }
 

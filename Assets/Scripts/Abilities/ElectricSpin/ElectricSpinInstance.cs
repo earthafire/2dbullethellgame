@@ -7,18 +7,22 @@ public class ElectricSpinInstance : AbilityObject
 {
     public float distance = 3.5f;
 
-    public override float knockback { get; set; } = .2f;
-    public override float damage { get; set; } = 1f;
+    public override float knockback { get; set; } = 1f;
+    public override float damage { get; set; } = 10f;
     public override float duration { get; set; } = 2.0f;
     public override float speed { get; set; } = 100f;
 
     Transform orbiter;
 
-    public Action<Enemy> onEnemyHit;
     private void Awake()
     {
         orbiter = this.transform;
         player = GlobalReferences.player;
+    }
+    public override void OnEnable()
+    {
+        distance *= ((PlayerAttributes.stats[Attribute.size] / 10) + 1);
+        base.OnEnable();
     }
 
     // Update is called once per frame

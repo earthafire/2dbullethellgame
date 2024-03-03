@@ -13,14 +13,13 @@ public class AbilityObject : MonoBehaviour
     
     public GameObject player;
 
-    // public Action<Enemy> onEnemyHit;
-
+    private bool dealDamage = true;
     private void Awake()
     {
         player = GlobalReferences.player;
     }
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
         Initialize(this);
     }
@@ -44,12 +43,16 @@ public class AbilityObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-
-        if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy Layer OR Flying Enemy Layer
+        if(dealDamage)
         {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            OnStay(enemy);
-            StartCoroutine(Tick());
+            if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy Layer OR Flying Enemy Layer
+            {
+                Enemy enemy = other.gameObject.GetComponent<Enemy>();
+                OnStay(enemy);
+                dealDamage = false;
+                StartCoroutine(Tick());
+            }
+
         }
     }
 
@@ -66,6 +69,7 @@ public class AbilityObject : MonoBehaviour
     private IEnumerator Tick()
     {
         yield return new WaitForSeconds(.1f);
+        dealDamage = true;
     }
 
     public IEnumerator CountDuration(float _duration)

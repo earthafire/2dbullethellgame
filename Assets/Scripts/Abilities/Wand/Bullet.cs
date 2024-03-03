@@ -1,12 +1,7 @@
-using Sirenix.OdinInspector;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : AbilityObject
 {
-
     public override float damage { get; set; } = 20f;
     public override float duration { get; set; } = 2.0f;
     public override float speed { get; set; } = 1f;
@@ -19,7 +14,6 @@ public class Bullet : AbilityObject
         {
             sound.sfxToPlay.PlaySFX();
         }
-        
     }
     public void Update()
     {

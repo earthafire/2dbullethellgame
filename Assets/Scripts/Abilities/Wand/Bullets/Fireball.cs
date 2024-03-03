@@ -5,6 +5,9 @@ using UnityEngine;
 public class Fireball : Bullet
 {
     GameObject explosion;
+    public override float pierce { get => base.pierce; set => base.pierce = 1f; }
+    public override float speed { get => base.speed; set => base.speed = .5f; }
+    public override float duration { get => base.duration; set => base.duration = 1.5f; }
 
     public override void Start()
     {

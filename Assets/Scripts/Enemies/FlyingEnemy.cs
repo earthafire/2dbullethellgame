@@ -23,6 +23,7 @@ public class FlyingEnemy: Enemy
     override public IEnumerator GetDeath()
     {
         HideShadow();
+        
         yield return base.GetDeath();
     }
     

@@ -1,12 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
-using System;
-using UnityEditor.Rendering.Universal;
 
 public class LevelUp : MonoBehaviour
  {

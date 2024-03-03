@@ -64,7 +64,7 @@ public class PlayerAbilityManager : MonoBehaviour
         // initialize all abilities available
         EquippedAbilities[AbilitySlot.Q] = 5;
         EquippedAbilities[AbilitySlot.E] = 7;
-        EquippedAbilities[AbilitySlot.R] = 2;
+        EquippedAbilities[AbilitySlot.R] = 1;
         // EquippedAbilities[AbilitySlot.Shift] = null;
         EquippedAbilities[AbilitySlot.LeftClick] = 4;
         EquippedAbilities[AbilitySlot.RightClick] = 6;

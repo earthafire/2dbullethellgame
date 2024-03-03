@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using Sirenix.OdinInspector;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public enum ItemType
@@ -37,6 +34,4 @@ public class ItemObject : SerializedScriptableObject
         Item newItem = new Item(this);
         return newItem;
     }
-
-
 }
