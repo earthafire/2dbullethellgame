@@ -53,12 +53,12 @@ public class PlayerAbilityManager : MonoBehaviour
         // instantiate all abilities, for ease of swapping them out later
         abilities = new Dictionary<ActivatableAbilityType, ActivatableAbility>()
         {
-            {ActivatableAbilityType.MELEE, gameObject.AddComponent<Melee>()},
-            {ActivatableAbilityType.WAND, gameObject.AddComponent<Wand>()},
-            {ActivatableAbilityType.FROSTPULSE, gameObject.AddComponent<FrostPulse>()},
-            {ActivatableAbilityType.DASH, gameObject.AddComponent<Dash>()},
-            {ActivatableAbilityType.ELECTRICSPIN, gameObject.AddComponent<ElectricSpinManager>()},
-            {ActivatableAbilityType.WINDSHIELD, gameObject.AddComponent<WindShieldManager>()}
+            {ActivatableAbilityType.Melee, gameObject.AddComponent<Melee>()},
+            {ActivatableAbilityType.Wand, gameObject.AddComponent<Wand>()},
+            {ActivatableAbilityType.Frost_Pulse, gameObject.AddComponent<FrostPulse>()},
+            {ActivatableAbilityType.Dash, gameObject.AddComponent<Dash>()},
+            {ActivatableAbilityType.Electric_Spin, gameObject.AddComponent<ElectricSpinManager>()},
+            {ActivatableAbilityType.Wind_Shield, gameObject.AddComponent<WindShieldManager>()}
         };
 
         // initialize all abilities available
@@ -121,7 +121,7 @@ public class PlayerAbilityManager : MonoBehaviour
                     }
                     else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
                     {
-                        abilities[ActivatableAbilityType.MELEE].Activate();
+                        abilities[ActivatableAbilityType.Melee].Activate();
                     }
                 }
                 else
@@ -132,7 +132,7 @@ public class PlayerAbilityManager : MonoBehaviour
                     }
                     else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
                     {
-                        abilities[ActivatableAbilityType.MELEE].Activate();
+                        abilities[ActivatableAbilityType.Melee].Activate();
                     }
             }
             }
@@ -143,10 +143,10 @@ public class PlayerAbilityManager : MonoBehaviour
 public enum ActivatableAbilityType
 {
     NULL,
-    WAND,
-    MELEE,
-    DASH,
-    FROSTPULSE,
-    ELECTRICSPIN,
-    WINDSHIELD
+    Wand,
+    Melee,
+    Dash,
+    Frost_Pulse,
+    Electric_Spin,
+    Wind_Shield
 }

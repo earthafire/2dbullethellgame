@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using static Unity.Entities.EntitiesJournaling;
 public class TextMeshPro : MonoBehaviour 
 {
     public HealthBar healthbar;
@@ -38,11 +39,20 @@ public class TextMeshPro : MonoBehaviour
         _currentExperienceTMP.SetText("XP: " + xpManager.currentXp + " / " + xpManager.xpUntilLevelUp);
     }
 
+    private string UpdateTimer()
+    {
+        float min = Mathf.FloorToInt(_timer / 60);
+        float sec = Mathf.FloorToInt(_timer % 60);
+        string time = string.Format("{0,00}:{1,00}", min, sec);
+
+        return time;
+    }
+
     void FixedUpdate()
     {
         _timer = _gameSupervisorController.gameTimer;
 
-        _timerTMP.SetText("{0:2}", _timer);
+        _timerTMP.SetText(UpdateTimer());
 
         _healthValueTMP.SetText((int)attributes.currentHealth + " / " + (int)healthbar.slider.maxValue);
     }

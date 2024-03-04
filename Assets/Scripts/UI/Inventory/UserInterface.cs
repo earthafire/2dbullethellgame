@@ -92,15 +92,16 @@ public abstract class UserInterface : MonoBehaviour
 
     private void SetTooltipText(GameObject obj)
     {
-        string buffText = "<color=#008800>Buffs: </color>\n";
-        string abilityText = "<color=#000088>Abilities: </color>\n";
+        string name = "<color=#FFFFFF>" + slotsOnInterface[obj].item.Name + "</color>\n";
+        string buffText = "<color=#4ECC78>Buffs: </color>\n";
+        string abilityText = "<color=#81CFFF>Abilities: </color>\n";
         foreach (var pair in slotsOnInterface[obj].item.Buffs)
         {
             buffText += pair.Key.ToString() + ": " + pair.Value + "\n";
         }
-        abilityText += (slotsOnInterface[obj].item.Ability.ToString());
-        print(slotsOnInterface[obj].item.Name + buffText + abilityText);
-        Tooltip.ShowTooltip(buffText + abilityText);
+        abilityText += (slotsOnInterface[obj].item.Ability.ToString().Replace('_', ' ') + "\n\n");
+        abilityText += (slotsOnInterface[obj].item.Description);
+        Tooltip.ShowTooltip(name + buffText + abilityText);
     }
 
     public void OnEnterInterface(GameObject obj)

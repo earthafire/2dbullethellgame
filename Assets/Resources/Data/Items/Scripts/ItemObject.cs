@@ -19,7 +19,6 @@ public enum ItemType
 
 public class ItemObject : SerializedScriptableObject
 {
-
     public Sprite uiDisplay;
     public bool stackable;
     public ItemType type;

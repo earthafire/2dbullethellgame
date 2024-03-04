@@ -15,7 +15,7 @@ MonoBehaviour:
   algorithm: 8
   randomSeed: 1
   seed: 9
-  fillAmount: 42
+  fillAmount: 44
   smoothAmount: 1
   clearAmount: 40
   interval: 6
