@@ -27,17 +27,20 @@ public class Enemy : MonoBehaviour
 
     public bool suspendActions = false; //suspends all actions
 
-
+    public void Awake()
+    {
+        particles = GetComponent<ParticleSystem>();
+        _rb2d = GetComponent<Rigidbody2D>();
+    }
     public void Start()
+    {        
+        player = GlobalReferences.player;
+    }
+    public void OnEnable()
     {
         health = attributes.GetAttribute(Attribute.maxHealth);
         speed = attributes.GetAttribute(Attribute.moveSpeed);
         damage = attributes.GetAttribute(Attribute.damage);
-
-        player = GlobalReferences.player;
-
-        particles = GetComponent<ParticleSystem>();
-        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     public void Update()
@@ -128,7 +131,6 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        Destroy(gameObject);
-
+        ObjectPoolManager.ReturnObjectToPool(this.gameObject);
     }
 }

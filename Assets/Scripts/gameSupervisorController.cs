@@ -16,7 +16,6 @@ public class gameSupervisorController : MonoBehaviour
     private GameObject player;
     public List<GameObject> spawnedEnemiesInScene = new List<GameObject>();
 
-    private EnemyXpObjectManager enemyXpObjectManager;
     private LevelGenerator levelGenerator;
 
     [SerializeField] private int EnemiesPerCooldown = 40;
@@ -48,7 +47,6 @@ public class gameSupervisorController : MonoBehaviour
     {
         player = GlobalReferences.player;
         levelGenerator = GlobalReferences.levelGenerator;
-        enemyXpObjectManager = GlobalReferences.enemyXpObjectManager;
         detections = new Collider2D[32];
 
         levelGenerator.GenerateMap();
@@ -76,10 +74,10 @@ public class gameSupervisorController : MonoBehaviour
 
             for (int i = 0; i < EnemiesPerCooldown + GetEnemyCountModifier(); i++)
             {
-                int randInt = random.Next(10);
+                int randInt = random.Next(100);
                 GameObject nextEntity;
 
-                if (randInt >= 9)                
+                if (randInt >= 99)                
                 {
                     nextEntity = bossEnemies[enemyTier];
                 }
@@ -115,7 +113,8 @@ public class gameSupervisorController : MonoBehaviour
     {
         Vector3 new_position = generateRandRingPosition(player.transform.position, ringSize);
 
-        GameObject spawnedEnemy = Instantiate(entity, new_position, Quaternion.identity);
+        GameObject spawnedEnemy = ObjectPoolManager.SpawnObject(entity, new_position, Quaternion.identity);
+        //GameObject spawnedEnemy = Instantiate(entity, new_position, Quaternion.identity);
 
         spawnedEnemiesInScene.Add(spawnedEnemy);
 
@@ -170,9 +169,9 @@ public class gameSupervisorController : MonoBehaviour
     private bool isPositionInSpawnArea(Vector3 position)
     {
         if (
-            position.x < -23 ||
+            position.x < 0 ||
             position.x > 23 ||
-            position.y < -23 ||
+            position.y < 0 ||
             position.y > 23
             )
         {
