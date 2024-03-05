@@ -19,12 +19,13 @@ public class gameSupervisorController : MonoBehaviour
     private LevelGenerator levelGenerator;
 
     [SerializeField] private int EnemiesPerCooldown = 40;
+    [SerializeField] private bool _isBossSpawned = false;
     [SerializeField] private float SpawnCooldownSeconds = 5;
     [SerializeField] private int secToIncreaseCount = 10;
     [SerializeField] private int secToIncreaseTier = 30;
     private int enemyTier = 0;
 
-    private float ringSize = 4f,
+    private float ringSize = 3.5f,
                   spawnTimer = 0,
                   tierTimer = 0;
 
@@ -74,39 +75,21 @@ public class gameSupervisorController : MonoBehaviour
 
             for (int i = 0; i < EnemiesPerCooldown + GetEnemyCountModifier(); i++)
             {
-                int randInt = random.Next(100);
-                GameObject nextEntity;
-
-                if (randInt >= 99)                
-                {
-                    nextEntity = bossEnemies[enemyTier];
-                }
-                else
-                {
-                    nextEntity = regularEnemies[enemyTier];
-                } 
-
-                spawnEntity(nextEntity);
+                spawnEntity(regularEnemies[enemyTier]);
+                
+            }
+            if (_isBossSpawned == false)
+            {
+                StartCoroutine(SpawnWithDelay(bossEnemies[enemyTier], 15f));
+                _isBossSpawned = true;
             }
         }
 
         if (tierTimer > secToIncreaseTier)
         {
-            IncreaseEnemyTier();
             tierTimer = 0;
-        }
-
-    }
-
-    int GetEnemyCountModifier(){
-        return (int)Mathf.Floor(gameTimer / secToIncreaseCount);
-    }
-
-    void IncreaseEnemyTier(){
-
-        if(enemyTier + 1 < regularEnemies.Length){
-
-            enemyTier++;
+            IncreaseEnemyTier();
+            _isBossSpawned = false;
         }
     }
     void spawnEntity(GameObject entity)
@@ -123,6 +106,27 @@ public class gameSupervisorController : MonoBehaviour
         {
             enemy.OnEnemyDeath.AddListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
         }
+    }
+    int GetEnemyCountModifier()
+    {
+        return (int)Mathf.Floor(gameTimer / secToIncreaseCount);
+    }
+
+    void IncreaseEnemyTier(){
+
+        if(enemyTier + 1 < regularEnemies.Length)
+        {
+            enemyTier++;
+        }
+    }
+    private IEnumerator SpawnWithDelay(GameObject _obj, float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        spawnEntity(_obj);
+    }
+    private IEnumerator Delay(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
     }
 
     private void RemoveSelfFromSpawnedEnemiesInScene(GameObject caller)
@@ -171,8 +175,8 @@ public class gameSupervisorController : MonoBehaviour
         if (
             position.x < 0 ||
             position.x > 23 ||
-            position.y < 0 ||
-            position.y > 23
+            position.y < 23 ||
+            position.y > 0
             )
         {
             //Debug.Log(position.x + " " + position.y);

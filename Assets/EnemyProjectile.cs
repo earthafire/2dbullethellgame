@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
+    bool _isMoving = false;
     private int damage = 5;
     private float speed = 1.5f;
     private SpriteRenderer _renderer;
     public void Start()
     {
+        StartCoroutine(StartMovingDelay(1f));
         _renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        StartCoroutine(CountDuration(1.5f));
+    }
+    private void FixedUpdate()
+    {
+        if (_isMoving)
+        {
+            Move();
+        }
     }
     public void Update()
     {
-        Move();
-        IncreaseOpacity(.01f);
+        IncreaseOpacity(.0025f);
     }
     public void Move()
     {
@@ -25,6 +32,13 @@ public class EnemyProjectile : MonoBehaviour
     {
         yield return new WaitForSeconds(_duration);
         Destroy(gameObject);
+    }
+    public IEnumerator StartMovingDelay(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        transform.parent = null;
+        _isMoving = true;
+        StartCoroutine(CountDuration(1.5f));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

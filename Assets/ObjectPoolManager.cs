@@ -4,7 +4,7 @@ using System.Linq;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static List<PooledObjectInfo> ObjectPools = new List<PooledObjectInfo>();
+    public static List<PooledObjectInfo> ObjectPools = new();
 
     public static GameObject SpawnObject(GameObject spawnObj, Vector3 spawnPosition, Quaternion spawnRotation)
     {

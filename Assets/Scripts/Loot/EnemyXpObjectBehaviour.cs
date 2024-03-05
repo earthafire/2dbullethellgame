@@ -8,6 +8,7 @@ public class EnemyXpObjectBehaviour : InteractableLoot
 {
     private SoundComponent sound;
     private Rigidbody2D _rb2d;
+    private CircleCollider2D _circleCollider;
     private ParticleSystem _particles;
     private SpriteRenderer _spriteRenderer;
     private GameObject player;
@@ -22,11 +23,10 @@ public class EnemyXpObjectBehaviour : InteractableLoot
     {
         sound = GetComponent<SoundComponent>();
         _rb2d = GetComponent<Rigidbody2D>();
-        player = GlobalReferences.player;
         _particles = GetComponent<ParticleSystem>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 1);
+        _circleCollider = GetComponent<CircleCollider2D>();
+        player = GlobalReferences.player;
     }
     private void FixedUpdate()
     {
@@ -39,9 +39,15 @@ public class EnemyXpObjectBehaviour : InteractableLoot
             gameObject.SetActive(false);
         }
     }
+    private void OnEnable()
+    {
+        _isCollected = false;
+
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 1);
+    }
     private void OnDisable()
     {
-        ObjectPoolManager.ReturnObjectToPool(this.gameObject);
+        Destroy(gameObject);
     }
 
     private new void OnTriggerEnter2D(Collider2D other)
@@ -61,7 +67,6 @@ public class EnemyXpObjectBehaviour : InteractableLoot
     private void MoveTowardsPlayer(GameObject player)
     {
         _rb2d.transform.position = Vector3.MoveTowards( transform.position, player.transform.position, speed * Time.deltaTime);
-
     }
     public override void OnPickUp(GameObject playerObject)
     {

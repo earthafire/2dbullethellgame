@@ -30,6 +30,5 @@ public class EquipmentUIController : MonoBehaviour
             _equipmentAnimator.SetTrigger("Enter");
             onScreen = true;
         }
-        print("toggle");
     }
 }

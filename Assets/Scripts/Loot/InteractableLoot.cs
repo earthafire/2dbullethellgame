@@ -14,7 +14,6 @@ public abstract class InteractableLoot : MonoBehaviour
             isReady = false;
             OnPickUp(other.gameObject);
         }
-
     }
 
     public abstract void OnPickUp(GameObject playerObject);

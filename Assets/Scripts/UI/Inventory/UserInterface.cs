@@ -159,6 +159,7 @@ public abstract class UserInterface : MonoBehaviour
             inventory.SwapItems(slotsOnInterface[obj], mouseHoverSlotData);
         }
         stats.updateTotalStats();
+        stats.UpdateHealthbar();
     }
 }
     

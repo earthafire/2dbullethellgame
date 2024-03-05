@@ -10,10 +10,11 @@ public class Enemy : MonoBehaviour
     public Attributes attributes;
     public EnemyXpObjectData _xpData;
     public GameObject player;
-
+    private SpriteRenderer _spriteRenderer;
     private float health, speed, damage;
     private Rigidbody2D _rb2d;
     private ParticleSystem particles;
+    private Vector3 _localScale;
     [SerializeField] private GameObject _lootBag;
     //[SerializeField] private int dropChance = 10;
     public float speed_animation_multiplier = 1;
@@ -29,8 +30,10 @@ public class Enemy : MonoBehaviour
 
     public void Awake()
     {
+        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         particles = GetComponent<ParticleSystem>();
         _rb2d = GetComponent<Rigidbody2D>();
+        _localScale = transform.localScale;
     }
     public void Start()
     {        
@@ -54,6 +57,15 @@ public class Enemy : MonoBehaviour
     public void FixedUpdate()
     {
         Move();
+        // if player is to the right of the enemy
+        if(player.transform.position.x > transform.position.x)
+        {
+            transform.localScale = _localScale;
+        }
+        else
+        {
+            transform.localScale = new Vector3(-_localScale.x, _localScale.y, _localScale.z);
+        }
     }
     private IEnumerator Tick(float duration)
     {

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -27,7 +25,7 @@ public class Wand : ActivatableAbility
 
         player_animator = GetComponent<Animator>();
 
-        cooldownTimeMax = 0.75f;
+        cooldownTimeMax = 1.5f;
 
         projectiles[0] = (GameObject)Resources.Load("Prefabs/Abilities/Lightning/Lightning", typeof(GameObject));
         projectiles[1] = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Fireball", typeof(GameObject));

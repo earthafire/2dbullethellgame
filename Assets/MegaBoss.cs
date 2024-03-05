@@ -28,7 +28,7 @@ public class MegaBoss : FlyingEnemy
     {
         if (InRange())
         {
-            Instantiate(projectile, firePoint.position, AimTowardsPlayer());
+            Instantiate(projectile, firePoint.position, AimTowardsPlayer(), firePoint.transform);
         }
     }
 

@@ -9,7 +9,7 @@ public class ElectricSpinInstance : AbilityObject
 
     public override float knockback { get; set; } = 1f;
     public override float damage { get; set; } = 10f;
-    public override float duration { get; set; } = 2.0f;
+    public override float duration { get; set; } = 3.5f;
     public override float speed { get; set; } = 100f;
 
     Transform orbiter;

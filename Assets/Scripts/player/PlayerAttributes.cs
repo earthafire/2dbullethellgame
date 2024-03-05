@@ -18,7 +18,7 @@ public class PlayerAttributes : MonoBehaviour
     private GameObject uI;
     CircleCollider2D _pickUpRange;
 
-    public static Dictionary<Attribute, float> stats = new Dictionary<Attribute, float>() { };
+    public static Dictionary<Attribute, float> stats = new() { };
 
     public UnityEvent OnPlayerDeath =  new UnityEvent();
 
@@ -75,22 +75,28 @@ public class PlayerAttributes : MonoBehaviour
 
         if (upgradeAttribute.upgradeToApply.TryGetValue(Attribute.maxHealth, out float value))
         {
-            // Save old health stats
-            float oldMaxHealth = healthbar.slider.maxValue;
-            float newMaxHealth = attributes.GetAttribute(Attribute.maxHealth);
-
-            // Calculate how much the health increased, increase max health by the same amount
-            float healthDelta = newMaxHealth - oldMaxHealth;
-            healthbar.SetMaxHealth(newMaxHealth);
-            currentHealth += healthDelta;
-            healthbar.SetHealth(currentHealth);
+            UpdateHealthbar();
         }
-        // GetAttribute finds the Attribute inside of either _playerAttributes dictionary (Current or Default)
-        _pickUpRange.radius = stats[Attribute.pickUpRange];
-
+        if (upgradeAttribute.upgradeToApply.ContainsKey(Attribute.pickUpRange))
+        {
+            _pickUpRange.radius = stats[Attribute.pickUpRange];
+        }
+        
         updateTotalStats();
     }
 
+    public void UpdateHealthbar()
+    {
+        // Save old health stats
+        float oldMaxHealth = healthbar.slider.maxValue;
+        float newMaxHealth = stats[Attribute.maxHealth];
+
+        // Calculate how much the health increased, increase max health by the same amount
+        float healthDelta = newMaxHealth - oldMaxHealth;
+        healthbar.SetMaxHealth(newMaxHealth);
+        currentHealth += healthDelta;
+        healthbar.SetHealth(currentHealth);
+    }
 
     public void updateTotalStats()
     {
@@ -119,8 +125,8 @@ public class PlayerAttributes : MonoBehaviour
             {
                 stats[attributeFloatPair.Key] = attributes.GetAttribute(attributeFloatPair.Key);
             }
-
         }
+        UpdateHealthbar();
     }
 
     [Button("Print Stats")]

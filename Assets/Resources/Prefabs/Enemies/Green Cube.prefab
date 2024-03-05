@@ -4994,9 +4994,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9d7e78e0bd5c648892f8092dd21c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   attributes: {fileID: 11400000, guid: 4ba0b8c8b9a07fc49949b607100e70d9, type: 2}
   _xpData: {fileID: 11400000, guid: 9bd982cb3927fe14f9b17a5e8f692164, type: 2}
+  player: {fileID: 0}
   _lootBag: {fileID: 0}
   speed_animation_multiplier: 1
   suspendActions: 0
