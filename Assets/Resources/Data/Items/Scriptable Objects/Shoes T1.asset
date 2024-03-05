@@ -50,9 +50,10 @@ MonoBehaviour:
   uiDisplay: {fileID: -1897712105, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   stackable: 0
   type: 9
-  description: Go on ya footie
+  description: vroom vroom
   data:
     Name: 
     Id: 6
+    Description: 
     Ability: 3
   ability: 3

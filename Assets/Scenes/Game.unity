@@ -629,6 +629,7 @@ MonoBehaviour:
   - {fileID: 8597935369796501180, guid: 5eafb0e0394b1d54782cc88f290c479c, type: 3}
   - {fileID: 8597935369796501180, guid: 3d886805ab238594d887eb95caf364ad, type: 3}
   - {fileID: 1362412182119624273, guid: 1cf5e600f7dd38c499432333f1bea3de, type: 3}
+  - {fileID: 8597935369796501180, guid: e3a57ad8db2e77d4c8c0619542a679fb, type: 3}
   - {fileID: 8866743574015759239, guid: 444383f28c5717949a5ae1f34a293731, type: 3}
   - {fileID: 8597935369796501180, guid: 4c76daa779788e94abc441d218a6f1ce, type: 3}
   - {fileID: 8597935369796501180, guid: 5cf1dbc033fb3a74981601338589bfef, type: 3}
@@ -637,6 +638,7 @@ MonoBehaviour:
   - {fileID: 8597935369796501180, guid: 38445f0ff804345419a9b42efa2f9d93, type: 3}
   spawnedEnemiesInScene: []
   EnemiesPerCooldown: 40
+  _isBossSpawned: 0
   SpawnCooldownSeconds: 10
   secToIncreaseCount: 30
   secToIncreaseTier: 60
@@ -130657,7 +130659,7 @@ Grid:
   m_GameObject: {fileID: 2124401264}
   m_Enabled: 1
   m_CellSize: {x: 0.24, y: 0.24, z: 0}
-  m_CellGap: {x: -0.0005, y: -0.0005, z: 0}
+  m_CellGap: {x: -0.001, y: -0.001, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &2124401266

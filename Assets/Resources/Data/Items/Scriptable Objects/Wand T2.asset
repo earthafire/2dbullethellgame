@@ -62,11 +62,10 @@ MonoBehaviour:
   uiDisplay: {fileID: -1918600894, guid: 081bb13dc22a562478e8c55b8d89af3d, type: 3}
   stackable: 0
   type: 7
-  description: 'Goes in ya fist
-
-'
+  description: a gentler approach
   data:
     Name: 
-    Id: 8
+    Id: 9
+    Description: 
     Ability: 4
   ability: 4
