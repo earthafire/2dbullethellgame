@@ -92,7 +92,7 @@ public abstract class UserInterface : MonoBehaviour
 
     private void SetTooltipText(GameObject obj)
     {
-        string name = "<color=#FFFFFF>" + slotsOnInterface[obj].item.Name + "</color>\n";
+        string name = "<color=#FFFFFF>" + slotsOnInterface[obj].item.Name + "</color>\n\n";
         string buffText = "<color=#4ECC78>Buffs: </color>\n";
         string abilityText = "<color=#81CFFF>Abilities: </color>\n";
         foreach (var pair in slotsOnInterface[obj].item.Buffs)
