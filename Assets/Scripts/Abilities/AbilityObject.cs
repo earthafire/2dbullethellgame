@@ -49,8 +49,9 @@ public class AbilityObject : MonoBehaviour
             {
                 Enemy enemy = other.gameObject.GetComponent<Enemy>();
                 OnStay(enemy);
-                dealDamage = false;
-                StartCoroutine(Tick());
+                // Only Hits one enemy per frame
+                //dealDamage = false;
+                //StartCoroutine(Tick());
             }
 
         }

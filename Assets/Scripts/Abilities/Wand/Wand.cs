@@ -5,7 +5,7 @@ using UnityEngine;
 public class Wand : ActivatableAbility
 {
     public Animator player_animator;
-    private int projectilesMax = 3;
+    private int projectilesMax = 5;
     private int projectileIndex = 0;
     private GameObject[] projectiles;
     private Transform firePoint;
@@ -30,6 +30,9 @@ public class Wand : ActivatableAbility
         projectiles[0] = (GameObject)Resources.Load("Prefabs/Abilities/Lightning/Lightning", typeof(GameObject));
         projectiles[1] = (GameObject)Resources.Load("Prefabs/Abilities/Fireball/Fireball", typeof(GameObject));
         projectiles[2] = (GameObject)Resources.Load("Prefabs/Abilities/Wave/Wave", typeof(GameObject));
+        projectiles[3] = (GameObject)Resources.Load("Prefabs/Abilities/Air Shot/Air Shot", typeof(GameObject));
+        projectiles[4] = (GameObject)Resources.Load("Prefabs/Abilities/Poison Shot/Poison Shot", typeof(GameObject));
+
     }
 
     public override void Activated()

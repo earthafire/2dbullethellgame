@@ -48,6 +48,7 @@ public class EnemyXpObjectBehaviour : InteractableLoot
     private void OnDisable()
     {
         Destroy(gameObject);
+        //ObjectPoolManager.ReturnObjectToPool(this.gameObject);
     }
 
     private new void OnTriggerEnter2D(Collider2D other)

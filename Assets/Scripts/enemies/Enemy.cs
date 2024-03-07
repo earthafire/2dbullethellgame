@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private float health, speed, damage;
     private Rigidbody2D _rb2d;
+    private CircleCollider2D _circleCollider;
     private ParticleSystem particles;
     private Vector3 _localScale;
     [SerializeField] private GameObject _lootBag;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         particles = GetComponent<ParticleSystem>();
         _rb2d = GetComponent<Rigidbody2D>();
+        _circleCollider = GetComponent<CircleCollider2D>();
         _localScale = transform.localScale;
     }
     public void Start()
@@ -66,10 +68,6 @@ public class Enemy : MonoBehaviour
         {
             transform.localScale = new Vector3(-_localScale.x, _localScale.y, _localScale.z);
         }
-    }
-    private IEnumerator Tick(float duration)
-    {
-        yield return new WaitForSeconds(duration);
     }
 
     public void Move()
@@ -143,6 +141,8 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        ObjectPoolManager.ReturnObjectToPool(this.gameObject);
+        Destroy(gameObject);
+
+        //ObjectPoolManager.ReturnObjectToPool(this.gameObject);
     }
 }

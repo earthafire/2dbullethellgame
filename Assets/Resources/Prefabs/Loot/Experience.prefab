@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 474517700228678191}
   - component: {fileID: 1603282390251251641}
   - component: {fileID: 1364040021676755085}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Experience
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

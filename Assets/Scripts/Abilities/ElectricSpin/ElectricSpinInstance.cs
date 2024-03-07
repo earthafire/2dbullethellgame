@@ -21,7 +21,7 @@ public class ElectricSpinInstance : AbilityObject
     }
     public override void OnEnable()
     {
-        distance *= ((PlayerAttributes.stats[Attribute.size] / 10) + 1);
+        distance *= ((PlayerAttributes.stats[Attribute.size] / 5) + 1);
         base.OnEnable();
     }
 

@@ -50,7 +50,7 @@ public class Tooltip : MonoBehaviour
         _textMeshProUGUI.ForceMeshUpdate();
 
         Vector2 textSize = _textMeshProUGUI.GetRenderedValues();
-        Vector2 padding = new Vector2(12, 12);
+        Vector2 padding = new Vector2(8, 8);
 
         background.sizeDelta = textSize + padding;
     }

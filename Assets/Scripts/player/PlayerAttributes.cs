@@ -14,9 +14,9 @@ public class PlayerAttributes : MonoBehaviour
     public Attributes attributes;
     public float currentHealth;
     public ParticleSystem damageReceivedParticles;
-    [SerializeField]
-    private GameObject uI;
+    [SerializeField] private GameObject uI;
     CircleCollider2D _pickUpRange;
+    CircleCollider2D _hitbox;
 
     public static Dictionary<Attribute, float> stats = new() { };
 
@@ -31,6 +31,7 @@ public class PlayerAttributes : MonoBehaviour
         updateTotalStats();
 
         _pickUpRange = transform.GetChild(1).GetComponent<CircleCollider2D>();
+        _hitbox = GetComponent<CircleCollider2D>();
 
         attributes.upgradeApplied += UpgradeApplied;
 
@@ -58,6 +59,7 @@ public class PlayerAttributes : MonoBehaviour
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
         damageReceivedParticles.Emit(damage);
+        StartCoroutine(HitboxCooldown(.17f));
 
         if (currentHealth < 1)
         {
@@ -68,6 +70,12 @@ public class PlayerAttributes : MonoBehaviour
             //maybe add death FX
             //Trigger the UI to show some options
         }
+    }
+    private IEnumerator HitboxCooldown(float _cooldown)
+    {
+        _hitbox.enabled = false;
+        yield return new WaitForSeconds(_cooldown);
+        _hitbox.enabled = true;
     }
 
     private void UpgradeApplied(Attributes attribute, UpgradeAttribute upgradeAttribute)

@@ -9,7 +9,7 @@ public class ElectricSpinManager : ActivatableAbility
     void Start()
     {
         electricSpinObj = (GameObject)Resources.Load("Prefabs/Abilities/ElectricSpin/ElectricSpin", typeof(GameObject));
-        cooldownTimeMax = 3.25f;
+        cooldownTimeMax = 3.5f;
     }
     public override void Activated()
     {

@@ -51,3 +51,6 @@ TagManager:
   - name: Flying Enemy
     uniqueID: 3498278989
     locked: 0
+  - name: Bullet
+    uniqueID: 3310149591
+    locked: 0

@@ -19,7 +19,6 @@ public class gameSupervisorController : MonoBehaviour
     private LevelGenerator levelGenerator;
 
     [SerializeField] private int EnemiesPerCooldown = 40;
-    [SerializeField] private bool _isBossSpawned = false;
     [SerializeField] private float SpawnCooldownSeconds = 5;
     [SerializeField] private int secToIncreaseCount = 10;
     [SerializeField] private int secToIncreaseTier = 30;
@@ -31,9 +30,8 @@ public class gameSupervisorController : MonoBehaviour
 
     public float gameTimer = 0;
 
-    private System.Random random = new System.Random();
-
     public bool suspendSpawning;
+    private bool _isBossSpawned = false;
 
     Collider2D[] detections;
 
@@ -76,7 +74,7 @@ public class gameSupervisorController : MonoBehaviour
             for (int i = 0; i < EnemiesPerCooldown + GetEnemyCountModifier(); i++)
             {
                 spawnEntity(regularEnemies[enemyTier]);
-                
+
             }
             if (_isBossSpawned == false)
             {
@@ -102,7 +100,7 @@ public class gameSupervisorController : MonoBehaviour
         spawnedEnemiesInScene.Add(spawnedEnemy);
 
         //subscribe to future death events to remove us from the spawn list
-        if(spawnedEnemy.TryGetComponent(out Enemy enemy))
+        if (spawnedEnemy.TryGetComponent(out Enemy enemy))
         {
             enemy.OnEnemyDeath.AddListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
         }
@@ -112,9 +110,10 @@ public class gameSupervisorController : MonoBehaviour
         return (int)Mathf.Floor(gameTimer / secToIncreaseCount);
     }
 
-    void IncreaseEnemyTier(){
+    void IncreaseEnemyTier()
+    {
 
-        if(enemyTier + 1 < regularEnemies.Length)
+        if (enemyTier + 1 < regularEnemies.Length)
         {
             enemyTier++;
         }
@@ -155,7 +154,7 @@ public class gameSupervisorController : MonoBehaviour
 
             if (isPositionInSpawnArea(targetPosition))
             {
-                if(isPositionInOpenArea(targetPosition))
+                if (isPositionInOpenArea(targetPosition))
                 {
                     return targetPosition;
                 }
@@ -175,11 +174,11 @@ public class gameSupervisorController : MonoBehaviour
         if (
             position.x < 0 ||
             position.x > 23 ||
-            position.y < 23 ||
-            position.y > 0
+            position.y > 23 ||
+            position.y < 0
             )
         {
-            //Debug.Log(position.x + " " + position.y);
+            Debug.Log(position.x + " " + position.y);
             return false;
         }
 
@@ -187,7 +186,7 @@ public class gameSupervisorController : MonoBehaviour
     }
     private bool isPositionInOpenArea(Vector3 _position)
     {
-        detections = Physics2D.OverlapCircleAll(_position, 1.0f);
+        detections = Physics2D.OverlapCircleAll(_position, 1.5f);
         foreach (var col in detections)
         {
             if (col.gameObject.layer == 3) // Wall Layer
@@ -196,6 +195,7 @@ public class gameSupervisorController : MonoBehaviour
             }
         }
         return true;
-
     }
 }
+
+
