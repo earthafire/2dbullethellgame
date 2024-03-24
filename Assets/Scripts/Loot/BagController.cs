@@ -21,14 +21,18 @@ public class BagController : InteractableLoot
     {
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         StartCoroutine(SpewItems(playerObject));
+        //this.enabled = false;
     }
 
     // spawns in all the bag's contents, delay between each
     IEnumerator SpewItems(GameObject playerObject)
     {
-        // maybe play an animation here?
-        yield return new WaitForSeconds(.2f);
 
+        particles.Play();
+
+        // maybe play an animation here?
+        yield return new WaitForSeconds(10);
+        
 
         // spew out items
         for (int i = 0; i < lootCount; i++)
@@ -36,6 +40,7 @@ public class BagController : InteractableLoot
             GameObject newItem = Instantiate(PickRandomLoot(), gameObject.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(.25f);
         }
+
         Destroy(gameObject);
     }
 

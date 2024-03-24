@@ -11,9 +11,10 @@ public class Enemy : MonoBehaviour
     public EnemyXpObjectData _xpData;
     public GameObject player;
     private SpriteRenderer _spriteRenderer;
-    private float health, speed, damage;
+    public float health, speed, damage;
     private Rigidbody2D _rb2d;
     private CircleCollider2D _circleCollider;
+    Animator _animator;
     private ParticleSystem particles;
     private Vector3 _localScale;
     [SerializeField] private GameObject _lootBag;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
     {
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         particles = GetComponent<ParticleSystem>();
+        _animator = GetComponent<Animator>();
         _rb2d = GetComponent<Rigidbody2D>();
         _circleCollider = GetComponent<CircleCollider2D>();
         _localScale = transform.localScale;
@@ -97,6 +99,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log("base damage: " + _ablityDamage + ", actual damage: " + modifiedPlayerDamage);
 
         particles.Emit(modifiedPlayerDamage);
+        _animator.SetTrigger("GetHit");
 
         if (health <= 0)
         {
