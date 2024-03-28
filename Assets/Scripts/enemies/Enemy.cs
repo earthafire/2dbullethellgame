@@ -7,18 +7,19 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    public Attributes attributes;
-    public EnemyXpObjectData _xpData;
-    public GameObject player;
     private SpriteRenderer _spriteRenderer;
-    public float health, speed, damage;
     private Rigidbody2D _rb2d;
     private CircleCollider2D _circleCollider;
-    Animator _animator;
     private ParticleSystem particles;
+    private Animator _animator;
     private Vector3 _localScale;
+
+    public Attributes attributes;
+    public EnemyXpObjectData _xpData;
+
+    public GameObject player;
+    private float health, speed, damage;
     [SerializeField] private GameObject _lootBag;
-    //[SerializeField] private int dropChance = 10;
     public float speed_animation_multiplier = 1;
 
     private Coroutine _tickRate;
@@ -32,11 +33,12 @@ public class Enemy : MonoBehaviour
 
     public void Awake()
     {
-        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        particles = GetComponent<ParticleSystem>();
-        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _rb2d = GetComponent<Rigidbody2D>();
         _circleCollider = GetComponent<CircleCollider2D>();
+        particles = GetComponent<ParticleSystem>();
+        _animator = GetComponent<Animator>();
+
         _localScale = transform.localScale;
     }
     public void Start()
@@ -45,6 +47,9 @@ public class Enemy : MonoBehaviour
     }
     public void OnEnable()
     {
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+
         health = attributes.GetAttribute(Attribute.maxHealth);
         speed = attributes.GetAttribute(Attribute.moveSpeed);
         damage = attributes.GetAttribute(Attribute.damage);
@@ -144,8 +149,8 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
-        //ObjectPoolManager.ReturnObjectToPool(this.gameObject);
+        ObjectPoolManager.ReturnObjectToPool(this.gameObject);
     }
 }

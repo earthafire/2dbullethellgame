@@ -46,16 +46,16 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: XP
-    uniqueID: 1469227503
+    uniqueID: 2287043519
     locked: 0
   - name: Enemy
-    uniqueID: 1888253809
-    locked: 0
-  - name: Bullet
-    uniqueID: 3310149591
+    uniqueID: 647720739
     locked: 0
   - name: Player
     uniqueID: 2460356099
+    locked: 0
+  - name: Bullet
+    uniqueID: 3310149591
     locked: 0
   - name: Flying Enemy
     uniqueID: 3498278989
