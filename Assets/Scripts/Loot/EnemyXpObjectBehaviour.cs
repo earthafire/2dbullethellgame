@@ -42,13 +42,14 @@ public class EnemyXpObjectBehaviour : InteractableLoot
     private void OnEnable()
     {
         _isCollected = false;
-
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 1);
+        _spriteRenderer.enabled = true;
+        _circleCollider.enabled = true;
+        base.isReady = true;
     }
     private void OnDisable()
     {
-        Destroy(gameObject);
-        //ObjectPoolManager.ReturnObjectToPool(this.gameObject);
+        //Destroy(gameObject);
+        ObjectPoolManager.ReturnObjectToPool(this.gameObject);
     }
 
     private new void OnTriggerEnter2D(Collider2D other)

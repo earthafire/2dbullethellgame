@@ -13,8 +13,11 @@ public class gameSupervisorController : MonoBehaviour
 
     public GameObject[] regularEnemies;
     public GameObject[] bossEnemies;
+    public GameObject currentRegularEnemy;
+    public GameObject currentBossEnemy;
     private GameObject player;
     public List<GameObject> spawnedEnemiesInScene = new List<GameObject>();
+
 
     private LevelGenerator levelGenerator;
 
@@ -74,11 +77,13 @@ public class gameSupervisorController : MonoBehaviour
             for (int i = 0; i < EnemiesPerCooldown + GetEnemyCountModifier(); i++)
             {
                 spawnEntity(regularEnemies[enemyTier]);
-
+                currentRegularEnemy = regularEnemies[enemyTier];
             }
             if (_isBossSpawned == false)
             {
                 StartCoroutine(SpawnWithDelay(bossEnemies[enemyTier], 15f));
+                currentBossEnemy = bossEnemies[enemyTier];
+
                 _isBossSpawned = true;
             }
         }
