@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Red Cube
+  m_Controller: {fileID: 9100000, guid: 9a0775c50cc17914c939ceedc5131387, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1e0f472ffac63334698b7e89e98178e1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d4614dacd6faf7644bcdcaa00e5f0452, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d9ed9ecbed731e54ea9b435f29704034, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d9ed9ecbed731e54ea9b435f29704034, type: 2}

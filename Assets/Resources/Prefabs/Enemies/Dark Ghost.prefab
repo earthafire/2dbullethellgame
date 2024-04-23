@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -796688307
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -868648635, guid: 2a9dc05f160996b489acad285cdb4680, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
@@ -184,7 +184,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -796688307
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 2
   m_Sprite: {fileID: -906274427, guid: 2a9dc05f160996b489acad285cdb4680, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
@@ -207,7 +207,7 @@ Animator:
   m_GameObject: {fileID: 8597935369796501180}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 682959761d6714f47b349c8fb15cb680, type: 2}
+  m_Controller: {fileID: 22100000, guid: 7ad19822699b0d049abcf68a1f9d9584, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5055,7 +5055,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -796688307
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
