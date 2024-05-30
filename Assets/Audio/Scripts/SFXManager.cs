@@ -18,6 +18,9 @@ public class SFXManager : MonoBehaviour
         }
     }
 
+    static List<AudioSource> audioSources = new List<AudioSource>();
+    static List<AudioSource> wasPlaying = new List<AudioSource>();
+
     [HorizontalGroup("AudioSource")]
     [SerializeField]
     private AudioSource defaultAudioSource;
@@ -31,6 +34,34 @@ public class SFXManager : MonoBehaviour
     [TabGroup("Weapons")]
     [AssetList(Path = "/Audio/Weapon SFX", AutoPopulate = true)]
     public List<SFXClip> weaponSFX;
+
+
+    public void FixedUpdate()
+    {
+        if (Time.timeScale == 0.0f)
+        {
+            foreach (var source in audioSources)
+            {
+                if (source.isPlaying)
+                {
+                    source.Pause();
+                    wasPlaying.Add(source);
+                }
+                else
+                {
+                    audioSources.Remove(source);
+                }
+            }
+        }
+        else
+        {
+            foreach (var source in wasPlaying)
+            {
+                    source.Play();
+            }
+        }
+        
+    }
 
     public static void PlaySFX(SFXClip sfx, bool waitToFinish = true, AudioSource audioSource = null)
     {
@@ -49,6 +80,28 @@ public class SFXManager : MonoBehaviour
             audioSource.volume = sfx.volume + Random.Range(-sfx.volumeVariation, sfx.volumeVariation);
             audioSource.pitch = sfx.pitch + Random.Range(-sfx.pitchVariation, sfx.pitchVariation);
             audioSource.Play();
+            audioSources.Add(audioSource);
+        }
+    }
+
+    public static void PlaySFK(SFXClip sfx, float pitch, float volume, bool waitToFinish = true, AudioSource audioSource = null)
+    {
+        if (audioSource == null)
+            audioSource = SFXManager.instance.defaultAudioSource;
+
+        if (audioSource == null)
+        {
+            Debug.LogError("You forgot to add a default audio source!");
+            return;
+        }
+
+        if (!audioSource.isPlaying || !waitToFinish)
+        {
+            audioSource.clip = sfx.clip;
+            audioSource.volume = volume;
+            audioSource.pitch = pitch;
+            audioSource.Play();
+            audioSources.Add(audioSource);
         }
     }
 

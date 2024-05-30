@@ -12,7 +12,7 @@ public class MegaBoss : FlyingEnemy
     {
         base.Start();
         projectile = (GameObject)Resources.Load("Prefabs/Enemies/Projectile/Projectile", typeof(GameObject));
-        firePoint = transform.GetChild(0);
+        firePoint = transform.GetChild(1);
     }
 
     private bool InRange()
