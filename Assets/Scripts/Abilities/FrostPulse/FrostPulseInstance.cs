@@ -15,7 +15,7 @@ public class FrostPulseInstance : AbilityObject
         main.startLifetime = duration;
     }
 
-    private void Start()
+    private void Awake()
     {
         _particles = GetComponent<ParticleSystem>();
     }

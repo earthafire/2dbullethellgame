@@ -11,6 +11,8 @@ public class BagController : InteractableLoot
     private ParticleSystem particles;
     private Random random = new Random();
     private int lootCount = 1;
+    public SoundComponent sound;
+
 
     public void Start()
     {
@@ -21,7 +23,6 @@ public class BagController : InteractableLoot
     {
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         StartCoroutine(SpewItems(playerObject));
-        //this.enabled = false;
     }
 
     // spawns in all the bag's contents, delay between each
@@ -29,9 +30,10 @@ public class BagController : InteractableLoot
     {
 
         particles.Play();
+        sound.sfxToPlay.PlaySFX();
 
         // maybe play an animation here?
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(15);
         
 
         // spew out items

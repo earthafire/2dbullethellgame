@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlyingEnemy: Enemy
 {
-    GameObject shadow;
+/*    GameObject shadow;
     SpriteRenderer shadowSpriteRenderer;
     new void Start()
     {
@@ -30,5 +30,5 @@ public class FlyingEnemy: Enemy
     private void HideShadow()
     {
         shadowSpriteRenderer.color = new Color(1, 1, 1, 0);
-    }
+    }*/
 }

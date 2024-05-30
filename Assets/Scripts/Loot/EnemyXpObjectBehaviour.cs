@@ -21,11 +21,7 @@ public class EnemyXpObjectBehaviour : InteractableLoot
 
     public void Start()
     {
-        sound = GetComponent<SoundComponent>();
-        _rb2d = GetComponent<Rigidbody2D>();
-        _particles = GetComponent<ParticleSystem>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _circleCollider = GetComponent<CircleCollider2D>();
+
         player = GlobalReferences.player;
     }
     private void FixedUpdate()
@@ -41,6 +37,12 @@ public class EnemyXpObjectBehaviour : InteractableLoot
     }
     private void OnEnable()
     {
+        sound = GetComponent<SoundComponent>();
+        _rb2d = GetComponent<Rigidbody2D>();
+        _particles = GetComponent<ParticleSystem>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _circleCollider = GetComponent<CircleCollider2D>();
+
         _isCollected = false;
         _spriteRenderer.enabled = true;
         _circleCollider.enabled = true;

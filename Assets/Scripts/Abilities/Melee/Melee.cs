@@ -9,7 +9,7 @@ public class Melee : ActivatableAbility
     private float offset;
     public GameObject meleeObj;
     private Animator animator;
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         meleeObj = (GameObject)Resources.Load("Prefabs/Abilities/Melee/Melee", typeof(GameObject));
@@ -18,9 +18,10 @@ public class Melee : ActivatableAbility
     
     public override void Activated()
     {
-        animator.SetTrigger("Attack");
+        
         ChangeDirection();
         Instantiate(meleeObj, GlobalReferences.firePoint.position + new Vector3 (offset * transform.localScale.x, 0, 0), Quaternion.identity);
+        animator.SetTrigger("Attack");
     }
 
     private void ChangeDirection()

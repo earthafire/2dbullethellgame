@@ -18,9 +18,11 @@ public class Enemy : MonoBehaviour
     public EnemyXpObjectData _xpData;
 
     public GameObject player;
-    private float health, speed, damage;
+    public float health, speed, damage;
     [SerializeField] private GameObject _lootBag;
     public float speed_animation_multiplier = 1;
+
+    GameObject shadow;
 
     private Coroutine _tickRate;
 
@@ -42,14 +44,22 @@ public class Enemy : MonoBehaviour
         _localScale = transform.localScale;
     }
     public void Start()
-    {        
+    {
+        shadow = transform.GetChild(0).gameObject;
         player = GlobalReferences.player;
     }
     public void OnEnable()
     {
-        GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<CircleCollider2D>().enabled = true;
+        _animator.speed = 1 + (float)GlobalReferences.GetRandomDouble()/2;
 
+        _spriteRenderer.enabled = true;
+        _circleCollider.enabled = true;
+        if(shadow != null)
+        {
+            shadow.SetActive(true);
+        }
+
+        //public for animator access mostly for blue cube cringe lol
         health = attributes.GetAttribute(Attribute.maxHealth);
         speed = attributes.GetAttribute(Attribute.moveSpeed);
         damage = attributes.GetAttribute(Attribute.damage);
@@ -132,8 +142,9 @@ public class Enemy : MonoBehaviour
 
     public virtual IEnumerator GetDeath()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<CircleCollider2D>().enabled = false;
+        _spriteRenderer.enabled = false;
+       _circleCollider.enabled = false;
+        shadow.SetActive(false);
 
         // Spawns XP at current position
         GlobalReferences.enemyXpObjectManager.SpawnXP(this.gameObject);

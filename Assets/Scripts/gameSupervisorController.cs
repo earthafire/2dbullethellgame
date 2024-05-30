@@ -178,7 +178,7 @@ public class gameSupervisorController : MonoBehaviour
             position.y < 0
             )
         {
-            Debug.Log(position.x + " " + position.y);
+            //Debug.Log(position.x + " " + position.y);
             return false;
         }
 

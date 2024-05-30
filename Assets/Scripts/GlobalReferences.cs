@@ -37,4 +37,10 @@ public class GlobalReferences : MonoBehaviour
         return temp;
     }
 
+    public static double GetRandomDouble()
+    {
+        double temp = random.NextDouble();
+        return temp;
+    }
+
 }

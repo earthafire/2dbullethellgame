@@ -60,3 +60,6 @@ TagManager:
   - name: Flying Enemy
     uniqueID: 3498278989
     locked: 0
+  - name: Loot
+    uniqueID: 1302262021
+    locked: 0
