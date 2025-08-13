@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Sirenix.Reflection.Editor;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
+using Sirenix.OdinInspector;
 
 /// <summary>
 /// ability slot choices
@@ -22,44 +18,72 @@ public enum AbilitySlot
 
 public class PlayerAbilityManager : MonoBehaviour
 {
+    [TitleGroup("Settings")]
+    [LabelWidth(120)]
     public bool autofire = true;
+    
+    [LabelWidth(120)]
+    [InfoBox("If true, abilities will be created on-demand. If false, all abilities will be created at start.")]
+    public bool createAbilitiesOnDemand = true;
+    
     // !! -- REBINDING BUTTONS -- !! 
     // buttons can be bound in Edit>Project Settings>Input Manager
     // !! --                   -- !!
 
+    [TitleGroup("Ability System")]
+    [LabelWidth(120)]
+    [Required("Please assign an Ability Factory")]
+    public AbilityFactory abilityFactory;
+    
+    [LabelWidth(120)]
+    [InfoBox("If no factory is assigned, will fall back to the old system")]
+    public bool useNewAbilitySystem = true;
 
     /// <summary>
-    /// Abilities currently equipped on player
+    /// Abilities currently equipped on player (Legacy system - kept for compatibility)
     /// </summary>
-    /// 
+    [TitleGroup("Legacy System (Fallback)")]
+    [ShowIf("@!useNewAbilitySystem")]
     private Dictionary<ActivatableAbilityType, ActivatableAbility> abilities;
 
     /// <summary>
     /// Inventory equipment (10 slots, top -> bottom, left -> right, 0 - 9)
     /// </summary>
+    [TitleGroup("Equipment")]
+    [LabelWidth(120)]
     private InventoryObject equipment;
 
     /// <summary>
     /// Map of AbilitySlots (keybinds) to ints (Equipment slots)
     /// </summary>
+    [TitleGroup("Keybind Mapping")]
+    [ShowInInspector]
+    [TableList(ShowIndexLabels = true, AlwaysExpanded = false)]
     private Dictionary<AbilitySlot, int> EquippedAbilities = new Dictionary<AbilitySlot, int>();
 
+    [TitleGroup("Runtime State")]
+    [LabelWidth(120)]
     public bool suspendAbilities;
+    
+    [ShowInInspector]
+    [ReadOnly]
+    private bool newSystemInitialized = false;
+    
     void Start()
     {
         suspendAbilities = false;
         equipment = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().equipment;
 
-        // instantiate all abilities, for ease of swapping them out later
-        abilities = new Dictionary<ActivatableAbilityType, ActivatableAbility>()
+        // Initialize the new ability system if enabled
+        if (useNewAbilitySystem && abilityFactory != null)
         {
-            {ActivatableAbilityType.Melee, gameObject.AddComponent<Melee>()},
-            {ActivatableAbilityType.Wand, gameObject.AddComponent<Wand>()},
-            {ActivatableAbilityType.Frost_Pulse, gameObject.AddComponent<FrostPulse>()},
-            {ActivatableAbilityType.Dash, gameObject.AddComponent<Dash>()},
-            {ActivatableAbilityType.Electric_Spin, gameObject.AddComponent<ElectricSpinManager>()},
-            {ActivatableAbilityType.Wind_Shield, gameObject.AddComponent<WindShieldManager>()}
-        };
+            InitializeNewAbilitySystem();
+        }
+        else
+        {
+            // Fall back to legacy system
+            InitializeLegacySystem();
+        }
 
         // initialize all abilities available
         EquippedAbilities[AbilitySlot.Q] = 5;
@@ -70,6 +94,42 @@ public class PlayerAbilityManager : MonoBehaviour
         EquippedAbilities[AbilitySlot.RightClick] = 6;
         EquippedAbilities[AbilitySlot.Space] = 9;
     }
+    
+    private void InitializeNewAbilitySystem()
+    {
+        if (abilityFactory == null)
+        {
+            Debug.LogError("[PlayerAbilityManager] New ability system enabled but no AbilityFactory assigned!");
+            useNewAbilitySystem = false;
+            InitializeLegacySystem();
+            return;
+        }
+        
+        // Configure the factory
+        abilityFactory.createOnDemand = createAbilitiesOnDemand;
+        
+        // Initialize the factory
+        abilityFactory.InitializeFactory();
+        
+        newSystemInitialized = true;
+        Debug.Log("[PlayerAbilityManager] New ability system initialized successfully!");
+    }
+    
+    private void InitializeLegacySystem()
+    {
+        // instantiate all abilities, for ease of swapping them out later
+        abilities = new Dictionary<ActivatableAbilityType, ActivatableAbility>()
+        {
+            {ActivatableAbilityType.Melee, gameObject.AddComponent<Melee>()},
+            {ActivatableAbilityType.Wand, gameObject.AddComponent<Wand>()},
+            {ActivatableAbilityType.Frost_Pulse, gameObject.AddComponent<FrostPulse>()},
+            {ActivatableAbilityType.Dash, gameObject.AddComponent<Dash>()},
+            {ActivatableAbilityType.Electric_Spin, gameObject.AddComponent<ElectricSpinManager>()},
+            {ActivatableAbilityType.Wind_Shield, gameObject.AddComponent<WindShieldManager>()}
+        };
+        
+        Debug.Log("[PlayerAbilityManager] Legacy ability system initialized");
+    }
 
     /// <summary>
     /// given an int (equipmentID) returns the type of ability in that slot
@@ -77,7 +137,20 @@ public class PlayerAbilityManager : MonoBehaviour
     /// <param name="equipmentID">equipment slot to check</param>
     void getAbilityFromEquipmentID(int equipmentID)
     {
-        abilities[equipment.GetSlots[equipmentID].item.Ability].Activate();
+        var abilityType = equipment.GetSlots[equipmentID].item.Ability;
+        
+        if (useNewAbilitySystem && newSystemInitialized)
+        {
+            var ability = abilityFactory.GetAbility(abilityType);
+            if (ability != null)
+            {
+                ability.Activate();
+            }
+        }
+        else
+        {
+            abilities[abilityType].Activate();
+        }
     }
 
     /// <summary>
@@ -108,34 +181,89 @@ public class PlayerAbilityManager : MonoBehaviour
 
     public void ActivateAbilities()
     {
+        foreach (var abilitySlotKV in EquippedAbilities)
+        {
+            ActivatableAbilityType typeOfAbility = equipment.GetSlots[abilitySlotKV.Value].item.Ability;
 
-            foreach (var abilitySlotKV in EquippedAbilities)
+            if (autofire)
             {
-                ActivatableAbilityType typeOfAbility = equipment.GetSlots[abilitySlotKV.Value].item.Ability;
-
-                if (autofire)
+                if (typeOfAbility != ActivatableAbilityType.NULL)
                 {
-                    if (typeOfAbility != ActivatableAbilityType.NULL)
-                    {
-                        abilities[typeOfAbility].Activate();
-                    }
-                    else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
-                    {
-                        abilities[ActivatableAbilityType.Melee].Activate();
-                    }
+                    ActivateAbility(typeOfAbility);
                 }
-                else
+                else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
                 {
-                    if(DetectAbilitiesPressed(abilitySlotKV))
-                    {
-                        abilities[typeOfAbility].Activate();
-                    }
-                    else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
-                    {
-                        abilities[ActivatableAbilityType.Melee].Activate();
-                    }
+                    ActivateAbility(ActivatableAbilityType.Melee);
+                }
             }
+            else
+            {
+                if(DetectAbilitiesPressed(abilitySlotKV))
+                {
+                    ActivateAbility(typeOfAbility);
+                }
+                else if (abilitySlotKV.Key == AbilitySlot.LeftClick)
+                {
+                    ActivateAbility(ActivatableAbilityType.Melee);
+                }
             }
+        }
+    }
+    
+    private void ActivateAbility(ActivatableAbilityType abilityType)
+    {
+        if (useNewAbilitySystem && newSystemInitialized)
+        {
+            var ability = abilityFactory.GetAbility(abilityType);
+            if (ability != null)
+            {
+                ability.Activate();
+            }
+        }
+        else
+        {
+            if (abilities.ContainsKey(abilityType))
+            {
+                abilities[abilityType].Activate();
+            }
+        }
+    }
+    
+    [TitleGroup("System Management")]
+    [Button("Switch to New System")]
+    public void SwitchToNewSystem()
+    {
+        if (abilityFactory == null)
+        {
+            Debug.LogError("[PlayerAbilityManager] Cannot switch to new system: No AbilityFactory assigned!");
+            return;
+        }
+        
+        useNewAbilitySystem = true;
+        InitializeNewAbilitySystem();
+        Debug.Log("[PlayerAbilityManager] Switched to new ability system");
+    }
+    
+    [Button("Switch to Legacy System")]
+    public void SwitchToLegacySystem()
+    {
+        useNewAbilitySystem = false;
+        newSystemInitialized = false;
+        InitializeLegacySystem();
+        Debug.Log("[PlayerAbilityManager] Switched to legacy ability system");
+    }
+    
+    [Button("Refresh Ability System")]
+    public void RefreshAbilitySystem()
+    {
+        if (useNewAbilitySystem && newSystemInitialized)
+        {
+            abilityFactory.InitializeFactory();
+        }
+        else
+        {
+            InitializeLegacySystem();
+        }
     }
 }
 
@@ -148,5 +276,6 @@ public enum ActivatableAbilityType
     Dash,
     Frost_Pulse,
     Electric_Spin,
-    Wind_Shield
+    Wind_Shield,
+    OctiShot,
 }

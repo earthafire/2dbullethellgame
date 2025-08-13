@@ -18,7 +18,10 @@ public class PlayerAttributes : MonoBehaviour
     CircleCollider2D _pickUpRange;
     CircleCollider2D _hitbox;
 
-    public static Dictionary<Attribute, float> stats = new() { };
+    /// <summary>
+    /// (attributes * upgrades) + gear
+    /// </summary>
+    public static Dictionary<Attribute, float> stats = new();
 
     public UnityEvent OnPlayerDeath =  new UnityEvent();
 
@@ -111,18 +114,18 @@ public class PlayerAttributes : MonoBehaviour
         wipeTotalStats();
 
         PlayerInventory playerInventory = GetComponentInParent<PlayerInventory>();
-
+        // ADD LOOT ATTRIBUTES
         // iterate through all equipped items
         foreach (InventorySlot slot in playerInventory.equipment.GetSlots)
         {
-            // add each key's (attribute's) associated value (float) to the totalStats table
+            // add each key's value to the stats table
             foreach (KeyValuePair<Attribute, float> attributeFloatPair in slot.item.Buffs)
             {
                 stats[attributeFloatPair.Key] += attributeFloatPair.Value;
             }
         }
-
-        // add XP choices values to totalStats
+        // APPLY BASE STATS + UPGRADES
+        // add XP choices values to stats
         foreach (KeyValuePair<Attribute, float> attributeFloatPair in attributes.current_attributes)
         {
             if (stats.ContainsKey(attributeFloatPair.Key))

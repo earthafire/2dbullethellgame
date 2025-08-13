@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using JetBrains.Annotations;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -40,7 +39,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     public void GenerateMap()
     {
         ClearMap();
@@ -138,6 +137,7 @@ public class LevelGenerator : MonoBehaviour
     }
 }
 
+/*
 [CustomEditor(typeof(LevelGenerator))]
 public class LevelGeneratorEditor : Editor
 {
@@ -165,4 +165,4 @@ public class LevelGeneratorEditor : Editor
             }
         }
     }
-}
+}*/

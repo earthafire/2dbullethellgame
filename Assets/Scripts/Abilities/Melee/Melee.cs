@@ -18,10 +18,13 @@ public class Melee : ActivatableAbility
     
     public override void Activated()
     {
+        if(transform.parent != null)
+        {
+            ChangeDirection();
+            Instantiate(meleeObj, GlobalReferences.firePoint.position + new Vector3 (offset * transform.localScale.x, 0, 0), Quaternion.identity);
+            animator.SetTrigger("Attack");
+        }
         
-        ChangeDirection();
-        Instantiate(meleeObj, GlobalReferences.firePoint.position + new Vector3 (offset * transform.localScale.x, 0, 0), Quaternion.identity);
-        animator.SetTrigger("Attack");
     }
 
     private void ChangeDirection()

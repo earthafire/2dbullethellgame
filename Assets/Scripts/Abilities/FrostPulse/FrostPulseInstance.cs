@@ -21,7 +21,7 @@ public class FrostPulseInstance : AbilityObject
     }
     public override void OnStay(Enemy enemy)
     {
-        enemy.TakeDamage((int)damage);
+        enemy.TakeDamage((int)damage, transform, abilityId);
         enemy.GetKnockbacked(player.transform, knockback);
     }
 }
