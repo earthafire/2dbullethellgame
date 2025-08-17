@@ -35,7 +35,7 @@ public class AbilityObject : MonoBehaviour
         _obj.duration = CalculateModifiedDuration(_obj.duration);
         _obj.speed = CalculateModifiedBulletSpeed(_obj.speed);
         _obj.transform.localScale = CalculateModifiedSize(_obj.transform.localScale);
-        StartCoroutine(CountDuration(_obj.duration));
+        //StartCoroutine(CountDuration(_obj.duration));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -66,15 +66,11 @@ public class AbilityObject : MonoBehaviour
         // override this to customize on hit behaviour
     }
     
-
-
-
-
-    public IEnumerator CountDuration(float _duration)
+/*    public IEnumerator CountDuration(float _duration)
     {
         yield return new WaitForSeconds(_duration); 
         Destroy(gameObject);
-    }
+    }*/
 
     public static float CalculateModifiedDuration(float baseValue)
     {

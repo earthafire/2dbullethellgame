@@ -39,7 +39,9 @@ public enum Attribute
     cooldown,
     duration,
     size,
-    bulletSpeed
+    bulletSpeed,
+    pierceCount,
+    knockback
 }
 
 

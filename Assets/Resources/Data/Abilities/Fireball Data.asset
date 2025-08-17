@@ -28,8 +28,8 @@ MonoBehaviour:
   behaviorType: 0
   projectileData: {fileID: 11400000, guid: 38312f0a1b401594ba073c28b539a7e6, type: 2}
   effectPrefab: {fileID: 0}
-  sharedProjectilePrefab: {fileID: 7827361726292339411, guid: 37d301ad799e3dd44b4fe928759118a4, type: 3}
-  baseCooldown: 1
+  sharedProjectilePrefab: {fileID: 7827361726292339411, guid: 49c1c5f212e221846b34fb3b5c46d508, type: 3}
+  baseCooldown: 0.1
   baseDamage: 20
   abilityAnimation: {fileID: 0}
   activationSound: {fileID: 0}

@@ -66,17 +66,4 @@ public class AreaEffectAbilityBehavior : ActivatableAbility
         Debug.Log($"[{name}] Activated area effect at {spawnPosition}");
     }
 
-    public override void Cleanup()
-    {
-        if (currentEffect != null)
-        {
-            DestroyImmediate(currentEffect);
-            currentEffect = null;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        Cleanup();
-    }
 }

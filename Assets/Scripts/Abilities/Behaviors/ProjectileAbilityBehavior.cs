@@ -5,19 +5,7 @@ using UnityEngine;
 /// </summary>
 public class ProjectileAbilityBehavior : ActivatableAbility
 {
-
-    public virtual void Initialize()
-    {
-        // Find or create fire point
-        firePoint = transform.Find("FirePoint");
-        if (firePoint == null)
-        {
-            var firePointObj = new GameObject("FirePoint");
-            firePoint = firePointObj.transform;
-            firePoint.SetParent(transform);
-            firePoint.localPosition = Vector3.right * 0.5f;
-        }
-    }
+    SharedProjectile projectile;
 
     public override void Activated()
     {
@@ -32,8 +20,6 @@ public class ProjectileAbilityBehavior : ActivatableAbility
             return;
         }
 
-
-
         // Use fire point position if no specific position provided
         Vector3 spawnPosition = firePoint.position;
 
@@ -41,11 +27,12 @@ public class ProjectileAbilityBehavior : ActivatableAbility
         Vector2 fireDirection = GetFireDirection();
 
         // Spawn projectile from the global pool
-        var projectile = GlobalProjectileManager.GetProjectile(abilityData.projectileData, spawnPosition, fireDirection);
+        projectile = GlobalProjectileManager.GetProjectile(abilityData.projectileData, spawnPosition, fireDirection);
 
         if (projectile == null)
         {
             Debug.LogError($"[{name}] Failed to spawn projectile!");
         }
     }
+
 }
