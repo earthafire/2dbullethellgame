@@ -65,7 +65,7 @@ public class AbilityFactory : MonoBehaviour
         {
             if (ability != null)
             {
-                Destroy(ability);
+                DestroyImmediate(ability);
             }
         }
         

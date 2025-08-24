@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class ActivatableAbility : MonoBehaviour
 {
     public GameObject player;
-    [SerializeField] public Transform firePoint;
+    protected Transform firePoint;
 
     Coroutine cooldownCoroutine;
     public AbilityData abilityData { get; private set; }
@@ -22,19 +22,18 @@ public abstract class ActivatableAbility : MonoBehaviour
 
     public virtual void Initialize(AbilityData abilityData)
     {
-        if(firePoint == null) { firePoint = GetFirePoint(); }
-        if(firePoint == null) { firePoint = player.transform; }
+        // Find or create fire point
+        firePoint = transform.Find("FirePoint");
+        if (firePoint == null)
+        {
+            var firePointObj = new GameObject("FirePoint");
+            firePoint = firePointObj.transform;
+            firePoint.SetParent(transform);
+            firePoint.localPosition = Vector3.right * 0.5f;
+        }
 
         this.abilityData = abilityData;
-        var anim = GetComponent<Animator>();
-        if (anim != null) { anim.runtimeAnimatorController = abilityData.abilityAnimation; }
         this.cooldownTimeMax = abilityData.baseCooldown;
-
-    }
-
-    private Transform GetFirePoint()
-    {
-        return player.transform.Find("FirePoint");
     }
 
     // Activates weapon's ability (Activated) if cooldown is met
@@ -44,7 +43,6 @@ public abstract class ActivatableAbility : MonoBehaviour
         {
             Activated();
             cooldownCoroutine = StartCoroutine(CountCooldown());
-            Debug.Log($"Cooldown for wand spell: {CalculateUpgradedCooldown(cooldownTimeMax)}");
         }
     }
     public abstract void Activated(); // Weapon's ability override this
@@ -62,7 +60,7 @@ public abstract class ActivatableAbility : MonoBehaviour
 
     private IEnumerator CountCooldown()
     {
-        cooldownRemainingTime = CalculateUpgradedCooldown(cooldownTimeMax);
+        cooldownRemainingTime = CalculateModifiedCooldown(cooldownTimeMax);
         while (cooldownRemainingTime > 0)
         {
             cooldownRemainingTime -= Time.deltaTime;
@@ -77,7 +75,7 @@ public abstract class ActivatableAbility : MonoBehaviour
     /// </summary>
     /// <param name="baseCooldown">base cooldown to convert</param>
     /// <returns>float cooldown time</returns>
-    public float CalculateUpgradedCooldown(float baseCooldown)
+    public float CalculateModifiedCooldown(float baseCooldown)
     {
         // ability haste based system
 

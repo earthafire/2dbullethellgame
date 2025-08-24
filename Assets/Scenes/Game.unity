@@ -637,8 +637,8 @@ MonoBehaviour:
   - {fileID: 8597935369796501180, guid: 628c438410317a3499bf7b0feeef64ce, type: 3}
   - {fileID: 8597935369796501180, guid: 38445f0ff804345419a9b42efa2f9d93, type: 3}
   spawnedEnemiesInScene: []
-  EnemiesPerCooldown: 1
-  SpawnCooldownSeconds: 0.5
+  EnemiesPerCooldown: 3
+  SpawnCooldownSeconds: 2
   secToIncreaseCount: 10
   secToIncreaseTier: 30
   gameTimer: 0
@@ -99905,10 +99905,6 @@ PrefabInstance:
       propertyPath: abilityFactory
       value: 
       objectReference: {fileID: 1848490430}
-    - target: {fileID: 797292667561748250, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: useNewAbilitySystem
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1203606041217318445, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_Layer
       value: 12
@@ -100460,7 +100456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -30.000732}
+  m_AnchoredPosition: {x: 0, y: -30.000488}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1220233171
@@ -130228,7 +130224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0709d2934e309084a8cd5b82b57927d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProjectilePrefab: {fileID: 7827361726292339411, guid: 49c1c5f212e221846b34fb3b5c46d508, type: 3}
+  sharedProjectilePrefab: {fileID: 7827361726292339411, guid: 37d301ad799e3dd44b4fe928759118a4, type: 3}
   initialPoolSize: 50
   maxPoolSize: 200
   activeProjectiles: 0
@@ -130245,7 +130241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50976b932b989c4b8239d98762382e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProjectilePrefab: {fileID: 7827361726292339411, guid: 49c1c5f212e221846b34fb3b5c46d508, type: 3}
+  sharedProjectilePrefab: {fileID: 7827361726292339411, guid: 37d301ad799e3dd44b4fe928759118a4, type: 3}
   projectilePool: {fileID: 1848490427}
 --- !u!4 &1848490429
 Transform:

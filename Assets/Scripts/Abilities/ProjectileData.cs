@@ -24,37 +24,33 @@ public class ProjectileData : SerializedScriptableObject
     [LabelWidth(120)]
     [InfoBox("Optional: Custom material for special effects")]
     public Material projectileMaterial;
-
-    public Attributes attributes;
-
-
-    /*    
-        [TitleGroup("Combat Stats")]
-        [LabelWidth(120)]
-        [Range(0f, 1000f)]
-        [SuffixLabel("damage")]
-        public float damage = 20f;
-
-        [LabelWidth(120)]
-        [Range(0f, 10f)]
-        [SuffixLabel("seconds")]
-        public float duration = 2.0f;
-
-        [LabelWidth(120)]
-        [Range(0.1f, 50f)]
-        [SuffixLabel("units/second")]
-        public float speed = 10f;
-
-        [LabelWidth(120)]
-        [Range(0f, 10f)]
-        [SuffixLabel("pierces")]
-        public float pierce = 1f;
-
-        [LabelWidth(120)]
-        [Range(0f, 10f)]
-        [SuffixLabel("knockback")]
-        public float knockback = 1f;*/
-
+    
+    [TitleGroup("Combat Stats")]
+    [LabelWidth(120)]
+    [Range(0f, 1000f)]
+    [SuffixLabel("damage")]
+    public float damage = 20f;
+    
+    [LabelWidth(120)]
+    [Range(0f, 10f)]
+    [SuffixLabel("seconds")]
+    public float duration = 2.0f;
+    
+    [LabelWidth(120)]
+    [Range(0.1f, 50f)]
+    [SuffixLabel("units/second")]
+    public float speed = 10f;
+    
+    [LabelWidth(120)]
+    [Range(0f, 10f)]
+    [SuffixLabel("pierces")]
+    public float pierce = 1f;
+    
+    [LabelWidth(120)]
+    [Range(0f, 10f)]
+    [SuffixLabel("knockback")]
+    public float knockback = 1f;
+    
     [TitleGroup("Behavior")]
     [LabelWidth(120)]
     [InfoBox("If true, projectile will home in on nearest enemy")]
@@ -113,19 +109,19 @@ public class ProjectileData : SerializedScriptableObject
             return;
         }
         
-        if (attributes.GetAttribute(Attribute.damage) < 0)
+        if (damage < 0)
         {
             Debug.LogError($"[{name}] Damage cannot be negative!");
             return;
         }
         
-        if (attributes.GetAttribute(Attribute.duration) <= 0)
+        if (duration <= 0)
         {
             Debug.LogError($"[{name}] Duration must be greater than 0!");
             return;
         }
         
-        if (attributes.GetAttribute(Attribute.bulletSpeed) <= 0)
+        if (speed <= 0)
         {
             Debug.LogError($"[{name}] Speed must be greater than 0!");
             return;

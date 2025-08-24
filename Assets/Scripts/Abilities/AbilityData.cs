@@ -157,10 +157,10 @@ public class AbilityData : SerializedScriptableObject
             abilityType = ActivatableAbilityType.NULL;
         }
         
-/*        // Update base damage from projectile data if available
+        // Update base damage from projectile data if available
         if (projectileData != null)
         {
             baseDamage = projectileData.damage;
-        }*/
+        }
     }
 }
