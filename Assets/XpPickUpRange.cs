@@ -8,9 +8,9 @@ public class XpPickUpRange : MonoBehaviour
     {
         _circleCollider = GetComponent<CircleCollider2D>();
     }
-/*    private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         UnityEditor.Handles.color = Color.yellow;
         UnityEditor.Handles.DrawWireDisc(_circleCollider.transform.position, Vector3.back, _circleCollider.radius);
-    }*/
+    }
 }

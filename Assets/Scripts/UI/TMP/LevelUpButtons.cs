@@ -7,8 +7,7 @@ using TMPro;
 public class LevelUpButtons : MonoBehaviour
 {
     public Image image;
-    public new TMP_Text name;
-    public TMP_Text description;
+    public TMP_Text name, description;
 
     void Start(){
 

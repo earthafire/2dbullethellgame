@@ -33,7 +33,7 @@ public class MapSettings : ScriptableObject
     public float modifier;
 }
 
-/*//Custom UI for our class
+//Custom UI for our class
 [CustomEditor(typeof(MapSettings))]
 public class MapSettings_Editor : Editor
 {
@@ -102,4 +102,4 @@ public class MapSettings_Editor : Editor
         if (GUI.changed)
             EditorUtility.SetDirty(mapLayer);
     }
-}*/
+}

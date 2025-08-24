@@ -12,17 +12,11 @@ public class AbilityObject : MonoBehaviour
     public virtual float knockback {  get; set; } = .1f;
     
     public GameObject player;
-    
-    // Unique ID for this ability instance to prevent multiple hits from the same instance
-    protected int abilityId;
-    
 
-    
+    private bool dealDamage = true;
     private void Awake()
     {
         player = GlobalReferences.player;
-        // Generate unique ID for this ability instance
-        abilityId = GetInstanceID();
     }
 
     public virtual void OnEnable()
@@ -49,10 +43,17 @@ public class AbilityObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy Layer OR Flying Enemy Layer
+        if(dealDamage)
         {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            OnStay(enemy);
+            if (other.gameObject.layer == 7 || other.gameObject.layer == 9) // Enemy Layer OR Flying Enemy Layer
+            {
+                Enemy enemy = other.gameObject.GetComponent<Enemy>();
+                OnStay(enemy);
+                // Only Hits one enemy per frame
+                //dealDamage = false;
+                //StartCoroutine(Tick());
+            }
+
         }
     }
 
@@ -65,10 +66,12 @@ public class AbilityObject : MonoBehaviour
     {
         // override this to customize on hit behaviour
     }
-    
 
-
-
+    private IEnumerator Tick()
+    {
+        yield return new WaitForSeconds(.1f);
+        dealDamage = true;
+    }
 
     public IEnumerator CountDuration(float _duration)
     {

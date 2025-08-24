@@ -637,10 +637,10 @@ MonoBehaviour:
   - {fileID: 8597935369796501180, guid: 628c438410317a3499bf7b0feeef64ce, type: 3}
   - {fileID: 8597935369796501180, guid: 38445f0ff804345419a9b42efa2f9d93, type: 3}
   spawnedEnemiesInScene: []
-  EnemiesPerCooldown: 3
-  SpawnCooldownSeconds: 2
-  secToIncreaseCount: 10
-  secToIncreaseTier: 30
+  EnemiesPerCooldown: 100
+  SpawnCooldownSeconds: 5
+  secToIncreaseCount: 30
+  secToIncreaseTier: 60
   gameTimer: 0
   suspendSpawning: 0
 --- !u!4 &785045093
@@ -99901,10 +99901,6 @@ PrefabInstance:
       propertyPath: UVModule.frameOverTime.maxCurve.m_Curve.Array.data[2].outWeight
       value: 0.26166686
       objectReference: {fileID: 0}
-    - target: {fileID: 797292667561748250, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
-      propertyPath: abilityFactory
-      value: 
-      objectReference: {fileID: 1848490430}
     - target: {fileID: 1203606041217318445, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_Layer
       value: 12
@@ -99955,7 +99951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4094525312377159805, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4094525312377159805, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_SortingOrder
@@ -100003,7 +99999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4965171563248073956, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4965171563248073956, guid: 9fb6816b1a2e4f743806c47095a1267f, type: 3}
       propertyPath: m_SortingOrder
@@ -100456,7 +100452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -30.000488}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1220233171
@@ -130193,85 +130189,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1848490426
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1848490429}
-  - component: {fileID: 1848490428}
-  - component: {fileID: 1848490427}
-  - component: {fileID: 1848490430}
-  m_Layer: 0
-  m_Name: ProjectileManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1848490427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848490426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0709d2934e309084a8cd5b82b57927d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProjectilePrefab: {fileID: 7827361726292339411, guid: 37d301ad799e3dd44b4fe928759118a4, type: 3}
-  initialPoolSize: 50
-  maxPoolSize: 200
-  activeProjectiles: 0
-  inactiveProjectiles: 0
---- !u!114 &1848490428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848490426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50976b932b989c4b8239d98762382e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProjectilePrefab: {fileID: 7827361726292339411, guid: 37d301ad799e3dd44b4fe928759118a4, type: 3}
-  projectilePool: {fileID: 1848490427}
---- !u!4 &1848490429
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848490426}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.83124, y: 11.011982, z: 0.08008225}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1848490430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848490426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf8c2eea5f274347a8a61f5df6aba4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilityDatabase: {fileID: 11400000, guid: 04a105217108a0b4491bdf48255eacf3, type: 2}
-  createOnDemand: 1
 --- !u!1001 &1859085661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131823,4 +131740,3 @@ SceneRoots:
   - {fileID: 1662622372}
   - {fileID: 2067326003}
   - {fileID: 1459068669}
-  - {fileID: 1848490429}

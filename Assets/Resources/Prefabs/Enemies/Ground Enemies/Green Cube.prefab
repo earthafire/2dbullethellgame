@@ -154,7 +154,7 @@ CircleCollider2D:
     m_Bits: 4296
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 822
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -310,7 +310,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.6
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -890,7 +890,7 @@ ParticleSystem:
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 0
     sphericalDirectionAmount: 0
-    randomPositionAmount: 0.5
+    randomPositionAmount: 0
     radius:
       value: 0.1
       mode: 0
@@ -949,7 +949,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 45
+      value: 360
       mode: 0
       spread: 0
       speed:
@@ -1128,7 +1128,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.58986187
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -5004,7 +5004,6 @@ MonoBehaviour:
   _lootBag: {fileID: 0}
   speed_animation_multiplier: 1
   suspendActions: 0
-  hitCooldownDuration: 0.17
 --- !u!1001 &7271155564901401486
 PrefabInstance:
   m_ObjectHideFlags: 0

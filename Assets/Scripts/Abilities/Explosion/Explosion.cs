@@ -6,7 +6,7 @@ public class Explosion : AbilityObject
     public override float knockback { get; set; } = 1f;
     public override void OnHit(Enemy enemy)
     {
-        enemy.TakeDamage((int)damage, transform, abilityId);
+        enemy.TakeDamage((int)damage);
         enemy.GetKnockbacked(transform, knockback);
     }
 }

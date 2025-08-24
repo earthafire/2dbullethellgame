@@ -16,7 +16,7 @@ public class WindShieldInstance : AbilityObject
 
     public override void OnStay(Enemy enemy)
     {
-        enemy.TakeDamage((int)damage, transform, abilityId);
+        enemy.TakeDamage((int)damage);
         enemy.GetKnockbacked(player.transform, knockback);
     }
 }

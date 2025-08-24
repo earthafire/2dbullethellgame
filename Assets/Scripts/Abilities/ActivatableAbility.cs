@@ -6,34 +6,14 @@ using UnityEngine;
 public abstract class ActivatableAbility : MonoBehaviour
 {
     public GameObject player;
-    protected Transform firePoint;
-
     Coroutine cooldownCoroutine;
-    public AbilityData abilityData { get; private set; }
 
     public float cooldownTimeMax = 200f; // in seconds, overwritten in inheriting class
     public float cooldownRemainingTime { get; private set; } = 0;
 
-
     private void Awake()
     {
         player = GlobalReferences.player;
-    }
-
-    public virtual void Initialize(AbilityData abilityData)
-    {
-        // Find or create fire point
-        firePoint = transform.Find("FirePoint");
-        if (firePoint == null)
-        {
-            var firePointObj = new GameObject("FirePoint");
-            firePoint = firePointObj.transform;
-            firePoint.SetParent(transform);
-            firePoint.localPosition = Vector3.right * 0.5f;
-        }
-
-        this.abilityData = abilityData;
-        this.cooldownTimeMax = abilityData.baseCooldown;
     }
 
     // Activates weapon's ability (Activated) if cooldown is met
@@ -46,8 +26,6 @@ public abstract class ActivatableAbility : MonoBehaviour
         }
     }
     public abstract void Activated(); // Weapon's ability override this
-
-    
     
     public void ResetCooldown()
     {
@@ -100,19 +78,5 @@ public abstract class ActivatableAbility : MonoBehaviour
         return modifiedCooldown;
     }
 
-    protected Vector2 GetFireDirection()
-    {
-        if (Camera.main == null) return Vector2.right;
-
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPos.z = 0;
-
-        Vector2 direction = (mouseWorldPos - GlobalReferences.player.transform.position).normalized;
-        return direction;
-    }
-
-    public virtual void Cleanup()
-    {
-        // Override in derived classes if cleanup is needed
-    }
+    
 }

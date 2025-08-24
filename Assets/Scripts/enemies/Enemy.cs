@@ -2,10 +2,8 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
@@ -35,44 +33,6 @@ public class Enemy : MonoBehaviour
 
     public bool suspendActions = false; //suspends all actions
 
-    // Hit cooldown system to prevent abilities from hitting multiple times
-    [SerializeField] private float hitCooldownDuration = 0.17f;
-    private Dictionary<int, float> abilityHitCooldowns = new Dictionary<int, float>();
-    
-    // Damage over time system
-    private Dictionary<int, DamageOverTimeEffect> damageOverTimeEffects = new Dictionary<int, DamageOverTimeEffect>();
-
-    [System.Serializable]
-    public class DamageOverTimeEffect
-    {
-        public int abilityId;
-        public float damagePerTick;
-        public float tickInterval;
-        public float duration;
-        public float lastTickTime;
-        public float startTime;
-        
-        public DamageOverTimeEffect(int id, float damage, float interval, float totalDuration)
-        {
-            abilityId = id;
-            damagePerTick = damage;
-            tickInterval = interval;
-            duration = totalDuration;
-            lastTickTime = 0f;
-            startTime = Time.time;
-        }
-        
-        public bool ShouldTick()
-        {
-            return Time.time - lastTickTime >= tickInterval;
-        }
-        
-        public bool IsExpired()
-        {
-            return Time.time - startTime >= duration;
-        }
-    }
-
     public void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -83,13 +43,11 @@ public class Enemy : MonoBehaviour
 
         _localScale = transform.localScale;
     }
-    
     public void Start()
     {
         shadow = transform.GetChild(0).gameObject;
         player = GlobalReferences.player;
     }
-    
     public void OnEnable()
     {
         _animator.speed = 1 + (float)GlobalReferences.GetRandomDouble()/2;
@@ -105,10 +63,6 @@ public class Enemy : MonoBehaviour
         health = attributes.GetAttribute(Attribute.maxHealth);
         speed = attributes.GetAttribute(Attribute.moveSpeed);
         damage = attributes.GetAttribute(Attribute.damage);
-        
-        // Clear cooldowns and DoT effects when re-enabled
-        abilityHitCooldowns.Clear();
-        damageOverTimeEffects.Clear();
     }
 
     public void Update()
@@ -118,24 +72,18 @@ public class Enemy : MonoBehaviour
         {
             GetDeath();
         }
-        
-        // Process damage over time effects
-        ProcessDamageOverTime();
     }
-    
     public void FixedUpdate()
     {
         Move();
-        // if player is to the right of the enemy flip the sprite and children
+        // if player is to the right of the enemy
         if(player.transform.position.x > transform.position.x)
         {
-            _spriteRenderer.flipX = false;
-            //transform.localScale = _localScale;
+            transform.localScale = _localScale;
         }
         else
         {
-            _spriteRenderer.flipX = true;
-            //transform.localScale = new Vector3(-_localScale.x, _localScale.y, _localScale.z);
+            transform.localScale = new Vector3(-_localScale.x, _localScale.y, _localScale.z);
         }
     }
 
@@ -153,18 +101,11 @@ public class Enemy : MonoBehaviour
     }
 
     // abilities call this method to deal damage to enemies
+
     /// <param name="_ablityDamage"> base damage of ability </param>
-    /// <param name="source"> source of the damage </param>
-    /// <param name="abilityId"> unique identifier for the ability (to prevent multiple hits) </param>
-    public bool TakeDamage(int _ablityDamage, Transform source = null, int abilityId = 0)  // returns true if damage was taken
+    public bool TakeDamage(int _ablityDamage)  // returns true if damage was taken
     {
         if (Time.timeScale == 0){ return false; }
-
-        // Check if this ability can hit (cooldown system)
-        if (!CanAbilityHit(abilityId))
-        {
-            return false;
-        }
 
         float damageModifier = 1 + PlayerAttributes.stats[Attribute.damage] / 100; // adjust damage dealt by applying modifiers
         int modifiedPlayerDamage = (int)Math.Ceiling(_ablityDamage * damageModifier); // rounding up to nearest int
@@ -173,103 +114,13 @@ public class Enemy : MonoBehaviour
         //Debug.Log("base damage: " + _ablityDamage + ", actual damage: " + modifiedPlayerDamage);
 
         particles.Emit(modifiedPlayerDamage);
-
-        RotateDamageParticles(source);
-
-        _animator.SetTrigger("GetHit"); // flashes red and resets move animation
+        _animator.SetTrigger("GetHit");
 
         if (health <= 0)
         {
             StartCoroutine(GetDeath());
         }
         return true;
-    }
-    
-    // Check if an ability can hit this enemy (cooldown system)
-    private bool CanAbilityHit(int abilityId)
-    {
-        float currentTime = Time.time;
-        
-        // Now ALL abilities must go through the cooldown check
-        if (abilityHitCooldowns.ContainsKey(abilityId))
-        {
-            if (currentTime - abilityHitCooldowns[abilityId] < hitCooldownDuration)
-            {
-                return false; // Still in cooldown
-            }
-        }
-        
-        // Update cooldown time
-        abilityHitCooldowns[abilityId] = currentTime;
-        return true;
-    }
-    
-    // Add a damage over time effect (for fire, poison, etc.)
-    public void AddDamageOverTimeEffect(int abilityId, float damagePerTick, float tickInterval, float duration)
-    {
-        if (damageOverTimeEffects.ContainsKey(abilityId))
-        {
-            // Refresh existing effect
-            damageOverTimeEffects[abilityId] = new DamageOverTimeEffect(abilityId, damagePerTick, tickInterval, duration);
-        }
-        else
-        {
-            // Add new effect
-            damageOverTimeEffects[abilityId] = new DamageOverTimeEffect(abilityId, damagePerTick, tickInterval, duration);
-        }
-    }
-    
-    // Process all active damage over time effects
-    private void ProcessDamageOverTime()
-    {
-        List<int> expiredEffects = new List<int>();
-        
-        foreach (var effect in damageOverTimeEffects.Values)
-        {
-            if (effect.IsExpired())
-            {
-                expiredEffects.Add(effect.abilityId);
-                continue;
-            }
-            
-            if (effect.ShouldTick())
-            {
-                // Apply damage tick
-                float damageModifier = 1 + PlayerAttributes.stats[Attribute.damage] / 100;
-                int modifiedDamage = (int)Math.Ceiling(effect.damagePerTick * damageModifier);
-                health -= modifiedDamage;
-                
-                // Emit particles for DoT damage
-                particles.Emit(modifiedDamage);
-                
-                // Update last tick time
-                effect.lastTickTime = Time.time;
-                
-                // Check for death
-                if (health <= 0)
-                {
-                    StartCoroutine(GetDeath());
-                    return;
-                }
-            }
-        }
-        
-        // Remove expired effects
-        foreach (int expiredId in expiredEffects)
-        {
-            damageOverTimeEffects.Remove(expiredId);
-        }
-    }
-
-    void RotateDamageParticles(Transform source)
-    {
-        if (source != null)
-        {
-            Vector3 difference = (transform.position - source.position);
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            var shape = particles.shape;
-            shape.rotation = new Vector3(0, 0, - rotationZ);
-        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

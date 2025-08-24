@@ -60,11 +60,11 @@ public class SFX
     }
 
 
-/*    private void SelectSFX()
+    private void SelectSFX()
     {
         UnityEditor.Selection.activeObject = sfxToPlay;
     }
-*/
+
     //Get's list of SFX from manager, used in the inspector
     private List<SFXClip> SFXType()
     {

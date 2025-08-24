@@ -25,7 +25,7 @@ public class Bullet : AbilityObject
     }
     public override void OnHit(Enemy enemy)
     {
-        enemy.TakeDamage((int)damage, transform, abilityId);
+        enemy.TakeDamage((int)damage);
         sound.sfxToPlay.PlaySFX();
         PiercingCount();
     }
