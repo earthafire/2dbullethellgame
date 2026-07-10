@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyXpObjectBehaviour : InteractableLoot
@@ -18,6 +17,22 @@ public class EnemyXpObjectBehaviour : InteractableLoot
     [SerializeField] float speed = 5;
     [SerializeField] float knockbackForce = 3;
     [SerializeField] int particleOnDeathCount = 30;
+
+    // Replaces the old Collider2D-based trigger detection (see
+    // EnemyXpObjectManager.Update() / TickProximity below). Magnet range is no longer
+    // a field here - EnemyXpObjectManager owns a single cached value (refreshed via
+    // Attributes.upgradeApplied, matching how the old "Experience Circle Collider"
+    // trigger's radius used to get set directly from the pickUpRange stat whenever a
+    // pickUpRange upgrade was applied) and passes it into TickProximity, instead of
+    // every active orb independently reading the stat every tick. pickupRange (the
+    // small "must actually touch" radius) has no attribute behind it in the original
+    // game - it mirrored the player's separate damage hitbox collider, not an
+    // upgradeable stat - so it stays a plain tunable field here.
+    [SerializeField] float pickupRange = 0.15f;
+
+    // Managed by EnemyXpObjectManager for O(1) swap-remove from its active list -
+    // not meant to be touched from anywhere else.
+    internal int ActiveIndex = -1;
 
     public void Start()
     {
@@ -45,27 +60,43 @@ public class EnemyXpObjectBehaviour : InteractableLoot
 
         _isCollected = false;
         _spriteRenderer.enabled = true;
-        _circleCollider.enabled = true;
+        // No longer used for trigger detection (see TickProximity) - disabled so this
+        // orb doesn't participate in Physics2D broad-phase at all. Hundreds of these
+        // colliders clustering together after a big kill was the actual cause of a
+        // severe frame spike (see Docs/NAVIGATION_MIGRATION.md).
+        _circleCollider.enabled = false;
         base.isReady = true;
+
+        EnemyXpObjectManager.Register(this);
     }
     private void OnDisable()
     {
+        EnemyXpObjectManager.Unregister(this);
         //Destroy(gameObject);
         ObjectPoolManager.ReturnObjectToPool(this.gameObject);
     }
 
-    private new void OnTriggerEnter2D(Collider2D other)
+    // Called once per frame by EnemyXpObjectManager instead of per-orb Collider2D
+    // triggers - see EnemyXpObjectManager.Update(). magnetRange comes from the
+    // manager's single cached, upgrade-event-driven value (see
+    // EnemyXpObjectManager.OnUpgradeApplied) rather than each orb reading the stat
+    // itself every tick.
+    public void TickProximity(GameObject playerObject, float magnetRange)
     {
-        if (other.gameObject.layer == 8) // Experience Layer
+        float sqrDistance = (transform.position - playerObject.transform.position).sqrMagnitude;
+
+        if (!_isCollected && sqrDistance <= magnetRange * magnetRange)
         {
-            if(!_isCollected)
-            {
-                GetKnockbacked(player.transform, knockbackForce);
-                _particles.Play();
-            }
             _isCollected = true;
+            GetKnockbacked(playerObject.transform, knockbackForce);
+            _particles.Play();
         }
-        base.OnTriggerEnter2D(other);
+
+        if (isReady && sqrDistance <= pickupRange * pickupRange)
+        {
+            isReady = false;
+            OnPickUp(playerObject);
+        }
     }
 
     private void MoveTowardsPlayer(GameObject player)
@@ -88,4 +119,3 @@ public class EnemyXpObjectBehaviour : InteractableLoot
         return true;
     }
 }
-

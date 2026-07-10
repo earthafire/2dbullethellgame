@@ -14,11 +14,17 @@ public abstract class UserInterface : MonoBehaviour
     private InventoryObject _previousInventory;
     public Dictionary<GameObject, InventorySlot> slotsOnInterface = new();
 
+    private static readonly Color CompatibleSlotOutlineColor = new Color(1f, 0.84f, 0.3f, 1f);
+    private static readonly List<UserInterface> AllInterfaces = new();
+
     private PlayerAttributes stats;
+    private PlayerInventory playerInventory;
 
     public void OnEnable()
     {
-        stats = GameObject.FindWithTag("Player").GetComponent<PlayerAttributes>();
+        GameObject player = GameObject.FindWithTag("Player");
+        stats = player.GetComponent<PlayerAttributes>();
+        playerInventory = player.GetComponent<PlayerInventory>();
         CreateSlots();
 
         for (int i = 0; i < inventory.GetSlots.Length; i++)
@@ -28,9 +34,28 @@ public abstract class UserInterface : MonoBehaviour
         }
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
+
+        AllInterfaces.Add(this);
+    }
+
+    public void OnDisable()
+    {
+        AllInterfaces.Remove(this);
     }
 
     public abstract void CreateSlots();
+
+    // Wires up the standard set of slot interactions (hover, drag, right-click).
+    // Both DynamicInterface and StaticInterface call this for every slot they create.
+    protected void RegisterSlotEvents(GameObject obj)
+    {
+        AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
+        AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
+        AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
+        AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
+        AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
+        AddEvent(obj, EventTriggerType.PointerClick, delegate (BaseEventData data) { OnSlotClicked(obj, (PointerEventData)data); });
+    }
 
     public void UpdateInventoryLinks()
     {
@@ -86,22 +111,10 @@ public abstract class UserInterface : MonoBehaviour
         MouseData.slotHoveredOver = obj;
         if (IsItemInSlot(obj))
         {
-            SetTooltipText(obj);
+            InventorySlot slot = slotsOnInterface[obj];
+            Tooltip.ShowTooltip(slot.item, slot.GetItemObject().type);
+            HighlightCompatibleEquipSlots(slot.GetItemObject());
         }
-    }
-
-    private void SetTooltipText(GameObject obj)
-    {
-        string name = "<color=#FFFFFF>" + slotsOnInterface[obj].item.Name + "</color>\n\n";
-        string buffText = "<color=#4ECC78>Buffs: </color>\n";
-        string abilityText = "<color=#81CFFF>Abilities: </color>\n";
-        foreach (var pair in slotsOnInterface[obj].item.Buffs)
-        {
-            buffText += pair.Key.ToString() + ": " + pair.Value + "\n";
-        }
-        abilityText += (slotsOnInterface[obj].item.Ability.ToString().Replace('_', ' ') + "\n\n");
-        abilityText += (slotsOnInterface[obj].item.Description);
-        Tooltip.ShowTooltip(name + buffText + abilityText);
     }
 
     public void OnEnterInterface(GameObject obj)
@@ -117,6 +130,91 @@ public abstract class UserInterface : MonoBehaviour
     {
         MouseData.slotHoveredOver = null;
         Tooltip.HideTooltip();
+        ClearEquipSlotHighlights();
+    }
+
+    // Outlines every equipment slot that the hovered item could be worn in.
+    private void HighlightCompatibleEquipSlots(ItemObject itemObject)
+    {
+        if (itemObject == null) return;
+        foreach (UserInterface ui in AllInterfaces)
+        {
+            if (ui.inventory == null || ui.inventory.type != InterfaceType.Equipment) continue;
+            foreach (InventorySlot slot in ui.slotsOnInterface.Values)
+            {
+                if (slot.AllowedItems.Length > 0 && slot.CanPlaceInSlot(itemObject))
+                    SetSlotOutline(slot.slotDisplay, true);
+            }
+        }
+    }
+
+    private void ClearEquipSlotHighlights()
+    {
+        foreach (UserInterface ui in AllInterfaces)
+        {
+            if (ui.inventory == null || ui.inventory.type != InterfaceType.Equipment) continue;
+            foreach (InventorySlot slot in ui.slotsOnInterface.Values)
+                SetSlotOutline(slot.slotDisplay, false);
+        }
+    }
+
+    private static void SetSlotOutline(GameObject slotDisplay, bool state)
+    {
+        if (slotDisplay == null) return;
+        Outline outline = slotDisplay.GetComponent<Outline>();
+        if (!state)
+        {
+            if (outline != null) outline.enabled = false;
+            return;
+        }
+        if (outline == null)
+        {
+            outline = slotDisplay.AddComponent<Outline>();
+            outline.effectDistance = new Vector2(3, 3);
+        }
+        outline.effectColor = CompatibleSlotOutlineColor;
+        outline.enabled = true;
+    }
+
+    // Right-click a backpack item to auto-equip it into the first compatible
+    // equipment slot (preferring an empty one), or right-click an equipped
+    // item to send it back to the first empty backpack slot.
+    public void OnSlotClicked(GameObject obj, PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Right) return;
+        if (playerInventory == null) return;
+
+        InventorySlot clickedSlot = slotsOnInterface[obj];
+        if (clickedSlot.item.Id < 0) return;
+
+        if (inventory.type == InterfaceType.Equipment)
+        {
+            InventorySlot emptyBackpackSlot = playerInventory.inventory.GetEmptySlot();
+            if (emptyBackpackSlot == null) return;
+            emptyBackpackSlot.UpdateSlot(clickedSlot.item, clickedSlot.amount);
+            clickedSlot.RemoveItem();
+        }
+        else
+        {
+            InventorySlot targetEquipSlot = FindCompatibleEquipSlot(clickedSlot.GetItemObject());
+            if (targetEquipSlot == null) return;
+            playerInventory.equipment.SwapItems(clickedSlot, targetEquipSlot);
+        }
+        stats.updateTotalStats();
+    }
+
+    // Prefers an empty compatible slot; falls back to the first compatible
+    // occupied slot so equipping swaps the old item back to the backpack.
+    private InventorySlot FindCompatibleEquipSlot(ItemObject itemObject)
+    {
+        InventorySlot firstMatch = null;
+        foreach (InventorySlot slot in playerInventory.equipment.GetSlots)
+        {
+            if (slot.AllowedItems.Length <= 0 || !slot.CanPlaceInSlot(itemObject)) continue;
+            if (slot.item.Id < 0) return slot;
+            firstMatch ??= slot;
+        }
+        return firstMatch;
     }
     public void OnDragStart(GameObject obj)
     {

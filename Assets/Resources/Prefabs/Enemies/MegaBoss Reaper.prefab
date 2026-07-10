@@ -44,8 +44,6 @@ GameObject:
   - component: {fileID: 5298301523034307642}
   - component: {fileID: 5160942373237286425}
   - component: {fileID: 2671323420212578751}
-  - component: {fileID: -2648266089628558325}
-  - component: {fileID: -8388857203549156141}
   - component: {fileID: 5674973369591424342}
   m_Layer: 9
   m_Name: MegaBoss Reaper
@@ -69,6 +67,7 @@ Transform:
   m_Children:
   - {fileID: 5440411408024793895}
   - {fileID: 8625025258307414858}
+  - {fileID: 7468816514345266}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5772906325174851777
@@ -212,7 +211,7 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8597935369796501180}
+  m_GameObject: {fileID: 3644344681242641}
   serializedVersion: 8
   lengthInSec: 0.5
   simulationSpeed: 1
@@ -4948,7 +4947,7 @@ ParticleSystemRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8597935369796501180}
+  m_GameObject: {fileID: 3644344681242641}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
@@ -5107,3 +5106,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3275294545674730719, guid: d284390bb0dba4548858409ccbdae256, type: 3}
   m_PrefabInstance: {fileID: 7418579022914490360}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3644344681242641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7468816514345266}
+  - component: {fileID: -2648266089628558325}
+  - component: {fileID: -8388857203549156141}
+  m_Layer: 9
+  m_Name: Hit Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7468816514345266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3644344681242641}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8687150427949477721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

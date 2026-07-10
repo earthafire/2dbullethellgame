@@ -12,6 +12,7 @@ public class Slime : Enemy
         base.Update();
         if (suspendActions)
         {
+            StopAgentOnceIfSuspended();
             return;
         }
         SlimeMove();

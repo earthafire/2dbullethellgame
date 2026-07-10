@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 using JetBrains.Annotations;
 
@@ -22,6 +23,9 @@ public class LevelGenerator : MonoBehaviour
 
     [Tooltip("The settings of our map")]
     public MapSettings mapSetting;
+
+    // Fired at the end of GenerateMap(), after tiles are rendered onto `tilemap`.
+    public UnityEvent OnGenerated = new UnityEvent();
 
     public void Awake()
     {
@@ -123,6 +127,8 @@ public class LevelGenerator : MonoBehaviour
         MapFunctions.ClearMiddleTiles(map);
         MapFunctions.RenderMap(map, tilemap, GetRandomTile());
         //MapFunctions.RenderMap(map, tilemap, tileList[0]);
+
+        OnGenerated.Invoke();
     }
 
     public void ClearMap()

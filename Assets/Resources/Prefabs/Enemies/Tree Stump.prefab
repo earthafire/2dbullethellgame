@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 5298301523034307642}
   - component: {fileID: 5160942373237286425}
   - component: {fileID: 2671323420212578751}
-  - component: {fileID: -2648266089628558325}
-  - component: {fileID: -8388857203549156141}
   - component: {fileID: 4326313306063898140}
   m_Layer: 7
   m_Name: Tree Stump
@@ -35,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 2}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1545558132485281}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5772906325174851777
@@ -179,7 +178,7 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8597935369796501180}
+  m_GameObject: {fileID: 3729742274959452}
   serializedVersion: 8
   lengthInSec: 0.5
   simulationSpeed: 1
@@ -4915,7 +4914,7 @@ ParticleSystemRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8597935369796501180}
+  m_GameObject: {fileID: 3729742274959452}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
@@ -5003,3 +5002,36 @@ MonoBehaviour:
   _lootBag: {fileID: 0}
   speed_animation_multiplier: 1
   suspendActions: 0
+--- !u!1 &3729742274959452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1545558132485281}
+  - component: {fileID: -2648266089628558325}
+  - component: {fileID: -8388857203549156141}
+  m_Layer: 7
+  m_Name: Hit Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1545558132485281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729742274959452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8687150427949477721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

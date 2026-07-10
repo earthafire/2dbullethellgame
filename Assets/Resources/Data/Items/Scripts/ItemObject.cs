@@ -27,6 +27,8 @@ public class ItemObject : SerializedScriptableObject
     public Item data = new Item();
     public Dictionary<Attribute, float> buffs = new();
     public ActivatableAbilityType ability;
+    public float abilityDamage;
+    public float abilityCooldown;
 
     public Item CreateItem()
     {

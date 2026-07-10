@@ -9,6 +9,8 @@ public class Item
     public string Description;
     public Dictionary<Attribute, float> Buffs = new Dictionary<Attribute, float>() { };
     public ActivatableAbilityType Ability = ActivatableAbilityType.NULL;
+    public float AbilityDamage;
+    public float AbilityCooldown;
 
     public Item()
     {
@@ -22,5 +24,7 @@ public class Item
         Description = item.description;
         Buffs = item.buffs;
         Ability = item.ability;
+        AbilityDamage = item.abilityDamage;
+        AbilityCooldown = item.abilityCooldown;
     }
 }

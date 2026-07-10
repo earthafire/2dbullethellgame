@@ -129,7 +129,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4352
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -168,6 +168,8 @@ MonoBehaviour:
   speed: 5
   knockbackForce: 3
   particleOnDeathCount: 25
+  magnetRange: 1.5
+  pickupRange: 0.25
 --- !u!114 &474517700228678191
 MonoBehaviour:
   m_ObjectHideFlags: 0
