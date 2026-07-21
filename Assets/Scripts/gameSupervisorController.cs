@@ -48,6 +48,9 @@ public class gameSupervisorController : MonoBehaviour
         levelGenerator = GlobalReferences.levelGenerator;
         detections = new Collider2D[32];
 
+        regularEnemies = FilterNullPrefabs(regularEnemies);
+        bossEnemies = FilterNullPrefabs(bossEnemies);
+
         levelGenerator.GenerateMap();
     }
 
@@ -92,14 +95,23 @@ public class gameSupervisorController : MonoBehaviour
     }
     void spawnEntity(GameObject entity)
     {
+        if (entity == null)
+        {
+            Debug.LogWarning("gameSupervisorController.spawnEntity was given a null enemy prefab.");
+            return;
+        }
+
         Vector3 new_position = generateRandRingPosition(player.transform.position, ringSize);
 
         GameObject spawnedEnemy = ObjectPoolManager.SpawnObject(entity, new_position, Quaternion.identity);
-        //GameObject spawnedEnemy = Instantiate(entity, new_position, Quaternion.identity);
+        if (spawnedEnemy == null)
+        {
+            Debug.LogWarning("ObjectPoolManager failed to spawn enemy for prefab: " + entity.name);
+            return;
+        }
 
         spawnedEnemiesInScene.Add(spawnedEnemy);
 
-        //subscribe to future death events to remove us from the spawn list
         if (spawnedEnemy.TryGetComponent(out Enemy enemy))
         {
             enemy.OnEnemyDeath.AddListener((GameObject caller) => RemoveSelfFromSpawnedEnemiesInScene(caller));
@@ -189,12 +201,32 @@ public class gameSupervisorController : MonoBehaviour
         detections = Physics2D.OverlapCircleAll(_position, 1.5f);
         foreach (var col in detections)
         {
+            if (col == null)
+                continue;
+
             if (col.gameObject.layer == 3) // Wall Layer
             {
                 return false;
             }
         }
         return true;
+    }
+
+    private GameObject[] FilterNullPrefabs(GameObject[] prefabs)
+    {
+        if (prefabs == null)
+            return System.Array.Empty<GameObject>();
+
+        List<GameObject> valid = new List<GameObject>(prefabs.Length);
+        foreach (var prefab in prefabs)
+        {
+            if (prefab != null)
+                valid.Add(prefab);
+            else
+                Debug.LogWarning("Null prefab reference found in enemy list and removed.");
+        }
+
+        return valid.ToArray();
     }
 }
 

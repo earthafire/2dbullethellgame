@@ -81,7 +81,7 @@ public class EnemyXpObjectBehaviour : InteractableLoot
     // manager's single cached, upgrade-event-driven value (see
     // EnemyXpObjectManager.OnUpgradeApplied) rather than each orb reading the stat
     // itself every tick.
-    public void TickProximity(GameObject playerObject, float magnetRange)
+    public void TickProximity(GameObject playerObject, float magnetRange)   
     {
         float sqrDistance = (transform.position - playerObject.transform.position).sqrMagnitude;
 

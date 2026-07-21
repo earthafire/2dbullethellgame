@@ -20,6 +20,14 @@ public class PlayerAttributes : MonoBehaviour
 
     public static Dictionary<Attribute, float> stats = new() { };
 
+    // Temporary move-speed multiplier from power-ups (e.g. PowerUpPickup) - kept
+    // separate from `stats` since that dictionary gets wiped and rebuilt from
+    // equipment/upgrades any time updateTotalStats() runs, which would silently
+    // drop a flat addition baked in there. PlayerMovement multiplies its speed by
+    // this every frame instead.
+    public float speedBoostMultiplier = 1f;
+    private Coroutine _speedBoostCoroutine;
+
     public UnityEvent OnPlayerDeath =  new UnityEvent();
 
     public void Awake()
@@ -76,6 +84,31 @@ public class PlayerAttributes : MonoBehaviour
         _hitbox.enabled = false;
         yield return new WaitForSeconds(_cooldown);
         _hitbox.enabled = true;
+    }
+
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, stats[Attribute.maxHealth]);
+        healthbar.SetHealth(currentHealth);
+    }
+
+    // Restarting an already-active boost (e.g. grabbing a second speed power-up)
+    // simply refreshes its duration rather than stacking multipliers.
+    public void ApplySpeedBoost(float multiplier, float duration)
+    {
+        if (_speedBoostCoroutine != null)
+        {
+            StopCoroutine(_speedBoostCoroutine);
+        }
+        _speedBoostCoroutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedBoostRoutine(float multiplier, float duration)
+    {
+        speedBoostMultiplier = multiplier;
+        yield return new WaitForSeconds(duration);
+        speedBoostMultiplier = 1f;
+        _speedBoostCoroutine = null;
     }
 
     private void UpgradeApplied(Attributes attribute, UpgradeAttribute upgradeAttribute)

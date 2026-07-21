@@ -12,6 +12,7 @@ public class GlobalReferences : MonoBehaviour
     public static Transform firePoint;
     public static gameSupervisorController gameSupervisorController;
     public static EnemyXpObjectManager enemyXpObjectManager;
+    public static EnemyHitParticleManager enemyHitParticleManager;
     public static LevelGenerator levelGenerator;
     // Registered by CrowdGroupRegistrar (Assets/Scripts/Navigation) - prefab assets
     // can't hold a direct serialized reference to a scene object, so enemies wire

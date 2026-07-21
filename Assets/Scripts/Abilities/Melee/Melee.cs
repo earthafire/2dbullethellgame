@@ -26,6 +26,7 @@ public class Melee : ActivatableAbility
 
     private void ChangeDirection()
     {
+      /*  if(player.transform == null ) { return; }
         if (player.transform.localScale == Vector3.one)
         {
             offset = .5f * transform.localScale.x;
@@ -33,6 +34,6 @@ public class Melee : ActivatableAbility
         else
         {
             offset = -(.5f * transform.localScale.x);
-        }
+        }*/
     }
 }

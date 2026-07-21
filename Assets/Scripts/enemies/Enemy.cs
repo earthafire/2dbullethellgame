@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D _rb2d;
     private CircleCollider2D _circleCollider;
     private ParticleSystem particles;
+    private ParticleColorRandomizer _particleColorRandomizer;
     private Animator _animator;
     private Vector3 _localScale;
 
@@ -50,6 +51,7 @@ public class Enemy : MonoBehaviour
         _rb2d = GetComponent<Rigidbody2D>();
         _circleCollider = GetComponent<CircleCollider2D>();
         particles = GetComponentInChildren<ParticleSystem>();
+        _particleColorRandomizer = GetComponentInChildren<ParticleColorRandomizer>();
         _animator = GetComponent<Animator>();
         _agent = GetComponent<AgentAuthoring>();
 
@@ -59,6 +61,11 @@ public class Enemy : MonoBehaviour
     {
         shadow = transform.GetChild(0).gameObject;
         player = GlobalReferences.player;
+
+        if (_particleColorRandomizer != null)
+        {
+            _particleColorRandomizer.ApplyRandomColor();
+        }
 
         // On a fresh Instantiate(), OnEnable() fires per-component in component list
         // order - Awake()/OnEnable() are NOT batched as "all Awakes then all
@@ -166,14 +173,14 @@ public class Enemy : MonoBehaviour
     {
         Move();
         // if player is to the right of the enemy
-        if(player.transform.position.x > transform.position.x)
+/*        if(player.transform.position.x > transform.position.x)
         {
             transform.localScale = _localScale;
         }
         else
         {
             transform.localScale = new Vector3(-_localScale.x, _localScale.y, _localScale.z);
-        }
+        }*/
     }
 
     public void Move()
@@ -230,9 +237,29 @@ public class Enemy : MonoBehaviour
 
         //Debug.Log("base damage: " + _ablityDamage + ", actual damage: " + modifiedPlayerDamage);
 
-        RotateParticlesAwayFromPlayer();
-        particles.Emit(modifiedPlayerDamage);
-        _animator.SetTrigger("GetHit");
+        Vector2 hitDirection = Vector2.zero;
+        if (player != null)
+        {
+            hitDirection = (transform.position - player.transform.position).normalized;
+        }
+
+        if (GlobalReferences.enemyHitParticleManager != null)
+        {
+            GlobalReferences.enemyHitParticleManager.SpawnHitEffect(transform.position, hitDirection, modifiedPlayerDamage, _particleColorRandomizer?.colorChances);
+        }
+        else
+        {
+            RotateParticlesAwayFromPlayer();
+            if (particles != null)
+            {
+                particles.Emit(modifiedPlayerDamage);
+            }
+        }
+
+        if (_animator != null)
+        {
+            _animator.SetTrigger("GetHit");
+        }
 
         if (health <= 0)
         {
@@ -243,9 +270,14 @@ public class Enemy : MonoBehaviour
 
     // Points the hit-particles child away from the player so the burst
     // sprays outward instead of back into the thing that hit it.
+    // No-ops for subclasses (e.g. Destructible) that don't have a hit-particle child.
     private void RotateParticlesAwayFromPlayer()
     {
-        Vector3 awayFromPlayer = player.transform.position - transform.position;
+        if (particles == null)
+        {
+            return;
+        }
+        Vector3 awayFromPlayer = transform.position - player.transform.position ;
         float rotationZ = Mathf.Atan2(awayFromPlayer.y, awayFromPlayer.x) * Mathf.Rad2Deg;
         particles.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
     }
@@ -261,9 +293,9 @@ public class Enemy : MonoBehaviour
 
     public bool GetKnockbacked(Transform knockbackFromPosition, float knockbackForce)
     {
-        Vector2 knockbackDirection = transform.position - knockbackFromPosition.position;
-        knockbackDirection = knockbackForce * _rb2d.mass * knockbackDirection.normalized;
-        _rb2d.AddForce(knockbackDirection, ForceMode2D.Impulse);
+        Vector2 knockbackDirection = (transform.position - knockbackFromPosition.position).normalized;
+        Vector2 knockbackVelocity = knockbackDirection * knockbackForce * _rb2d.mass;
+        _rb2d.linearVelocity += knockbackVelocity;
         return true;
     }
 
@@ -271,7 +303,10 @@ public class Enemy : MonoBehaviour
     {
         _spriteRenderer.enabled = false;
        _circleCollider.enabled = false;
-        shadow.SetActive(false);
+        if (shadow != null)
+        {
+            shadow.SetActive(false);
+        }
 
         // Spawns XP at current position
         GlobalReferences.enemyXpObjectManager.SpawnXP(this.gameObject);

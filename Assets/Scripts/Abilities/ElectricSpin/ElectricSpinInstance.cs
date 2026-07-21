@@ -11,6 +11,7 @@ public class ElectricSpinInstance : AbilityObject
     public override float damage { get; set; } = 10f;
     public override float duration { get; set; } = 3.5f;
     public override float speed { get; set; } = 100f;
+    public override float tickRate { get; set; } = .1f;
 
     Transform orbiter;
 
@@ -21,7 +22,7 @@ public class ElectricSpinInstance : AbilityObject
     }
     public override void OnEnable()
     {
-        distance *= ((PlayerAttributes.stats[Attribute.size] / 5) + 1);
+        distance *= PlayerAttributes.stats[Attribute.size] / 5 + 1;
         base.OnEnable();
     }
 
